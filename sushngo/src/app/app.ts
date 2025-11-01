@@ -5,8 +5,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: '../css/style.css'
 })
 export class App {
-  protected readonly title = signal('sushngo');
+  protected readonly title = signal('Sush\'n Go');
 }
