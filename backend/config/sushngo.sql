@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 19 nov. 2025 à 13:37
+-- Généré le : mer. 19 nov. 2025 à 15:54
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -81,10 +81,11 @@ CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
   `produit` varchar(150) DEFAULT NULL,
   `description` text DEFAULT NULL,
+  `saveurs` text DEFAULT NULL,
+  `aliments` text DEFAULT NULL,
   `prix` float DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `id_souscat` int(11) DEFAULT NULL,
-  `id_img` int(11) DEFAULT NULL,
   `chemin_img` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
