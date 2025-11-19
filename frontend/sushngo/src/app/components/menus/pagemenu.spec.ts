@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Rgpd } from './rgpd';
+import { Pagemenu } from './pagemenu';
 
-describe('Rgpd', () => {
-  let component: Rgpd;
-  let fixture: ComponentFixture<Rgpd>;
+describe('Pagemenu', () => {
+  let component: Pagemenu;
+  let fixture: ComponentFixture<Pagemenu>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Rgpd]
+      imports: [Pagemenu]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Rgpd);
+    fixture = TestBed.createComponent(Pagemenu);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
