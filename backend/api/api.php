@@ -1,7 +1,7 @@
 <?php
 
 require_once  '../api/produits/boxmanager.php';
-
+// box bouffe
 if (isset($_GET['id_produit'])) {
     $boxManager = new BoxManager();
     $boxes = $boxManager->findById($_GET['id_produit']);
