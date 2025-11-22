@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 19 nov. 2025 à 15:54
+-- Généré le : sam. 22 nov. 2025 à 02:37
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -79,15 +79,34 @@ CREATE TABLE `images` (
 
 CREATE TABLE `produit` (
   `id_produit` int(11) NOT NULL,
-  `produit` varchar(150) DEFAULT NULL,
+  `nom` varchar(150) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `saveurs` text DEFAULT NULL,
   `aliments` text DEFAULT NULL,
   `prix` float DEFAULT NULL,
-  `stock` int(11) DEFAULT NULL,
+  `pieces` int(11) DEFAULT NULL,
   `id_souscat` int(11) DEFAULT NULL,
-  `chemin_img` varchar(100) DEFAULT NULL
+  `image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`id_produit`, `nom`, `description`, `saveurs`, `aliments`, `prix`, `pieces`, `id_souscat`, `image`) VALUES
+(14, 'Tasty Blend', NULL, 'saumon, avocat, cheese', 'California Saumon Avocat (3); Sushi Saumon (3); Spring Avocat Cheese (3); California pacific (3); Edamame/Salade de chou (1)', 12.5, 12, NULL, 'tasty-blend'),
+(15, 'Amateur Mix', NULL, 'coriandre, saumon, avocat, cheese', 'Maki Salmon Roll (3); Spring Saumon Avocat (3); Maki Cheese Avocat (6); California Saumon Avocat (3); Edamame/Salade de chou (1)', 15.9, 18, NULL, 'amateur-mix'),
+(16, 'Saumon Original', NULL, 'saumon, avocat', 'California Saumon Avocat (6); Sushi Saumon (5); Edamame/Salade de chou (1)', 12.5, 11, NULL, 'saumon-original'),
+(17, 'Salmon Lovers', NULL, 'coriandre, saumon, avocat', 'California Saumon Avocat (6); Spring Saumon Avocat (6); Sushi Saumon (6); Edamame/Salade de chou (1)', 15.9, 18, NULL, 'salmon-lovers'),
+(18, 'Salmon Classic', NULL, 'saumon', 'Sushi Saumon (10); Edamame/Salade de chou (1)', 15.9, 10, NULL, 'salmon-classic'),
+(19, 'Master Mix', NULL, 'saumon, thon, avocat', 'Sushi Saumon (4); Sushi Thon (2); California Thon Avocat (3); California Saumon Avocat (3); Edamame / Salade de chou (1)', 15.9, 12, NULL, 'master-mix'),
+(20, 'Sunrise', NULL, 'saumon, thon, avocat, cheese', 'Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 18, NULL, 'sunrise'),
+(21, 'Sando Box Chicken Katsu', NULL, 'saumon, viande, avocat, cheese', 'Sando Chicken Katsu (0.5); Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, NULL, 'sando-box-chicken-katsu'),
+(22, 'Sando Box Salmon Aburi', NULL, 'saumon, thon, avocat', 'Sando Salmon Aburi (0.5); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, NULL, 'sando-box-salmon-aburi'),
+(23, 'Super Salmon', NULL, 'coriandre, saumon, avocat, cheese', 'California Saumon Avocat (6); Maki Salmon Roll (6); Maki Salmon (6); Spring Saumon Avocat (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'super-salmon'),
+(24, 'California Dream', NULL, 'spicy, saumon, thon, crevette, viande, avocat', 'California Saumon Avocat (6); California Crevette (6); California Thon Cuit Avocat (6); California Chicken Katsu (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'california-dream'),
+(25, 'Gourmet Mix', NULL, 'coriande, spicy, saumon, viande, avocat, seriole lalandi', 'Spring tataki Saumon (6); Signature Dragon Roll (4); California French Touch (3); California French salmon (6); California Yellowtail Ponzu (3); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'gourmet-mix'),
+(26, 'Fresh Mix', NULL, 'spicy, saumon, thon, avocat, cheese', 'Signature Rock\'n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'fresh-mix');
 
 -- --------------------------------------------------------
 
@@ -203,7 +222,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `souscategorie`
