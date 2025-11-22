@@ -106,7 +106,7 @@ INSERT INTO `produit` (`id_produit`, `nom`, `description`, `saveurs`, `aliments`
 (23, 'Super Salmon', NULL, 'coriandre, saumon, avocat, cheese', 'California Saumon Avocat (6); Maki Salmon Roll (6); Maki Salmon (6); Spring Saumon Avocat (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'super-salmon'),
 (24, 'California Dream', NULL, 'spicy, saumon, thon, crevette, viande, avocat', 'California Saumon Avocat (6); California Crevette (6); California Thon Cuit Avocat (6); California Chicken Katsu (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'california-dream'),
 (25, 'Gourmet Mix', NULL, 'coriande, spicy, saumon, viande, avocat, seriole lalandi', 'Spring tataki Saumon (6); Signature Dragon Roll (4); California French Touch (3); California French salmon (6); California Yellowtail Ponzu (3); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'gourmet-mix'),
-(26, 'Fresh Mix', NULL, 'spicy, saumon, thon, avocat, cheese', 'Signature Rock\'n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'fresh-mix');
+(26, 'Fresh Mix', NULL, 'spicy, saumon, thon, avocat, cheese', 'Signature Rock''n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'fresh-mix');
 
 -- --------------------------------------------------------
 
