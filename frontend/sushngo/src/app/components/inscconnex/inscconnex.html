@@ -1,0 +1,107 @@
+<!-- front réalisé par Joachim Tocqueville -->
+<section class="container-fluid mt-5" id="connexionbg">
+    <section id="fondform">
+        <form id="formconnex" class="bg-white px-2 rounded-2xl">
+            <div class="flex items-center mx-32">
+                <hr class="flex-1 border-t border-gray-400">
+                <span class="mx-4">
+                    <img src="images/favicon/web-app-manifest-192x192.png" alt="Logo" width="35px" height="35px ">
+                </span>
+                <hr class="flex-1 border-t border-gray-400">
+            </div>
+            <section class="row border-black border rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58">
+                <button>
+                    <div
+                        class="cursor-pointer col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 mr-[0.7rem] ms-[-0.7rem] p-3">
+                        Inscription
+                    </div>
+                </button>
+                <button>
+                    <div class="cursor-pointer col-md-1 inline-block  text-center">
+                        Connexion
+                    </div>
+                </button>
+            </section>
+            <!-- front joaquim fin -->
+            <!-- form par Joaquim et stylisé par maxime derènes -->
+            <div class="grid grid-cols-2 grid-rows-4 gap-6">
+
+                <div>
+                    <label class="block" for="nom">Nom</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="nom" name="nom" type="text" placeholder="Nom" required>
+                </div>
+
+                <div>
+                    <label class="block" for="prenom">Prénom</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="prenom" name="prenom" type="text" placeholder="Prénom" required>
+                </div>
+
+                <div>
+                    <label class="block" for="email">Email</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="email" name="email" type="email" placeholder="Email" required>
+                </div>
+
+                <div>
+                    <label class="block" for="telephone">Téléphone</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="telephone" name="telephone" type="text" placeholder="Téléphone" required>
+                </div>
+
+                <div>
+                    <label class="block" for="adresse">Adresse</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="adresse" name="adresse" type="text" placeholder="Adresse" required>
+                </div>
+
+                <div>
+                    <label class="block" for="etudiant">Êtes-vous étudiant ?</label>
+                    <input class="border rounded-2xl p-2 black" id="etudiant" name="etudiant" type="checkbox">
+                </div>
+
+                <div>
+                    <label class="block" for="motdepasse">Mot de passe</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="motdepasse" name="motdepasse" type="password" placeholder="Mot de passe" required>
+                </div>
+
+                <div>
+                    <label class="block" for="confirmMotDePasse">Confirmer le mot de passe</label>
+                    <input class="border rounded-2xl p-2 black w-full" id="confirmMotDePasse" name="confirmMotDePasse" type="password" placeholder="Confirmer le mot de passe" required>
+                </div>
+            </div>
+            <div class="flex justify-center mt-5 py-4">
+                <button id="submit" type="submit" class="border   rounded-2xl p-2 bg-[#aeaeae] text-black hover:bg-[#898989] border-black text-center">S'inscrire</button>
+            </div>
+        </form>
+    </section>
+</section>
+
+<script> /* maïté */ /*
+window.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            const mdpinput = document.getElementById('motdepasse');
+            const inputmdpconfirm = document.getElementById('confirmMotDePasse');
+
+            const password = mdpinput ? mdpinput.value : '';
+            const confirmPassword = inputmdpconfirm ? inputmdpconfirm.value : '';
+
+            // reset a chaque envoie
+            if (inputmdpconfirm) {
+                inputmdpconfirm.classList.remove('bg-[#F64F4F]', 'text-white');
+            }
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                if (inputmdpconfirm) {
+                    inputmdpconfirm.classList.add("bg-[#F64F4F]");
+                    inputmdpconfirm.classList.add('text-white');
+                    inputmdpconfirm.classList.add('hover:bg-[#ff3c3c]');
+                    inputmdpconfirm.value = '';
+                    inputmdpconfirm.placeholder = 'Les mots de passe ne correspondent pas';
+                    inputmdpconfirm.focus();
+                    alert("Les mots de passe ne correspondent pas. Veuillez confirmer.");
+                }
+            }
+        });
+    }
+});*/ /* Je revérifierai */
+</script>
