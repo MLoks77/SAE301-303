@@ -2,10 +2,12 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Inscconnex } from './components/inscconnex/inscconnex';
+import { Cookiecard } from './components/cookiecard/cookiecard';
+import { Plansite } from './components/plansite/plansite';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Inscconnex],
+  imports: [RouterOutlet, Footer, Inscconnex, Cookiecard, Plansite],
   templateUrl: './app.html',
   styleUrl: 'styles/css/styles.css'
 })

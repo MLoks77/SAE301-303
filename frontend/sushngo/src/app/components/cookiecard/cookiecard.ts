@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './cookiecard.css',
 })
 export class Cookiecard {
-
+  accepterCookies() {
+    console.log('Les cookies ont été acceptés. Miam !');
+  }
+  refuserCookies() {
+    console.log('Les cookies ont été refusés. Oh non !');
+  }
 }
