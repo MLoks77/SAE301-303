@@ -1,21 +1,39 @@
 <!-- réalisé par Joachim Tocqueville -->
-<div id="connexionbg">
-    <div id="fondform">
+<section class="container-fluid" id="connexionbg">
+    <section id="fondform">
         <form id="formconnex">
-            <div class="flex items-center mx-[7rem]">
+            <div class="flex items-center mx-[8rem]">
                 <hr class="flex-1 border-t border-gray-400">
                 <span class="mx-4">
-                    <img src="images/favicon/web-app-manifest-192x192.png" alt="Logo" class="h-8">
+                    <img src="images/favicon/web-app-manifest-192x192.png" alt="Logo" class="h-10">
                 </span>
                 <hr class="flex-1 border-t border-gray-400">
             </div>
-            <div class="border-black border-1 mb-4 mt-4 p-2 text-center">
-
-            </div>
-            <h2>Connexion</h2>
-            <input type="text" placeholder="Adresse e-mail" required>
-            <input type="password" placeholder="Mot de passe" required>
-            <button type="submit">Se connecter</button>
+            <section class="row border-black border-1 rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58">
+                <div class="col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 mr-[0.7rem] ms-[-0.7rem] p-3">Inscription</div>
+                <div class="col-md-1 inline-block ms-[0.2rem] text-center">Connexion</div>
+            </section>
+            <section class="row">
+                <label class="block">Nom</label>
+                <input type="text" placeholder="Nom" required>
+                <label class="block">Email</label>
+                <input type="email" placeholder="Email" required>
+                <label class="block">Adresse</label>
+                <input type="text" placeholder="Adresse" required>
+                <label class="block">Mot de passe</label>
+                <input type="password" placeholder="Mot de passe" required>
+            </section>
+            <section class="row">
+                <label class="block">Prénom</label>
+                <input type="text" placeholder="Prénom" required>
+                <label class="block">Téléphone</label>
+                <input type="text" placeholder="Téléphone" required>
+                <label class="block">Êtes-vous étudiant ?</label>
+                <input type="checkbox" required>
+                <label class="block">Confirmer le mot de passe</label>
+                <input type="password" placeholder="Confirmer le mot de passe" required>
+            </section>
+            <button type="submit">S'inscrire</button>
         </form>
-    </div>
-</div>
+    </section>
+</section>
