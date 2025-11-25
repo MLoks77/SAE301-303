@@ -11,9 +11,10 @@ import { Plansite } from './components/plansite/plansite';
 import { Pointsretraits } from './components/pointsretraits/pointsretraits';
 import { Stats } from './components/stats/stats';
 import { Ugc } from './components/ugc/ugc';
+import { Contact } from './components/contact/contact';
 
 export const routes: Routes = [
-  { path: '', component: Index },
+  { path: '', component: Pagemenu},
   { path: 'utilisation-cookie', component: Utilisationcookie },
   { path: 'compte', component: Compte },
   { path: 'inscription-connexion', component: Inscconnex },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'points-retraits', component: Pointsretraits },
   { path: 'stats', component: Stats },
   { path: 'ugc', component: Ugc },
+  { path: 'contact', component: Contact},
   { path: '**', redirectTo: 'inscription' } // Route par défaut pour les chemins non trouvés
 ];

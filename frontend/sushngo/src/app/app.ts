@@ -4,10 +4,11 @@ import { Footer } from './components/footer/footer';
 import { Inscconnex } from './components/inscconnex/inscconnex';
 import { Cookiecard } from './components/cookiecard/cookiecard';
 import { Plansite } from './components/plansite/plansite';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Inscconnex, Cookiecard, Plansite],
+  imports: [RouterOutlet, Footer, Navbar],
   templateUrl: './app.html',
   styleUrl: 'styles/css/styles.css'
 })
