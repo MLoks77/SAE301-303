@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-@import url('../../../../Imgs/Img_fond_page_inscription_connexion.png');
-#connexionbg {
-    background-image: url('../../../../Imgs/Img_fond_page_inscription_connexion.png');
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-}
-
 #fondform {
     background-color: white;
     width: 30rem;
