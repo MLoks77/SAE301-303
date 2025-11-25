@@ -12,6 +12,7 @@ import { Pointsretraits } from './components/pointsretraits/pointsretraits';
 import { Stats } from './components/stats/stats';
 import { Ugc } from './components/ugc/ugc';
 import { Contact } from './components/contact/contact';
+import { Rgpd } from './components/rgpd/rgpd';
 
 export const routes: Routes = [
   { path: '', component: Pagemenu},
@@ -27,5 +28,6 @@ export const routes: Routes = [
   { path: 'stats', component: Stats },
   { path: 'ugc', component: Ugc },
   { path: 'contact', component: Contact},
+  { path: 'rgpd', component: Rgpd},
   { path: '**', redirectTo: 'inscription' } // Route par défaut pour les chemins non trouvés
 ];
