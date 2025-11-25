@@ -1,3 +1,5 @@
+/* Routes par sébastien chisiu */
+
 import { Routes } from '@angular/router';
 import { Index } from './components/index/index';
 import { Utilisationcookie } from './components/utilisationcookie/utilisationcookie';
