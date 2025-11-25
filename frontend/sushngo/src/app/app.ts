@@ -5,11 +5,10 @@ import { Header } from './components/header/header';
 import { Inscconnex } from './components/inscconnex/inscconnex';
 import { Cookiecard } from './components/cookiecard/cookiecard';
 import { Plansite } from './components/plansite/plansite';
-import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Navbar],
+  imports: [RouterOutlet, Footer, Header],
   templateUrl: './app.html',
   styleUrl: 'styles/css/styles.css'
 })
