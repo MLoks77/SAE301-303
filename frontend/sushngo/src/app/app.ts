@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Navbar } from './components/navbar/navbar';
 import { Inscconnex } from './components/inscconnex/inscconnex';
@@ -8,7 +8,7 @@ import { Plansite } from './components/plansite/plansite';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Navbar],
+  imports: [RouterOutlet, Footer, Navbar, RouterLink],
   templateUrl: './app.html',
   styleUrl: 'styles/css/styles.css'
 })
