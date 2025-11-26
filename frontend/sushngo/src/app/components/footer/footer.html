@@ -1,4 +1,5 @@
-<!-- réalisé par Maxime Derènes et Témi Kergastel -->
+<!-- réalisé par Maxime Derènes -->
+ <!-- routes par sebastien et maxime -->
 <!-- partie hr ligne -->
  
 
@@ -19,12 +20,12 @@
             <li>
                 <h2 class="text-black/60 text-xl mb-3">Pages</h2>
             </li>
-            <li><a routerLink="/points-retraits" class="text-xl hover:text-black/70 cursor-pointer">Nos points de retraits</a></li>
-            <li><a routerLink="/menu" class="text-xl hover:text-black/70 cursor-pointer">Notre carte</a></li>
-            <li><a routerLink="/stats" class="text-xl hover:text-black/70 cursor-pointer">Statistiques</a></li>
-            <li><a routerLink="/contact" class="text-xl hover:text-black/70 cursor-pointer">Nous contacter</a></li>
-            <li><a routerLink="/compte" class="text-xl hover:text-black/70 border-black cursor-pointer">Mon Compte</a></li>
-            <li><a routerLink="/inscription-connexion" class="text-xl hover:text-black/70 cursor-pointer">Se déconnecter</a></li>
+            <li><a routerLink="/points-retraits" class="cursor-pointer text-xl hover:text-black/70">Nos points de retraits</a></li>
+            <li><a routerLink="/menu" class="cursor-pointer text-xl hover:text-black/70">Notre carte</a></li>
+            <li><a routerLink="/stats" class="cursor-pointer text-xl hover:text-black/70">Statistiques</a></li>
+            <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70">Nous contacter</a></li>
+            <li><a routerLink="/compte" class="cursor-pointer text-xl hover:text-black/70 border-black">Mon Compte</a></li>
+            <li><a routerLink="/inscription-connexion" class="cursor-pointer text-xl hover:text-black/70">Se déconnecter</a></li>
         </ul>
     </div>
     <div class="row-span-3">
@@ -59,9 +60,9 @@
 <div>
     <h2 class="text-black/60 text-center">Copyright © 2025 Sush’n Go, Tous droits réservés.</h2>
     <div class="flex flex-row gap-5 justify-center text-center">
-        <a href="#"><h2>Mentions légales</h2></a>
-        <a href="#"><h2 class="border-x border-black px-3">Plan du site</h2></a>
-        <a href="#"><h2>Utilisation de cookies</h2></a>
+        <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70"><h2>Mentions légales</h2></a>
+        <a routerLink="/plan-site"><h2 class="cursor-pointer border-x border-black px-3 hover:text-black/70">Plan du site</h2></a>
+        <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70"><h2>Utilisation de cookies</h2></a>
     </div>
 </div>
 </footer>

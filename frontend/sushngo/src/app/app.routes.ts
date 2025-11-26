@@ -1,5 +1,7 @@
+/* Routes par sébastien chisiu */
+
 import { Routes } from '@angular/router';
-import { Index } from './components/index/index';
+import { Accueil } from './components/accueil/accueil';
 import { Utilisationcookie } from './components/utilisationcookie/utilisationcookie';
 import { Compte } from './components/compte/compte';
 import { Inscconnex } from './components/inscconnex/inscconnex';
@@ -15,7 +17,8 @@ import { Contact } from './components/contact/contact';
 import { Rgpd } from './components/rgpd/rgpd';
 
 export const routes: Routes = [
-  { path: '', component: Pagemenu},
+  { path: '', component: Accueil},
+  { path: 'accueil', component: Accueil},
   { path: 'utilisation-cookie', component: Utilisationcookie },
   { path: 'compte', component: Compte },
   { path: 'inscription-connexion', component: Inscconnex },
@@ -28,6 +31,5 @@ export const routes: Routes = [
   { path: 'stats', component: Stats },
   { path: 'ugc', component: Ugc },
   { path: 'contact', component: Contact},
-  { path: 'rgpd', component: Rgpd},
-  { path: '**', redirectTo: 'inscription' } // Route par défaut pour les chemins non trouvés
+  { path: '**', redirectTo: 'accueil' } // Route par défaut pour les chemins non trouvés
 ];
