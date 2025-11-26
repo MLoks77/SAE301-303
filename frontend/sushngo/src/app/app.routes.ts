@@ -32,4 +32,4 @@ export const routes: Routes = [
   { path: 'ugc', component: Ugc },
   { path: 'contact', component: Contact},
   { path: '**', redirectTo: 'accueil' } // Route par défaut pour les chemins non trouvés
-];
+];  
