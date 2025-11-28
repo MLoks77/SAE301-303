@@ -14,7 +14,6 @@ import { Pointsretraits } from './components/pointsretraits/pointsretraits';
 import { Stats } from './components/stats/stats';
 import { Ugc } from './components/ugc/ugc';
 import { Contact } from './components/contact/contact';
-import { Rgpd } from './components/rgpd/rgpd';
 
 export const routes: Routes = [
   { path: '', component: Contact},

@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+#fondform {
+    background-color: white;
+    width: 30rem;
+    height: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    border-radius: 5px;
+}
+
+@font-face {
+    font-family: 'Caladea';
+    src:
+        url('/fonts/Caladea-Regular.woff') format('woff');
+
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.Caladea {
+    font-family: 'Caladea', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Julee';
+    src:
+        url('font/Julee-Regular.woff') format('woff');
+
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.Julee {
+    font-family: 'Julee', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
