@@ -1,6 +1,6 @@
 <!-- réalisé par témi 24/11 -->
 
-<header class="fixed top-0 left-0 w-full bg-white z-50 text-lg">
+<header class="hidden md:block fixed top-0 left-0 w-full bg-white z-50 text-lg">
     <nav class="h-15 flex justify-between px-8 py-3">
         <div class="grid grid-cols-5 grid-rows-1 gap-0 w-full items-center">
 
@@ -10,14 +10,12 @@
                 </a>
             </div>
 
-
-            <div class="col-span-3 flex items-center justify-center">
-                <a routerLink="/menu">Notre carte</a>
-                <a routerLink="/points-retraits" class="ml-6">Nos points de retraits</a>
-                <a routerLink="/stats" class="ml-6">Statistiques</a>
-                <a routerLink="/contact" class="ml-6">Nous contacter</a>
+            <div class="col-span-3 flex items-center justify-center gap-10">
+                <a routerLink="/menu" class="transition-opacity duration-100 hover:opacity-60">Notre carte</a>
+                <a routerLink="/points-retraits" class="transition-opacity duration-100 hover:opacity-60">Nos points de retraits</a>
+                <a routerLink="/stats" class="transition-opacity duration-100 hover:opacity-60">Statistiques</a>
+                <a routerLink="/contact" class="transition-opacity duration-100 hover:opacity-60">Nous contacter</a>
             </div>
-
 
             <div class="col-start-5 flex gap-6 justify-end">
                 <a class="flex items-center h-full" routerLink="/panier">
@@ -63,7 +61,6 @@
     </nav>
 </header>
 
-
 <header class="fixed top-0 left-0 w-full bg-white z-50 text-lg md:hidden shadow">
     <nav class="flex items-center justify-between px-4 py-2">
         <!-- Logo -->
@@ -71,61 +68,37 @@
             <img src="images/icons/logo_full.png" alt="Sush'n Go" class="h-10 w-auto">
         </a>
         <!-- Burger-->
-        <button id="mobile-menu-btn" class="block focus:outline-none">
+        <button (click)="toggleMenu()" class="block focus:outline-none cursor-pointer transition-opacity duration-100 hover:opacity-60">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
     </nav>
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>
-    <div id="mobile-menu"
-        class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 transition-transform transform translate-x-full">
+    <div (click)="closeMenu()" [class.opacity-0]="!isMenuOpen" [class.opacity-100]="isMenuOpen" [class.pointer-events-none]="!isMenuOpen"
+    class="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ease-in-out"></div>
+    
+    <div [class.translate-x-full]="!isMenuOpen"
+        [class.translate-x-0]="!isMenuOpen"
+        class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-white shadow-lg z-50 transition-transform transform duration-300 ease-in-out">
+        
         <div class="flex flex-col h-full pt-8 px-6 gap-6">
-            <button id="close-mobile-menu" class="self-end mb-4">
+            <button (click)="closeMenu()" class="self-end mb-4 cursor-pointer transition-opacity duration-100 hover:opacity-60">
                 <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <a routerLink="/accueil" class="py-3 px-2 text-lg font-semibold border-b border-gray-100">Accueil</a>
-            <a routerLink="/menu" class="py-3 px-2 text-lg border-b border-gray-100">Notre carte</a>
-            <a routerLink="/points-retraits" class="py-3 px-2 text-lg border-b border-gray-100">Nos points de
-                retraits</a>
-            <a routerLink="/stats" class="py-3 px-2 text-lg border-b border-gray-100">Statistiques</a>
-            <a routerLink="/contact" class="py-3 px-2 text-lg border-b border-gray-100">Nous contacter</a>
-            <a routerLink="/panier" class="py-3 px-2 flex items-center border-b border-gray-100">
+            <a routerLink="/accueil" (click)="closeMenu()" class="py-3 px-2 text-lg font-semibold border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Accueil</a>
+            <a routerLink="/menu" (click)="closeMenu()" class="py-3 px-2 text-lg border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Notre carte</a>
+            <a routerLink="/points-retraits" (click)="closeMenu()" class="py-3 px-2 text-lg border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Nos points de retraits</a>
+            <a routerLink="/stats" (click)="closeMenu()" class="py-3 px-2 text-lg border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Statistiques</a>
+            <a routerLink="/contact" (click)="closeMenu()" class="py-3 px-2 text-lg border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Nous contacter</a>
+            <a routerLink="/panier" (click)="closeMenu()" class="py-3 px-2 flex items-center border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">
                 <img src="images/icons/panier.png" alt="Panier" class="w-7 h-7 mr-2"> Panier
             </a>
-            <a routerLink="/compte" class="py-3 px-2 flex items-center">
+            <a routerLink="/compte" (click)="closeMenu()" class="py-3 px-2 flex items-center transition-opacity duration-100 hover:opacity-60">
                 <img src="images/icons/compte.png" alt="Compte" class="w-7 h-7 mr-2"> Compte
             </a>
         </div>
     </div>
 </header>
-
-
-<!-- je sais pas pourquoi le js ne fonctionne pas dans le ts même si je le déplace, alors laissez le pour que la navbar mobile fonctionne bien -->
-<script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('mobile-menu-overlay');
-        const close = document.getElementById('close-mobile-menu');
-
-        function openMenu() {
-            menu.classList.remove('translate-x-full');
-            menu.classList.add('translate-x-0');
-            overlay.classList.remove('hidden');
-        }
-        function closeMenu() {
-            menu.classList.add('translate-x-full');
-            menu.classList.remove('translate-x-0');
-            overlay.classList.add('hidden');
-        }
-        btn?.addEventListener('click', openMenu);
-        overlay?.addEventListener('click', closeMenu);
-        close?.addEventListener('click', closeMenu);
-    });
-
-</script>
