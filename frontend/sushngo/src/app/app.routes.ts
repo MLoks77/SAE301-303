@@ -17,7 +17,7 @@ import { Contact } from './components/contact/contact';
 import { Rgpd } from './components/rgpd/rgpd';
 
 export const routes: Routes = [
-  { path: '', component: Accueil},
+  { path: '', component: Contact},
   { path: 'accueil', component: Accueil},
   { path: 'utilisation-cookie', component: Utilisationcookie },
   { path: 'compte', component: Compte },
