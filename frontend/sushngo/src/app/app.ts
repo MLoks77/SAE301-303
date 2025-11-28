@@ -2,9 +2,6 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { Footer } from './components/footer/footer';
 import { Navbar } from './components/navbar/navbar';
-import { Inscconnex } from './components/inscconnex/inscconnex';
-import { Cookiecard } from './components/cookiecard/cookiecard';
-import { Plansite } from './components/plansite/plansite';
 
 @Component({
   selector: 'app-root',
