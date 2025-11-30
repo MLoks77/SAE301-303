@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'inscription-connexion', component: Inscconnex },
   { path: 'mot-de-passe-oublie', component: Mdpoublie },
   { path: 'mentions-legales', component: Mentionslegales },
-  { path: 'menu', component: Pagemenu },
+  { path: 'menus', component: Pagemenu },
   { path: 'panier', component: Panier },
   { path: 'plan-site', component: Plansite },
   { path: 'points-retraits', component: Pointsretraits },
