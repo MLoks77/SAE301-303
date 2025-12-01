@@ -18,6 +18,7 @@ if (isset($_POST['envoyer'])) {
         if ($utilisateur && password_verify($mot_de_passe, $utilisateur['Mot_de_passe'])) {
             // Connexion réussie,sa met les données en session
             $_SESSION['id_user'] = $utilisateur['id_user'];
+            $_SESSION['api_token'] = $utilisateur['api_token'];
             $_SESSION['statut_etud'] = $utilisateur['statut_etud'];
             $_SESSION['email'] = $utilisateur['email'];
             $_SESSION['nom'] = $utilisateur['nom'];
@@ -28,10 +29,10 @@ if (isset($_POST['envoyer'])) {
 
             echo "Connexion réussie !";
             // Redirection vers une page protégée
-            header("Location: ../php/accueil.php"); // mettre le bon chemin
+            header("Location: /accueil"); // mettre le bon chemin
             exit;
         } else {
-            header("Location: ../index.php?erreur=1"); // mettre le bon chemin
+            header("Location: /accueil?erreur=1"); // mettre le bon chemin
         }
     }
 }
