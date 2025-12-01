@@ -128,6 +128,7 @@ CREATE TABLE `souscategorie` (
 
 CREATE TABLE `utilisateur` (
   `id_user` int(11) NOT NULL,
+  `api_token` varchar(100) DEFAULT NULL,
   `nom` varchar(100) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
