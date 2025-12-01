@@ -6,10 +6,12 @@ require '../../../config/configdb.php'; // connexion
 // id_user api_token nom prenom mail password statut_etud tel adresse fidelite
 // id auto increment
 //fonction insert
-class UserManager {
+class UserManager
+{
     private $pdo;
 
-    public function __construct($pdo) {
+    public function __construct($pdo)
+    {
         $this->pdo = $pdo;
     }
 
@@ -22,9 +24,9 @@ class UserManager {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'api_token' => isset($data['api_token']) ? $data['api_token'] : null,
-            'nom' => $data['nom'],
-            'prenom' => $data['prenom'],
-            'email' => $data['email'],
+            'nom' => isset($data['nom']) ? $data['nom'] : null,
+            'prenom' => isset($data['prenom']) ? $data['prenom'] : null,
+            'email' => isset($data['email']) ? $data['email'] : null,
             'password' => $passwordHash,
             'statut_etud' => isset($data['statut_etud']) ? $data['statut_etud'] : null,
             'tel' => isset($data['tel']) ? $data['tel'] : null,
@@ -32,6 +34,9 @@ class UserManager {
             'fidelite' => isset($data['fidelite']) ? $data['fidelite'] : null,
         ]);
     }
+
 }
+
+
 
 ?>
