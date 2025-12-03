@@ -1,6 +1,6 @@
 <!-- front réalisé par Joachim Tocqueville -->
-<section class="container-fluid pt-1 !h-[64rem]" id="connexionbg">
-    <section id="fondform" class="!h-[40rem] !rounded-[1rem]">
+<section class="container-fluid pt-1 !h-[48rem]" id="connexionbg">
+    <section id="fondform" class="!h-[41rem] !rounded-[1rem]">
         <div class="flex items-center mx-32 pt-4">
             <hr class="flex-1 border-t border-gray-400">
             <span class="mx-4">
@@ -8,17 +8,9 @@
             </span>
             <hr class="flex-1 border-t border-gray-400">
         </div>
-        <section class="row border-black border rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58" id="tab-btn">
-            <button id="tab-btn-inscription" (click)="switchToTab('inscription')">
-                <div class="cursor-pointer col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 mr-[0.7rem] ms-[-0.7rem] p-3">
-                    Inscription
-                </div>
-            </button>
-            <button id="tab-btn-connexion" (click)="switchToTab('connexion')">
-                <div class="cursor-pointer col-md-1 inline-block text-center">
-                    Connexion
-                </div>
-            </button>
+        <section class="row border-black border rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58" id="tab-section-btn">
+            <button id="tab-btn-inscription" class="cursor-pointer col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 ml-[-0.7rem] ms-[-0.7rem] p-3" (click)="switchToTab('inscription')"> Inscription </button>
+            <button id="tab-btn-connexion" class="cursor-pointer col-md-1 inline-block text-center" (click)="switchToTab('connexion')"> Connexion </button>
         </section>
         <section id="forms-container">
             <form id="tab-formulaire-inscription" class="bg-white px-2 rounded-2xl inline row formulaire-colonne">

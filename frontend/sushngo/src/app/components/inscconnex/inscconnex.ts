@@ -27,8 +27,10 @@ export class Inscconnex implements OnInit {
       return;
     }
 
-    tabConnexion.style.display = 'block';
-    tabInscription.style.display = 'none';
+    tabInscription.style.display = 'block';
+    tabConnexion.style.display = 'none';
+
+    this.setActiveTab('inscription');
 
     this.setupFormValidation();
   }
@@ -88,18 +90,20 @@ export class Inscconnex implements OnInit {
   private setActiveTab(tab: string): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
     const btnInscription = document.getElementById('tab-btn-inscription');
-    const btnSection = document.getElementById('tab-btn');
+    const sectionbtn = document.getElementById('tab-section-btn');
 
     if (!btnConnexion || !btnInscription) return;
 
+    sectionbtn?.classList.add('row', 'border-black', 'border', 'rounded-[40px]', 'my-4', 'mx-[125px]', 'pt-[0.35rem]', 'text-center', 'h-15', 'w-58');
+
+    btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
+    btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
+
     if (tab === 'connexion') {
-      btnSection?.classList.add('row', 'border-black', 'border', 'rounded-[40px]', 'my-4', 'mx-[125px]', 'pt-[0.35rem]', 'text-center', 'h-15', 'w-58');
-      btnConnexion.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'bg-[#F64F4F]', 'rounded-[40px]', 'text-center', 'text-white', 'w-30', 'mr-[0.7rem]', 'ms-[-0.7rem]', 'p-3');
-      btnInscription.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'text-center');
-    } else {
-      btnSection?.classList.add('row', 'border-black', 'border', 'rounded-[40px]', 'my-4', 'mx-[125px]', 'pt-[0.35rem]', 'text-center', 'h-15', 'w-58');
-      btnConnexion.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'bg-[#F64F4F]', 'rounded-[40px]', 'text-center', 'text-white', 'w-30', 'mr-[0.7rem]', 'ms-[-0.7rem]', 'p-3');
-      btnInscription.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'text-center');
+      btnConnexion.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-30', 'ml-[0.7rem]', 'p-3', 'bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.remove('w-30', 'p-3', 'ms-[0.7rem]');
+    } else if (tab === 'inscription') {
+      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
     }
   }
 }
