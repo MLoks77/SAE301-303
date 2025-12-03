@@ -100,10 +100,13 @@ export class Inscconnex implements OnInit {
     btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
 
     if (tab === 'connexion') {
-      btnConnexion.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-30', 'ml-[0.7rem]', 'p-3', 'bg-[#F64F4F]', 'text-white');
-      btnInscription.classList.remove('w-30', 'p-3', 'ms-[0.7rem]');
+      btnConnexion.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[-1rem]', 'ml-[-1.2rem]', 'bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.remove('ml-[1.2rem]');
+      btnInscription.classList.remove('w-28', 'p-3', 'ms-[0.7rem]', 'ml-[-1.2rem]');
     } else if (tab === 'inscription') {
-      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[0.7rem]', 'ml-[-1.2rem]', 'bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'text-center', 'ml-[0.1rem]');
+      btnConnexion.classList.remove('inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[-1rem]', 'bg-[#F64F4F]', 'text-white');
     }
   }
 }
