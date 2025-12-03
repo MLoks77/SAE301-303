@@ -1,6 +1,6 @@
 <!-- front réalisé par Joachim Tocqueville -->
-<section class="container-fluid pt-1" id="connexionbg">
-    <section id="fondform">
+<section class="container-fluid pt-1 !h-[64rem]" id="connexionbg">
+    <section id="fondform" class="!h-[40rem] !rounded-[1rem]">
         <div class="flex items-center mx-32 pt-4">
             <hr class="flex-1 border-t border-gray-400">
             <span class="mx-4">
@@ -8,106 +8,99 @@
             </span>
             <hr class="flex-1 border-t border-gray-400">
         </div>
-        <section class="row border-black border rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58"
-            id="tab-btn">
-            <button (click)="switchToTab('inscription')">
-                <div
-                    class="cursor-pointer col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 mr-[0.7rem] ms-[-0.7rem] p-3">
+        <section class="row border-black border rounded-[40px] my-4 mx-[125px] pt-[0.35rem] text-center h-15 w-58" id="tab-btn">
+            <button id="tab-btn-inscription" (click)="switchToTab('inscription')">
+                <div class="cursor-pointer col-md-1 inline-block bg-[#F64F4F] rounded-[40px] text-center text-white w-30 mr-[0.7rem] ms-[-0.7rem] p-3">
                     Inscription
                 </div>
             </button>
-            <button (click)="switchToTab('connexion')">
+            <button id="tab-btn-connexion" (click)="switchToTab('connexion')">
                 <div class="cursor-pointer col-md-1 inline-block text-center">
                     Connexion
                 </div>
             </button>
         </section>
-        <form id="tab-formulaire-inscription" class="bg-white px-2 rounded-2xl inline">
-            <!-- front joachim fin -->
-            <!-- form par joachim et stylisé par maxime derènes -->
-            <section class="grid grid-cols-2 grid-rows-4 gap-6">
+        <section id="forms-container">
+            <form id="tab-formulaire-inscription" class="bg-white px-2 rounded-2xl inline row formulaire-colonne">
+                <!-- front joachim fin -->
+                <!-- form par joachim et stylisé par maxime derènes -->
+                <section class="grid grid-cols-2 grid-rows-4 gap-6">
 
                 <div>
                     <label class="block" for="nom-inscription">Nom</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="nom-inscription" name="nom" type="text"
-                        placeholder="Nom" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="nom-inscription" name="nom" type="text" placeholder="Nom" required>
                 </div>
 
                 <div>
                     <label class="block" for="prenom-inscription">Prénom</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="prenom-inscription" name="prenom" type="text"
-                        placeholder="Prénom" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="prenom-inscription" name="prenom" type="text" placeholder="Prénom" required>
                 </div>
 
                 <div>
                     <label class="block" for="email-inscription">Email</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="email-inscription" name="email" type="email"
-                        placeholder="Email" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="email-inscription" name="email" type="email" placeholder="Email" required>
                 </div>
 
                 <div>
                     <label class="block" for="telephone-inscription">Téléphone</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="telephone-inscription" name="telephone"
-                        type="text" placeholder="Téléphone" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="telephone-inscription" name="telephone" type="text" placeholder="Téléphone" required>
                 </div>
 
                 <div>
                     <label class="block" for="adresse-inscription">Adresse</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="adresse-inscription" name="adresse"
-                        type="text" placeholder="Adresse" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="adresse-inscription" name="adresse" type="text" placeholder="Adresse" required>
                 </div>
 
                 <div>
                     <label class="block mb-2" for="etudiant-inscription">Êtes-vous étudiant ?</label>
-                    <input class="border rounded-2xl p-2 black" id="etudiant-inscription" name="etudiant"
-                        type="checkbox">
+                    <input class="border rounded-2xl p-2 black" id="etudiant-inscription" name="etudiant" type="checkbox">
                 </div>
 
                 <div>
                     <label class="block" for="motdepasse-inscription">Mot de passe</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="motdepasse-inscription" name="motdepasse"
-                        type="password" placeholder="Mot de passe" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="motdepasse-inscription" name="motdepasse" type="password" placeholder="Mot de passe" required>
                 </div>
 
                 <div>
                     <label class="block" for="confirmMotDePasse-inscription">Confirmer le mot de passe</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="confirmMotDePasse-inscription"
-                        name="confirmMotDePasse" type="password" placeholder="Confirmer le mot de passe" required>
+                    <input class="border rounded-2xl p-2 black w-full" id="confirmMotDePasse-inscription" name="confirmMotDePasse" type="password" placeholder="Confirmer le mot de passe" required>
                 </div>
 
                 <div>
-                    <label class="block mb-2" for="etudiant-inscription">J'ai lu et j'accepte les conditions générales
-                        d'utilisation</label>
-                    <input class="border rounded-2xl p-2 black" id="etudiant-inscription" name="etudiant"
-                        type="checkbox" required>
+                    <label class="block mb-2" for="etudiant-inscription">J'ai lu et j'accepte les conditions générales d'utilisation</label>
+                    <input class="border rounded-2xl p-2 black" id="etudiant-inscription" name="etudiant" type="checkbox" required>
                 </div>
 
                 <div class="flex justify-center mt-5 py-4">
-                    <button id="submit-inscription" type="submit"
-                        class="border rounded-2xl p-2 bg-[#aeaeae] text-black hover:bg-[#898989] border-black text-center">S'inscrire</button>
+                    <button id="submit-inscription" type="submit" class="border rounded-2xl p-2 bg-[#aeaeae] text-black hover:bg-[#898989] border-black text-center">S'inscrire</button>
                 </div>
-            </section>
-            <!-- front joaquim fin -->
-            <!-- debug par maxime derènes -->
-            <div class="grid grid-cols-2 grid-rows-4 gap-6">
+                </section>
+            </form>
 
-                <div>
-                    <label class="block" for="email-connexion">Email</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="email-connexion" name="email" type="email"
-                        placeholder="Email" required>
-                </div>
+            <form id="tab-formulaire-connexion" class="bg-white px-2 rounded-2xl inline row formulaire-colonne">
+                <!-- front joachim fin -->
+                <!-- debug par maxime derènes -->
+                <section class="grid grid-cols-2 grid-rows-4 gap-6">
 
-                <div>
-                    <label class="block" for="motdepasse-connexion">Mot de passe</label>
-                    <input class="border rounded-2xl p-2 black w-full" id="motdepasse-connexion" name="motdepasse"
-                        type="password" placeholder="Mot de passe" required>
-                </div>
+                    <div>
+                        <label class="block" for="email-connexion">Email</label>
+                        <input class="border rounded-2xl p-2 black w-full" id="email-connexion" name="email" type="email" placeholder="Email" required>
+                    </div>
 
-                <div class="flex justify-center mt-5 py-4">
-                    <button id="submit-connexion" type="submit"
-                        class="border rounded-2xl p-2 bg-[#aeaeae] text-black hover:bg-[#898989] border-black text-center">Connexion</button>
-                </div>
-            </div>
-        </form>
+                    <div>
+                        <label class="block" for="motdepasse-connexion">Mot de passe</label>
+                        <input class="border rounded-2xl p-2 black w-full" id="motdepasse-connexion" name="motdepasse" type="password" placeholder="Mot de passe" required>
+                    </div>
+
+                    <div>
+                        <a routerLink="/mot-de-passe-oublie" class="nav-link-active text-blue-500 hover:text-blue-700">Mot de passe oublié ?</a>
+                    </div>
+
+                    <div class="flex justify-center mt-5 py-4">
+                        <button id="submit-connexion" type="submit" class="border rounded-2xl p-2 bg-[#aeaeae] text-black hover:bg-[#898989] border-black text-center">Connexion</button>
+                    </div>
+                </section>
+            </form>
+        </section>
     </section>
 </section>

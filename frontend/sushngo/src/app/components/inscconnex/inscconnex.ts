@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './inscconnex.html',
   styleUrl: './inscconnex.css',
 })
@@ -18,7 +19,6 @@ export class Inscconnex implements OnInit {
   initializeTabSystem(): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
     const btnInscription = document.getElementById('tab-btn-inscription');
-    const btnSection = document.getElementById('tab-btn');
     const tabConnexion = document.getElementById('tab-formulaire-connexion');
     const tabInscription = document.getElementById('tab-formulaire-inscription');
 
@@ -27,21 +27,9 @@ export class Inscconnex implements OnInit {
       return;
     }
 
-    // Initialisation - pas de transition au chargement
-    tabConnexion.style.transition = 'none';
-    tabInscription.style.transition = 'none';
-    tabConnexion.style.opacity = '1';
-    tabConnexion.style.visibility = 'visible';
-    tabInscription.style.opacity = '0';
-    tabInscription.style.visibility = 'hidden';
+    tabConnexion.style.display = 'block';
+    tabInscription.style.display = 'none';
 
-    // Active la transition après le chargement
-    setTimeout(() => {
-      tabConnexion.style.transition = 'opacity 0.3s ease-in-out';
-      tabInscription.style.transition = 'opacity 0.3s ease-in-out';
-    }, 50);
-
-    // Ajout des event listeners
     this.setupFormValidation();
   }
 
@@ -62,7 +50,6 @@ export class Inscconnex implements OnInit {
     const password = mdpInput.value;
     const confirmPassword = mdpConfirmInput.value;
 
-    // Reset les classes à chaque envoi
     mdpConfirmInput.classList.remove('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
     mdpConfirmInput.placeholder = 'Confirmer le mot de passe';
 
@@ -73,9 +60,7 @@ export class Inscconnex implements OnInit {
       mdpConfirmInput.focus();
       alert('Les mots de passe ne correspondent pas. Veuillez confirmer.');
     } else {
-      // Ici tu peux soumettre le formulaire au serveur
       console.log('Formulaire valide, prêt à être envoyé');
-      // formInscription.submit();
     }
   }
 
@@ -88,21 +73,13 @@ export class Inscconnex implements OnInit {
     if (!tabConnexion || !tabInscription || !btnConnexion || !btnInscription) return;
 
     if (tabName === 'connexion') {
-      tabInscription.style.opacity = '0';
-      tabInscription.style.visibility = 'hidden';
-      setTimeout(() => {
-        tabConnexion.style.opacity = '1';
-        tabConnexion.style.visibility = 'visible';
-      }, 200);
+      tabInscription.style.display = 'none';
+      tabConnexion.style.display = 'block';
       this.setActiveTab('connexion');
       this.currentTab = 'connexion';
     } else if (tabName === 'inscription') {
-      tabConnexion.style.opacity = '0';
-      tabConnexion.style.visibility = 'hidden';
-      setTimeout(() => {
-        tabInscription.style.opacity = '1';
-        tabInscription.style.visibility = 'visible';
-      }, 200);
+      tabConnexion.style.display = 'none';
+      tabInscription.style.display = 'block';
       this.setActiveTab('inscription');
       this.currentTab = 'inscription';
     }
