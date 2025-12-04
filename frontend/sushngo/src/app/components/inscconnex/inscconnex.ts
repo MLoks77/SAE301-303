@@ -45,24 +45,32 @@ export class Inscconnex implements OnInit {
   validateInscription(event: Event): void {
     event.preventDefault();
     const mdpInput = document.getElementById('motdepasse-inscription') as HTMLInputElement;
-    const mdpConfirmInput = document.getElementById('confirmMotDePasse-inscription') as HTMLInputElement;
+    const mdpconfirmation = document.getElementById('confirmMotDePasse-inscription') as HTMLInputElement;
+    const errorDiv = document.getElementById('mdp-confirm-error');
 
-    if (!mdpInput || !mdpConfirmInput) return;
+    if (!mdpInput || !mdpconfirmation || !errorDiv) return;
 
     const password = mdpInput.value;
-    const confirmPassword = mdpConfirmInput.value;
+    const confirmPassword = mdpconfirmation.value;
 
-    mdpConfirmInput.classList.remove('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
-    mdpConfirmInput.placeholder = 'Confirmer le mot de passe';
+    // Nettoie l'affichage erreur
+    mdpconfirmation.classList.remove('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
+    mdpconfirmation.placeholder = 'Confirmer le mot de passe';
+    errorDiv.classList.add('mdp-confirm-invisible');
 
     if (password !== confirmPassword) {
-      mdpConfirmInput.classList.add('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
-      mdpConfirmInput.value = '';
-      mdpConfirmInput.placeholder = 'Les mots de passe ne correspondent pas';
-      mdpConfirmInput.focus();
-      alert('Les mots de passe ne correspondent pas. Veuillez confirmer.');
+      mdpconfirmation.classList.add('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
+      mdpconfirmation.value = '';
+      mdpconfirmation.placeholder = 'Les mots de passe ne correspondent pas';
+      errorDiv.classList.remove('mdp-confirm-invisible');
+      mdpconfirmation.focus();
+      // Pas d'alert pour éviter les soucis UX/affichage
     } else {
-      console.log('Formulaire valide, prêt à être envoyé');
+      // Si bon, continuer (soumission réelle à gérer côté backend ou Angular)
+      errorDiv.classList.add('mdp-confirm-invisible');
+      // Optionnel: form submission réelle ici
+      // (event.target as HTMLFormElement).submit();
+      console.log('Formulaire envoyé');
     }
   }
 
@@ -77,12 +85,23 @@ export class Inscconnex implements OnInit {
     if (tabName === 'connexion') {
       tabInscription.style.display = 'none';
       tabConnexion.style.display = 'block';
-      this.setActiveTab('connexion');
+
+      // Bouton Actif/Non-actif : styles basés sur le HTML d'origine
+      btnConnexion.classList.add('bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.remove('bg-white', 'text-black');
+      btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.add('bg-white', 'text-black');
+
       this.currentTab = 'connexion';
     } else if (tabName === 'inscription') {
       tabConnexion.style.display = 'none';
       tabInscription.style.display = 'block';
-      this.setActiveTab('inscription');
+
+      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.remove('bg-white', 'text-black');
+      btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.add('bg-white', 'text-black');
+
       this.currentTab = 'inscription';
     }
   }
@@ -90,23 +109,19 @@ export class Inscconnex implements OnInit {
   private setActiveTab(tab: string): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
     const btnInscription = document.getElementById('tab-btn-inscription');
-    const sectionbtn = document.getElementById('tab-section-btn');
 
     if (!btnConnexion || !btnInscription) return;
 
-    sectionbtn?.classList.add('row', 'border-black', 'border', 'rounded-[40px]', 'my-4', 'mx-[125px]', 'pt-[0.35rem]', 'text-center', 'h-15', 'w-58');
-
-    btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
-    btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
-
     if (tab === 'connexion') {
-      btnConnexion.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[-1rem]', 'ml-[-1.2rem]', 'bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.remove('ml-[1.2rem]');
-      btnInscription.classList.remove('w-28', 'p-3', 'ms-[0.7rem]', 'ml-[-1.2rem]');
+      btnConnexion.classList.add('bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.remove('bg-white', 'text-black');
+      btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.add('bg-white', 'text-black');
     } else if (tab === 'inscription') {
-      btnInscription.classList.add('cursor-pointer', 'inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[0.7rem]', 'ml-[-1.2rem]', 'bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.add('cursor-pointer', 'col-md-1', 'inline-block', 'text-center', 'ml-[0.1rem]');
-      btnConnexion.classList.remove('inline-block', 'rounded-[40px]', 'text-center', 'w-28', 'p-3', 'mr-[-1rem]', 'bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
+      btnInscription.classList.remove('bg-white', 'text-black');
+      btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
+      btnConnexion.classList.add('bg-white', 'text-black');
     }
   }
 }

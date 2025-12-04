@@ -25,7 +25,6 @@ if (isset($_POST['envoyer'])) {
         }
 
         if ($utilisateur && password_verify($mot_de_passe, $utilisateur['Mot_de_passe'])) {
-            // Connexion réussie,sa met les données en session
             $token = bin2hex(random_bytes(32));
             // update du token
             $sql = "UPDATE utilisateur SET api_token = :token WHERE id_user = :id_user;";
