@@ -12,7 +12,6 @@ import { Panier } from './components/panier/panier';
 import { Plansite } from './components/plansite/plansite';
 import { Pointsretraits } from './components/pointsretraits/pointsretraits';
 import { Stats } from './components/stats/stats';
-import { Ugc } from './components/ugc/ugc';
 import { Contact } from './components/contact/contact';
 
 export const routes: Routes = [
@@ -28,7 +27,6 @@ export const routes: Routes = [
   { path: 'plan-site', component: Plansite },
   { path: 'points-retraits', component: Pointsretraits },
   { path: 'stats', component: Stats },
-  { path: 'ugc', component: Ugc },
   { path: 'contact', component: Contact},
   { path: '**', redirectTo: 'accueil' } // Route par défaut pour les chemins non trouvés
 ];  
