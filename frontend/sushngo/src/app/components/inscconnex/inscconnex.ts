@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
+import { Footer } from '../footer/footer';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
   templateUrl: './inscconnex.html',
   styleUrl: './inscconnex.css',
 })
