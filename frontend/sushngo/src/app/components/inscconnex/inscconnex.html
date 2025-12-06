@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <!-- front réalisé par Joachim Tocqueville, fix par maxime derènes -->
-<section id="connexionbg"  class="pt-10">
+<section id="connexionbg" class="pt-10">
     <div id="fondform">
 
         <!-- Formulaires -->
@@ -17,9 +17,14 @@
 
         <div id="forms-container" class="flex flex-col items-stretch gap-8 justify-center">
             <!-- FORMULAIRE INSCRIPTION -->
-            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post" id="tab-formulaire-inscription" autocomplete="on" novalidate
-                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto"> <!-- pas d'autoroute svp -->
-                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F]">Créer un compte</h2>
+            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post"
+                id="tab-formulaire-inscription" autocomplete="on" novalidate
+                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto">
+                <!-- pas d'autoroute svp -->
+                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
+                    style="max-width: 400px; margin-left: auto; margin-right: auto;">
+                    Créer un compte
+                </h2>
                 <div class="grid grid-cols-2 gap-4 max-w-full">
                     <div>
                         <label for="nom-inscription">Nom <span class="text-[#F64F4F]">*</span></label>
@@ -42,8 +47,8 @@
                     <div>
                         <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
                         <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
-                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..."
-                            required autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
+                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..." required
+                            autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                         <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
                     </div>
@@ -74,12 +79,12 @@
                             Les mots de passe ne correspondent pas.
                         </div>
                     </div>
-                    <div class="col-span-2 flex items-center gap-2 mt-1">
+                    <div class="col-span-2 flex items-center gap-2 mt-1"> <!-- rajouter une condition qui fait que si c'est pas coché, on peut pas s'inscrire -->   
                         <input id="cgu-inscription" name="cgu" type="checkbox" required
                             class="accent-[#F64F4F] rounded-lg p-1" />
                         <label for="cgu-inscription" class="cursor-pointer">
                             J'ai lu et j'accepte les&nbsp;
-                            <a href="/cgu" target="_blank" class="text-[#2a6ef7] underline">conditions générales
+                            <a href="/mentions-legales" target="_blank" class="text-[#2a6ef7] underline">conditions générales
                                 d'utilisation</a>
                             <span class="text-[#F64F4F]">*</span>
                         </label>
@@ -95,9 +100,14 @@
             </form>
 
             <!-- FORMULAIRE CONNEXION -->
-            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post" id="tab-formulaire-connexion" autocomplete="on" novalidate
-                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible"> <!-- pas d'autoroute svp -->
-                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F]">Connectez-vous</h2>
+            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post"
+                id="tab-formulaire-connexion" autocomplete="on" novalidate
+                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible">
+                <!-- pas d'autoroute svp -->
+                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
+                    style="max-width: 400px; margin-left: auto; margin-right: auto;">
+                    Connectez vous
+                </h2>
                 <div class="flex flex-col gap-4">
                     <div>
                         <label for="email-connexion">Email <span class="text-[#F64F4F]">*</span></label>
