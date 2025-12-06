@@ -41,6 +41,7 @@ if (isset($_POST['envoyer'])) {
             $_SESSION['tel'] = $utilisateur['tel'];
             $_SESSION['adresse'] = $utilisateur['adresse'];
             $_SESSION['fidelite'] = $utilisateur['fidelite'];
+            $_SESSION['logged_in'] = true;
 
             echo "Connexion réussie !";
             http_response_code(201);
