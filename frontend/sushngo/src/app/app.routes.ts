@@ -1,4 +1,4 @@
-/* Routes par sébastien chisiu */
+/* Routes par sébastien chisiu, ajout de RGPD et CGU par Joachim*/
 
 import { Routes } from '@angular/router';
 import { Accueil } from './components/accueil/accueil';
@@ -7,6 +7,8 @@ import { Compte } from './components/compte/compte';
 import { Inscconnex } from './components/inscconnex/inscconnex';
 import { Mdpoublie } from './components/mdpoublie/mdpoublie';
 import { Mentionslegales } from './components/mentionslegales/mentionslegales';
+import { RGPD } from './components/rgpd/rgpd';
+import { CGU } from './components/cgu/cgu';
 import { Pagemenu } from './components/menus/pagemenu';
 import { Panier } from './components/panier/panier';
 import { Plansite } from './components/plansite/plansite';
@@ -22,6 +24,8 @@ export const routes: Routes = [
   { path: 'inscription-connexion', component: Inscconnex },
   { path: 'mot-de-passe-oublie', component: Mdpoublie },
   { path: 'mentions-legales', component: Mentionslegales },
+  { path: 'rgpd', component: RGPD },
+  { path: 'cgu', component: CGU },
   { path: 'menus', component: Pagemenu },
   { path: 'panier', component: Panier },
   { path: 'plan-site', component: Plansite },

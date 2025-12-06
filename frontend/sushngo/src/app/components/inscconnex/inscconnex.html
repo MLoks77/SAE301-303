@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
 
 <!-- front réalisé par Joachim Tocqueville, retouché par maxime derènes -->
-<section id="connexionbg">
-    <div id="fondform" class="pt-20">
+<section id="connexionbg"  class="pt-10">
+    <div id="fondform">
 
         <!-- Formulaires -->
         <!-- Onglets -->
         <div class="flex justify-center my-8">
-            <div id="tab-section-btn" class="Caladea flex border border-black rounded-[40px] p-3 gap-2 bg-white">
+            <div id="tab-section-btn" class="Caladea flex rounded-[40px] p-3 gap-2 bg-white">
                 <button id="tab-btn-inscription" (click)="switchToTab('inscription')" type="button"
                     class="transition-all duration-200 cursor-pointer rounded-[40px] w-28 py-3 px-2 mr-1 bg-[#F64F4F] text-white font-semibold">Inscription</button>
                 <button id="tab-btn-connexion" (click)="switchToTab('connexion')" type="button"
@@ -128,3 +128,4 @@
 
     </div>
 </section>
+<app-footer></app-footer>
