@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
+import { ConnexionApi } from '../../services/connexion-api';
 
 @Component({
   selector: 'app-inscconnex',
@@ -126,4 +127,13 @@ export class Inscconnex implements OnInit {
       btnConnexion.classList.add('bg-white', 'text-black');
     }
   }
+
+    apiData: any;
+    constructor(private ConnexionApi : ConnexionApi) {
+    }
+    getData() {
+      this.ConnexionApi.getUserDataFromApi().subscribe((res=>{
+        this.apiData=res;
+      }))
+    }
 }

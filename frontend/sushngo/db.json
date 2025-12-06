@@ -1,0 +1,163 @@
+[
+    {
+        "type":"header",
+        "version":"5.2.1",
+        "comment":"Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+        "type":"database",
+        "name":"sushngo"
+    },
+    {
+        "type":"table",
+        "name":"produit",
+        "database":"sushngo",
+        "data":
+
+        [
+            {
+                "id_produit":"14",
+                "nom":"Tasty Blend",
+                "description":null,
+                "saveurs":"saumon, avocat, cheese",
+                "aliments":"California Saumon Avocat (3); Sushi Saumon (3); Spring Avocat Cheese (3); California pacific (3); Edamame\/Salade de chou (1)",
+                "prix":"12.5",
+                "pieces":"12",
+                "id_souscat":null,
+                "image":"tasty-blend"
+            },
+            {
+                "id_produit":"15",
+                "nom":"Amateur Mix",
+                "description":null,
+                "saveurs":"coriandre, saumon, avocat, cheese",
+                "aliments":"Maki Salmon Roll (3); Spring Saumon Avocat (3); Maki Cheese Avocat (6); California Saumon Avocat (3); Edamame\/Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"18",
+                "id_souscat":null,
+                "image":"amateur-mix"
+            },
+            {
+                "id_produit":"16",
+                "nom":"Saumon Original",
+                "description":null,
+                "saveurs":"saumon, avocat",
+                "aliments":"California Saumon Avocat (6); Sushi Saumon (5); Edamame\/Salade de chou (1)",
+                "prix":"12.5",
+                "pieces":"11",
+                "id_souscat":null,
+                "image":"saumon-original"
+            },
+            {
+                "id_produit":"17",
+                "nom":"Salmon Lovers",
+                "description":null,
+                "saveurs":"coriandre, saumon, avocat",
+                "aliments":"California Saumon Avocat (6); Spring Saumon Avocat (6); Sushi Saumon (6); Edamame\/Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"18",
+                "id_souscat":null,
+                "image":"salmon-lovers"
+            },
+            {
+                "id_produit":"18",
+                "nom":"Salmon Classic",
+                "description":null,
+                "saveurs":"saumon",
+                "aliments":"Sushi Saumon (10); Edamame\/Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"10",
+                "id_souscat":null,
+                "image":"salmon-classic"
+            },
+            {
+                "id_produit":"19",
+                "nom":"Master Mix",
+                "description":null,
+                "saveurs":"saumon, thon, avocat",
+                "aliments":"Sushi Saumon (4); Sushi Thon (2); California Thon Avocat (3); California Saumon Avocat (3); Edamame \/ Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"12",
+                "id_souscat":null,
+                "image":"master-mix"
+            },
+            {
+                "id_produit":"20",
+                "nom":"Sunrise",
+                "description":null,
+                "saveurs":"saumon, thon, avocat, cheese",
+                "aliments":"Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame \/ Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"18",
+                "id_souscat":null,
+                "image":"sunrise"
+            },
+            {
+                "id_produit":"21",
+                "nom":"Sando Box Chicken Katsu",
+                "description":null,
+                "saveurs":"saumon, viande, avocat, cheese",
+                "aliments":"Sando Chicken Katsu (0.5); Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame \/ Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"13",
+                "id_souscat":null,
+                "image":"sando-box-chicken-katsu"
+            },
+            {
+                "id_produit":"22",
+                "nom":"Sando Box Salmon Aburi",
+                "description":null,
+                "saveurs":"saumon, thon, avocat",
+                "aliments":"Sando Salmon Aburi (0.5); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame \/ Salade de chou (1)",
+                "prix":"15.9",
+                "pieces":"13",
+                "id_souscat":null,
+                "image":"sando-box-salmon-aburi"
+            },
+            {
+                "id_produit":"23",
+                "nom":"Super Salmon",
+                "description":null,
+                "saveurs":"coriandre, saumon, avocat, cheese",
+                "aliments":"California Saumon Avocat (6); Maki Salmon Roll (6); Maki Salmon (6); Spring Saumon Avocat (6); Edamame \/ Salade de chou (1)",
+                "prix":"19.9",
+                "pieces":"24",
+                "id_souscat":null,
+                "image":"super-salmon"
+            },
+            {
+                "id_produit":"24",
+                "nom":"California Dream",
+                "description":null,
+                "saveurs":"spicy, saumon, thon, crevette, viande, avocat",
+                "aliments":"California Saumon Avocat (6); California Crevette (6); California Thon Cuit Avocat (6); California Chicken Katsu (6); Edamame \/ Salade de chou (1)",
+                "prix":"19.9",
+                "pieces":"24",
+                "id_souscat":null,
+                "image":"california-dream"
+            },
+            {
+                "id_produit":"25",
+                "nom":"Gourmet Mix",
+                "description":null,
+                "saveurs":"coriande, spicy, saumon, viande, avocat, seriole lalandi",
+                "aliments":"Spring tataki Saumon (6); Signature Dragon Roll (4); California French Touch (3); California French salmon (6); California Yellowtail Ponzu (3); Edamame \/ Salade de chou (1)",
+                "prix":"24.5",
+                "pieces":"22",
+                "id_souscat":null,
+                "image":"gourmet-mix"
+            },
+            {
+                "id_produit":"26",
+                "nom":"Fresh Mix",
+                "description":null,
+                "saveurs":"spicy, saumon, thon, avocat, cheese",
+                "aliments":"Signature Rock'n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame \/ Salade de chou (1)",
+                "prix":"24.5",
+                "pieces":"22",
+                "id_souscat":null,
+                "image":"fresh-mix"
+            }
+        ]
+    }
+]    

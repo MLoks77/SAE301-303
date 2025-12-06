@@ -18,5 +18,4 @@ export class RecupBox {
   getBoxDataFromApi() {
     return this.http.get(this.API_URL);
   }
-  
 }

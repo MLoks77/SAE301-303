@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { RecupBox } from '../../recup-box';
+import { RecupBox } from '../../services/recup-box';
 @Component({
   selector: 'app-pagemenu',
   imports: [RouterLink, Footer, Navbar],
