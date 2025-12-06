@@ -4,7 +4,7 @@
 <!-- partie hr ligne -->
  
 
-<footer class=" bottom-0 left-0 w-full bg-white z-50">
+<footer class="bottom-0 left-0 w-full bg-white z-50">
 <div class="flex items-center mx-3">
     <hr class="flex-1 border-t border-gray-300">
     <span class="mx-4">
@@ -15,7 +15,8 @@
 
 <!-- Partie milieu avec grid -->
 
-<div class="grid grid-cols-4 grid-rows-3 gap-4 mx-5">
+<!-- Footer pour ordi -->
+<div class="hidden md:grid grid-cols-4 grid-rows-3 gap-4 mx-5 ">
     <div class="row-span-3">
         <ul class="list-none gap-2">
             <li>
@@ -34,11 +35,13 @@
             <li>
                 <h2 class="text-black/60 text-xl mb-3">Nos réseaux</h2>
             </li>
-            <li class="flex flex-row gap-2 mt-2 cursor-pointer">
-                <a><img src="images/icons/facebook.webp" class="w-11 h-11" alt="Facebook"></a>
-                <a><img src="images/icons/instagram.webp" class="w-11 h-11" alt="Instagram"></a>
-                <a><img src="images/icons/X.webp" class="w-11 h-11 rounded-sm" alt="X app icon"></a>
-                <a><img src="images/icons/tiktok.webp" class="w-11 h-11" alt="Tiktok"></a>
+            <li>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-2">
+                    <a><img src="images/icons/facebook.webp" class="w-11 h-11" alt="Facebook"></a>
+                    <a><img src="images/icons/instagram.webp" class="w-11 h-11" alt="Instagram"></a>
+                    <a><img src="images/icons/X.webp" class="w-11 h-11 rounded-sm" alt="X app icon"></a>
+                    <a><img src="images/icons/tiktok.webp" class="w-11 h-11" alt="Tiktok"></a>
+                </div>
             </li>
         </ul>
     </div>
@@ -59,8 +62,8 @@
     </div>
 </div>
 
-<!-- Partie "droit" -->
-<div>
+<!-- Partie "droit" ordinateur -->
+<div class="hidden md:block pb-5">
     <h2 class="text-black/60 text-center">Copyright © 2025 Sush’n Go, Tous droits réservés.</h2>
     <div class="flex flex-row gap-5 justify-center text-center">
         <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70"><h2>Mentions légales</h2></a>
@@ -68,4 +71,32 @@
         <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70"><h2>Utilisation de cookies</h2></a>
     </div>
 </div>
-</footer>
+
+<!-- Footer adapté mobile-->
+<div class="block md:hidden px-4 pb-3 pt-5">
+    <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
+            <a routerLink="/points-retraits" class="text-base hover:text-black/70">Points de retraits</a>
+            <a routerLink="/menu" class="text-base hover:text-black/70">Carte</a>
+            <a routerLink="/compte" class="text-base hover:text-black/70">Mon Compte</a>
+        </div>
+        <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
+            <a routerLink="/contact" class="text-base hover:text-black/70">Contact</a>
+            <a routerLink="/stats" class="text-base hover:text-black/70">Stats</a>
+        </div>
+        <div class="flex justify-center gap-4 w-full mb-2">
+            <a><img src="images/icons/facebook.webp" class="w-8 h-8" alt="Facebook"></a>
+            <a><img src="images/icons/instagram.webp" class="w-8 h-8" alt="Instagram"></a>
+            <a><img src="images/icons/X.webp" class="w-8 h-8 rounded-sm" alt="X app icon"></a>
+            <a><img src="images/icons/tiktok.webp" class="w-8 h-8" alt="Tiktok"></a>
+        </div>
+        <div class="w-full mt-2">
+            <div class="flex flex-row gap-2 justify-center text-xs mb-1">
+                <a routerLink="/mentions-legales" class="hover:text-black/70">Mentions légales</a>
+                <a routerLink="/plan-site" class="border-l pl-2 border-black hover:text-black/70">Plan du site</a>
+                <a routerLink="/utilisation-cookie" class="border-l pl-2 border-black hover:text-black/70">Cookies</a>
+            </div>
+            <h2 class="text-black/60 text-xs text-center">© 2025 Sush’n Go</h2>
+        </div>
+    </div>
+</div>

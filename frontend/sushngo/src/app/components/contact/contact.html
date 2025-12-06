@@ -9,7 +9,7 @@
             <span class="text-white italic"> &gt; Contact</span>
         </div>
         <!-- Formulaire -->
-        <div class="w-[60%] mx-auto mt-10 flex flex-col flex-grow mb-0">
+        <div class="w-[60%] mx-auto mt-15 flex flex-col flex-grow mb-0">
             <h1 class="text-4xl font-bold mb-1">Nous Contacter</h1>
             <p class="text-gray-500 mb-6">Signalez nous votre problème !</p>
             <form class="flex flex-col gap-10">
@@ -41,39 +41,36 @@
                 <textarea 
                     name="message" 
                     placeholder="Votre Message" 
-                    rows="2"
-                    class="border-b border-black focus:outline-none py-2 text-[15px] resize-none bg-transparent"
+                    class="border-b border-black focus:outline-none pt-2 text-[15px] resize-none bg-transparent"
                 ></textarea>
             </form>
             <div class="flex items-center gap-4 mt-10">
                 <button
                     type="submit"
-                    class="w-fit px-8 py-2 rounded-full bg-black text-white font-semibold hover:bg-gray-900 flex items-center gap-2 transition-colors duration-200">
+                    class="w-fit px-8 py-2 rounded-full bg-black text-white cursor-pointer font-semibold hover:bg-gray-900 flex items-center gap-2 transition-colors duration-200">
                     ENVOYER
                     <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 ml-1 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </span>
                 </button>
                 <div class="ml-auto pr-[2px] w-fit max-w-full flex items-center gap-2">
                     <span> Nous suivre :</span>
-                    <a href=""><img src="images/icons/facebook.webp" alt="icone de facebook en noir" class="w-[40px] h-[40px] object-contain" /></a>
-                    <a href=""><img src="images/icons/tiktok.webp" alt="icone de tiktok en noir" class="w-[40px] h-[40px] object-contain" /></a>
-                    <a href=""><img src="images/icons/instagram.webp" alt="icone d'instagram en noir" class="w-[40px] h-[40px] object-contain" /></a>
-                    <a href=""><img src="images/icons/X.webp" alt="icone de X en noir" class="w-[40px] h-[40px]"></a>
+                    <a><img src="images/icons/facebook.webp" alt="icone de facebook en noir" class="cursor-pointer w-[35px] h-[35px] object-contain" /></a>
+                    <a><img src="images/icons/tiktok.webp" alt="icone de tiktok en noir" class="cursor-pointer w-[35px] h-[35px] object-contain" /></a>
+                    <a><img src="images/icons/instagram.webp" alt="icone d'instagram en noir" class="cursor-pointer w-[35px] h-[35px] object-contain" /></a>
+                    <a><img src="images/icons/X.webp" alt="icone de X en noir" class="cursor-pointer w-[35px] h-[35px]"></a>
                 </div>
             </div>
         </div>
         <footer class="w-full h-10 bg-black mt-auto">
         <div class="flex justify-between items-center h-full w-full">
             <span class="text-white text-sm ml-4">© 2024 Sushi'N'Go</span>
-            <span class="text-white text-sm mr-4 flex items-center gap-1">
+            <span class="text-white text-sm mr-4 flex items-center gap-3">
                 <a href="/mentions-legales" class="hover:underline">Mentions légales</a>
-                <span>|</span>
-                <a href="/plan-site" class="hover:underline">Plan du site</a>
-                <span>|</span>
-                <a href="/utilisation-cookie" class="hover:underline">Utilisation des cookies</a>
+                <a href="/plan-site" class="border-l pl-2 border-white hover:underline">Plan du site</a>
+                <a href="/utilisation-cookie" class="border-l pl-2 border-white hover:underline">Utilisation des cookies</a>
             </span>
         </div>
         </footer>
