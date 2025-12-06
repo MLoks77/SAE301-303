@@ -2,17 +2,81 @@
 <app-navbar></app-navbar>
 
 <div class="flex h-screen">
-    <div class="w-2/3">
+    <div class="w-2/3 flex flex-col h-full">
+        <!-- Fil d'Ariane -->
         <div class="w-full h-10 bg-black flex items-center pl-4 gap-1">
             <a routerLink="/accueil" class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
-            <span class="text-white font-style: italic"> > Contact</span>
+            <span class="text-white italic"> &gt; Contact</span>
         </div>
-        <div class="w-[60%] mx-auto mt-10">
-            <h1 class="text-4xl font-bold">Nous contacter</h1>
-            <p class="text-gray-500">Signalez nous votre problème ou suggestion.</p>
+        <!-- Formulaire -->
+        <div class="w-[60%] mx-auto mt-10 flex flex-col flex-grow mb-0">
+            <h1 class="text-4xl font-bold mb-1">Nous Contacter</h1>
+            <p class="text-gray-500 mb-6">Signalez nous votre problème !</p>
+            <form class="flex flex-col gap-10">
+                <div class="flex gap-6">
+                    <input 
+                        type="text" 
+                        name="nom" 
+                        placeholder="Nom" 
+                        class="flex-1 border-b border-black focus:outline-none py-2 text-[15px] bg-transparent"
+                        autocomplete="off"
+                    />
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email" 
+                        class="flex-1 border-b border-black focus:outline-none py-2 text-[15px] bg-transparent"
+                        autocomplete="off"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"  
+                        required
+                    /> <!-- pattern trouvé sur Internet qui vérifie qu'il soit au bon format exemple@mail.com-->
+                </div>
+                <input 
+                    type="text" 
+                    name="sujet" 
+                    placeholder="Sujet" 
+                    class="border-b border-black focus:outline-none py-2 text-[15px] bg-transparent"
+                    autocomplete="off"
+                />
+                <textarea 
+                    name="message" 
+                    placeholder="Votre Message" 
+                    rows="2"
+                    class="border-b border-black focus:outline-none py-2 text-[15px] resize-none bg-transparent"
+                ></textarea>
+            </form>
+            <div class="flex items-center gap-4 mt-10">
+                <button
+                    type="submit"
+                    class="w-fit px-8 py-2 rounded-full bg-black text-white font-semibold hover:bg-gray-900 flex items-center gap-2 transition-colors duration-200">
+                    ENVOYER
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </button>
+                <div class="ml-auto pr-[2px] w-fit max-w-full flex items-center gap-2">
+                    <span> Nous suivre :</span>
+                    <a href=""><img src="images/icons/facebook.webp" alt="icone de facebook en noir" class="w-[40px] h-[40px] object-contain" /></a>
+                    <a href=""><img src="images/icons/tiktok.webp" alt="icone de tiktok en noir" class="w-[40px] h-[40px] object-contain" /></a>
+                    <a href=""><img src="images/icons/instagram.webp" alt="icone d'instagram en noir" class="w-[40px] h-[40px] object-contain" /></a>
+                    <a href=""><img src="images/icons/X.webp" alt="icone de X en noir" class="w-[40px] h-[40px]"></a>
+                </div>
+            </div>
         </div>
+        <footer class="w-full h-10 bg-black mt-auto">
+        <div class="flex justify-between items-center h-full w-full">
+            <span class="text-white text-sm ml-4">© 2024 Sushi'N'Go</span>
+            <span class="text-white text-sm mr-4 flex items-center gap-1">
+                <a href="/mentions-legales" class="hover:underline">Mentions légales</a>
+                <span>|</span>
+                <a href="/plan-site" class="hover:underline">Plan du site</a>
+                <span>|</span>
+                <a href="/utilisation-cookie" class="hover:underline">Utilisation des cookies</a>
+            </span>
+        </div>
+        </footer>
     </div>
-    <div class="w-1/3" id="imgfond"></div>
+    <div class="w-1/3 h-full" id="imgfond"></div>
 </div>
-
-<app-footer></app-footer>

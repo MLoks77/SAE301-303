@@ -15,7 +15,7 @@ import { Stats } from './components/stats/stats';
 import { Contact } from './components/contact/contact';
 
 export const routes: Routes = [
-  { path: '', component: Contact},
+  { path: '', component: Accueil},
   { path: 'accueil', component: Accueil},
   { path: 'utilisation-cookie', component: Utilisationcookie },
   { path: 'compte', component: Compte },

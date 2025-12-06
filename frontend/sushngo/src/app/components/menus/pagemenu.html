@@ -4,11 +4,20 @@
       <h1 class="text-black"> Carrousel à mettre ici </h1>
 </div>
 
-<ul>
-      <li class="list-group-item"><strong>Id:</strong> {{ boxData.id }}</li>
-      <li class="list-group-item"><strong>Name:</strong> {{ boxData.nanme }}</li>
-      <li class="list-group-item"><strong>Indredients:</strong> {{ boxData.ingredients }}</li>
-</ul>
-
+<div class="w-[90%] mx-auto mt-5">
+      <div class="flex items-center justify-between px-2">
+            <span class="font-semibold uppercase text-[13px] tracking-wider relative z-10">BOXES</span> <!--tracking wider = espacement entre les lettres -->
+            <button class="flex items-center gap-1 text-[13px] font-normal text-black">Filtres
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-[24px] h-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentcolor">
+                        <circle cx="12" cy="12" r="10" stroke-width="2" />
+                        <path stroke-width="2" d="M6 9h12M7 12h10M8 15h8" stroke-linecap="round"/>  <!-- M = Move to 6(x) 9(y) h12(ligne horizontale de 12px) etc-->
+                  </svg>
+            </button>
+      </div>
+      <div class="relative mt-[1px]">  <!-- si la div parent a un position autre que static (par défaut) (donc relative , absolute, sticky etc) l'élément enfant avec absolute prendra comme bord gauche-top-droit-bottom les bords de la div parent et pas de la page entiere-->
+            <div class="border-b-[1px] border-black w-full absolute left-0 top-1/2 transform -translate-y-1/2"></div>
+            <div class="absolute right-2 top-0 h-full bg-white" style="width:65px"></div>
+      </div>
+</div>
 
 <app-footer></app-footer>
