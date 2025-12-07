@@ -1,23 +1,131 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
-import { ConnexionApi } from '../../services/connexion-api';
+import { ConnexionApi /*, utilisateur */ } from '../../services/connexion-api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer, ConnexionApi],
   templateUrl: './inscconnex.html',
   styleUrl: './inscconnex.css',
 })
 export class Inscconnex implements OnInit {
   currentTab: string = 'connexion';
+  /* apiData: utilisateur[] = [];
+  isLoading: boolean = false;
+  error: string | null = null; */
 
-  ngOnInit(): void {
-    this.initializeTabSystem();
+  nom: string = '';
+  prenom: string = '';
+  email_inscr: string = '';
+  email_connex: string = '';
+  mdp_inscr: string = '';
+  confirm_mdp_inscr: string = '';
+  mdp_connex: string = '';
+  etudiant: string = '';
+  telephone: string = '';
+  adresse: string = '';
+
+  
+  // État du formulaire
+  isSubmitting: boolean = false;
+  successMessage: string = '';
+  errorMessage: string = '';
+
+  protected API_URL = "";
+
+  constructor(private http: HttpClient) {}
+
+  // Méthode pour la soumission
+  onSubmit(): void {
+    console.log("Envoi vers l'API");
+    /* console.log('Nom:', this.nom);
+    console.log('Prénom:', this.prenom);
+    console.log("Email d'inscription:", this.email_inscr);
+    console.log('Email de connexion:', this.email_connex);
+    console.log("Mot de passe d'inscription:", this.mdp_inscr);
+    console.log("Confirmation du mot de passe d'inscription:", this.confirm_mdp_inscr);
+    console.log('Mot de passe de connexion:', this.mdp_connex);
+    console.log('Étudiant:', this.etudiant);
+    console.log('Téléphone:', this.telephone);
+    console.log('Adresse:', this.adresse); */
+
+    if(this.isSubmitting = true) {
+      this.successMessage = 'Formulaire envoyé avec succès !';
+    } else {
+      this.errorMessage = "Échec de l'envoi du formulaire.";
+    }
+
+    // Prépare les données à envoyer
+    const formData = {
+      nom: this.nom,
+      prenom: this.prenom,
+      email_inscr: this.email_inscr,
+      email_connex: this.email_connex,
+      mdp_inscr: this.mdp_inscr,
+      confirm_mdp_inscr: this.confirm_mdp_inscr,
+      mdp_connex: this.mdp_connex,
+      etudiant: this.etudiant,
+      telephone: this.telephone,
+      adresse: this.adresse,
+    };
+
+    // Envoie vers l'API
+    this.http.post<any>(this.API_URL, formData).subscribe({
+      next: (response) => {
+        console.log("Réponse de l'API:", response);
+        this.isSubmitting = false;
+        this.successMessage = response.message || 'Formulaire envoyé avec succès !';
+        
+        // Réinitialise le formulaire
+        this.nom = '';
+        this.prenom = '';
+        this.email_inscr = '';
+        this.email_connex = '';
+        this.mdp_inscr = '';
+        this.confirm_mdp_inscr ='';
+        this.mdp_connex = '';
+        this.etudiant = '';
+        this.telephone = '';
+        this.adresse = '';
+      },
+      error: (err) => {
+        console.error("Une erreur a été détecté au niveau de l'API:", err);
+        this.isSubmitting = false;
+        this.errorMessage = err.error?.message || "Erreur lors de l'envoi";
+      }
+    });
+
   }
+
+  ngOnInit(): void {}
+
+  apiData: any;
+
+  /* getData(): void {
+    this.isLoading = true;
+    this.error = null;
+    
+    this.connexionApi.getUserDataFromApi().subscribe({
+      next: (users) => {
+        this.apiData = users;
+        this.isLoading = false;
+        console.log('Données reçues:', users);
+      },
+      error: (err) => {
+        this.error = 'Erreur lors de la récupération des données';
+        this.isLoading = false;
+        console.error('Erreur API:', err);
+      },
+      complete: () => {
+        console.log('Requête terminée');
+      }
+    });
+  } */
 
   initializeTabSystem(): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
@@ -127,13 +235,4 @@ export class Inscconnex implements OnInit {
       btnConnexion.classList.add('bg-white', 'text-black');
     }
   }
-
-    apiData: any;
-    constructor(private ConnexionApi : ConnexionApi) {
-    }
-    getData() {
-      this.ConnexionApi.getUserDataFromApi().subscribe((res=>{
-        this.apiData=res;
-      }))
-    }
 }

@@ -17,7 +17,7 @@
 
         <div id="forms-container" class="flex flex-col items-stretch gap-8 justify-center">
             <!-- FORMULAIRE INSCRIPTION -->
-            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post"
+            <form #contactForm="ngForm" (ngSubmit)="onSubmit()"
                 id="tab-formulaire-inscription" autocomplete="on" novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto">
                 <!-- pas d'autoroute svp -->
@@ -26,54 +26,54 @@
                     Créer un compte
                 </h2>
                 <div class="grid grid-cols-2 gap-4 max-w-full">
-                    <div>
+                    <div class="form-group">
                         <label for="nom-inscription">Nom <span class="text-[#F64F4F]">*</span></label>
                         <input id="nom-inscription" name="nom" type="text" autocomplete="family-name" placeholder="Nom"
-                            required minlength="2" maxlength="50"
+                            [(ngModel)]="nom" required minlength="2" maxlength="50"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="prenom-inscription">Prénom <span class="text-[#F64F4F]">*</span></label>
                         <input id="prenom-inscription" name="prenom" type="text" autocomplete="given-name"
-                            placeholder="Prénom" required minlength="2" maxlength="50"
+                            placeholder="Prénom" [(ngModel)]="prenom" required minlength="2" maxlength="50"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="email-inscription">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-inscription" name="email" type="email" autocomplete="email"
-                            placeholder="exemple@email.com" required
+                            placeholder="exemple@email.com" [(ngModel)]="email_inscr" required
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
                         <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
-                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..." required
+                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..." [(ngModel)]="telephone" required
                             autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                         <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-2 form-group">
                         <label for="adresse-inscription">Adresse <span class="text-[#F64F4F]">*</span></label>
                         <input id="adresse-inscription" name="adresse" type="text" autocomplete="street-address"
-                            placeholder="Adresse" required class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            placeholder="Adresse" [(ngModel)]="adresse" required class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
-                    <div class="col-span-2 flex items-center gap-2">
-                        <input id="etudiant-inscription" name="etudiant" type="checkbox"
+                    <div class="col-span-2 flex items-center gap-2 form-group">
+                        <input id="etudiant-inscription" name="etudiant" type="checkbox" [(ngModel)]="etudiant"
                             class="accent-[#F64F4F] rounded-lg p-1" />
                         <label for="etudiant-inscription" class="cursor-pointer">Êtes-vous étudiant&nbsp;?</label>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="motdepasse-inscription">Mot de passe <span class="text-[#F64F4F]">*</span></label>
                         <input id="motdepasse-inscription" name="motdepasse" type="password" autocomplete="new-password"
-                            placeholder="Créez un mot de passe" required minlength="8"
+                            placeholder="Créez un mot de passe" [(ngModel)]="mdp_inscr" required minlength="8"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                         <small class="text-gray-500 text-xs pl-1">8 caractères minimum</small>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="confirmMotDePasse-inscription">Confirmer le mot de passe <span
                                 class="text-[#F64F4F]">*</span></label>
                         <input id="confirmMotDePasse-inscription" name="confirmMotDePasse" type="password"
-                            autocomplete="new-password" placeholder="..." required
+                            autocomplete="new-password" placeholder="..." [(ngModel)]="confirm_mdp_inscr" required
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                         <div id="mdp-confirm-error" class="text-[#F64F4F] text-[0.85rem] pt-1 mdp-confirm-invisible">
                             Les mots de passe ne correspondent pas.
@@ -97,10 +97,16 @@
                     </button>
                     <span class="text-xs text-gray-400">* Champs obligatoires</span>
                 </div>
+                <div *ngIf="successMessage" class="success">
+                    {{ successMessage }}
+                </div>
+                <div *ngIf="errorMessage" class="error">
+                    {{ errorMessage }}
+                </div>
             </form>
 
             <!-- FORMULAIRE CONNEXION -->
-            <form action="../../../../../../backend/api/users/fonctions/add_user.php" method="post"
+            <form #contactForm="ngForm" (ngSubmit)="onSubmit()"
                 id="tab-formulaire-connexion" autocomplete="on" novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible">
                 <!-- pas d'autoroute svp -->
@@ -109,16 +115,16 @@
                     Connectez vous
                 </h2>
                 <div class="flex flex-col gap-4">
-                    <div>
+                    <div class="form-group">
                         <label for="email-connexion">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-connexion" name="email" type="email" autocomplete="email"
-                            placeholder="Votre email" required
+                            placeholder="Votre email" [(ngModel)]="email_connex" required
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="motdepasse-connexion">Mot de passe <span class="text-[#F64F4F]">*</span></label>
                         <input id="motdepasse-connexion" name="motdepasse" type="password"
-                            autocomplete="current-password" placeholder="Votre mot de passe" required
+                            autocomplete="current-password" placeholder="Votre mot de passe" [(ngModel)]="mdp_connex" required
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
                     </div>
                     <div class="flex justify-center">
@@ -131,6 +137,12 @@
                         class="rounded-xl py-2 w-40 bg-[#F64F4F] hover:bg-[#f97474] duration-300 transform-all cursor-pointer text-white font-semibold">
                         Connexion
                     </button>
+                </div>
+                <div *ngIf="successMessage" class="success">
+                    {{ successMessage }}
+                </div>
+                <div *ngIf="errorMessage" class="error">
+                    {{ errorMessage }}
                 </div>
             </form>
 
