@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   prenom: string;
   email: string;
   password: string;
-  statut_etud: boolean; // 0 ou 1 (tinyint est l'équivalent de boolean)
+  statut_etud: boolean;
   tel: number;
   adresse: string;
   fidelite: number;
@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "urlAPI"; //à remplacer ici par la vraie url
+  protected API_URL = "http://localhost/SAE301-303/backend/nomfichier..."; // ajoutez dans api.php vos parties pour fetch et push les infos
 
   constructor(private http: HttpClient) {}
 
