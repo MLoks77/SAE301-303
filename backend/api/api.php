@@ -14,4 +14,7 @@ if (isset($_GET['id_produit'])) {
 header('Content-Type: application/json: charset=utf-8');
 
 echo json_encode($boxes);
+
+// ajouter les autres API
+
 ?>

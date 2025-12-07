@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class RecupBox {
-  API_URL = "urlAPI"; //à remplacer ici par la vraie url
+  API_URL = "http://localhost/SAE301-303/backend/nomfichier..."; //à remplacer ici par la vraie url
   constructor(private http: HttpClient) {
 
   }
