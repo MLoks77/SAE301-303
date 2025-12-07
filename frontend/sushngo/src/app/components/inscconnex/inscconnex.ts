@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer, ConnexionApi],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
   templateUrl: './inscconnex.html',
   styleUrl: './inscconnex.css',
 })

@@ -4,7 +4,7 @@ import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-mentionslegales',
-  imports: [RouterLink, Footer, Navbar],
+  imports: [ Footer, Navbar],
   templateUrl: './mentionslegales.html',
   styleUrl: './mentionslegales.css',
 })

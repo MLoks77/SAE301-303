@@ -1,169 +1,186 @@
 <app-navbar></app-navbar>
-<div id="landingACCUEIL" class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative">
+<div id="landingACCUEIL"
+    class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative">
 
-  <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="absolute inset-0 bg-black opacity-40"></div>
 
-  <div class="relative z-10 flex flex-col items-center px-4 py-12">
-    <h1 class="text-4xl md:text-8xl Julee  drop-shadow-lg mb-6 text-center">
-      Sush'n Go
-    </h1>
-    <p class="text-lg md:text-2xl Caladea mb-8 max-w-2xl text-center">
-      Découvrez une expérience japonaise moderne chez vous !
-    </p>
-    <div class="flex gap-4 flex-wrap justify-center">
-      <a routerLink="/menus" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded transition shadow-lg text-lg">
-        Voir le menu
-      </a>
-      <a routerLink="/points-retraits" class="bg-white text-orange-600 border border-orange-500 hover:bg-orange-100 font-bold py-3 px-8 rounded transition text-lg">
-        Nos points de retrait
-      </a>
+    <div class="relative z-10 flex flex-col items-center px-4 py-12">
+        <h1 class="text-6xl md:text-8xl Julee  drop-shadow-lg mb-6 text-center">
+            Sush'n Go
+        </h1>
+        <p class="text-lg md:text-3xl Caladea mb-8 max-w-3xl text-center">
+            Découvrez une expérience japonaise moderne chez vous !
+        </p>
     </div>
-  </div>
 </div>
 
-<section class="grid grid-cols-3 grid-rows-2 gap-4 mx-[15%] text-center py-8"> <!-- etiquettes intro-->
 
-    <!-- 1 -->
-    <div class="flex flex-col items-center justify-center">
-        <svg width="70" height="70" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"
-            class="mx-auto mb-2">
-            <g>
-                <path
-                    d="M14.05 6C15.0268 6.19057 15.9244 6.66826 16.6281 7.37194C17.3318 8.07561 17.8095 8.97326 18 9.95M14.05 2C16.0793 2.22544 17.9716 3.13417 19.4163 4.57701C20.8609 6.01984 21.7721 7.91101 22 9.94M18.5 21C9.93959 21 3 14.0604 3 5.5C3 5.11378 3.01413 4.73086 3.04189 4.35173C3.07375 3.91662 3.08968 3.69907 3.2037 3.50103C3.29814 3.33701 3.4655 3.18146 3.63598 3.09925C3.84181 3 4.08188 3 4.56201 3H7.37932C7.78308 3 7.98496 3 8.15802 3.06645C8.31089 3.12515 8.44701 3.22049 8.55442 3.3441C8.67601 3.48403 8.745 3.67376 8.88299 4.05321L10.0491 7.26005C10.2096 7.70153 10.2899 7.92227 10.2763 8.1317C10.2643 8.31637 10.2012 8.49408 10.0942 8.64506C9.97286 8.81628 9.77145 8.93713 9.36863 9.17882L8 10C9.2019 12.6489 11.3501 14.7999 14 16L14.8212 14.6314C15.0629 14.2285 15.1837 14.0271 15.3549 13.9058C15.5059 13.7988 15.6836 13.7357 15.8683 13.7237C16.0777 13.7101 16.2985 13.7904 16.74 13.9509L19.9468 15.117C20.3262 15.255 20.516 15.324 20.6559 15.4456C20.7795 15.553 20.8749 15.6891 20.9335 15.842C21 16.015 21 16.2169 21 16.6207V19.438C21 19.9181 21 20.1582 20.9007 20.364C20.8185 20.5345 20.663 20.7019 20.499 20.7963C20.3009 20.9103 20.0834 20.9262 19.6483 20.9581C19.2691 20.9859 18.8862 21 18.5 21Z"
-                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </g>
-        </svg>
+<section class="w-full">
+
+    <div class="flex items-center bg-[#24202c] pl-5 pt-5">
+        <a routerLink="/menus" class="text-white md:text-5  hover:underline hover:underline-offset-5xl text-4xl Caladea hover:text-gray-200 duration-300 transform-all">
+            Commandez dès maintenant</a>
+        <hr class="border-t border-white flex-1 ml-5 my-0">
     </div>
+    <div class="bg-[#24202c] flex gap-6 overflow-x-auto scroll-smooth scroll-pl-6 py-8 snap-x scroll-snap-x scroll-snap-mandatory cursor-grab active:cursor-grabbing"
+        style="scroll-snap-type: x mandatory; overflow-y: hidden;" id="carousel-scroll">
+        <!-- overflow-y enlève le scroll en y -->
+        <!-- menus/1 -> redirige vers l'id n°1 par exemple -->
+        <!-- il faut changer les id des routerlinks pour correspondre à ceux de la page menu -->
 
-    <!-- 2 -->
-    <div class="flex flex-col items-center justify-center">
-        <svg width="70" height="70" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"
-            class="mx-auto mb-2">
-            <g>
-                <path
-                    d="M12 7V12H15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </g>
-        </svg>
+        <a id="sliderbox1" routerLink="/menus/1"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/amateur-mix.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box amateur</h2>
+        </a>
+
+        <a id="sliderbox2" routerLink="/menus/2"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/fresh-mix.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box fresh</h2>
+        </a>
+
+        <a id="sliderbox3" routerLink="/menus/3"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/master-mix.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box master</h2>
+        </a>
+
+        <a id="sliderbox4" routerLink="/menus/4"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/salmon-classic.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box saumon classique</h2>
+        </a>
+
+        <a id="sliderbox5" routerLink="/menus/5"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/sando-box-chicken-katsu.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box poulet katsu</h2>
+        </a>
+
+        <a id="sliderbox6" routerLink="/menus/6"
+            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/super-salmon.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box super saumon</h2>
+        </a>
+
+        <a id="sliderbox7" routerLink="/menus/7"
+            class="shrink-0 w-80 scroll-snap-align-end flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+            <img src="/images/box/gourmet-mix.jpg"
+                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+            <h2 class="text-xl font-semibold Caladea mb-2">Box gourmet</h2>
+        </a>
+
     </div>
-
-    <!-- 3 -->
-    <div class="flex flex-col items-center justify-center">
-        <svg width="70" height="70" viewBox="0 0 512 512" fill="black" xmlns="http://www.w3.org/2000/svg"
-            class="mx-auto mb-2">
-            <g>
-                <path
-                    d="M170.362,210.367c17.446-7.278,39.21-16.595,61.009-25.911c64.49-27.559,91.827-39.06,102.643-41.857 c16.021-4.14,32.671-6.242,49.507-6.242c1.148,0,2.241,0.037,3.352,0.046l-0.666-0.722L325.828,77.71 c-9.631-9.251-19.318-11.344-36.042-13.4c0,0-26.447-5.315-59.1,3.111c-12.891,3.334-101.106,42.117-151.65,63.185 c-50.543,21.068-68.12,56.527-68.12,56.527c-8.76,15.085-10.482,20.697-10.871,30.884c-0.371,10.205,1.574,15.456,8.945,22.522 l53.286,51.164c3.278,3.14,7,5.538,10.964,7.196c1.889-3.834,4.056-7.807,6.556-12.122C84.943,277.163,110.058,235.482,170.362,210.367z">
-                </path>
-                <path
-                    d="M506,236.407l-65.676-63.045c-10.482-10.066-21.002-12.335-39.19-14.586c0,0-28.781-5.779-64.286,3.389 c-14.038,3.631-109.978,45.822-164.967,68.732c-54.989,22.92-74.102,61.481-74.102,61.481 c-9.52,16.418-11.408,22.512-11.816,33.597c-0.389,11.094,1.722,16.817,9.724,24.503l57.971,55.656 c14.298,13.715,36.616,14.53,51.877,1.88c0,0,0.315-0.556,0.852-1.361c4.353,4.019,8.594,7.899,12.428,11.372 c5.204,4.714,9.778,8.797,13.428,11.946c1.815,1.574,3.408,2.917,4.778,4.019c1.407,1.129,2.426,1.945,3.797,2.815 c3.315,2.046,7.927,5.139,13.724,7.76c5.816,2.621,12.965,4.788,21.207,4.778c6.5,0.01,13.558-1.352,20.872-4.473l0.093-0.037 l120.183-54.423c7.872-3.344,14.261-6.464,19.633-9.974c4.037-2.649,7.556-5.566,10.427-8.982 c4.352-5.122,6.908-11.27,8.094-17.512c1.204-6.298,1.37-12.798,1.389-20.411c0-4.741-0.093-9.918-0.112-15.705l-0.203-46.877 c14.631-2.908,37.412-1.028,37.412-1.028c7.76-0.407,14.52-5.389,17.242-12.658C513.483,249.984,511.612,241.788,506,236.407z M435.046,348.645c-0.445,2.787-1.056,4.788-1.852,6.436c-1.222,2.426-2.852,4.473-6.63,7.205 c-3.76,2.676-9.594,5.731-17.947,9.232l-0.111,0.046l-119.998,54.35c-4.964,2.093-9.076,2.796-12.761,2.806 c-4.668,0-8.761-1.166-12.743-2.954c-3.945-1.778-7.612-4.158-11.242-6.436c-0.111-0.074-1.018-0.75-2.186-1.694 c-4.444-3.64-13.26-11.521-23.688-21.05c-2.204-2.028-4.63-4.269-6.983-6.426c12.873-14.9,35.116-35.774,67.528-49.294 c44.58-18.567,116.238-49.174,149.095-62.545l0.185,39.597c0.019,5.926,0.093,11.122,0.093,15.613 C435.824,339.95,435.62,344.959,435.046,348.645z">
-                </path>
-            </g>
-        </svg>
-    </div>
-
-    <!-- 1 -->
-    <div class="row-start-2 flex flex-col items-center justify-center">
-        <p class="text-[25px] Caladea text-center">
-            Appelez nous au 01 02 03 04 05,<br>
-            ou commandez sur l'appli<br>
-            vos produits favoris
-        </p>
-    </div>
-
-    <!-- 2 -->
-    <div class="row-start-2 flex flex-col items-center justify-center">
-        <p class=" text-[25px] Caladea text-center">
-            Votre commande est ensuite livrée<br>
-            en un temps record
-        </p>
-    </div>
-
-    <!-- 3 -->
-    <div class="row-start-2 flex flex-col items-center justify-center">
-        <p class="text-[25px] Caladea text-center">
-            Dégustez et savourez votre produit
-        </p>
-    </div>
-
 </section>
 
-<section></section><!-- à finir-->
-
-<section></section> <!-- slider menus --><!-- à finir-->
-
-<section> <!-- à finir-->
-    <div class="grid grid-cols-2 grid-rows-1 gap-0 py-5">
-        <div class="relative">
-            <img src="/images/assets/accueil.webp">
-            <a routerLink="/menus" class="absolute bottom-8 right-8 bg-white text-black px-8 py-4 rounded shadow hover:bg-gray-300 transition-all text-lg flex items-center gap-2">
-                Consulter
-                <span class="inline-flex items-center">
-                    <svg viewBox="-19.04 0 75.804 75.804" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <g id="Group_65" data-name="Group 65" transform="translate(-831.568 -384.448)">
-                                <path id="Path_57" data-name="Path 57" d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z" fill="#000000"></path>
-                            </g>
-                        </g>
-                    </svg>
-                </span>
-            </a>
-        </div>
-        <div class=" mr-4">            
-            <h1 class="ml-5 Caladea border-l border-black pl-5 text-3xl">Titre</h1>
-            <p class="ml-5 Caladea text-left text-2xl text-leading mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore enim repellendus, numquam commodi similique nostrum architecto voluptatem, provident vitae quaerat cumque, assumenda nobis nesciunt magnam temporibus molestias eligendi cum perspiciatis!
-            Cum laboriosam accusantium quae nihil blanditiis hic inventore, explicabo quas itaque, ducimus beatae. Maiores repellendus fuga explicabo. Repellat, quaerat minus! At aliquam, illum similique excepturi nulla vero nam explicabo dolore!
-            Consequuntur harum blanditiis illum fugiat accusamus animi possimus adipisci, non iusto a similique iste? Consequuntur omnis cupiditate voluptatibus sapiente est quidem numquam nobis officia?</p>
-        </div>
-    </div>
-</section> <!-- en avant n°1 -->
-
-<section>
-    <div class="grid grid-cols-2 grid-rows-1 gap-0 py-5">
-        <div class="mr-4">
-            <h1 class="ml-5 Caladea border-l border-black pl-2 text-3xl">Titre</h1>
-            <p class="ml-5 Caladea text-left text-2xl text-leading mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore enim repellendus, numquam commodi similique nostrum architecto voluptatem, provident vitae quaerat cumque, assumenda nobis nesciunt magnam temporibus molestias eligendi cum perspiciatis!
-                Cum laboriosam accusantium quae nihil blanditiis hic inventore, explicabo quas itaque, ducimus beatae. Maiores repellendus fuga explicabo. Repellat, quaerat minus! At aliquam, illum similique excepturi nulla vero nam explicabo dolore!
-                Consequuntur harum blanditiis illum fugiat accusamus animi possimus adipisci, non iusto a similique iste? Consequuntur omnis cupiditate voluptatibus sapiente est quidem numquam nobis officia?</p>
-        </div>
-        <div class="relative">
-            <img src="/images/assets/accueil.webp">
-            <a routerLink="/menus" class="absolute bottom-8 left-8 bg-white text-black px-8 py-4 rounded shadow hover:bg-gray-300 transition-all text-lg flex items-center gap-2">
-                Consulter
-                <span class="inline-flex items-center">
-                    <svg viewBox="-19.04 0 75.804 75.804" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <g id="Group_65" data-name="Group 65" transform="translate(-831.568 -384.448)">
-                                <path id="Path_57" data-name="Path 57" d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z" fill="#000000"></path>
-                            </g>
-                        </g>
-                    </svg>
-                </span>
-            </a>
+<section class="24202C">
+    <div class="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8 py-10">
+        <div class=" p-0.25 overflow-hidden rounded-2xl">
+            <div class="bg-base-100 rounded-2xl p-0.5 ">
+                <div class="relative rounded-2xl p-8 lg:p-16 bg-[#2E3F2D]">
+                    <div
+                        class="flex justify-between gap-8 max-md:flex-col max-sm:items-center max-sm:text-center md:items-center">
+                        <div class="max-w-xs space-y-4 lg:max-w-lg">
+                            <h2 class="text-white text-xl font-bold md:text-3xl">Commandez maintenant</h2>
+                            <p class="text-white text-2xl">Nous apportons les saveurs que vous aimez directement à votre
+                                porte.
+                                Des plats réconfortants classiques aux spécialités élaborées par nos chefs, chaque
+                                bouchée est préparée avec soin et livrée fraîche. Ne patientez plus, votre prochain plat
+                                préféré n’est qu’à un clic.</p>
+                            <a class="text-white text-2xl transition-all duration-200 hover:underline hover:underline-offset-4 inline-flex items-center group"
+                                routerLink="/menus">
+                                Découvrir
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="inline-block w-5 h-5 ms-2 transition-all duration-200 group-hover:translate-x-1"
+                                    fill="none" viewBox="0 0 22 22" stroke="white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                        <img src="/images/assets/chef.webp" alt="Chef"
+                            class="absolute end-0 top-0 h-full rounded-4xl max-md:hidden p-3" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section> <!-- en avant n°2 inverse -->
+</section>
 
-<section class="py-10">
-    <div class="grid grid-cols-1 grid-rows-2">
+<section class="py-10 bg-[#24202c]">
+    <div class="grid grid-cols-1 grid-rows-2 pb-10 px-3">
         <div class="col-span-3">
-            <h1 class="text-6xl Caladea text-center">Nos partenaires</h1>
+            <h1 class="text-5xl text-white Caladea text-center">Nos partenaires</h1>
         </div>
         <div class="row-start-2 flex justify-center gap-25">
             <div class="flex justify-center">
-                <a href="https://deliveroo.fr/fr/"><img src="./images/assets/deliveroo.webp" class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150" height="150"></a>
+                <a href="https://deliveroo.fr/fr/"><img src="./images/assets/deliveroo.webp"
+                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
+                        height="150"></a>
             </div>
             <div class="flex justify-center">
-                <a href="https://www.grab.com/sg/"><img src="./images/assets/grab.webp" class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150" height="150"></a>
+                <a href="https://www.grab.com/sg/"><img src="./images/assets/grab.webp"
+                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
+                        height="150"></a>
             </div>
             <div class="flex justify-center">
-                <a href="https://www.ubereats.com/fr?srsltid=AfmBOoouM8qOjfw1W69xTOAOQrwctvmgYwEs5zc1Y0rpd-mQp24ZM3Ad"><img src="./images/assets/ubereat.webp" class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150" height="150"></a>
+                <a href="https://www.ubereats.com/fr?srsltid=AfmBOoouM8qOjfw1W69xTOAOQrwctvmgYwEs5zc1Y0rpd-mQp24ZM3Ad"><img
+                        src="./images/assets/ubereat.webp"
+                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
+                        height="150"></a>
             </div>
         </div>
     </div>
 </section> <!-- partenarits -->
-<app-footer></app-footer>
+
+
+
+<!-- FAQ -->
+<section id="faqs">
+    <div class="relative h-full py-16 sm:py-28 lg:py-36">
+        <div class="mx-auto max-w-[1700px] px-8 sm:px-16 lg:px-24">
+            <!-- FAQ Header -->
+            <div class="mb-20 space-y-6 text-wrap text-center sm:mb-24 lg:mb-32">
+                <h2 class="text-black text-4xl font-bold md:text-5xl lg:text-6xl">Questions Fréquentes</h2>
+                <p class="text-black text-2xl">Retrouvez ici les réponses à vos questions les plus courantes.</p>
+            </div>
+            <!-- FAQ Grid -->
+            <div class="max-w-6xl mx-auto grid gap-12 md:grid-cols-3 md:gap-10">
+                <!-- Question 1 -->
+                <div class="rounded-box p-10 text-center flex flex-col">
+                    <h5 class="text-black mb-4 text-2xl font-bold">Proposez-vous la livraison à domicile&nbsp;?</h5>
+                    <p class="text-black text-lg">Oui, nous proposons la livraison à domicile&nbsp;! Vous pouvez
+                        commander directement via notre site ou nos partenaires de livraison. Nous veillons à ce que vos
+                        plats arrivent frais et rapidement chez vous.</p>
+                </div>
+                <!-- Question 2 -->
+                <div class="rounded-box p-10 text-center flex flex-col">
+                    <h5 class="text-black mb-4 text-2xl font-bold">Quels sont les moyens de paiement acceptés&nbsp;?
+                    </h5>
+                    <p class="text-black text-lg">
+                        Nous acceptons : cartes bancaires (Visa, MasterCard, American Express), paiement sans contact,
+                        espèces, ainsi que les tickets restaurant (carte ou papier). Le paiement via Apple Pay et Google
+                        Pay est également disponible sur place et lors de vos commandes en ligne.
+                    </p>
+                </div>
+                <!-- Question 3 -->
+                <div class="rounded-box p-10 text-center flex flex-col">
+                    <h5 class="text-black mb-4 text-2xl font-bold">Quels sont vos horaires d’ouverture&nbsp;?</h5>
+                    <p class="text-black text-lg">Nous sommes ouverts tous les jours de 8h00 à 22h00. Les horaires
+                        peuvent varier les jours fériés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<section></section> <!-- avis clients -->
+
+
+    <app-footer></app-footer>

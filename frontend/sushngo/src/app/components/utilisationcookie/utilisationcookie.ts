@@ -4,7 +4,7 @@ import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-utilisationcookie',
-  imports: [Navbar, Footer, RouterLink],
+  imports: [Navbar, Footer],
   templateUrl: './utilisationcookie.html',
   styleUrl: './utilisationcookie.css',
 })
