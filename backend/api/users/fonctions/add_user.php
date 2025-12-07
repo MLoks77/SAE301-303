@@ -1,4 +1,4 @@
-<!-- par maxime derènes -->
+<!-- par maxime derènes, ajouts par Joachim -->
 
 <?php
 
@@ -8,7 +8,7 @@ require '../manager/UserManager.php'; // fonctions pour insert par exemple
 $content = file_get_contents('php://input');
 $data = json_decode($content, true);
 
-$required_fields = ['nom', 'prenom', 'email', 'password']; // Champs obligatoires selon insertUser
+$required_fields = ['nom', 'prenom', 'email', 'password', 'telephone', 'adresse']; // Champs obligatoires selon insertUser
 
 $missing = [];
 foreach ($required_fields as $field) {
