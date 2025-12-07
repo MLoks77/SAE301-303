@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer, ConnexionApi],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
   templateUrl: './inscconnex.html',
   styleUrl: './inscconnex.css',
 })
@@ -36,14 +36,14 @@ export class Inscconnex implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  protected API_URL = "urlAPI";
+  protected API_URL = "http://localhost/SAE 301-303/SAE301-303/backend/api/users/fonctions/add_user.php";
 
   constructor(private http: HttpClient) {}
 
   // Méthode pour la soumission
   onSubmit(): void {
     console.log("Envoi vers l'API");
-    /* console.log('Nom:', this.nom);
+    console.log('Nom:', this.nom);
     console.log('Prénom:', this.prenom);
     console.log("Email d'inscription:", this.email_inscr);
     console.log('Email de connexion:', this.email_connex);
@@ -52,7 +52,7 @@ export class Inscconnex implements OnInit {
     console.log('Mot de passe de connexion:', this.mdp_connex);
     console.log('Étudiant:', this.etudiant);
     console.log('Téléphone:', this.telephone);
-    console.log('Adresse:', this.adresse); */
+    console.log('Adresse:', this.adresse);
 
     if(this.isSubmitting = true) {
       this.successMessage = 'Formulaire envoyé avec succès !';
@@ -105,27 +105,6 @@ export class Inscconnex implements OnInit {
   ngOnInit(): void {}
 
   apiData: any;
-
-  /* getData(): void {
-    this.isLoading = true;
-    this.error = null;
-    
-    this.connexionApi.getUserDataFromApi().subscribe({
-      next: (users) => {
-        this.apiData = users;
-        this.isLoading = false;
-        console.log('Données reçues:', users);
-      },
-      error: (err) => {
-        this.error = 'Erreur lors de la récupération des données';
-        this.isLoading = false;
-        console.error('Erreur API:', err);
-      },
-      complete: () => {
-        console.log('Requête terminée');
-      }
-    });
-  } */
 
   initializeTabSystem(): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
@@ -233,6 +212,22 @@ export class Inscconnex implements OnInit {
       btnInscription.classList.remove('bg-white', 'text-black');
       btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
       btnConnexion.classList.add('bg-white', 'text-black');
+    }
+  }
+
+  // Variables pour gérer la visibilité
+  showMdpInscr: boolean = false;
+  showMdpConnex: boolean = false;
+  showConfirmMdp: boolean = false;
+
+  // Méthodes pour toggle
+  togglePassword(field: string): void {
+    if (field === 'mdp_inscr') {
+      this.showMdpInscr = !this.showMdpInscr;
+    } else if (field === 'mdp_connex') {
+      this.showMdpConnex = !this.showMdpConnex;
+    } else if (field === 'confirm_mdp') {
+      this.showConfirmMdp = !this.showConfirmMdp;
     }
   }
 }

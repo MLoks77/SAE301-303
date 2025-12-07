@@ -1,3 +1,4 @@
+/* réalisé par Joachim */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import { Observable } from 'rxjs';
@@ -19,7 +20,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "urlAPI"; //à remplacer ici par la vraie url
+  protected API_URL = "http://localhost/SAE 301-303/SAE301-303/backend/api/api.php"; //à remplacer ici par la vraie url
 
   constructor(private http: HttpClient) {}
 
