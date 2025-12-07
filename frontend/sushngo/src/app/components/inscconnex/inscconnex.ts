@@ -36,7 +36,7 @@ export class Inscconnex implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  protected API_URL = "";
+  protected API_URL = "urlAPI";
 
   constructor(private http: HttpClient) {}
 
