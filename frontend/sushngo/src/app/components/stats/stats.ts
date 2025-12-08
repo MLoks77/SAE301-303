@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import Chart from 'chart.js/auto';
+import { Chart } from 'chart.js';
 import { CommonModule } from '@angular/common';
 
 // en attendant que je connecte l'api et le fasse correctement je met ça
