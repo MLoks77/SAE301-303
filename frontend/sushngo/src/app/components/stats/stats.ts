@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { Chart } from 'chart.js';
+import Chart from 'chart.js/auto'; // sans ça sa affiche pas
 import { CommonModule } from '@angular/common';
 
 // en attendant que je connecte l'api et le fasse correctement je met ça
@@ -17,28 +17,28 @@ import { CommonModule } from '@angular/common';
 export class Stats implements AfterViewInit {
 
   METRICS = [
-    { label: "Today's Orders", value: '142', change: '+12%', trend: 'up', icon: '🍣' },
-    { label: 'Total Revenue', value: '¥245,000', change: '+8%', trend: 'up', icon: '💹' },
-    { label: 'Customer Rating', value: '4.9', change: '+0.1', trend: 'up', icon: '⭐' },
-    { label: 'Active Reservations', value: '28', change: '-2', trend: 'down', icon: '👥' }
+    { label: "Commandes aujourd'hui", value: '142', change: '+12%', trend: 'up', icon: '🍣' },
+    { label: 'Revenu total', value: '€2 450,00', change: '+8%', trend: 'up', icon: '💹' },
+    { label: 'Note clients', value: '4.9', change: '+0.1', trend: 'up', icon: '⭐' },
+    { label: 'Réservations actives', value: '28', change: '-2', trend: 'down', icon: '👥' }
   ];
 
   POPULAR_DISHES = [
-    { name: 'Salmon Nigiri', orders: 84, price: '¥600' },
-    { name: 'Dragon Roll', orders: 72, price: '¥1400' },
-    { name: 'Spicy Tuna', orders: 65, price: '¥850' },
-    { name: 'Miso Soup', orders: 58, price: '¥300' },
-    { name: 'Tuna Sashimi', orders: 45, price: '¥1200' }
+    { name: 'Saumon Nigiri', orders: 84, price: '€6,00' },
+    { name: 'Dragon Roll', orders: 72, price: '€14,00' },
+    { name: 'Thon Épicé', orders: 65, price: '€8,50' },
+    { name: 'Soupe Miso', orders: 58, price: '€3,00' },
+    { name: 'Sashimi Thon', orders: 45, price: '€12,00' }
   ];
 
   WEEKLY_DATA = [
-    { day: 'Mon', orders: 95, revenue: 145000 },
-    { day: 'Tue', orders: 110, revenue: 168000 },
-    { day: 'Wed', orders: 125, revenue: 192000 },
-    { day: 'Thu', orders: 115, revenue: 178000 },
-    { day: 'Fri', orders: 180, revenue: 285000 },
-    { day: 'Sat', orders: 210, revenue: 340000 },
-    { day: 'Sun', orders: 160, revenue: 255000 }
+    { day: 'Lun', orders: 95, revenue: 1450 },
+    { day: 'Mar', orders: 110, revenue: 1680 },
+    { day: 'Mer', orders: 125, revenue: 1920 },
+    { day: 'Jeu', orders: 115, revenue: 1780 },
+    { day: 'Ven', orders: 180, revenue: 2850 },
+    { day: 'Sam', orders: 210, revenue: 3400 },
+    { day: 'Dim', orders: 160, revenue: 2550 }
   ];
 
   HOURLY_DATA = [
@@ -86,7 +86,7 @@ export class Stats implements AfterViewInit {
             ticks: {
               callback: (value: number | string) => {
                 const n = typeof value === 'number' ? value : Number(value);
-                return '¥' + (n / 1000) + 'k';
+                return '€' + (n / 1000) + 'k';
               }
             }
           }

@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
 
+<div class="w-full h-10 bg-black flex items-center pl-4 gap-1">
+    <a routerLink="/accueil"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
+    <span class="text-white italic"> &gt; Mentions légales</span>
+</div>
+
 <section class="max-w-3xl mx-auto px-4 py-10">
     <!-- Onglets -->
     <div class="mb-8">
@@ -112,7 +118,8 @@
 
         <h2>2. Base juridique des traitements de données</h2>
         <p>
-            L'ensemble des traitements de données à caractère personnel figurant au point 1 repose sur votre consentement
+            L'ensemble des traitements de données à caractère personnel figurant au point 1 repose sur votre
+            consentement
             (article 6 1. a) du RGPD, sachant que vous pouvez le retirer à tout moment en vous adressant à :
             sushngopro@gmail.com
         </p>
@@ -120,7 +127,8 @@
         <h2>3. Durée de conservation</h2>
         <p>
             Les données collectées sont conservées jusqu'à la fermeture du compte, plus 90 jours après la fermeture.
-            Elles seront supprimées dans leur intégralité à l'issue de cet échéance afin de garantir la confidentialité et
+            Elles seront supprimées dans leur intégralité à l'issue de cet échéance afin de garantir la confidentialité
+            et
             la protection de votre vie privée.
         </p>
         <p>
@@ -131,7 +139,8 @@
 
         <h2>4. Destinataire des données</h2>
         <p>
-            Les données à caractère personnel collectées dans le cadre de ces services ne seront accessibles qu'au personnel
+            Les données à caractère personnel collectées dans le cadre de ces services ne seront accessibles qu'au
+            personnel
             de l'Association habilité à en connaître.
         </p>
 
@@ -157,44 +166,46 @@
     </div>
 </section>
 <script>
-function showTab(tab) {
-    const mentions = document.getElementById('content-mentions');
-    const rgpd = document.getElementById('content-rgpd');
-    const btnMentions = document.getElementById('tab-mentions');
-    const btnRgpd = document.getElementById('tab-rgpd');
-    const btncgu = document.getElementById('tab-cgu');
-    const cgu = document.getElementById('tab-cgu');
-    if (tab === 'mentions') {
-      mentions.classList.remove('hidden');
-      rgpd.classList.add('hidden');
-      cgu.classList.add('hidden');
-      btnMentions.classList.add('border-orange-300');
-      btnMentions.classList.remove('border-transparent');
-      btnRgpd.classList.remove('border-orange-300');
-      btnRgpd.classList.add('border-transparent');
-      btncgu.classList.remove('border-orange-300');
-      btncgu.classList.add('border-transparent');
-    } else if (tab === 'rgpd') {
-      mentions.classList.add('hidden');
-      rgpd.classList.remove('hidden');
-      cgu.classList.add('hidden');
-      btnMentions.classList.remove('border-orange-300');
-      btnMentions.classList.add('border-transparent');
-      btnRgpd.classList.add('border-orange-300');
-      btnRgpd.classList.remove('border-transparent');
-      btncgu.classList.remove('border-orange-300');
-      btncgu.classList.add('border-transparent');
-    } else if (tab === 'cgu') {
-      mentions.classList.add('hidden');
-      rgpd.classList.add('hidden');
-      cgu.classList.remove('hidden');
-      btnMentions.classList.remove('border-orange-300');
-      btnMentions.classList.add('border-transparent');
-      btnRgpd.classList.remove('border-orange-300');
-      btnRgpd.classList.add('border-transparent');
-      btncgu.classList.add('border-orange-300');
-      btncgu.classList.remove('border-transparent');
+    function showTab(tab) {
+        const mentions = document.getElementById('content-mentions');
+        const rgpd = document.getElementById('content-rgpd');
+        const btnMentions = document.getElementById('tab-mentions');
+        const btnRgpd = document.getElementById('tab-rgpd');
+        const btncgu = document.getElementById('tab-cgu');
+        const cgu = document.getElementById('tab-cgu');
+        if (tab === 'mentions') {
+            mentions.classList.remove('hidden');
+            rgpd.classList.add('hidden');
+            cgu.classList.add('hidden');
+            btnMentions.classList.add('border-orange-300');
+            btnMentions.classList.remove('border-transparent');
+            btnRgpd.classList.remove('border-orange-300');
+            btnRgpd.classList.add('border-transparent');
+            btncgu.classList.remove('border-orange-300');
+            btncgu.classList.add('border-transparent');
+        } else if (tab === 'rgpd') {
+            mentions.classList.add('hidden');
+            rgpd.classList.remove('hidden');
+            cgu.classList.add('hidden');
+            btnMentions.classList.remove('border-orange-300');
+            btnMentions.classList.add('border-transparent');
+            btnRgpd.classList.add('border-orange-300');
+            btnRgpd.classList.remove('border-transparent');
+            btncgu.classList.remove('border-orange-300');
+            btncgu.classList.add('border-transparent');
+        } else if (tab === 'cgu') {
+            mentions.classList.add('hidden');
+            rgpd.classList.add('hidden');
+            cgu.classList.remove('hidden');
+            btnMentions.classList.remove('border-orange-300');
+            btnMentions.classList.add('border-transparent');
+            btnRgpd.classList.remove('border-orange-300');
+            btnRgpd.classList.add('border-transparent');
+            btncgu.classList.add('border-orange-300');
+            btncgu.classList.remove('border-transparent');
+        }
     }
-  }
 </script>
-<app-footer></app-footer>
+<div class="fixed bottom-0 left-0 w-full">
+    <app-footer></app-footer>
+</div>

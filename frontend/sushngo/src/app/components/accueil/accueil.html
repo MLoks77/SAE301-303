@@ -1,146 +1,133 @@
 <app-navbar></app-navbar>
 <div id="landingACCUEIL"
-    class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative">
+    class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative overflow-hidden">
 
-    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <!-- Vidéo en background -->
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="/videos/Sushi.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-black opacity-40 z-0"></div>
 
-    <div class="relative z-10 flex flex-col items-center px-4 py-12">
-        <h1 class="text-6xl md:text-8xl Julee  drop-shadow-lg mb-6 text-center">
-            Sush'n Go
-        </h1>
-        <p class="text-lg md:text-3xl Caladea mb-8 max-w-3xl text-center">
-            Découvrez une expérience japonaise moderne chez vous !
-        </p>
+    <div class="relative z-10 flex flex-col items-center justify-center px-6 text-center">
+        <div>
+            <span className="mb-4 block text-sm font-medium tracking-[0.3em]  uppercase">
+                Depuis 2025
+            </span>
+            <h1 class="mb-6 Julee text-5xl md:text-7xl lg:text-8xl font-light tracking-tight">
+                SUSH'<span>N</span>GO
+            </h1>
+            <p class="mx-auto max-w-lg text-lg md:text-xl font-light Caladea leading-relaxed">
+                Découvrez l'art du minimalisme et le goût de la tradition à chaque bouchée.
+            </p>
+        </div>
     </div>
 </div>
 
+<section class="bg-sushi-cream py-24 px-6 md:px-12">
+    <div class="mx-auto max-w-7xl">
 
-<section class="w-full">
+        <!-- Title -->
+        <div class="mb-16 text-center">
+            <h2 class="Caladea text-4xl md:text-5xl  mb-4 animate-fade-up">
+                Signature Creations
+            </h2>
 
-    <div class="flex items-center bg-[#24202c] pl-5 pt-5">
-        <a routerLink="/menus" class="text-white md:text-5  hover:underline hover:underline-offset-5xl text-4xl Caladea hover:text-gray-200 duration-300 transform-all">
-            Commandez dès maintenant</a>
-        <hr class="border-t border-white flex-1 ml-5 my-0">
-    </div>
-    <div class="bg-[#24202c] flex gap-6 overflow-x-auto scroll-smooth scroll-pl-6 py-8 snap-x scroll-snap-x scroll-snap-mandatory cursor-grab active:cursor-grabbing"
-        style="scroll-snap-type: x mandatory; overflow-y: hidden;" id="carousel-scroll">
-        <!-- overflow-y enlève le scroll en y -->
-        <!-- menus/1 -> redirige vers l'id n°1 par exemple -->
-        <!-- il faut changer les id des routerlinks pour correspondre à ceux de la page menu -->
+            <div class="h-px w-24  mx-auto origin-center scale-x-0 animate-line-grow">
+            </div>
+        </div>
 
-        <a id="sliderbox1" routerLink="/menus/1"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/amateur-mix.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box amateur</h2>
-        </a>
-
-        <a id="sliderbox2" routerLink="/menus/2"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/fresh-mix.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box fresh</h2>
-        </a>
-
-        <a id="sliderbox3" routerLink="/menus/3"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/master-mix.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box master</h2>
-        </a>
-
-        <a id="sliderbox4" routerLink="/menus/4"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/salmon-classic.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box saumon classique</h2>
-        </a>
-
-        <a id="sliderbox5" routerLink="/menus/5"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/sando-box-chicken-katsu.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box poulet katsu</h2>
-        </a>
-
-        <a id="sliderbox6" routerLink="/menus/6"
-            class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/super-salmon.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box super saumon</h2>
-        </a>
-
-        <a id="sliderbox7" routerLink="/menus/7"
-            class="shrink-0 w-80 scroll-snap-align-end flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-            <img src="/images/box/gourmet-mix.jpg"
-                class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-            <h2 class="text-xl font-semibold Caladea mb-2">Box gourmet</h2>
-        </a>
-
-    </div>
-</section>
-
-<section class="24202C">
-    <div class="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8 py-10">
-        <div class=" p-0.25 overflow-hidden rounded-2xl">
-            <div class="bg-base-100 rounded-2xl p-0.5 ">
-                <div class="relative rounded-2xl p-8 lg:p-16 bg-[#2E3F2D]">
-                    <div
-                        class="flex justify-between gap-8 max-md:flex-col max-sm:items-center max-sm:text-center md:items-center">
-                        <div class="max-w-xs space-y-4 lg:max-w-lg">
-                            <h2 class="text-white text-xl font-bold md:text-3xl">Commandez maintenant</h2>
-                            <p class="text-white text-2xl">Nous apportons les saveurs que vous aimez directement à votre
-                                porte.
-                                Des plats réconfortants classiques aux spécialités élaborées par nos chefs, chaque
-                                bouchée est préparée avec soin et livrée fraîche. Ne patientez plus, votre prochain plat
-                                préféré n’est qu’à un clic.</p>
-                            <a class="text-white text-2xl transition-all duration-200 hover:underline hover:underline-offset-4 inline-flex items-center group"
-                                routerLink="/menus">
-                                Découvrir
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="inline-block w-5 h-5 ms-2 transition-all duration-200 group-hover:translate-x-1"
-                                    fill="none" viewBox="0 0 22 22" stroke="white">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </a>
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div *ngFor="let box of plats" class="group cursor-pointer opacity-0 animate-fade-up">
+                <div class="relative mb-6 overflow-hidden aspect-4/5">
+                    <a [href]="box.link">
+                        <div
+                            class="absolute inset-0 bg-sushi-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
                         </div>
-                        <img src="/images/assets/chef.webp" alt="Chef"
-                            class="absolute end-0 top-0 h-full rounded-4xl max-md:hidden p-3" />
-                    </div>
+
+                        <img [src]="box.image" [alt]="box.name"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </a>
+                </div>
+
+                <!-- Text -->
+                <div class="text-center">
+                    <h3 class="text-xl font-medium  mb-2 font-serif">
+                        {{ box.name }}
+                    </h3>
+
+                    <p class="text-sushi-gray text-sm mb-3 font-light">
+                        {{ box.description }}
+                    </p>
+
+                    <span class="text-sushi-red font-medium">{{ box.price }}</span>
                 </div>
             </div>
         </div>
+
+        <!-- Button -->
+        <div class="mt-16 text-center">
+            <a routerLink="/menus">
+                <button class="border border-sushi-black px-8 py-3 text-sm hover:bg-gray-300 text-black cursor-pointer uppercase tracking-widest
+                   
+                 transition-colors duration-300">
+                    Menu
+                </button></a>
+        </div>
     </div>
 </section>
+<section class="bg-[#19181B] py-24 px-6 md:px-12 overflow-hidden">
+    <div class="mx-auto max-w-7xl">
+        <div class="flex flex-col md:flex-row items-center gap-16">
 
-<section class="py-10 bg-[#24202c]">
-    <div class="grid grid-cols-1 grid-rows-2 pb-10 px-3">
-        <div class="col-span-3">
-            <h1 class="text-5xl text-white Caladea text-center">Nos partenaires</h1>
-        </div>
-        <div class="row-start-2 flex justify-center gap-25">
-            <div class="flex justify-center">
-                <a href="https://deliveroo.fr/fr/"><img src="./images/assets/deliveroo.webp"
-                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
-                        height="150"></a>
+            <!-- Texte -->
+            <div class="flex-1 text-white animate-fade-up">
+                <span class="text-sm font-bold tracking-widest uppercase mb-4 block">
+                    Notre Philosophie
+                </span>
+
+                <h2 class="text-white font-serif text-4xl md:text-5xl mb-8 leading-tight">
+                    Honorer les <br />
+                    <span class="italic">Saisons & Océan</span>
+                </h2>
+
+                <p class="text-white mb-6 leading-relaxed font-light">
+                    Chez ZEN, nous croyons que le sushi n’est pas seulement de la nourriture, mais un art
+                    qui exige patience, précision et respect. Nos chefs consacrent leur vie à maîtriser
+                    l’équilibre entre le riz, le vinaigre et le poisson.
+                </p>
+
+                <p class="text-white mb-8 leading-relaxed font-light">
+                    Nous sélectionnons nos ingrédients directement du marché Toyosu à Tokyo et auprès de pêcheries
+                    locales et durables,
+                    garantissant que chaque nigiri raconte l’histoire de son origine. Le concept japonais
+                    d’<em>Omotenashi</em>—l’hospitalité sincère—est au cœur de notre service.
+                </p>
+
+                <a class="text-white text-2xl transition-all duration-200 hover:underline hover:underline-offset-4 inline-flex items-center group"
+                    routerLink="/menus">
+                    Découvrir
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="inline-block w-5 h-5 ms-2 transition-all duration-200 group-hover:translate-x-1"
+                        fill="none" viewBox="0 0 22 22" stroke="white">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
             </div>
-            <div class="flex justify-center">
-                <a href="https://www.grab.com/sg/"><img src="./images/assets/grab.webp"
-                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
-                        height="150"></a>
+
+            <!-- Image -->
+            <div class="flex-1 relative animate-fade-up">
+                <div class="relative z-10 aspect-4/3 overflow-hidden">
+                    <img src="/images/assets/chef.webp" alt="Chef préparant des sushis"
+                        class="h-full w-full object-cover" />
+                </div>
+
+                <div class="absolute -bottom-6 -right-6 w-full h-full border border-black/10 z-0"></div>
             </div>
-            <div class="flex justify-center">
-                <a href="https://www.ubereats.com/fr?srsltid=AfmBOoouM8qOjfw1W69xTOAOQrwctvmgYwEs5zc1Y0rpd-mQp24ZM3Ad"><img
-                        src="./images/assets/ubereat.webp"
-                        class="hover:scale-105 transition-all duration-200 rounded cursor-pointer" width="150"
-                        height="150"></a>
-            </div>
+
         </div>
     </div>
-</section> <!-- partenarits -->
-
-
+</section>
 
 <!-- FAQ -->
 <section id="faqs">
@@ -157,7 +144,8 @@
                 <div class="rounded-box p-10 text-center flex flex-col">
                     <h5 class="text-black mb-4 text-2xl font-bold">Proposez-vous la livraison à domicile&nbsp;?</h5>
                     <p class="text-black text-lg">Oui, nous proposons la livraison à domicile&nbsp;! Vous pouvez
-                        commander directement via notre site ou nos partenaires de livraison. Nous veillons à ce que vos
+                        commander directement via notre site ou nos partenaires de livraison. Nous veillons à ce que
+                        vos
                         plats arrivent frais et rapidement chez vous.</p>
                 </div>
                 <!-- Question 2 -->
@@ -165,8 +153,10 @@
                     <h5 class="text-black mb-4 text-2xl font-bold">Quels sont les moyens de paiement acceptés&nbsp;?
                     </h5>
                     <p class="text-black text-lg">
-                        Nous acceptons : cartes bancaires (Visa, MasterCard, American Express), paiement sans contact,
-                        espèces, ainsi que les tickets restaurant (carte ou papier). Le paiement via Apple Pay et Google
+                        Nous acceptons : cartes bancaires (Visa, MasterCard, American Express), paiement sans
+                        contact,
+                        espèces, ainsi que les tickets restaurant (carte ou papier). Le paiement via Apple Pay et
+                        Google
                         Pay est également disponible sur place et lors de vos commandes en ligne.
                     </p>
                 </div>
@@ -180,7 +170,75 @@
         </div>
     </div>
 
-<section></section> <!-- avis clients -->
 
+
+    <section></section> <!-- avis clients -->
+
+
+    <section class="w-full">
+
+        <div class="flex items-center bg-[#19181B] pl-5 pt-5">
+            <a routerLink="/menus"
+                class="text-white md:text-5  hover:underline hover:underline-offset-5xl text-4xl Caladea hover:text-gray-200 duration-300 transform-all">
+                Commandez dès maintenant</a>
+            <hr class="border-t border-white flex-1 ml-5 my-0">
+        </div>
+        <div class="bg-[#19181B] flex gap-6 overflow-x-auto scroll-smooth scroll-pl-6 py-8 snap-x scroll-snap-x scroll-snap-mandatory cursor-grab active:cursor-grabbing"
+            style="scroll-snap-type: x mandatory; overflow-y: hidden;" id="carousel-scroll">
+            <!-- overflow-y enlève le scroll en y -->
+            <!-- menus/1 -> redirige vers l'id n°1 par exemple -->
+            <!-- il faut changer les id des routerlinks pour correspondre à ceux de la page menu -->
+
+            <a id="sliderbox1" routerLink="/menus/1"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/amateur-mix.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box amateur</h2>
+            </a>
+
+            <a id="sliderbox2" routerLink="/menus/2"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/fresh-mix.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box fresh</h2>
+            </a>
+
+            <a id="sliderbox3" routerLink="/menus/3"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/master-mix.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box master</h2>
+            </a>
+
+            <a id="sliderbox4" routerLink="/menus/4"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/salmon-classic.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box saumon classique</h2>
+            </a>
+
+            <a id="sliderbox5" routerLink="/menus/5"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/sando-box-chicken-katsu.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box poulet katsu</h2>
+            </a>
+
+            <a id="sliderbox6" routerLink="/menus/6"
+                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/super-salmon.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box super saumon</h2>
+            </a>
+
+            <a id="sliderbox7" routerLink="/menus/7"
+                class="shrink-0 w-80 scroll-snap-align-end flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                <img src="/images/box/gourmet-mix.jpg"
+                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                <h2 class="text-xl font-semibold Caladea mb-2">Box gourmet</h2>
+            </a>
+
+        </div>
+    </section>
 
     <app-footer></app-footer>

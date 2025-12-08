@@ -11,7 +11,47 @@ import { CommonModule } from '@angular/common';
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })
+
 export class Accueil {
+
+  plats = [
+    {
+      id: 1,
+      name: 'Toro Sashimi',
+      description: 'Thon premium, finement tranché.',
+      price: '€24',
+      image:
+        '/images/assets/sushi1.webp',
+      link: '/menus', // mettre un id
+    },
+    {
+      id: 2,
+      name: 'Uni Nigiri',
+      description: 'Oursin frais d’Hokkaido, croustillant et savoureux.',
+      price: '€18',
+      image:
+        '/images/assets/sushi2.webp',
+      link: '/menus', // mettre un id
+    },
+    {
+      id: 3,
+      name: 'Wagyu Roll',
+      description: 'Bœuf Wagyu poêlé, huile de truffe, asperges.',
+      price: '€32',
+      image:
+        '/images/assets/sushi3.webp',
+      link: '/menus', // mettre un id
+    },
+    {
+      id: 4,
+      name: 'Omakase Set',
+      description: "Sélection du chef : 12 pièces de saison.",
+      price: '€85',
+      image:
+        '/images/assets/sushi4.webp',
+      link: '/menus', // mettre un id
+    },
+  ];
 
 
   // ngAfterViewInit parce qu'à ce moment le DOM du composant est prêt ( à tout load )
@@ -20,13 +60,13 @@ export class Accueil {
     const slider = document.getElementById('carousel-scroll');
     if (!slider) return;
 
-    let Bas= false;
+    let Bas = false;
     let debutX: number = 0;
     let scrollLeft: number = 0;
 
     // Souris
     slider.addEventListener('mousedown', (e: MouseEvent) => {
-      Bas= true;
+      Bas = true;
       slider.classList.add('cursor-grabbing');
       debutX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
@@ -34,12 +74,12 @@ export class Accueil {
     });
 
     slider.addEventListener('mouseleave', () => {
-      Bas= false;
+      Bas = false;
       slider.classList.remove('cursor-grabbing');
     });
 
     slider.addEventListener('mouseup', () => {
-      Bas= false;
+      Bas = false;
       slider.classList.remove('cursor-grabbing');
     });
 
