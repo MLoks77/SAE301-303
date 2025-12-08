@@ -1,13 +1,19 @@
 <!-- par maxime derènes, ajouts par Joachim -->
 
 <?php
-session_start();
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:4200'); // Port Angular par défaut
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Credentials: true');
+
+// Gestion de la requête preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit; // ← IMPORTANT : on sort tout de suite pour OPTIONS
+}
+
+session_start();
 
 require '../../../config/configdb.php'; // connexion
 require '../manager/UserManager.php'; // fonctions pour insert par exemple
@@ -29,7 +35,8 @@ if (!empty($missing)) {
     header('Content-Type: application/json');
     echo json_encode(['reponse' => 'donnée(s) manquante(s): ' . implode(', ', $missing)]);
     exit;
-} else {
+}
+try {
     // Vérifier que l'email n'existe pas déjà
     $sql = "SELECT * FROM utilisateur WHERE email = :email";
     $stmt = $pdo->prepare($sql);
@@ -49,6 +56,10 @@ if (!empty($missing)) {
     http_response_code(201);
     header('Content-Type: application/json');
     echo json_encode(['reponse' => 'utilisateur créé']);
+} catch (Exception $e) {
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Erreur serveur', 'error' => $e->getMessage()]);
 }
 
 // TP1 Le Vessnard
