@@ -1,6 +1,13 @@
 <!-- par maxime derènes, ajouts par Joachim -->
 
 <?php
+session_start();
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:4200'); // Port Angular par défaut
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
 
 require '../../../config/configdb.php'; // connexion
 require '../manager/UserManager.php'; // fonctions pour insert par exemple
