@@ -30,34 +30,34 @@
                         <label for="nom-inscription">Nom <span class="text-[#F64F4F]">*</span></label>
                         <input id="nom-inscription" name="nom" type="text" autocomplete="family-name" placeholder="Nom"
                             [(ngModel)]="nom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="prenom-inscription">Prénom <span class="text-[#F64F4F]">*</span></label>
                         <input id="prenom-inscription" name="prenom" type="text" autocomplete="given-name"
                             placeholder="Prénom" [(ngModel)]="prenom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="email-inscription">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-inscription" name="email" type="email" autocomplete="email"
                             placeholder="exemple@email.com" [(ngModel)]="email_inscr" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
                         <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
                         <input id="telephone-inscription" name="telephone" type="tel" placeholder="..." [(ngModel)]="telephone" required
                             autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full  text-gray-500" />
                         <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
                     </div>
                     <div class="col-span-2 form-group">
                         <label for="adresse-inscription">Adresse <span class="text-[#F64F4F]">*</span></label>
                         <input id="adresse-inscription" name="adresse" type="text" autocomplete="street-address"
-                            placeholder="Adresse" [(ngModel)]="adresse" required class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            placeholder="Adresse" [(ngModel)]="adresse" required class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
-                    <div class="col-span-2 flex items-center gap-2 form-group">
+                    <div class="col-span-2 flex items-center gap-2 form-group cursor-pointe">
                         <input id="etudiant-inscription" name="etudiant" type="checkbox" [(ngModel)]="etudiant"
                             class="accent-[#F64F4F] rounded-lg p-1" />
                         <label for="etudiant-inscription" class="cursor-pointer">Êtes-vous étudiant&nbsp;?</label>
@@ -67,7 +67,7 @@
                         <div class="password-wrapper">
                             <input [type]="showMdpInscr ? 'text' : 'password'" id="motdepasse-inscription" name="motdepasse" autocomplete="new-password"
                                 placeholder="Créez un mot de passe" [(ngModel)]="mdp_inscr" required minlength="8"
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative" />
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
                                 <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem]" (click)="togglePassword('mdp_inscr')">
                                     <!-- Icône œil barré -->
                                     <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -91,7 +91,7 @@
                         <div class="password-wrapper">
                             <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription" name="confirmMotDePasse"
                                 autocomplete="new-password" placeholder="..." [(ngModel)]="confirm_mdp_inscr" required
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative" />
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
                             <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]" (click)="togglePassword('confirm_mdp')">
                                 <!-- Icône œil barré -->
                                 <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-span-2 flex items-center gap-2 mt-1"> <!-- rajouter une condition qui fait que si c'est pas coché, on peut pas s'inscrire -->   
                         <input id="cgu-inscription" name="cgu" type="checkbox" required
-                            class="accent-[#F64F4F] rounded-lg p-1" />
+                            class="accent-[#F64F4F] rounded-lg p-1 cursor-pointer" />
                         <label for="cgu-inscription" class="cursor-pointer">
                             <span class="ml-1">J'ai lu et j'accepte les&nbsp;</span>
                             <a href="/mentions-legales" target="_blank" class="text-[#2a6ef7] underline">conditions générales
@@ -151,15 +151,15 @@
                         <label for="email-connexion">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-connexion" name="email" type="email" autocomplete="email"
                             placeholder="Votre email" [(ngModel)]="email_connex" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="motdepasse-connexion">Mot de passe <span class="text-[#F64F4F]">*</span></label>
                         <div class="password-wrapper">
                         <input [type]="showMdpConnex ? 'text' : 'password'" id="motdepasse-connexion" name="motdepasse"
                             autocomplete="current-password" placeholder="Votre mot de passe" [(ngModel)]="mdp_connex" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full" />
-                        <button type="button" class="toggle-password" (click)="togglePassword('mdp_connex')">
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                        <button type="button" class="toggle-password cursor-pointer" (click)="togglePassword('mdp_connex')">
                             <!-- Icône œil barré -->
                             <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
