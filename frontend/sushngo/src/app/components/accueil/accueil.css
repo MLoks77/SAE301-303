@@ -1,7 +1,28 @@
-#landingACCUEIL {
-    background-image: url('/images/assets/accueil.webp');
-    background-size: cover;
-    background-position: center;
-    width: auto;
-    height: auto;
-}
+@keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+  
+  @keyframes line-grow {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  .animate-line-grow {
+    animation: line-grow 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+  }

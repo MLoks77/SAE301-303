@@ -10,10 +10,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './navbar.css',
 })
 export class Navbar implements OnInit {
+
   isMenuOpen: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     // Vérifier l'état de connexion au chargement
@@ -21,7 +22,6 @@ export class Navbar implements OnInit {
       this.isLoggedIn = loggedIn;
     });
 
-    // S'abonner aux changements d'état de connexion
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
