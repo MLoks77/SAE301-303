@@ -36,7 +36,7 @@ export class Inscconnex implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
 
-  protected API_URL = "http://localhost/SAE 301-303/SAE301-303/backend/api/users/fonctions/add_user.php";
+  protected API_URL = "http://localhost/SAE_301-303/SAE301-303/backend/api/users/fonctions/add_user.php";
 
   constructor(private http: HttpClient) {}
 
