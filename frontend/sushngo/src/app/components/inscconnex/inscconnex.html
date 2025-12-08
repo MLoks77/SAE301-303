@@ -17,7 +17,7 @@
 
         <div id="forms-container" class="flex flex-col items-stretch gap-8 justify-center">
             <!-- FORMULAIRE INSCRIPTION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmit()"
+            <form #contactForm="ngForm" (ngSubmit)="onSubmitInscription()"
                 id="tab-formulaire-inscription" autocomplete="on" novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto">
                 <!-- pas d'autoroute svp -->
@@ -90,7 +90,7 @@
                                 class="text-[#F64F4F]">*</span></label>
                         <div class="password-wrapper">
                             <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription" name="confirmMotDePasse"
-                                autocomplete="new-password" placeholder="..." [(ngModel)]="confirm_mdp_inscr" required
+                                autocomplete="new-password" placeholder="..." [(ngModel)]="confirm_mdp" required
                                 class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
                             <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]" (click)="togglePassword('confirm_mdp')">
                                 <!-- Icône œil barré -->
@@ -138,7 +138,7 @@
             </form>
 
             <!-- FORMULAIRE CONNEXION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmit()"
+            <form #contactForm="ngForm" (ngSubmit)="onSubmitConnexion()"
                 id="tab-formulaire-connexion" autocomplete="on" novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible">
                 <!-- pas d'autoroute svp -->
