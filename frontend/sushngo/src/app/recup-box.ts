@@ -20,3 +20,5 @@ export class RecupBox {
   }
   
 }
+
+// Ajouté par Sebastian Chisiu 
