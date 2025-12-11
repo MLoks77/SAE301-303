@@ -2,6 +2,18 @@
 <!-- normalement c'est prêt et adapté pour être utilisé -->
 
 <?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:4200'); // Port Angular par défaut
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Gestion de la requête preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit; // ← IMPORTANT : on sort tout de suite pour OPTIONS
+}
+
 session_start();
 include_once '../../../config/configdb.php';
 if (isset($_POST['envoyer'])) {

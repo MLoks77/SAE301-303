@@ -19,3 +19,5 @@ export class RecupBox {
     return this.http.get(this.API_URL);
   }
 }
+
+// Ajouté par Sebastian Chisiu 
