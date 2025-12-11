@@ -13,7 +13,7 @@ export interface SessionStatus {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost/SAE%20301-303/SAE301-303/backend/api/users/session/check_session.php';
+  private apiUrl = 'http://localhost/SAE301-303/backend/api/users/session/check_session.php';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
