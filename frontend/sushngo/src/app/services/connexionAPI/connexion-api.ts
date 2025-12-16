@@ -49,7 +49,7 @@ export class ConnexionApi {
       statut_etud: inscriptionData.etudiant ? 1 : 0
     };
 
-    return this.http.post(`${this.API_URL}/users/fonctions/add_user.php`, dataForApi, {
+    return this.http.post(`${this.API_URL}/api.php`, dataForApi, {
       withCredentials: true
     });
   }
