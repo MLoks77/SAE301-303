@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { RecupBox } from '../../services/recupBOX/recup-box';
+import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -34,9 +34,7 @@ export class Pagemenu implements OnInit {
   boxData: any;
   apiData: any;
 
-  constructor(private recupBox: RecupBox) {
-    this.boxData = this.recupBox.boxData;
-  }
+  constructor(private connexionApi: ConnexionApi) { }
 
   ngOnInit(): void {
     this.getData();
@@ -44,9 +42,11 @@ export class Pagemenu implements OnInit {
   }
 
   getData() {
-    this.recupBox.getBoxDataFromApi().subscribe((res => {
+    this.connexionApi.getUserDataFromApi().subscribe((res => {
       this.apiData = res;
-    }))
+      this.boxData = res;
+      console.log('Boxes loaded:', res);
+    }));
   }
 
   activeCarrouselIndex = 0;

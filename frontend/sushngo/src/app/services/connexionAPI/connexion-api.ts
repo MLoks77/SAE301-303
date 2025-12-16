@@ -20,12 +20,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "http://localhost/SAE301-303/backend/api/api.php";
+  protected API_URL = "http://localhost:8000";
 
   constructor(private http: HttpClient) { }
 
   getUserDataFromApi() {
-    return this.http.get(this.API_URL);
+    return this.http.get(`${this.API_URL}/api.php`);
   }
 
   inscription(inscriptionData: {
@@ -49,7 +49,7 @@ export class ConnexionApi {
       statut_etud: inscriptionData.etudiant ? 1 : 0
     };
 
-    return this.http.post(`${this.API_URL}/add_user.php`, dataForApi, {
+    return this.http.post(`${this.API_URL}/users/fonctions/add_user.php`, dataForApi, {
       withCredentials: true
     });
   }
