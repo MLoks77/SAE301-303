@@ -20,9 +20,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "http://localhost/SAE301-303/backend/api/api.php"; //à remplacer ici par la vraie url
+  protected API_URL = "http://localhost/SAE301-303/backend/api/api.php";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getUserDataFromApi() {
     return this.http.get(this.API_URL);
@@ -37,7 +37,7 @@ export class ConnexionApi {
     adresse: string,
     etudiant: string
   }): Observable<any> {
-    
+
     // Transformation des données pour l'API
     const dataForApi = {
       nom: inscriptionData.nom,
@@ -48,29 +48,12 @@ export class ConnexionApi {
       adresse: inscriptionData.adresse,
       statut_etud: inscriptionData.etudiant ? 1 : 0
     };
-  
+
     return this.http.post(`${this.API_URL}/add_user.php`, dataForApi, {
       withCredentials: true
     });
   }
-  
-  /* login(connexionData: {
-    email_connex: string,    // ← Nom Angular
-    mdp_connex: string       // ← Nom Angular
-  }): Observable<LoginResponse> {
-    
-    const dataForApi = {
-      email: connexionData.email_connex,      // ← Mapping
-      password: connexionData.mdp_connex      // ← Mapping
-    };
-  
-    return this.http.post<LoginResponse>(`${this.API_URL}/login.php`, dataForApi, {
-      withCredentials: true
-    });
-  } */
 
-  /* getUserDataFromApi(): Observable<utilisateur[]> {
-    return this.http.get<utilisateur[]>(this.API_URL);
-  }*/
+
 
 }
