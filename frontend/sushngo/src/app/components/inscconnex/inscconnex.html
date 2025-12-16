@@ -1,6 +1,12 @@
 <app-navbar></app-navbar>
 
-<!-- front réalisé par Joachim Tocqueville, fix par maxime derènes -->
+<!-- front réalisé par Joachim Tocqueville et par maxime derènes -->
+<div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
+    <a routerLink="/accueil"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
+    <span class="text-white italic mb-1"> &gt; Connexion / inscription</span>
+</div>
+
 <section id="connexionbg" class="pt-10">
     <div id="fondform">
 
@@ -17,8 +23,8 @@
 
         <div id="forms-container" class="flex flex-col items-stretch gap-8 justify-center">
             <!-- FORMULAIRE INSCRIPTION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmitInscription()"
-                id="tab-formulaire-inscription" autocomplete="on" novalidate
+            <form #contactForm="ngForm" (ngSubmit)="onSubmitInscription()" id="tab-formulaire-inscription"
+                autocomplete="on" novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto">
                 <!-- pas d'autoroute svp -->
                 <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
@@ -47,15 +53,16 @@
                     <div class="form-group">
                         <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
                         <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
-                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..." [(ngModel)]="telephone" required
-                            autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
+                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..."
+                            [(ngModel)]="telephone" required autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
                             class="border border-[#ccc] rounded-xl py-2 px-2 w-full  text-gray-500" />
                         <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
                     </div>
                     <div class="col-span-2 form-group">
                         <label for="adresse-inscription">Adresse <span class="text-[#F64F4F]">*</span></label>
                         <input id="adresse-inscription" name="adresse" type="text" autocomplete="street-address"
-                            placeholder="Adresse" [(ngModel)]="adresse" required class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            placeholder="Adresse" [(ngModel)]="adresse" required
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
                     </div>
                     <div class="col-span-2 flex items-center gap-2 form-group cursor-pointe">
                         <input id="etudiant-inscription" name="etudiant" type="checkbox" [(ngModel)]="etudiant"
@@ -65,23 +72,32 @@
                     <div class="form-group">
                         <label for="motdepasse-inscription">Mot de passe <span class="text-[#F64F4F]">*</span></label>
                         <div class="password-wrapper">
-                            <input [type]="showMdpInscr ? 'text' : 'password'" id="motdepasse-inscription" name="motdepasse" autocomplete="new-password"
-                                placeholder="Créez un mot de passe" [(ngModel)]="mdp_inscr" required minlength="8"
+                            <input [type]="showMdpInscr ? 'text' : 'password'" id="motdepasse-inscription"
+                                name="motdepasse" autocomplete="new-password" placeholder="Créez un mot de passe"
+                                [(ngModel)]="mdp_inscr" required minlength="8"
                                 class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                                <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem]" (click)="togglePassword('mdp_inscr')">
-                                    <!-- Icône œil barré -->
-                                    <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                                    </svg>
-                                    
-                                    <!-- Icône œil ouvert -->
-                                    <svg *ngIf="showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-                                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-                                        <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
-                                    </svg>
-                                </button>
+                            <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem]"
+                                (click)="togglePassword('mdp_inscr')">
+                                <!-- Icône œil barré -->
+                                <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                </svg>
+
+                                <!-- Icône œil ouvert -->
+                                <svg *ngIf="showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
+                                    <path
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                    <path
+                                        d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
+                                </svg>
+                            </button>
                             <small class="text-gray-500 text-xs pl-1">8 caractères minimum</small>
                         </div>
                     </div>
@@ -89,21 +105,30 @@
                         <label for="confirmMotDePasse-inscription">Confirmer le mot de passe <span
                                 class="text-[#F64F4F]">*</span></label>
                         <div class="password-wrapper">
-                            <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription" name="confirmMotDePasse"
-                                autocomplete="new-password" placeholder="..." [(ngModel)]="confirm_mdp" required
+                            <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription"
+                                name="confirmMotDePasse" autocomplete="new-password" placeholder="..."
+                                [(ngModel)]="confirm_mdp" required
                                 class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]" (click)="togglePassword('confirm_mdp')">
+                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
+                                (click)="togglePassword('confirm_mdp')">
                                 <!-- Icône œil barré -->
-                                <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                                <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                                 </svg>
-                                
+
                                 <!-- Icône œil ouvert -->
-                                <svg *ngIf="showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-                                    <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-                                    <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
+                                <svg *ngIf="showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
+                                    <path
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                    <path
+                                        d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
                                 </svg>
                             </button>
                         </div>
@@ -111,12 +136,14 @@
                             Les mots de passe ne correspondent pas.
                         </div>
                     </div>
-                    <div class="col-span-2 flex items-center gap-2 mt-1"> <!-- rajouter une condition qui fait que si c'est pas coché, on peut pas s'inscrire -->   
+                    <div class="col-span-2 flex items-center gap-2 mt-1">
+                        <!-- rajouter une condition qui fait que si c'est pas coché, on peut pas s'inscrire -->
                         <input id="cgu-inscription" name="cgu" type="checkbox" required
                             class="accent-[#F64F4F] rounded-lg p-1 cursor-pointer" />
                         <label for="cgu-inscription" class="cursor-pointer">
                             <span class="ml-1">J'ai lu et j'accepte les&nbsp;</span>
-                            <a href="/mentions-legales" target="_blank" class="text-[#2a6ef7] underline">conditions générales
+                            <a href="/mentions-legales" target="_blank" class="text-[#2a6ef7] underline">conditions
+                                générales
                                 d'utilisation</a>
                             <span class="text-[#F64F4F] ml-1">*</span>
                         </label>
@@ -138,8 +165,8 @@
             </form>
 
             <!-- FORMULAIRE CONNEXION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmitConnexion()"
-                id="tab-formulaire-connexion" autocomplete="on" novalidate
+            <form #contactForm="ngForm" (ngSubmit)="onSubmitConnexion()" id="tab-formulaire-connexion" autocomplete="on"
+                novalidate
                 class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible">
                 <!-- pas d'autoroute svp -->
                 <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
@@ -156,23 +183,32 @@
                     <div class="form-group">
                         <label for="motdepasse-connexion">Mot de passe <span class="text-[#F64F4F]">*</span></label>
                         <div class="password-wrapper">
-                        <input [type]="showMdpConnex ? 'text' : 'password'" id="motdepasse-connexion" name="motdepasse"
-                            autocomplete="current-password" placeholder="Votre mot de passe" [(ngModel)]="mdp_connex" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
-                        <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]" (click)="togglePassword('mdp_connex')">
-                            <!-- Icône œil barré -->
-                            <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                            </svg>
-                            
-                            <!-- Icône œil ouvert -->
-                            <svg *ngIf="showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-                                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-                                <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
-                            </svg>
-                        </button>
+                            <input [type]="showMdpConnex ? 'text' : 'password'" id="motdepasse-connexion"
+                                name="motdepasse" autocomplete="current-password" placeholder="Votre mot de passe"
+                                [(ngModel)]="mdp_connex" required
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
+                                (click)="togglePassword('mdp_connex')">
+                                <!-- Icône œil barré -->
+                                <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                </svg>
+
+                                <!-- Icône œil ouvert -->
+                                <svg *ngIf="showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
+                                    <path
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                    <path
+                                        d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="flex justify-center">
