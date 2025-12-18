@@ -1,0 +1,43 @@
+#connexionbg {
+    background-image: url('/images/assets/inscconnex.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    height: 1050px;
+}
+
+#forms-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+#tab-formulaire-inscription,
+#tab-formulaire-connexion {
+    flex: 1 1 0;
+    max-width: 600px;
+}
+
+@media (max-width: 768px) {
+    #forms-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #tab-formulaire-inscription,
+    #tab-formulaire-connexion {
+        max-width: 100%;
+    }
+}
+
+.hr-separateur {
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+  .mdp-confirm-invisible {
+    visibility: hidden;
+  }
+  .form-connexion-invisible {
+    display: none;
+  }

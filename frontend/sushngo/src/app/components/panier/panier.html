@@ -1,0 +1,109 @@
+<!-- faire en sorte que le nombre max soit de 10 boxes -->
+
+<app-navbar></app-navbar>
+
+<div class="flex items-center mb-2 mx-10 mt-20">
+    <a routerLink="/menus" class="text-2xl Julee">&lt;</a>
+    <h1 class="text-3xl Caladea ml-4"> Vous avez commandé N°PRODUITS<!--{{ panier.items.length }}--> produits </h1>
+</div>
+<hr class="w-full border-gray-200">
+<div class="grid grid-cols-2 grid-rows-1 gap-6 p-5">
+    <div id="paniers" class="border rounded-lg border-gray-200 p-5">1</div>
+    <div id="recap" class="border rounded-lg border-gray-200 p-5">
+        <form>
+
+            <label for="typeCarte" class="block text-lg font-medium text-gray-700 mb-2">Type de carte</label>
+            <div class="flex space-x-4 mb-6">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="cardType" value="visa" class="form-radio text-indigo-600 h-5 w-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/2560px-Old_Visa_Logo.svg.png"
+                        alt="Visa" class="h-6 ml-2">
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="cardType" value="mastercard" class="form-radio text-indigo-600 h-5 w-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png"
+                        alt="Mastercard" class="h-6 ml-2">
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="cardType" value="paypal" class="form-radio text-indigo-600 h-5 w-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Paypal_2014_logo.png/250px-Paypal_2014_logo.png"
+                        alt="PayPal" class="h-6 ml-2">
+                </label>
+            </div>
+
+            <div class="mb-4">
+                <label for="cardNumber" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
+                <input type="text" id="cardNumber"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+                    placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label for="expiryDate" class="block text-sm font-medium text-gray-700">Date d'expiration</label>
+                    <input type="text" id="expiryDate"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+                        placeholder="MM/AA">
+                </div>
+                <div>
+                    <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
+                    <input type="text" id="cvc"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+                        placeholder="XXX">
+                </div>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <div class="space-y-3 mb-6 text-sm text-gray-700">
+                <div class="flex justify-between">
+                    <span>Sous-total:</span>
+                    <span>0 €</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Promotions appliquées:</span>
+                    <span class="text-green-600">- 0 €</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Frais de livraison:</span>
+                    <span>0 €</span>
+                </div>
+                <div class="flex justify-between font-semibold text-base mt-2">
+                    <span>Total de la commande:</span>
+                    <span>0 €</span>
+                </div>
+                <div class="flex justify-between text-green-600 font-medium">
+                    <span>Points de fidélité gagnés :</span>
+                    <span>+nbr points</span>
+                </div>
+            </div>
+
+            <hr class="my-6 border-gray-200">
+
+            <div class="flex items-center justify-between mb-6">
+                <span class="text-base font-medium text-gray-700">Option de commande:</span>
+                <div class="flex items-center space-x-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="radio" name="deliveryOption" value="delivery" checked
+                            class="form-radio h-5 w-5 text-indigo-600">
+                        <span class="ml-2 text-gray-700">Livraison</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="radio" name="deliveryOption" value="pickup"
+                            class="form-radio h-5 w-5 text-indigo-600">
+                        <span class="ml-2 text-gray-700">À emporter</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-8 p-3 rounded-lg shadow-sm">
+                <span class="text-xl font-bold text-black">YY.YY €</span>
+                <button type="submit"
+                    class="px-6 py-3 bg-black text-white font-semibold rounded-md shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75">
+                    Valider
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>

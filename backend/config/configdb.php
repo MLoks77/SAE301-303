@@ -1,10 +1,10 @@
 <?php
 
 
-$servername = "localhost"; // 
+$servername = "localhost"; 
 $username = "root";        
 $password = "";            
-$database = "";     
+$database = "sushngo";     
 
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -15,6 +15,4 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 ?>
-    
-
 

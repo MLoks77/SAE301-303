@@ -1,0 +1,211 @@
+<app-navbar></app-navbar>
+
+<div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
+    <a routerLink="/accueil"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
+    <span class="text-white italic"> &gt; Mentions légales</span>
+</div>
+
+<section class="max-w-3xl mx-auto px-4 py-10">
+    <!-- Onglets -->
+    <div class="mb-8">
+        <div class="flex border-b border-gray-200">
+            <button id="tab-mentions"
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-orange-300 hover:border-orange-500 focus:outline-none"
+                onclick="showTab('mentions')">Mentions légales</button>
+
+            <button id="tab-rgpd"
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-transparent hover:border-orange-500 focus:outline-none"
+                onclick="showTab('rgpd')"><a href="/rgpd">RGPD</a></button>
+
+            <button id="tab-cgu"
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-transparent hover:border-orange-500 focus:outline-none"
+                onclick="showTab('cgu')"><a href="/cgu">CGU</a></button>
+        </div>
+    </div>
+    <!-- Contenu des onglets -->
+    <div id="content-mentions">
+        <h1>Mentions légales</h1>
+
+        <h1>1. Éditeur du site</h1><br>
+        <p>
+            Le site <strong>www.sushngo.com</strong> est la propriété du service de restauration Sush’n Go, dont le
+            siège social est situé au Restaurant, 17 Rue Jablinot, 77100 Meaux<br><br>
+        </p>
+        <p>
+            <strong>Nom de l’entreprise :</strong> Sush’n Go<br>
+            <strong>Adresse du siège social :</strong> 17 Rue Jablinot, 77100 Meaux<br>
+            <strong>Téléphone :</strong> 01 02 03 04 05<br>
+            <strong>Adresse e-mail :</strong> sushngopro@gmail.com
+        </p><br>
+        <p>
+            <strong>Responsables de la publication :</strong><br>
+            Maxime Derènes, Chef d’entreprise<br>
+            Témi Kergastel, Membre<br>
+            Joaquim Tocqueville, Membre<br>
+            Sébastien Chisiu, Membre
+        </p><br>
+        <p>
+            <strong>Numéro SIREN :</strong> 123456789<br>
+            <strong>Numéro SIRET :</strong> 12345678900015<br>
+            <strong>Numéro RNA :</strong> W123456789
+        </p><br>
+        <p>
+            <strong>Fiche entreprise :</strong> <a href="https://annuaire-entreprises.data.gouv.fr"
+                target="_blank">https://annuaire-entreprises.data.gouv.fr</a>
+        </p><br>
+
+        <h2>2. Hébergeur du site</h2><br>
+        <p>
+            <strong>Nom de l'hébergeur :</strong> Alwaysdata<br>
+            <strong>Adresse de l'hébergeur :</strong> 91 rue du Faubourg Saint-Honoré, 75008 Paris, France<br>
+            <strong>Téléphone de l'hébergeur :</strong> 01 84 16 23 40
+        </p><br>
+
+        <h2>3. Propriété intellectuelle</h2><br>
+        <p>
+            L'ensemble des contenus présents sur ce site (textes, images, logos, etc.) sont la propriété de l’entreprise
+            Sush’n Go ou de leurs auteurs respectifs.<br>
+            Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du
+            site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de
+            l’entreprise Sush’n Go.<br>
+            Pour toute demande d'utilisation, merci de contacter : sushngopro@gmail.com
+        </p><br>
+
+        <h2>4. Données personnelles et cookies</h2><br>
+        <p>
+            Les informations recueillies via les formulaires de paiement sont enregistrées par l’entreprise Sush’n Go
+            afin de garantir le bon fonctionnement des livraisons ainsi que le bon déroulement du service client.
+            Certaines données seront utilisées à des fins statistiques, mais elles ne seront pas exploitées à des fins
+            commerciales.<br>
+            Conformément à la réglementation en vigueur (RGPD), vous disposez d'un droit d'accès, de rectification,
+            d'opposition, de suppression et de portabilité de vos données personnelles.<br>
+            Pour exercer vos droits, contactez : sushngopro@gmail.com
+        </p><br>
+        <p>
+            <strong>Utilisation de cookies :</strong> Ce site n'utilise pas de cookies.
+        </p><br>
+
+        <h2>5. Limitation de responsabilité</h2><br>
+        <p>
+            L’entreprise Sush’n Go s'efforce de fournir des informations aussi précises que possible. Toutefois, elle ne
+            pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu'elles
+            soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
+        </p><br>
+    </div>
+    <div id="content-rgpd" class="hidden">
+        <h1>RGPD</h1>
+        <p><strong>Collecte de données</strong></p>
+
+        <h2>1. Données collectées</h2>
+        <p>
+            Les données à caractère personnel ne sont collectées que pour le besoin de certains services proposés par
+            l'Association, à savoir :
+        </p>
+        <ul>
+            <li>La mise en place de statistiques sur le site web.</li>
+            <li>La gestion des réductions appliqués aux tarifs étudiants.</li>
+            <li>La livraison des commandes.</li>
+            <li>Le système de fidélité.</li>
+            <li>Nous collectons les données suivantes dans le cadre de l'utilisation de nos services :</li>
+            <li>Prénom et nom,</li>
+            <li>Adresse e-mail,</li>
+            <li>Mot de passe,</li>
+            <li>Adresse,</li>
+            <li>Numéro de téléphone,</li>
+            <li>Si l’utilisateur est un étudiant.</li>
+        </ul>
+
+        <h2>2. Base juridique des traitements de données</h2>
+        <p>
+            L'ensemble des traitements de données à caractère personnel figurant au point 1 repose sur votre
+            consentement
+            (article 6 1. a) du RGPD, sachant que vous pouvez le retirer à tout moment en vous adressant à :
+            sushngopro@gmail.com
+        </p>
+
+        <h2>3. Durée de conservation</h2>
+        <p>
+            Les données collectées sont conservées jusqu'à la fermeture du compte, plus 90 jours après la fermeture.
+            Elles seront supprimées dans leur intégralité à l'issue de cet échéance afin de garantir la confidentialité
+            et
+            la protection de votre vie privée.
+        </p>
+        <p>
+            Pour la gestion des questions envoyées via le formulaire de contact, les données sont conservées jusqu'à ce
+            qu'une réponse soit apportée par mail à la personne concernée. Une fois la réponse envoyée, les mails seront
+            supprimées.
+        </p>
+
+        <h2>4. Destinataire des données</h2>
+        <p>
+            Les données à caractère personnel collectées dans le cadre de ces services ne seront accessibles qu'au
+            personnel
+            de l'Association habilité à en connaître.
+        </p>
+
+        <h2>5. Exercice des droits</h2>
+        <p>
+            Conformément à la réglementation en vigueur (RGPD), vous disposez d'un droit d'accès, de rectification,
+            d'opposition, de suppression et de portabilité de vos données personnelles.
+            Pour exercer vos droits ou pour toute question relative à la gestion de vos données, vous pouvez contacter
+            l’entreprise Sush’n Go à l'adresse suivante :
+            <a href="mailto:sushngopro@gmail.com">sushngopro@gmail.com</a>
+        </p>
+        <p>
+            Pour toute demande de rectification ou de suppression de vos données, merci de préciser votre nom, prénom et
+            l'adresse e-mail utilisée lors de la réservation.
+        </p>
+
+
+
+
+    </div>
+    <div id="content-cgu" class="hidden">
+
+    </div>
+</section>
+<script>
+    function showTab(tab) {
+        const mentions = document.getElementById('content-mentions');
+        const rgpd = document.getElementById('content-rgpd');
+        const btnMentions = document.getElementById('tab-mentions');
+        const btnRgpd = document.getElementById('tab-rgpd');
+        const btncgu = document.getElementById('tab-cgu');
+        const cgu = document.getElementById('tab-cgu');
+        if (tab === 'mentions') {
+            mentions.classList.remove('hidden');
+            rgpd.classList.add('hidden');
+            cgu.classList.add('hidden');
+            btnMentions.classList.add('border-orange-300');
+            btnMentions.classList.remove('border-transparent');
+            btnRgpd.classList.remove('border-orange-300');
+            btnRgpd.classList.add('border-transparent');
+            btncgu.classList.remove('border-orange-300');
+            btncgu.classList.add('border-transparent');
+        } else if (tab === 'rgpd') {
+            mentions.classList.add('hidden');
+            rgpd.classList.remove('hidden');
+            cgu.classList.add('hidden');
+            btnMentions.classList.remove('border-orange-300');
+            btnMentions.classList.add('border-transparent');
+            btnRgpd.classList.add('border-orange-300');
+            btnRgpd.classList.remove('border-transparent');
+            btncgu.classList.remove('border-orange-300');
+            btncgu.classList.add('border-transparent');
+        } else if (tab === 'cgu') {
+            mentions.classList.add('hidden');
+            rgpd.classList.add('hidden');
+            cgu.classList.remove('hidden');
+            btnMentions.classList.remove('border-orange-300');
+            btnMentions.classList.add('border-transparent');
+            btnRgpd.classList.remove('border-orange-300');
+            btnRgpd.classList.add('border-transparent');
+            btncgu.classList.add('border-orange-300');
+            btncgu.classList.remove('border-transparent');
+        }
+    }
+</script>
+<div class="fixed bottom-0 left-0 w-full">
+    <app-footer></app-footer>
+</div>
