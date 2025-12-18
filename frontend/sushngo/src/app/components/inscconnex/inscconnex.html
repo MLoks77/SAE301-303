@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<!-- front réalisé par Joachim Tocqueville et par maxime derènes -->
+<!-- front réalisé par Joachim Tocqueville, Maxime Derènes et Témi Kergastel -->
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
@@ -36,33 +36,34 @@
                         <label for="nom-inscription">Nom <span class="text-[#F64F4F]">*</span></label>
                         <input id="nom-inscription" name="nom" type="text" autocomplete="family-name" placeholder="Nom"
                             [(ngModel)]="nom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="prenom-inscription">Prénom <span class="text-[#F64F4F]">*</span></label>
                         <input id="prenom-inscription" name="prenom" type="text" autocomplete="given-name"
                             placeholder="Prénom" [(ngModel)]="prenom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500" />
                     </div>
                     <div class="form-group">
                         <label for="email-inscription">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-inscription" name="email" type="email" autocomplete="email"
                             placeholder="exemple@email.com" [(ngModel)]="email_inscr" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500"
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
                     </div>
                     <div class="form-group">
                         <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
                         <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
                         <input id="telephone-inscription" name="telephone" type="tel" placeholder="..."
                             [(ngModel)]="telephone" required autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full  text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500" />
                         <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
                     </div>
                     <div class="col-span-2 form-group">
                         <label for="adresse-inscription">Adresse <span class="text-[#F64F4F]">*</span></label>
                         <input id="adresse-inscription" name="adresse" type="text" autocomplete="street-address"
                             placeholder="Adresse" [(ngModel)]="adresse" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500" />
                     </div>
                     <div class="col-span-2 flex items-center gap-2 form-group cursor-pointe">
                         <input id="etudiant-inscription" name="etudiant" type="checkbox" [(ngModel)]="etudiant"
@@ -75,8 +76,8 @@
                             <input [type]="showMdpInscr ? 'text' : 'password'" id="motdepasse-inscription"
                                 name="motdepasse" autocomplete="new-password" placeholder="Créez un mot de passe"
                                 [(ngModel)]="mdp_inscr" required minlength="8"
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem]"
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-black placeholder:text-gray-500" />
+                            <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem] cursor-pointer"
                                 (click)="togglePassword('mdp_inscr')">
                                 <!-- Icône œil barré -->
                                 <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -108,8 +109,8 @@
                             <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription"
                                 name="confirmMotDePasse" autocomplete="new-password" placeholder="..."
                                 [(ngModel)]="confirm_mdp" required
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-black placeholder:text-gray-500" />
+                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem] cursor-pointer"
                                 (click)="togglePassword('confirm_mdp')">
                                 <!-- Icône œil barré -->
                                 <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -178,7 +179,8 @@
                         <label for="email-connexion">Email <span class="text-[#F64F4F]">*</span></label>
                         <input id="email-connexion" name="email" type="email" autocomplete="email"
                             placeholder="Votre email" [(ngModel)]="email_connex" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500"
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
                     </div>
                     <div class="form-group">
                         <label for="motdepasse-connexion">Mot de passe <span class="text-[#F64F4F]">*</span></label>
@@ -186,8 +188,8 @@
                             <input [type]="showMdpConnex ? 'text' : 'password'" id="motdepasse-connexion"
                                 name="motdepasse" autocomplete="current-password" placeholder="Votre mot de passe"
                                 [(ngModel)]="mdp_connex" required
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
+                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-black placeholder:text-gray-500" />
+                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem] cursor-pointer"
                                 (click)="togglePassword('mdp_connex')">
                                 <!-- Icône œil barré -->
                                 <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
