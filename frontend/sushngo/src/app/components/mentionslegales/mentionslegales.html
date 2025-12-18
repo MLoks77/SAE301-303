@@ -1,33 +1,56 @@
 <app-navbar></app-navbar>
 
+
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
-    <span class="text-white italic"> &gt; Mentions légales</span>
+    <span class="text-white italic mb-1" *ngIf="currentTab === 'mentions'"> &gt; Mentions légales</span>
+    <span class="text-white italic mb-1" *ngIf="currentTab === 'rgpd'"> &gt; RGPD</span>
+    <span class="text-white italic mb-1" *ngIf="currentTab === 'cgu'"> &gt; CGU</span>
+    <span class="text-white italic mb-1" *ngIf="currentTab === 'cgv'"> &gt; CGV</span>
 </div>
+
+
+
+<h1 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mt-10 mb-6">
+    <span *ngIf="currentTab === 'mentions'">Mentions légales</span>
+    <span *ngIf="currentTab === 'rgpd'">RGPD</span>
+    <span *ngIf="currentTab === 'cgu'">CGU</span>
+    <span *ngIf="currentTab === 'cgv'">CGV</span>
+</h1>
+
+
+
+
 
 <section class="max-w-3xl mx-auto px-4 py-10">
     <!-- Onglets -->
     <div class="mb-8">
         <div class="flex border-b border-gray-200">
             <button id="tab-mentions"
-                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-orange-300 hover:border-orange-500 focus:outline-none"
-                onclick="showTab('mentions')">Mentions légales</button>
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 hover:border-orange-500 focus:outline-none"
+                [ngClass]="{'border-orange-300': currentTab === 'mentions', 'border-transparent': currentTab !== 'mentions'}"
+                (click)="showTab('mentions')">Mentions légales</button>
 
             <button id="tab-rgpd"
-                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-transparent hover:border-orange-500 focus:outline-none"
-                onclick="showTab('rgpd')"><a href="/rgpd">RGPD</a></button>
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 hover:border-orange-500 focus:outline-none"
+                [ngClass]="{'border-orange-300': currentTab === 'rgpd', 'border-transparent': currentTab !== 'rgpd'}"
+                (click)="showTab('rgpd')">RGPD</button>
 
             <button id="tab-cgu"
-                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 border-transparent hover:border-orange-500 focus:outline-none"
-                onclick="showTab('cgu')"><a href="/cgu">CGU</a></button>
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 hover:border-orange-500 focus:outline-none"
+                [ngClass]="{'border-orange-300': currentTab === 'cgu', 'border-transparent': currentTab !== 'cgu'}"
+                (click)="showTab('cgu')">CGU</button>
+
+            <button id="tab-cgv"
+                class="tab-btn px-4 py-2 text-gray-700 font-semibold border-b-2 hover:border-orange-500 focus:outline-none"
+                [ngClass]="{'border-orange-300': currentTab === 'cgv', 'border-transparent': currentTab !== 'cgv'}"
+                (click)="showTab('cgv')">CGV</button>
         </div>
     </div>
     <!-- Contenu des onglets -->
-    <div id="content-mentions">
-        <h1>Mentions légales</h1>
-
-        <h1>1. Éditeur du site</h1><br>
+    <div id="content-mentions" [class.hidden]="currentTab !== 'mentions'">
+        <h1 class="font-bold text-xl">1. Éditeur du site</h1><br>
         <p>
             Le site <strong>www.sushngo.com</strong> est la propriété du service de restauration Sush’n Go, dont le
             siège social est situé au Restaurant, 17 Rue Jablinot, 77100 Meaux<br><br>
@@ -51,18 +74,18 @@
             <strong>Numéro RNA :</strong> W123456789
         </p><br>
         <p>
-            <strong>Fiche entreprise :</strong> <a href="https://annuaire-entreprises.data.gouv.fr"
-                target="_blank">https://annuaire-entreprises.data.gouv.fr</a>
+            <strong>Fiche entreprise :</strong> <a href="https://annuaire-entreprises.data.gouv.fr" target="_blank">
+                https://annuaire-entreprises.data.gouv.fr</a>
         </p><br>
 
-        <h2>2. Hébergeur du site</h2><br>
+        <h2 class="font-bold text-xl">2. Hébergeur du site</h2><br>
         <p>
             <strong>Nom de l'hébergeur :</strong> Alwaysdata<br>
             <strong>Adresse de l'hébergeur :</strong> 91 rue du Faubourg Saint-Honoré, 75008 Paris, France<br>
             <strong>Téléphone de l'hébergeur :</strong> 01 84 16 23 40
         </p><br>
 
-        <h2>3. Propriété intellectuelle</h2><br>
+        <h2 class="font-bold text-xl">3. Propriété intellectuelle</h2><br>
         <p>
             L'ensemble des contenus présents sur ce site (textes, images, logos, etc.) sont la propriété de l’entreprise
             Sush’n Go ou de leurs auteurs respectifs.<br>
@@ -72,7 +95,7 @@
             Pour toute demande d'utilisation, merci de contacter : sushngopro@gmail.com
         </p><br>
 
-        <h2>4. Données personnelles et cookies</h2><br>
+        <h2 class="font-bold text-xl">4. Données personnelles et cookies</h2><br>
         <p>
             Les informations recueillies via les formulaires de paiement sont enregistrées par l’entreprise Sush’n Go
             afin de garantir le bon fonctionnement des livraisons ainsi que le bon déroulement du service client.
@@ -86,72 +109,70 @@
             <strong>Utilisation de cookies :</strong> Ce site n'utilise pas de cookies.
         </p><br>
 
-        <h2>5. Limitation de responsabilité</h2><br>
+        <h2 class="font-bold text-xl">5. Limitation de responsabilité</h2><br>
         <p>
             L’entreprise Sush’n Go s'efforce de fournir des informations aussi précises que possible. Toutefois, elle ne
             pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu'elles
             soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
         </p><br>
     </div>
-    <div id="content-rgpd" class="hidden">
-        <h1>RGPD</h1>
-        <p><strong>Collecte de données</strong></p>
-
-        <h2>1. Données collectées</h2>
+    <div id="content-rgpd" [class.hidden]="currentTab !== 'rgpd'">
+        <h2 class="font-bold text-xl">1. Données collectées</h2><br>
         <p>
             Les données à caractère personnel ne sont collectées que pour le besoin de certains services proposés par
-            l'Association, à savoir :
-        </p>
+            l'entreprise, à savoir :
+        </p><br>
         <ul>
-            <li>La mise en place de statistiques sur le site web.</li>
-            <li>La gestion des réductions appliqués aux tarifs étudiants.</li>
-            <li>La livraison des commandes.</li>
-            <li>Le système de fidélité.</li>
-            <li>Nous collectons les données suivantes dans le cadre de l'utilisation de nos services :</li>
-            <li>Prénom et nom,</li>
-            <li>Adresse e-mail,</li>
-            <li>Mot de passe,</li>
-            <li>Adresse,</li>
-            <li>Numéro de téléphone,</li>
-            <li>Si l’utilisateur est un étudiant.</li>
-        </ul>
+            <li>- La mise en place de statistiques sur le site web.</li>
+            <li>- La gestion des réductions appliqués aux tarifs étudiants.</li>
+            <li>- La livraison des commandes.</li>
+            <li>- Le système de fidélité.</li><br>
 
-        <h2>2. Base juridique des traitements de données</h2>
+            <li>- Nous collectons les données suivantes dans le cadre de l'utilisation de nos services :</li>
+            <li>- Prénom et nom,</li>
+            <li>- Adresse e-mail,</li>
+            <li>- Mot de passe,</li>
+            <li>- Adresse,</li>
+            <li>- Numéro de téléphone,</li>
+            <li>- Si l’utilisateur est un étudiant.</li>
+        </ul><br>
+
+        <h2 class="font-bold text-xl">2. Base juridique des traitements de données</h2><br>
         <p>
             L'ensemble des traitements de données à caractère personnel figurant au point 1 repose sur votre
             consentement
             (article 6 1. a) du RGPD, sachant que vous pouvez le retirer à tout moment en vous adressant à :
             sushngopro@gmail.com
-        </p>
+        </p><br>
 
-        <h2>3. Durée de conservation</h2>
+        <h2 class="font-bold text-xl">3. Durée de conservation</h2><br>
         <p>
             Les données collectées sont conservées jusqu'à la fermeture du compte, plus 90 jours après la fermeture.
             Elles seront supprimées dans leur intégralité à l'issue de cet échéance afin de garantir la confidentialité
             et
             la protection de votre vie privée.
-        </p>
+        </p><br>
         <p>
             Pour la gestion des questions envoyées via le formulaire de contact, les données sont conservées jusqu'à ce
             qu'une réponse soit apportée par mail à la personne concernée. Une fois la réponse envoyée, les mails seront
             supprimées.
-        </p>
+        </p><br>
 
-        <h2>4. Destinataire des données</h2>
+        <h2 class="font-bold text-xl">4. Destinataire des données</h2><br>
         <p>
             Les données à caractère personnel collectées dans le cadre de ces services ne seront accessibles qu'au
             personnel
-            de l'Association habilité à en connaître.
-        </p>
+            de l'entreprise Sush’n Go habilité à en connaître.
+        </p><br>
 
-        <h2>5. Exercice des droits</h2>
+        <h2 class="font-bold text-xl">5. Exercice des droits</h2><br>
         <p>
             Conformément à la réglementation en vigueur (RGPD), vous disposez d'un droit d'accès, de rectification,
             d'opposition, de suppression et de portabilité de vos données personnelles.
             Pour exercer vos droits ou pour toute question relative à la gestion de vos données, vous pouvez contacter
             l’entreprise Sush’n Go à l'adresse suivante :
             <a href="mailto:sushngopro@gmail.com">sushngopro@gmail.com</a>
-        </p>
+        </p><br>
         <p>
             Pour toute demande de rectification ou de suppression de vos données, merci de préciser votre nom, prénom et
             l'adresse e-mail utilisée lors de la réservation.
@@ -161,51 +182,112 @@
 
 
     </div>
-    <div id="content-cgu" class="hidden">
+    <div id="content-cgu" [class.hidden]="currentTab !== 'cgu'">
+        <h2 class="font-bold text-xl">1. Présentation du site</h2><br>
+        <p>
+            Le site <strong>Sush’n Go</strong> est une plateforme de commande de sushis en ligne permettant aux
+            utilisateurs de consulter le menu, de passer commande et de bénéficier de services associés (fidélité,
+            compte
+            utilisateur, etc.).
+        </p><br>
+        <p>
+            L’utilisation du site implique l’acceptation pleine et entière des présentes Conditions Générales
+            d’Utilisation.
+        </p><br>
 
+        <h2 class="font-bold text-xl">2. Accès au site</h2><br>
+        <p>
+            Le site est accessible gratuitement à tout utilisateur disposant d’un accès à Internet.<br>
+            Sush’n Go ne saurait être tenu responsable en cas d’interruption du service, de maintenance ou de problème
+            technique indépendant de sa volonté.
+        </p><br>
+
+        <h2 class="font-bold text-xl">3. Compte utilisateur</h2><br>
+        <p>
+            La création d’un compte peut être nécessaire pour passer commande ou accéder à certaines fonctionnalités.
+        </p><br>
+        <p>L’utilisateur s’engage à :</p>
+        <ul>
+            <li>- Fournir des informations exactes lors de l’inscription ;</li>
+            <li>- Conserver la confidentialité de ses identifiants ;</li>
+            <li>- Ne pas usurper l’identité d’un tiers.</li>
+        </ul><br>
+
+        <h2 class="font-bold text-xl">4. Responsabilité</h2><br>
+        <p>
+            Sush’n Go met tout en œuvre pour fournir des informations exactes et à jour. Toutefois, des erreurs peuvent
+            survenir (prix, disponibilité, visuels).
+        </p><br>
+        <p>La responsabilité de Sush’n Go ne saurait être engagée en cas de :</p>
+        <ul>
+            <li>- Mauvaise utilisation du site ;</li>
+            <li>- Indisponibilité temporaire ;</li>
+            <li>- Problème technique externe.</li>
+        </ul><br>
+
+        <h2 class="font-bold text-xl">5. Propriété intellectuelle</h2><br>
+        <p>
+            L’ensemble du contenu du site (textes, images, logo, design, code) est la propriété exclusive de Sush’n
+            Go.<br>
+            Toute reproduction, modification ou exploitation sans autorisation est interdite.
+        </p><br>
+
+        <h2 class="font-bold text-xl">6. Données personnelles</h2><br>
+        <p>
+            Les données personnelles collectées sont utilisées uniquement dans le cadre du fonctionnement du service
+            (commande, compte, fidélité).
+        </p><br>
+        <p>
+            Conformément au RGPD, l’utilisateur dispose d’un droit d’accès, de modification et de suppression de ses
+            données.
+        </p><br>
+
+        <h2 class="font-bold text-xl">7. Modification des CGU</h2><br>
+        <p>
+            Sush’n Go se réserve le droit de modifier les présentes CGU à tout moment.<br>
+            Les utilisateurs seront informés en cas de mise à jour.
+        </p>
+    </div>
+
+    <div id="content-cgu" [class.hidden]="currentTab !== 'cgv'">
+        <h2 class="font-bold text-xl">1. Objet</h2><br>
+        <p>
+            Les présentes CGV définissent les conditions applicables aux commandes passées sur le site Sush’n Go.
+            Toute commande implique l’acceptation sans réserve des présentes CGV.
+        </p><br>
+
+        <h2 class="font-bold text-xl">2. Produits</h2><br>
+        <p>
+            Les produits proposés sont des plats alimentaires préparés à la commande. Les photographies illustrant les
+            produits ne sont pas contractuelles.
+        </p><br>
+
+        <h2 class="font-bold text-xl">3. Prix</h2><br>
+        <p>
+            Les prix de nos produits sont indiqués en euros toutes taxes comprises (TTC). Sush’n Go se réserve le droit
+            de modifier ses prix à tout moment.
+        </p><br>
+
+        <h2 class="font-bold text-xl">4. Commande et Paiement</h2><br>
+        <p>
+            La validation de la commande intervient après acceptation du paiement. Le règlement s'effectue par les
+            moyens de paiement sécurisés proposés sur le site.
+        </p><br>
+
+        <h2 class="font-bold text-xl">5. Livraison et Retrait</h2><br>
+        <p>
+            Les produits peuvent être retirés uniquement sur nos points de retraits ou livrés selon les zones de
+            chalandise définies. Les délais sont communiqués à titre indicatif.
+        </p><br>
+
+        <h2 class="font-bold text-xl">6. Droit de rétractation</h2><br>
+        <p>
+            Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne peut être exercé
+            pour les contrats de fourniture de produits périssables.
+        </p>
     </div>
 </section>
-<script>
-    function showTab(tab) {
-        const mentions = document.getElementById('content-mentions');
-        const rgpd = document.getElementById('content-rgpd');
-        const btnMentions = document.getElementById('tab-mentions');
-        const btnRgpd = document.getElementById('tab-rgpd');
-        const btncgu = document.getElementById('tab-cgu');
-        const cgu = document.getElementById('tab-cgu');
-        if (tab === 'mentions') {
-            mentions.classList.remove('hidden');
-            rgpd.classList.add('hidden');
-            cgu.classList.add('hidden');
-            btnMentions.classList.add('border-orange-300');
-            btnMentions.classList.remove('border-transparent');
-            btnRgpd.classList.remove('border-orange-300');
-            btnRgpd.classList.add('border-transparent');
-            btncgu.classList.remove('border-orange-300');
-            btncgu.classList.add('border-transparent');
-        } else if (tab === 'rgpd') {
-            mentions.classList.add('hidden');
-            rgpd.classList.remove('hidden');
-            cgu.classList.add('hidden');
-            btnMentions.classList.remove('border-orange-300');
-            btnMentions.classList.add('border-transparent');
-            btnRgpd.classList.add('border-orange-300');
-            btnRgpd.classList.remove('border-transparent');
-            btncgu.classList.remove('border-orange-300');
-            btncgu.classList.add('border-transparent');
-        } else if (tab === 'cgu') {
-            mentions.classList.add('hidden');
-            rgpd.classList.add('hidden');
-            cgu.classList.remove('hidden');
-            btnMentions.classList.remove('border-orange-300');
-            btnMentions.classList.add('border-transparent');
-            btnRgpd.classList.remove('border-orange-300');
-            btnRgpd.classList.add('border-transparent');
-            btncgu.classList.add('border-orange-300');
-            btncgu.classList.remove('border-transparent');
-        }
-    }
-</script>
-<div class="fixed bottom-0 left-0 w-full">
+
+<div class="bottom-0 left-0 w-full">
     <app-footer></app-footer>
 </div>

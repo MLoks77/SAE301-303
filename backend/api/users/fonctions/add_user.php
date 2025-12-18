@@ -1,6 +1,7 @@
-<!-- par maxime derènes, ajouts par Joachim -->
+<!-- par maxime derènes -->
 
 <?php
+// pour autoriser les requêtes provenant du frontend
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Access-Control-Allow-Credentials: true');

@@ -78,7 +78,7 @@ export class Inscconnex implements OnInit {
   telephone: string = '';
   adresse: string = '';
   etudiant: string = '';
-  
+
 
   inscription(inscriptionData: {
     nom: string,
@@ -89,7 +89,7 @@ export class Inscconnex implements OnInit {
     adresse: string,
     etudiant: string
   }): Observable<any> {
-    
+
     // Transformation des données pour l'API
     const dataForApi = {
       nom: inscriptionData.nom,
@@ -105,17 +105,17 @@ export class Inscconnex implements OnInit {
       withCredentials: true
     });
   }
-  
+
   connexion(connexionData: {
     email_connex: string,    // ← Nom Angular
     mdp_connex: string       // ← Nom Angular
   }): Observable<LoginResponse> {
-    
+
     const dataForApi = {
       email: connexionData.email_connex,      // ← Mapping
       password: connexionData.mdp_connex      // ← Mapping
     };
-  
+
     return this.http.post<LoginResponse>(`${this.API_URL}/session/login.php`, dataForApi, {
       withCredentials: true
     });
@@ -132,7 +132,7 @@ export class Inscconnex implements OnInit {
     console.log('Téléphone:', this.telephone);
     console.log('Adresse:', this.adresse);
 
-    if(this.isSubmitting = true) {
+    if (this.isSubmitting = true) {
       this.successMessage = 'Formulaire envoyé avec succès !';
     } else {
       this.errorMessage = "Échec de l'envoi du formulaire.";
@@ -152,13 +152,13 @@ export class Inscconnex implements OnInit {
         console.log("Réponse de l'API:", response);
         this.isSubmitting = false;
         this.successMessage = response.message || 'Formulaire envoyé avec succès !';
-        
+
         // Réinitialise le formulaire
         this.nom = '';
         this.prenom = '';
         this.email_inscr = '';
         this.mdp_inscr = '';
-        this.confirm_mdp ='';
+        this.confirm_mdp = '';
         this.etudiant = '';
         this.telephone = '';
         this.adresse = '';
@@ -176,7 +176,7 @@ export class Inscconnex implements OnInit {
     console.log("Email de connexion:", this.email_connex);
     console.log("Mot de passe de connexion:", this.mdp_connex);
 
-    if(this.isSubmitting = true) {
+    if (this.isSubmitting = true) {
       this.successMessage = 'Formulaire envoyé avec succès !';
     } else {
       this.errorMessage = "Échec de l'envoi du formulaire.";
@@ -191,7 +191,7 @@ export class Inscconnex implements OnInit {
         console.log("Réponse de l'API:", response);
         this.isSubmitting = false;
         this.successMessage = response.message || 'Formulaire envoyé avec succès !';
-        
+
         // Réinitialise le formulaire
         this.email_connex = '';
         this.mdp_connex = '';
@@ -407,10 +407,7 @@ export class Inscconnex implements OnInit {
       mdpconfirmation.focus();
       // Pas d'alert pour éviter les soucis UX/affichage
     } else {
-      // Si bon, continuer (soumission réelle à gérer côté backend ou Angular)
       errorDiv.classList.add('mdp-confirm-invisible');
-      // Optionnel: form submission réelle ici
-      // (event.target as HTMLFormElement).submit();
       console.log('Formulaire envoyé');
     }
   }
