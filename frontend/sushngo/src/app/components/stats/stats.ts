@@ -17,10 +17,10 @@ import { CommonModule } from '@angular/common';
 export class Stats implements AfterViewInit {
 
   METRICS = [
-    { label: "Commandes aujourd'hui", value: '142', change: '+12%', trend: 'up', icon: '🍣' },
-    { label: 'Revenu total', value: '€2 450,00', change: '+8%', trend: 'up', icon: '💹' },
-    { label: 'Note clients', value: '4.9', change: '+0.1', trend: 'up', icon: '⭐' },
-    { label: 'Réservations actives', value: '28', change: '-2', trend: 'down', icon: '👥' }
+    { label: "Commandes aujourd'hui", value: '142' },
+    { label: 'Revenu total', value: '€2 450,00' },
+    { label: 'Note clients', value: '4.9' },
+    { label: 'Réservations actives', value: '28' }
   ];
 
   POPULAR_DISHES = [

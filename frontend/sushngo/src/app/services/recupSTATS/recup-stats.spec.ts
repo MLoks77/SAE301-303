@@ -1,18 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RecupBox } from './recup-box';
+import { RecupSTATS } from '../../services/recupSTATS/recup-stats';
 
-describe('RecupBox', () => {
-  let service: RecupBox;
+describe('RecupSTATS', () => {
+  let service: RecupSTATS;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RecupBox);
+    service = TestBed.inject(RecupSTATS);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
-
-//ajouté par Sebastian Chisiu
