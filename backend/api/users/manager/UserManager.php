@@ -17,7 +17,7 @@ class UserManager
 
     public function insertUser($data)
     {
-        // Note: 'email_inscr' et 'mdp_inscr' viennet de la page de joaquim
+        // Note: 'email_inscr' et 'mdp_inscr' viennet de la page de joachim
         $nom = $data['nom'] ?? null;
         $prenom = $data['prenom'] ?? null;
         $email = $data['email'] ?? ($data['email_inscr'] ?? null);
