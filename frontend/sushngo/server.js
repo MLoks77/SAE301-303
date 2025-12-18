@@ -7,11 +7,27 @@ const app = express();
 
 // on définit les routes en constante
 const produitsRouter = require('./routesdatas/produits');
-const usersRouter = require('./routesdatas/users');
+const addusersRouter = require('./routesdatas/addusers');
 const loginRouter = require('./routesdatas/login');
 const logoutRouter = require('./routesdatas/logout');
 
 app.use(cors()); // Autorise les requêtes provenant d'autres domaines
+app.use(express.json()); // IMPORTANT: Permet de lire les req.body en JSON req.body -> https://stackoverflow.com/questions/67557955/what-is-the-purpose-of-req-body-in-express-js
+// req permet de récupérer les données envoyées par le client sur le serveur, lire le lien pour mieux comprendre y'a un gars qui explique et un exemple
+
+// Je dis à Express : "Tout ce qui commence par /routesdatas doit être géré par leur const qui est définit plus haut"
+app.use('/routesdatas/produits', produitsRouter);
+// http://localhost:3000/routesdatas/produits
+app.use('/routesdatas/addusers', addusersRouter);
+// http://localhost:3000/routesdatas/addusers
+app.use('/routesdatas/login', loginRouter);
+// http://localhost:3000/routesdatas/login
+app.use('/routesdatas/logout', logoutRouter);
+// http://localhost:3000/routesdatas/logout
+
+
+
+app.listen(3000, () => console.log('API démarrée sur http://localhost:3000')); // pour lancer l'api , dans la console : 'node server.js'
 
 // exemple de requête SQL :
 // faites le dans les js de routesdatas
@@ -27,18 +43,3 @@ app.use(cors()); // Autorise les requêtes provenant d'autres domaines
 //     });
 // });
 // requête pour récupérer les boxes
-
-// Je dis à Express : "Tout ce qui commence par /routesdatas doit être géré par leur const qui est définit plus haut"
-app.use('/routesdatas/produits', produitsRouter);
-// http://localhost:3000/routesdatas/produits
-app.use('/routesdatas/users', usersRouter);
-// http://localhost:3000/routesdatas/users
-app.use('/routesdatas/login', loginRouter);
-// http://localhost:3000/routesdatas/login
-app.use('/routesdatas/logout', logoutRouter);
-// http://localhost:3000/routesdatas/logout
-
-
-
-app.listen(3000, () => console.log('API démarrée sur http://localhost:3000')); // pour lancer l'api , dans la console : 'node server.js'
-
