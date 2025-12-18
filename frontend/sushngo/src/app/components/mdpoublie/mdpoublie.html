@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
+    <a routerLink="/accueil"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
+    <p class="text-white mb-1">&gt;</p>
+    <a routerLink="/inscription-connexion"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">
+        Connexion
+        / inscription</a>
+    <span class="text-white italic mb-1"> &gt; Mot de passe oublié</span>
+</div>
+
+<!-- front réalisé par Joachim Tocqueville, debug maxime d-->
+<section class="container-fluid pt-18" id="mdpoubliebg">
+    <section id="fondform">
+
+        <form id="tab-formulaire-mdpoublie" class="bg-white rounded-2xl inline">
+
+            <section
+                class="relative grid grid-rows-4 gap-5 bg-white max-w-[400px] mx-auto py-8 px-4 rounded-3xl shadow-lg">
+                <!-- Nouveau bouton en haut à gauche -->
+                <a routerLink="/inscription-connexion"
+                    class="absolute top-2 left-2 bg-gray-200 hover:bg-gray-300 text-black rounded-full px-3 py-1 text-sm shadow transition duration-200 flex items-center gap-1"
+                    style="text-decoration: none;" title="Retour à la connexion">
+                    &#8592; Retour
+                </a>
+                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
+                    style="max-width: 400px; margin-left: auto; margin-right: auto;">
+                    Réinitialiser votre mot de passe
+                </h2>
+                <div>
+                    <label class="block font-extralight" for="email">Email</label>
+                    <input class="border border-[#ccc] rounded-xl p-2 w-full font-extralight text-black placeholder:text-gray-500" id="email" name="email"
+                        type="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                </div>
+
+                <div>
+                    <label class="block font-extralight" for="newmotdepasse">Nouveau mot de passe</label>
+                    <input class="border border-[#ccc] rounded-xl p-2 w-full font-extralight text-black placeholder:text-gray-500" id="newMotdepasse"
+                        name="newMotdepasse" type="password" placeholder="Nouveau mot de passe" required>
+                </div>
+
+                <div>
+                    <label class="block font-extralight" for="confirmNewMotdepasse">Confirmer le mot de passe</label>
+                    <input class="border border-[#ccc] rounded-xl p-2 w-full font-extralight text-black placeholder:text-gray-500" id="confirmNewMotdepasse"
+                        name="confirmNewMotdepasse" type="password" placeholder="Confirmer le mot de passe" required>
+                </div>
+
+                <div class="flex justify-center mt-5 py-4">
+                    <button id="submit-mdpoublie" type="submit"
+                        class="rounded-[1.1rem] p-2 bg-[#F64F4F] hover:bg-[#f97474] duration-300 transform-all text-white w-50 border-black text-center cursor-pointer">Réinitialiser</button>
+                </div>
+            </section>
+            <!-- front joachim fin -->
+        </form>
+    </section>
+</section>
+<app-footer></app-footer>
