@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = file_get_contents('php://input');
     $data = json_decode($content, true);
 
-    // Vérif pour savoir si c'est une inscription -> email_inscri vient de la page insconnex.ts de joaquim
+    // Vérif pour savoir si c'est une inscription -> email_inscr vient de la page insconnex.ts de joachim
     if (isset($data['nom']) && (isset($data['email']) || isset($data['email_inscr']))) {
         require_once 'users/manager/UserManager.php';
 

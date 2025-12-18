@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 
 interface LoginResponse {
   message: string;
@@ -13,27 +13,60 @@ interface LoginResponse {
   user?: any;
 }
 
+interface utilisateur {
+  id_user?: number;
+  api_token?: string;
+  nom: string;
+  prenom: string;
+  email: string;
+  password: string;
+  statut_etud: boolean;
+  tel: string;
+  adresse: string;
+  fidelite: string;
+}
+
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer, HttpClientModule],
   templateUrl: './inscconnex.html',
   styleUrls: ['./inscconnex.css'],
 })
 export class Inscconnex implements OnInit {
   currentTab: string = 'connexion';
   /* apiData: utilisateur[] = [];
-  isLoading: boolean = false;
-  error: string | null = null; */
-  apiData: any;
+  error: string | null = null;
+  apiData: any; */
 
   // État du formulaire
+  isEditMode: boolean = false;
+  isLoading: boolean = false;
   isSubmitting: boolean = false;
+  message: string = '';
   successMessage: string = '';
   errorMessage: string = '';
+  showMessage: string = '';
+  infoMessage: string = '';
 
-  protected API_URL = "http://localhost/SAE301-303/backend/api/users";
+  protected API_URL = "http://localhost/SAE301-303/backend/api/api/php";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.resetForm();
+  }
+
+  utilisateursListe: utilisateur[] = [];
+  utilisateurObj: utilisateur = {
+    id_user: undefined,
+    api_token: undefined,
+    nom: "",
+    prenom: "",
+    email: "",
+    password: "",
+    statut_etud: false,
+    tel: "",
+    adresse: "",
+    fidelite: "",
+  };
   
   nom: string = '';
   prenom: string = '';
@@ -68,7 +101,7 @@ export class Inscconnex implements OnInit {
       statut_etud: inscriptionData.etudiant ? 1 : 0
     };
   
-    return this.http.post(`${this.API_URL}/fonctions/add_user.php`, dataForApi, {
+    return this.http.post(`${this.API_URL}`, dataForApi, {
       withCredentials: true
     });
   }
@@ -171,7 +204,158 @@ export class Inscconnex implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.getUtilisateurs();
+  }
+
+  getUtilisateurs() {
+    if (this.isLoading) return;
+    
+    this.isLoading = true;
+    this.http.get<any>(`${this.API_URL}`).subscribe({
+      next: (res: any) => {
+        console.log('Réponse API (GET):', res);
+        
+        let usersArray: any[] = [];
+        
+        if (res.users && Array.isArray(res.users)) {
+          usersArray = res.users;
+        } else if (Array.isArray(res)) {
+          usersArray = res;
+        } else if (res.data && Array.isArray(res.data)) {
+          usersArray = res.data;
+        }
+        
+        this.utilisateursListe = usersArray.map((user: any) => ({
+          id_user: user.id_user,
+          api_token: user.api_token,
+          nom: user.nom,
+          prenom: user.prenom,
+          email: user.email,
+          password: user.password || '',
+          statut_etud: user.statut_etud,
+          tel: user.tel ? user.tel.toString() : '',
+          adresse: user.adresse,
+          fidelite: user.fidelite
+        }));
+        
+        this.isLoading = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Erreur lors du chargement:', error);
+        this.isLoading = false;
+        this.errorMessage = 'Erreur lors du chargement des utilisateurs';
+      }
+    });
+  }
+  
+  createUtilisateur() {
+    if (!this.validateUserData()) return;
+
+    this.isSubmitting = true;
+    this.message = 'Création en cours...';
+    this.infoMessage = 'info';
+
+    const userData = {
+      id_user: this.utilisateurObj.id_user,
+      api_token: this.utilisateurObj.api_token,
+      nom: this.utilisateurObj.nom.trim(),
+      prenom: this.utilisateurObj.prenom.trim(),
+      email: this.utilisateurObj.email.trim(),
+      password: this.utilisateurObj.password.trim(),
+      statut_etud: this.utilisateurObj.statut_etud,
+      tel: this.utilisateurObj.tel.trim(),
+      adresse: this.utilisateurObj.adresse.trim(),
+      fidelite: this.utilisateurObj.fidelite.trim()
+    };
+
+    this.http.post<any>(`${this.API_URL}`, userData).subscribe({
+      next: (res: any) => {
+        console.log('Réponse création (POST):', res);
+        
+        const newUser: utilisateur = {
+          id_user: res.id_user || userData.id_user,
+          api_token: res.api_token || userData.api_token,
+          nom: res.nom || userData.nom,
+          prenom: res.prenom || userData.prenom,
+          email: res.email || userData.email,
+          password: userData.password,
+          statut_etud: res.prenom || userData.prenom,
+          tel: res.tel || userData.tel,
+          adresse: res.adresse || userData.adresse,
+          fidelite: res.fidelite || userData.fidelite
+        };
+
+        this.utilisateursListe = [newUser, ...this.utilisateursListe];
+        
+        this.isSubmitting = false;
+        this.successMessage = 'Utilisateur créé avec succès';
+        this.resetForm();
+        
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Erreur détaillée création:', error);
+        this.isSubmitting = false;
+        
+        if (error.status === 0) {
+          this.errorMessage = 'Impossible de se connecter au serveur';
+        } else if (error.error?.error) {
+          this.errorMessage = `Erreur: ${error.error.error}`;
+        } else if (error.error?.message) {
+          this.errorMessage = `Erreur: ${error.error.message}`;
+        } else {
+          this.errorMessage = 'Erreur lors de la création';
+        }
+      }
+    });
+  }
+
+  updateUtilisateur() {
+    if (!this.validateUserData()) return;
+
+    this.isSubmitting = true;
+    this.message = 'Modification en cours...';
+    this.infoMessage = 'info';
+
+    const userData = {
+      id_user: this.utilisateurObj.id_user,
+      api_token: this.utilisateurObj.api_token,
+      nom: this.utilisateurObj.nom.trim(),
+      prenom: this.utilisateurObj.prenom.trim(),
+      email: this.utilisateurObj.email.trim(),
+      password: this.utilisateurObj.password.trim(),
+      statut_etud: this.utilisateurObj.statut_etud,
+      tel: this.utilisateurObj.tel.trim(),
+      adresse: this.utilisateurObj.adresse.trim(),
+      fidelite: this.utilisateurObj.fidelite.trim()
+    };
+
+    const userId = this.utilisateurObj.id_user;
+
+    this.http.put<any>(`${this.API_URL}/${id_user}`, userData).subscribe({
+      next: (res: any) => {
+        console.log('Réponse modification (PUT):', res);
+        
+        const index = this.utilisateursListe.findIndex(u => u.id_user === id_user);
+        if (index !== -1) {
+          this.utilisateursListe[index] = { 
+            ...this.utilisateursListe[index], 
+            ...userData
+          };
+          this.utilisateursListe = [...this.utilisateursListe]; // Trigger change detection
+        }
+        
+        this.isSubmitting = false;
+        this.successMessage = 'Utilisateur modifié avec succès';
+        this.resetForm();
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Erreur détaillée modification:', error);
+        this.isSubmitting = false;
+        this.showMessage(this.getErrorMessage(error, 'modification'), 'error');
+      }
+    });
+  }
 
   initializeTabSystem(): void {
     const btnConnexion = document.getElementById('tab-btn-connexion');
