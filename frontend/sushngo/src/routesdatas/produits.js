@@ -9,7 +9,20 @@ router.post('/produits', (req, res) => {
             return res.status(500).json({ error: err.message });
         }
         res.json({ message: "route du produits opérationnelle" });
-        res.json(results);
+        res.json({
+            message: 'Produits récupérés avec succès',
+            produits: results.map(produit => ({
+                id: produit.id_produit,
+                nom: produit.nom,
+                description: produit.description,
+                saveurs: produit.saveurs,
+                aliments: produit.aliments,
+                prix: produit.prix,
+                pieces: produit.pieces,
+                id_souscat: produit.id_souscat,
+                image: produit.image
+            }))
+        });
     });
 });
 
