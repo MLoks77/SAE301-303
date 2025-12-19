@@ -19,4 +19,20 @@ router.post('/logout', (req, res) => {
     });
 });
 
+// ATTENTION
+
+// QUAND VOUS L'APPELEZ :
+// N'oublie pas côté Angular qu'il faudra bien envoyer le token dans le header Authorization 
+// lors de l'appel à cette route, puis supprimer le token du localStorage
+
+// pour supprimer du localstorage -> localStorage.removeItem('token');
+// pour récupérer du localstorage -> localStorage.getItem('token');
+// pour envoyer dans le header Authorization ->  
+
+// commande trouvé sur stackoverflow :
+// const token = localStorage.getItem('token');
+// const headers = new HttpHeaders({
+//     'Authorization': token
+// });
+
 module.exports = router;
