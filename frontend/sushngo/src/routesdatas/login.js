@@ -39,7 +39,6 @@ router.post('/login', (req, res) => {
                     role: user.statut_etud // ou autre champ de rôle
                 }
             });
-            res.redirect('/compte'); // puis redirige vers la page compte
         });
 
 

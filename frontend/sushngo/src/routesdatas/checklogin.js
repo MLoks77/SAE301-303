@@ -22,4 +22,4 @@ const verifierToken = (req, res, next) => {
     });
 };
 
-module.exports = router; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs
+module.exports = verifierToken; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs

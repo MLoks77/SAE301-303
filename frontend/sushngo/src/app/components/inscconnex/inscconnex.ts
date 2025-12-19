@@ -18,7 +18,7 @@ export class Inscconnex {
 
 
 
-
+  // this.router.navigate(['/compte']) en gros l'api doit rediriger vers la page compte si on réussit a se connecter, il faut le faire dcp
 
 
 
