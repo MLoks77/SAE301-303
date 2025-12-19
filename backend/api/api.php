@@ -1,5 +1,4 @@
 <?php
-
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -11,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// imports
 require_once __DIR__ . '/../config/configdb.php';
 require_once __DIR__ . '/PHP/users/manager/UserManager.php';
 require_once __DIR__ . '/PHP/boxes/boxmanager.php';
@@ -20,22 +18,28 @@ $content = file_get_contents('php://input');
 $data = json_decode($content, true);
 $userManager = new UserManager($pdo);
 
-// Utilisateur
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// utilisateurss
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'check-session') {
+    echo json_encode($userManager->checkSession());
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Inscription
-    if (isset($data['nom'])) {
+    if (isset($data['nom']) && !isset($data['action'])) {
         try {
             $userManager->insertUser($data);
             http_response_code(201);
-            echo json_encode(['reponse' => 'utilisateur créé']);
+            echo json_encode(['reponse' => 'utilisateur créé', 'success' => true]);
             exit;
         } catch (Exception $e) {
             http_response_code($e->getMessage() === "L'email existe déjà" ? 409 : 400);
-            echo json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['error' => $e->getMessage(), 'success' => false]);
             exit;
         }
     }
+
     // Connexion
     if (isset($data['email']) && isset($data['password'])) {
         $result = $userManager->login($data['email'], $data['password']);
@@ -44,13 +48,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($result);
         } else {
             http_response_code(401);
-            echo json_encode(['reponse' => $result['message']]);
+            echo json_encode(['reponse' => $result['message'], 'success' => false]);
+        }
+        exit;
+    }
+
+    // Déconnexion
+    if (isset($data['action']) && $data['action'] === 'logout') {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $id_user = $_SESSION['id_user'] ?? null;
+        if ($id_user) {
+            echo json_encode($userManager->logout($id_user));
+        } else {
+            echo json_encode(['success' => true, 'message' => 'Déjà déconnecté']);
         }
         exit;
     }
 }
 
-// Boxes
+// boxes
 $boxManager = new BoxManager($pdo);
 try {
     if (isset($_GET['id_produit'])) {
