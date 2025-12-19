@@ -35,4 +35,13 @@ router.post('/logout', (req, res) => {
 //     'Authorization': token
 // });
 
+// par exemple dans le footer j'utilise pour la déconnexion :
+
+//   logout() {
+//     localStorage.removeItem('token');
+//     this.isLoggedIn = false;
+//     this.router.navigate(['/accueil']);
+//   }
+
+
 module.exports = router;
