@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; // maxime derènes
 import { Router } from '@angular/router'; // maxime derènes
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })

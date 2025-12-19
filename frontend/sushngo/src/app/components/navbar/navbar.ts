@@ -18,6 +18,7 @@ export class Navbar implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  // témi kergastel
   ngOnInit() {
     // Vérifier l'état de connexion en vérifiant la présence du token en local storage
     const token = localStorage.getItem('token');
@@ -28,10 +29,19 @@ export class Navbar implements OnInit {
     }
   }
 
+  // maxime derènes
+  logout() {
+    localStorage.removeItem('token');
+    this.isLoggedIn = false;
+    this.router.navigate(['/accueil']);
+  }
+
+  // témi kergastel
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  // témi kergastel
   closeMenu() {
     this.isMenuOpen = false;
   }
