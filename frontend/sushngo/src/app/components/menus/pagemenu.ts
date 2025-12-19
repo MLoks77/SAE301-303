@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pagemenu.html',
   styleUrl: './pagemenu.css',
 })
-export class Pagemenu implements OnInit {
+export class Pagemenu {
 
   carrousel = [
     {
@@ -30,24 +29,6 @@ export class Pagemenu implements OnInit {
       link: '/menus/#',
     }
   ];
-
-  boxData: any;
-  apiData: any;
-
-  constructor(private connexionApi: ConnexionApi) { }
-
-  ngOnInit(): void {
-    this.getData();
-    this.startCarrouselAutoSlide();
-  }
-
-  getData() {
-    this.connexionApi.getUserDataFromApi().subscribe((res => {
-      this.apiData = res;
-      this.boxData = res;
-      console.log('Boxes loaded:', res);
-    }));
-  }
 
   activeCarrouselIndex = 0;
   carrouselLength = 3;

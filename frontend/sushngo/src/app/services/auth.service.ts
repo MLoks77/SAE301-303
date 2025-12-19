@@ -15,6 +15,7 @@ export interface AuthResponse {
   success: boolean;
   reponse?: string;
   message?: string;
+  error?: string;
   api_token?: string;
   user?: User;
 }

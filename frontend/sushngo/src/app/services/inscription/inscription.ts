@@ -1,59 +1,29 @@
-/* réalisé par Joachim */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-/* export interface utilisateur {
-  id_user: number;
-  api_token: string;
-  nom: string;
-  prenom: string;
-  email: string;
-  password: string;
-  statut_etud: boolean; // 0 ou 1 (tinyint est l'équivalent de boolean)
-  tel: number;
-  adresse: string;
-  fidelite: number;
-}*/
-
 @Injectable({
   providedIn: 'root',
 })
-export class ConnexionApi {
-  protected API_URL = "http://localhost:8000";
+export class InscriptionService {
+  private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
 
   constructor(private http: HttpClient) { }
 
-  getUserDataFromApi() {
-    return this.http.get(`${this.API_URL}/api.php`);
-  }
-
-  inscription(inscriptionData: {
-    nom: string,
-    prenom: string,
-    email_inscr: string,      // ← Nom Angular
-    mdp_inscr: string,        // ← Nom Angular
-    telephone: string,
-    adresse: string,
-    etudiant: string
-  }): Observable<any> {
-
-    // Transformation des données pour l'API
+  // add un user
+  inscription(userData: any): Observable<any> {
     const dataForApi = {
-      nom: inscriptionData.nom,
-      prenom: inscriptionData.prenom,
-      email: inscriptionData.email_inscr,       // ← Mapping
-      password: inscriptionData.mdp_inscr,      // ← Mapping
-      telephone: inscriptionData.telephone,
-      adresse: inscriptionData.adresse,
-      statut_etud: inscriptionData.etudiant ? 1 : 0
+      nom: userData.nom,
+      prenom: userData.prenom,
+      email: userData.email,
+      password: userData.password,
+      tel: userData.tel,
+      adresse: userData.adresse,
+      statut_etud: userData.statut_etud ? 1 : 0
     };
 
-    return this.http.post(`${this.API_URL}/api.php`, dataForApi, {
+    return this.http.post(this.apiUrl, dataForApi, {
       withCredentials: true
     });
   }
-
-
-
 }
