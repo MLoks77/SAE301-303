@@ -27,6 +27,11 @@ export class Navbar implements OnInit {
     });
   }
 
+  logout() { // a fix quand on aura mis le logout dans le service
+    this.authService.logout();
+    this.isLoggedIn = false;
+  }
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }

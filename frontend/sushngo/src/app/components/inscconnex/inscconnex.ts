@@ -48,7 +48,7 @@ export class Inscconnex implements OnInit {
   showMessage: string = '';
   infoMessage: string = '';
 
-  protected API_URL = "http://localhost/SAE301-303/backend/api/api/php";
+  protected API_URL = "http://localhost/SAE301-303/backend/api/api/api.php";
 
   constructor(private http: HttpClient) {
     this.resetForm();
@@ -67,7 +67,7 @@ export class Inscconnex implements OnInit {
     adresse: "",
     fidelite: "",
   };
-  
+
   nom: string = '';
   prenom: string = '';
   email_inscr: string = '';
@@ -100,7 +100,7 @@ export class Inscconnex implements OnInit {
       adresse: inscriptionData.adresse,
       statut_etud: inscriptionData.etudiant ? 1 : 0
     };
-  
+
     return this.http.post(`${this.API_URL}`, dataForApi, {
       withCredentials: true
     });
@@ -210,14 +210,14 @@ export class Inscconnex implements OnInit {
 
   getUtilisateurs() {
     if (this.isLoading) return;
-    
+
     this.isLoading = true;
     this.http.get<any>(`${this.API_URL}`).subscribe({
       next: (res: any) => {
         console.log('Réponse API (GET):', res);
-        
+
         let usersArray: any[] = [];
-        
+
         if (res.users && Array.isArray(res.users)) {
           usersArray = res.users;
         } else if (Array.isArray(res)) {
@@ -225,7 +225,7 @@ export class Inscconnex implements OnInit {
         } else if (res.data && Array.isArray(res.data)) {
           usersArray = res.data;
         }
-        
+
         this.utilisateursListe = usersArray.map((user: any) => ({
           id_user: user.id_user,
           api_token: user.api_token,
@@ -238,7 +238,7 @@ export class Inscconnex implements OnInit {
           adresse: user.adresse,
           fidelite: user.fidelite
         }));
-        
+
         this.isLoading = false;
       },
       error: (error: HttpErrorResponse) => {
@@ -248,7 +248,7 @@ export class Inscconnex implements OnInit {
       }
     });
   }
-  
+
   createUtilisateur() {
     if (!this.validateUserData()) return;
 
@@ -272,7 +272,7 @@ export class Inscconnex implements OnInit {
     this.http.post<any>(`${this.API_URL}`, userData).subscribe({
       next: (res: any) => {
         console.log('Réponse création (POST):', res);
-        
+
         const newUser: utilisateur = {
           id_user: res.id_user || userData.id_user,
           api_token: res.api_token || userData.api_token,
@@ -287,16 +287,16 @@ export class Inscconnex implements OnInit {
         };
 
         this.utilisateursListe = [newUser, ...this.utilisateursListe];
-        
+
         this.isSubmitting = false;
         this.successMessage = 'Utilisateur créé avec succès';
         this.resetForm();
-        
+
       },
       error: (error: HttpErrorResponse) => {
         console.error('Erreur détaillée création:', error);
         this.isSubmitting = false;
-        
+
         if (error.status === 0) {
           this.errorMessage = 'Impossible de se connecter au serveur';
         } else if (error.error?.error) {
@@ -335,16 +335,16 @@ export class Inscconnex implements OnInit {
     this.http.put<any>(`${this.API_URL}/${id_user}`, userData).subscribe({
       next: (res: any) => {
         console.log('Réponse modification (PUT):', res);
-        
+
         const index = this.utilisateursListe.findIndex(u => u.id_user === id_user);
         if (index !== -1) {
-          this.utilisateursListe[index] = { 
-            ...this.utilisateursListe[index], 
+          this.utilisateursListe[index] = {
+            ...this.utilisateursListe[index],
             ...userData
           };
           this.utilisateursListe = [...this.utilisateursListe]; // Trigger change detection
         }
-        
+
         this.isSubmitting = false;
         this.successMessage = 'Utilisateur modifié avec succès';
         this.resetForm();

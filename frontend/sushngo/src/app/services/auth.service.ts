@@ -21,8 +21,16 @@ export class AuthService {
     this.checkSession();
   }
 
+  logout() {
+    this.http.post('http://localhost/SAE301-303/backend/api/users/session/logout.php', null, {
+      withCredentials: true
+    }).subscribe(() => {
+      this.isLoggedInSubject.next(false);
+    });
+  }
+
   checkSession(): Observable<boolean> {
-    return this.http.get<SessionStatus>(this.apiUrl, { 
+    return this.http.get<SessionStatus>(this.apiUrl, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
