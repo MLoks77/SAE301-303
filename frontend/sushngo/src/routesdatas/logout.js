@@ -9,4 +9,4 @@ router.post('/logout', (req, res) => {
     res.json({ message: "route du logout opérationnelle" });
 });
 
-module.exports = router;
+module.exports = router; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs

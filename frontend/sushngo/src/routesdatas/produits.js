@@ -26,4 +26,4 @@ router.post('/produits', (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = router; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs

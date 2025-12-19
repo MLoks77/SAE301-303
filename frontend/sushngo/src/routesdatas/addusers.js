@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs'); // Pour les mots de passe
 
 
 router.post('/addusers', (req, res) => {
-    // a remplir avec login
+    // a remplir avec ajout utilisateur
     res.json({ message: "route pour allez fetch les users" });
 });
 

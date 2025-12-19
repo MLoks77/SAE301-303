@@ -39,8 +39,11 @@ router.post('/login', (req, res) => {
                     role: user.statut_etud // ou autre champ de rôle
                 }
             });
+            res.redirect('/compte'); // puis redirige vers la page compte
         });
+
+
     });
 });
 
-module.exports = router;
+module.exports = router; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs
