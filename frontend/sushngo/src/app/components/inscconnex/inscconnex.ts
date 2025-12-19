@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
-
+import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
+import { Router } from '@angular/router'; // pour api ( maxime derènes )
 
 
 
@@ -17,10 +18,31 @@ import { Footer } from '../footer/footer';
 export class Inscconnex {
 
 
-
+  // Maxime Derènes 
+  // quand il appuie sur se connecter et que c'est bon il faut appeler la fonction back et ajouter le token : localStorage.setItem('token', response.token);
   // this.router.navigate(['/compte']) en gros l'api doit rediriger vers la page compte si on réussit a se connecter, il faut le faire dcp
 
+  // quand tu stockeras des données que l'utilisateur entre met les sous cette forme :
 
+  // loginData = {
+  //   email: '',
+  //   password: ''
+  // };
+  // registerData = {
+  //   nom: '',
+  //   prenom: '',
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: ''
+  // };
+
+
+
+
+
+
+
+  // tabs du formulaire
 
   currentTab: string = 'connexion';
   // formulaire

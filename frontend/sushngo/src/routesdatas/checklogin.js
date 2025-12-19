@@ -16,10 +16,21 @@ const verifierToken = (req, res, next) => {
             return res.status(401).json({ message: 'Token invalide ou expiré' });
         }
 
-        // On attache l'utilisateur à la requête pour l'utiliser plus tard
         req.user = results[0];
-        next(); // On passe à la suite
+        next();
     });
 };
+
+
+// pour protéger une route ( A essayé sur la page compte par exemple, j'ai pas essayé ) :
+
+//  Route protégée : Seul un utilisateur avec un token valide peut voir ceci
+// app.get('/api/panier', verifierToken, (req, res) => {
+//     req.user contient maintenant les infos de l'utilisateur trouvé grâce au token
+//     console.log("Utilisateur connecté :", req.user.email);
+
+//     Logique pour récupérer le panier de req.user.id_user...
+//     res.json({ message: "Voici votre panier" });
+// });
 
 module.exports = verifierToken; // À LA FIN : On exporte le router pour pouvoir l'utiliser ailleurs

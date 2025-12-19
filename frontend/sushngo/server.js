@@ -11,6 +11,7 @@ const addusersRouter = require('./routesdatas/addusers');
 const loginRouter = require('./routesdatas/login');
 const logoutRouter = require('./routesdatas/logout');
 const checkloginRouter = require('./routesdatas/checklogin');
+const statsRouter = require('./routesdatas/stats');
 
 app.use(cors()); // Autorise les requêtes provenant d'autres domaines
 app.use(express.json()); // IMPORTANT: Permet de lire les req.body en JSON req.body -> https://stackoverflow.com/questions/67557955/what-is-the-purpose-of-req-body-in-express-js
@@ -21,6 +22,7 @@ app.use('/routesdatas/addusers', addusersRouter); // http://localhost:3000/route
 app.use('/routesdatas/login', loginRouter); // http://localhost:3000/routesdatas/login
 app.use('/routesdatas/logout', logoutRouter); // http://localhost:3000/routesdatas/logout
 app.use('/routesdatas/checklogin', checkloginRouter); // http://localhost:3000/routesdatas/checklogin
+app.use('/routesdatas/stats', statsRouter); // http://localhost:3000/routesdatas/stats
 
 
 

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { CommonModule } from '@angular/common';
+
+import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
+import { Router } from '@angular/router'; // pour api ( maxime derènes )
 
 @Component({
   selector: 'app-pagemenu',
@@ -34,21 +36,14 @@ export class Pagemenu implements OnInit {
   boxData: any;
   apiData: any;
 
-  constructor(private connexionApi: ConnexionApi) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getData();
     this.startCarrouselAutoSlide();
   }
 
-  getData() {
-    this.connexionApi.getUserDataFromApi().subscribe((res => {
-      this.apiData = res;
-      this.boxData = res;
-      console.log('Boxes loaded:', res);
-    }));
-  }
 
+  // carrousel
   activeCarrouselIndex = 0;
   carrouselLength = 3;
   carrouselInterval: any;
