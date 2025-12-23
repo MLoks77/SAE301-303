@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router'; // pour api ( maxime derènes )
   templateUrl: './pagemenu.html',
   styleUrl: './pagemenu.css',
 })
-export class Pagemenu implements OnInit {
+export class Pagemenu {
 
   carrousel = [
     {
@@ -33,17 +33,6 @@ export class Pagemenu implements OnInit {
     }
   ];
 
-  boxData: any;
-  apiData: any;
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.startCarrouselAutoSlide();
-  }
-
-
-  // carrousel
   activeCarrouselIndex = 0;
   carrouselLength = 3;
   carrouselInterval: any;

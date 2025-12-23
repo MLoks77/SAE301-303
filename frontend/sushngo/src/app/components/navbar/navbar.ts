@@ -29,14 +29,11 @@ export class Navbar implements OnInit {
     }
   }
 
-  // maxime derènes
-  logout() {
-    localStorage.removeItem('token');
+  logout() { // a fix quand on aura mis le logout dans le service
+    this.authService.logout();
     this.isLoggedIn = false;
-    this.router.navigate(['/accueil']);
   }
 
-  // témi kergastel
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
