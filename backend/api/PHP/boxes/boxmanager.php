@@ -1,17 +1,13 @@
 <?php
 
-class BoxManager {
+class BoxManager
+{
     private $pdo;
     private $boxes;
 
-    public function __construct()
+    public function __construct($pdo)
     {
-        try {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=sushngo;charset=utf8', 'root', '');
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Erreur de connexion : ' . $e->getMessage());
-        }
+        $this->pdo = $pdo;
     }
 
     public function findAll()
@@ -28,7 +24,7 @@ class BoxManager {
         $boxes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $boxes;
     }
-} 
+}
 
 
 ?>

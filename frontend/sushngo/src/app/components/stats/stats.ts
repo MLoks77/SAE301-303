@@ -5,6 +5,9 @@ import { RouterLink } from '@angular/router';
 import Chart from 'chart.js/auto'; // sans ça sa affiche pas
 import { CommonModule } from '@angular/common';
 
+import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
+import { Router } from '@angular/router'; // pour api ( maxime derènes )
+
 // en attendant que je connecte l'api et le fasse correctement je met ça
 
 

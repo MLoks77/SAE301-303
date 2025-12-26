@@ -1,6 +1,8 @@
-<!-- par maxime derènes, ajouts par Joachim -->
+<!-- par maxime derènes -->
 
 <?php
+
+// pour autoriser les requêtes provenant du frontend
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Access-Control-Allow-Credentials: true');
@@ -14,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 session_start();
 
-require '../../../config/configdb.php'; // connexion
-require '../manager/UserManager.php'; // fonctions pour insert par exemple
+require __DIR__ . '/../../../config/configdb.php'; // connexion
+require __DIR__ . '/manager/UserManager.php'; // fonctions pour insert par exemple
 
 $content = file_get_contents('php://input');
 $data = json_decode($content, true);
@@ -35,6 +37,7 @@ if (!empty($missing)) {
     echo json_encode(['reponse' => 'donnée(s) manquante(s): ' . implode(', ', $missing)]);
     exit;
 }
+
 try {
     // Vérifier que l'email n'existe pas déjà
     $sql = "SELECT * FROM utilisateur WHERE email = :email";
@@ -50,15 +53,18 @@ try {
     }
 
     $userManager = new UserManager($pdo); // On crée une instance de UserManager pour pouvoir utiliser ses méthodes
-    $userManager->insertUser($data);
+    $userManager->insertUser($data); // on ajoute l'utilisateur avec la méthode de user manager
 
     http_response_code(201);
     header('Content-Type: application/json');
     echo json_encode(['reponse' => 'utilisateur créé']);
+
 } catch (Exception $e) {
+
     http_response_code(500);
     header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'Erreur serveur', 'error' => $e->getMessage()]);
+
 }
 
 // TP1 Le Vessnard

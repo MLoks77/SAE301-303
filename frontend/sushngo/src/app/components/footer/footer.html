@@ -1,121 +1,136 @@
 <!-- réalisé par Maxime Derènes -->
 <!-- partie hr ligne -->
- 
+
 
 <footer class="bottom-0 left-0 w-full bg-white z-50">
-<div class="flex items-center mx-3">
-    <hr class="flex-1 border-t border-gray-300">
-    <span class="mx-4">
-        <img src="images/favicon/web-app-manifest-192x192.png" alt="Logo" class="h-8">
-    </span>
-    <hr class="flex-1 border-t border-gray-300">
-</div>
-
-<!-- Partie milieu avec grid -->
-
-<!-- Footer pour ordi -->
-<div class="hidden md:grid grid-cols-4 grid-rows-3 gap-4 mx-5 ">
-    <div class="row-span-3">
-        <ul class="list-none gap-2">
-            <li>
-                <h2 class="text-black/60 text-xl mb-3">Pages</h2>
-            </li>
-            <li><a routerLink="/points-retraits" class="cursor-pointer text-xl hover:text-black/70">Nos points de retraits</a></li>
-            <li><a routerLink="/menus" class="cursor-pointer text-xl hover:text-black/70">Notre carte</a></li>
-            <li><a routerLink="/stats" class="cursor-pointer text-xl hover:text-black/70">Statistiques</a></li>
-            <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70">Nous contacter</a></li>
-            <li><a routerLink="/compte" class="cursor-pointer text-xl hover:text-black/70 border-black">Mon Compte</a></li>
-            <li><a routerLink="/inscription-connexion" class="cursor-pointer text-xl hover:text-black/70">Se déconnecter</a></li>
-        </ul>   
+    <div class="flex items-center mx-3">
+        <hr class="flex-1 border-t border-gray-300">
+        <span class="mx-4">
+            <img src="images/favicon/web-app-manifest-192x192.png" alt="Logo" class="h-8">
+        </span>
+        <hr class="flex-1 border-t border-gray-300">
     </div>
-    <div class="row-span-3">
-        <ul class="list-none">
-            <li>
-                <h2 class="text-black/60 text-xl mb-3">Nos réseaux</h2>
-            </li>
-            <li>
-                <div class="flex flex-row flex-wrap gap-5 mt-2">
-                    <a><img src="images/icons/facebook.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
-                    <a><img src="images/icons/instagram.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
-                    <a><img src="images/icons/X.webp" class="cursor-pointer w-11 h-11 rounded-sm" alt="X app icon"></a>
-                    <a><img src="images/icons/tiktok.webp" class="cursor-pointer w-11 h-11" alt="Tiktok"></a>
-                </div>
-            </li>
-            <li>
-                <h2 class="text-black/60 text-xl mt-6">Nos partenaires</h2>
-            </li>
-            <li>
-                <div class="flex flex-row flex-wrap gap-5 mt-2">
-                    <a><img src="images/assets/grab.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
-                    <a><img src="images/assets/deliveroo.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
-                    <a><img src="images/assets/ubereat.webp" class="cursor-pointer w-11 h-11 rounded-sm" alt="X app icon"></a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="col-span-2 row-span-3">
-        <div class="w-full h-[300px]">
-            <h2 class="text-black/60 text-xl mb-3">Notre restaurant</h2>
-            <iframe 
-                src="https://www.google.com/maps?q=17+Rue+Jablinot,+77100+Meaux&output=embed" 
-                width="100%"
-                height="200" 
-                style="border:0; border-radius:0.75rem;" 
-                allowfullscreen="" 
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-            >
-            </iframe>
-        </div>
-    </div>
-</div>
 
-<!-- Partie "droit" ordinateur -->
-<div class="hidden md:block pb-5">
-    <h2 class="text-black/60 text-center">Copyright © 2025 Sush’n Go, Tous droits réservés.</h2>
-    <div class="flex flex-row gap-5 justify-center text-center">
-        <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70"><h2>Mentions légales</h2></a>
-        <a routerLink="/plan-site"><h2 class="cursor-pointer border-x border-black px-3 hover:text-black/70">Plan du site</h2></a>
-        <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70"><h2>Utilisation de cookies</h2></a>
-    </div>
-</div>
+    <!-- Partie milieu avec grid -->
 
-<!-- Footer adapté mobile-->
-<div class="block md:hidden px-4 pb-3 pt-5">
-    <div class="flex flex-col items-center gap-4">
-        <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
-            <a routerLink="/points-retraits" class="text-base hover:text-black/70">Points de retraits</a>
-            <a routerLink="/menus" class="text-base hover:text-black/70">Carte</a>
-            <a routerLink="/compte" class="text-base hover:text-black/70">Mon Compte</a>
+    <!-- Footer pour ordi -->
+    <div class="hidden md:grid grid-cols-4 grid-rows-3 gap-4 mx-5 ">
+        <div class="row-span-3">
+            <ul class="list-none gap-2">
+                <li>
+                    <h2 class="text-black/60 text-xl mb-3">Pages</h2>
+                </li>
+                <li><a routerLink="/points-retraits" class="cursor-pointer text-xl hover:text-black/70">Nos points de
+                        retraits</a></li>
+                <li><a routerLink="/menus" class="cursor-pointer text-xl hover:text-black/70">Notre carte</a></li>
+                <li><a routerLink="/stats" class="cursor-pointer text-xl hover:text-black/70">Statistiques</a></li>
+                <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70">Nous contacter</a></li>
+                <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">
+                    <a routerLink="/compte">Mon Compte</a>
+                </li>
+                <li *ngIf="isLoggedIn" OnClick="logout()" class="cursor-pointer text-xl hover:text-black/70">
+                    <a>Se déconnecter</a>
+                </li>
+                <li *ngIf="!isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">
+                    <a routerLink="/inscription-connexion">Se connecter</a>
+                </li>
+            </ul>
         </div>
-        <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
-            <a routerLink="/contact" class="text-base hover:text-black/70">Contact</a>
-            <a routerLink="/stats" class="text-base hover:text-black/70">Stats</a>
+        <div class="row-span-3">
+            <ul class="list-none">
+                <li>
+                    <h2 class="text-black/60 text-xl mb-3">Nos réseaux</h2>
+                </li>
+                <li>
+                    <div class="flex flex-row flex-wrap gap-5 mt-2">
+                        <a><img src="images/icons/facebook.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
+                        <a><img src="images/icons/instagram.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
+                        <a><img src="images/icons/X.webp" class="cursor-pointer w-11 h-11 rounded-sm"
+                                alt="X app icon"></a>
+                        <a><img src="images/icons/tiktok.webp" class="cursor-pointer w-11 h-11" alt="Tiktok"></a>
+                    </div>
+                </li>
+                <li>
+                    <h2 class="text-black/60 text-xl mt-6">Nos partenaires</h2>
+                </li>
+                <li>
+                    <div class="flex flex-row flex-wrap gap-5 mt-2">
+                        <a><img src="images/assets/grab.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
+                        <a><img src="images/assets/deliveroo.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
+                        <a><img src="images/assets/ubereat.webp" class="cursor-pointer w-11 h-11 rounded-sm"
+                                alt="X app icon"></a>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="flex justify-center gap-4 w-full mb-2">
-            <a><img src="images/icons/facebook.webp" class="w-8 h-8" alt="Facebook"></a>
-            <a><img src="images/icons/instagram.webp" class="w-8 h-8" alt="Instagram"></a>
-            <a><img src="images/icons/X.webp" class="w-8 h-8 rounded-sm" alt="X app icon"></a>
-            <a><img src="images/icons/tiktok.webp" class="w-8 h-8" alt="Tiktok"></a>
-        </div>
-        <div class="flex justify-center gap-4 w-full mb-2">
-            <a href="https://deliveroo.fr/fr/" target="_blank" rel="noopener">
-                <img src="images/assets/deliveroo.webp" class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Deliveroo">
-            </a>
-            <a href="https://www.grab.com/sg/" target="_blank" rel="noopener">
-                <img src="images/assets/grab.webp" class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Grab">
-            </a>
-            <a href="https://www.ubereats.com/fr?srsltid=AfmBOoouM8qOjfw1W69xTOAOQrwctvmgYwEs5zc1Y0rpd-mQp24ZM3Ad" target="_blank" rel="noopener">
-                <img src="images/assets/ubereat.webp" class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Uber Eats">
-            </a>
-        </div>
-        <div class="w-full mt-2">
-            <div class="flex flex-row gap-2 justify-center text-xs mb-1">
-                <a routerLink="/mentions-legales" class="hover:text-black/70">Mentions légales</a>
-                <a routerLink="/plan-site" class="border-l pl-2 border-black hover:text-black/70">Plan du site</a>
-                <a routerLink="/utilisation-cookie" class="border-l pl-2 border-black hover:text-black/70">Cookies</a>
+        <div class="col-span-2 row-span-3">
+            <div class="w-full h-[300px]">
+                <h2 class="text-black/60 text-xl mb-3">Notre restaurant</h2>
+                <iframe src="https://www.google.com/maps?q=17+Rue+Jablinot,+77100+Meaux&output=embed" width="100%"
+                    height="200" style="border:0; border-radius:0.75rem;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
-            <h2 class="text-black/60 text-xs text-center">© 2025 Sush’n Go</h2>
         </div>
     </div>
-</div>
+
+    <!-- Partie "droit" ordinateur -->
+    <div class="hidden md:block pb-5">
+        <h2 class="text-black/60 text-center">Copyright © 2025 Sush’n Go, Tous droits réservés.</h2>
+        <div class="flex flex-row gap-5 justify-center text-center">
+            <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70">
+                <h2>Mentions légales</h2>
+            </a>
+            <a routerLink="/plan-site">
+                <h2 class="cursor-pointer border-x border-black px-3 hover:text-black/70">Plan du site</h2>
+            </a>
+            <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70">
+                <h2>Utilisation de cookies</h2>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer adapté mobile-->
+    <div class="block md:hidden px-4 pb-3 pt-5">
+        <div class="flex flex-col items-center gap-4">
+            <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
+                <a routerLink="/points-retraits" class="text-base hover:text-black/70">Points de retraits</a>
+                <a routerLink="/menus" class="text-base hover:text-black/70">Carte</a>
+                <a routerLink="/compte" class="text-base hover:text-black/70">Mon Compte</a>
+            </div>
+            <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
+                <a routerLink="/contact" class="text-base hover:text-black/70">Contact</a>
+                <a routerLink="/stats" class="text-base hover:text-black/70">Stats</a>
+            </div>
+            <div class="flex justify-center gap-4 w-full mb-2">
+                <a><img src="images/icons/facebook.webp" class="w-8 h-8" alt="Facebook"></a>
+                <a><img src="images/icons/instagram.webp" class="w-8 h-8" alt="Instagram"></a>
+                <a><img src="images/icons/X.webp" class="w-8 h-8 rounded-sm" alt="X app icon"></a>
+                <a><img src="images/icons/tiktok.webp" class="w-8 h-8" alt="Tiktok"></a>
+            </div>
+            <div class="flex justify-center gap-4 w-full mb-2">
+                <a href="https://deliveroo.fr/fr/" target="_blank" rel="noopener">
+                    <img src="images/assets/deliveroo.webp"
+                        class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Deliveroo">
+                </a>
+                <a href="https://www.grab.com/sg/" target="_blank" rel="noopener">
+                    <img src="images/assets/grab.webp"
+                        class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Grab">
+                </a>
+                <a href="https://www.ubereats.com/fr?srsltid=AfmBOoouM8qOjfw1W69xTOAOQrwctvmgYwEs5zc1Y0rpd-mQp24ZM3Ad"
+                    target="_blank" rel="noopener">
+                    <img src="images/assets/ubereat.webp"
+                        class="w-8 h-8 rounded-sm hover:scale-105 transition-all duration-200" alt="Uber Eats">
+                </a>
+            </div>
+            <div class="w-full mt-2">
+                <div class="flex flex-row gap-2 justify-center text-xs mb-1">
+                    <a routerLink="/mentions-legales" class="hover:text-black/70">Mentions légales</a>
+                    <a routerLink="/plan-site" class="border-l pl-2 border-black hover:text-black/70">Plan du site</a>
+                    <a routerLink="/utilisation-cookie"
+                        class="border-l pl-2 border-black hover:text-black/70">Cookies</a>
+                </div>
+                <h2 class="text-black/60 text-xs text-center">© 2025 Sush’n Go</h2>
+            </div>
+        </div>
+    </div>

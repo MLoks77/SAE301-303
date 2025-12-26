@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RecupSTATS } from '../../services/recupSTATS/recup-stats';
+import { Inscription } from './inscription';
 
-describe('RecupSTATS', () => {
-  let service: RecupSTATS;
+describe('Inscription', () => {
+  let service: Inscription;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RecupSTATS);
+    service = TestBed.inject(Inscription);
   });
 
   it('should be created', () => {

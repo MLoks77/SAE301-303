@@ -1,300 +1,153 @@
+// joachim
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-
-interface LoginResponse {
-  message: string;
-  token?: string;
-  user?: any;
-}
+import { AuthService } from '../../services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscconnex',
-  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer],
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule, Navbar, Footer, HttpClientModule],
   templateUrl: './inscconnex.html',
   styleUrls: ['./inscconnex.css'],
 })
 export class Inscconnex implements OnInit {
-  currentTab: string = 'connexion';
-  /* apiData: utilisateur[] = [];
+  currentTab: string = 'inscription';
   isLoading: boolean = false;
-  error: string | null = null; */
-  apiData: any;
-
-  // État du formulaire
-  isSubmitting: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
 
-  protected API_URL = "http://localhost/SAE301-303/backend/api/users";
+  // Modèles pour les formulaires
+  loginData = {
+    email: '',
+    password: ''
+  };
 
-  constructor(private http: HttpClient) {}
-  
-  nom: string = '';
-  prenom: string = '';
-  email_inscr: string = '';
-  email_connex: string = '';
-  mdp_inscr: string = '';
-  mdp_connex: string = '';
-  confirm_mdp: string = '';
-  telephone: string = '';
-  adresse: string = '';
-  etudiant: string = '';
-  
+  registerData = {
+    nom: '',
+    prenom: '',
+    email: '',
+    tel: '',
+    adresse: '',
+    password: '',
+    confirmPassword: '',
+    statut_etud: false,
+    cgu: false
+  };
 
-  inscription(inscriptionData: {
-    nom: string,
-    prenom: string,
-    email_inscr: string,      // ← Nom Angular
-    mdp_inscr: string,        // ← Nom Angular
-    telephone: string,
-    adresse: string,
-    etudiant: string
-  }): Observable<any> {
-    
-    // Transformation des données pour l'API
-    const dataForApi = {
-      nom: inscriptionData.nom,
-      prenom: inscriptionData.prenom,
-      email: inscriptionData.email_inscr,       // ← Mapping
-      password: inscriptionData.mdp_inscr,      // ← Mapping
-      telephone: inscriptionData.telephone,
-      adresse: inscriptionData.adresse,
-      statut_etud: inscriptionData.etudiant ? 1 : 0
-    };
-  
-    return this.http.post(`${this.API_URL}/fonctions/add_user.php`, dataForApi, {
-      withCredentials: true
-    });
-  }
-  
-  connexion(connexionData: {
-    email_connex: string,    // ← Nom Angular
-    mdp_connex: string       // ← Nom Angular
-  }): Observable<LoginResponse> {
-    
-    const dataForApi = {
-      email: connexionData.email_connex,      // ← Mapping
-      password: connexionData.mdp_connex      // ← Mapping
-    };
-  
-    return this.http.post<LoginResponse>(`${this.API_URL}/session/login.php`, dataForApi, {
-      withCredentials: true
-    });
-  }
-
-  onSubmitInscription(): void {
-    console.log("Envoi vers l'API");
-    console.log('Nom:', this.nom);
-    console.log('Prénom:', this.prenom);
-    console.log("Email d'inscription:", this.email_inscr);
-    console.log("Mot de passe d'inscription:", this.mdp_inscr);
-    console.log("Confirmation du mot de passe d'inscription:", this.confirm_mdp);
-    console.log('Étudiant:', this.etudiant);
-    console.log('Téléphone:', this.telephone);
-    console.log('Adresse:', this.adresse);
-
-    if(this.isSubmitting = true) {
-      this.successMessage = 'Formulaire envoyé avec succès !';
-    } else {
-      this.errorMessage = "Échec de l'envoi du formulaire.";
-    }
-
-    // Envoie directement tes variables
-    this.inscription({
-      nom: this.nom,
-      prenom: this.prenom,
-      email_inscr: this.email_inscr,      // ← Nom original
-      mdp_inscr: this.mdp_inscr,          // ← Nom original
-      telephone: this.telephone,
-      adresse: this.adresse,
-      etudiant: this.etudiant
-    }).subscribe({
-      next: (response) => {
-        console.log("Réponse de l'API:", response);
-        this.isSubmitting = false;
-        this.successMessage = response.message || 'Formulaire envoyé avec succès !';
-        
-        // Réinitialise le formulaire
-        this.nom = '';
-        this.prenom = '';
-        this.email_inscr = '';
-        this.mdp_inscr = '';
-        this.confirm_mdp ='';
-        this.etudiant = '';
-        this.telephone = '';
-        this.adresse = '';
-      },
-      error: (err) => {
-        console.error("Une erreur a été détecté au niveau de l'API:", err);
-        this.isSubmitting = false;
-        this.errorMessage = err.error?.message || "Erreur lors de l'envoi";
-      }
-    });
-  }
-
-  onSubmitConnexion(): void {
-    console.log("Envoi vers l'API");
-    console.log("Email de connexion:", this.email_connex);
-    console.log("Mot de passe de connexion:", this.mdp_connex);
-
-    if(this.isSubmitting = true) {
-      this.successMessage = 'Formulaire envoyé avec succès !';
-    } else {
-      this.errorMessage = "Échec de l'envoi du formulaire.";
-    }
-
-    // Envoie directement tes variables
-    this.connexion({
-      email_connex: this.email_connex,      // ← Nom original
-      mdp_connex: this.mdp_connex,          // ← Nom original
-    }).subscribe({
-      next: (response) => {
-        console.log("Réponse de l'API:", response);
-        this.isSubmitting = false;
-        this.successMessage = response.message || 'Formulaire envoyé avec succès !';
-        
-        // Réinitialise le formulaire
-        this.email_connex = '';
-        this.mdp_connex = '';
-      },
-      error: (err) => {
-        console.error("Une erreur a été détecté au niveau de l'API:", err);
-        this.isSubmitting = false;
-        this.errorMessage = err.error?.message || "Erreur lors de l'envoi";
-      }
-    });
-  }
-
-  ngOnInit(): void {}
-
-  initializeTabSystem(): void {
-    const btnConnexion = document.getElementById('tab-btn-connexion');
-    const btnInscription = document.getElementById('tab-btn-inscription');
-    const tabConnexion = document.getElementById('tab-formulaire-connexion');
-    const tabInscription = document.getElementById('tab-formulaire-inscription');
-
-    if (!tabConnexion || !tabInscription || !btnConnexion || !btnInscription) {
-      console.error('Elements not found');
-      return;
-    }
-
-    tabInscription.style.display = 'block';
-    tabConnexion.style.display = 'none';
-
-    this.setActiveTab('inscription');
-
-    this.setupFormValidation();
-  }
-
-  setupFormValidation(): void {
-    const formInscription = document.getElementById('tab-formulaire-inscription') as HTMLFormElement;
-    if (formInscription) {
-      formInscription.addEventListener('submit', (event) => this.validateInscription(event));
-    }
-  }
-
-  validateInscription(event: Event): void {
-    event.preventDefault();
-    const mdpInput = document.getElementById('motdepasse-inscription') as HTMLInputElement;
-    const mdpconfirmation = document.getElementById('confirmMotDePasse-inscription') as HTMLInputElement;
-    const errorDiv = document.getElementById('mdp-confirm-error');
-
-    if (!mdpInput || !mdpconfirmation || !errorDiv) return;
-
-    const password = mdpInput.value;
-    const confirmPassword = mdpconfirmation.value;
-
-    // Nettoie l'affichage erreur
-    mdpconfirmation.classList.remove('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
-    mdpconfirmation.placeholder = 'Confirmer le mot de passe';
-    errorDiv.classList.add('mdp-confirm-invisible');
-
-    if (password !== confirmPassword) {
-      mdpconfirmation.classList.add('bg-[#F64F4F]', 'text-white', 'hover:bg-[#ff3c3c]');
-      mdpconfirmation.value = '';
-      mdpconfirmation.placeholder = 'Les mots de passe ne correspondent pas';
-      errorDiv.classList.remove('mdp-confirm-invisible');
-      mdpconfirmation.focus();
-      // Pas d'alert pour éviter les soucis UX/affichage
-    } else {
-      // Si bon, continuer (soumission réelle à gérer côté backend ou Angular)
-      errorDiv.classList.add('mdp-confirm-invisible');
-      // Optionnel: form submission réelle ici
-      // (event.target as HTMLFormElement).submit();
-      console.log('Formulaire envoyé');
-    }
-  }
-
-  switchToTab(tabName: string): void {
-    const tabConnexion = document.getElementById('tab-formulaire-connexion');
-    const tabInscription = document.getElementById('tab-formulaire-inscription');
-    const btnConnexion = document.getElementById('tab-btn-connexion');
-    const btnInscription = document.getElementById('tab-btn-inscription');
-
-    if (!tabConnexion || !tabInscription || !btnConnexion || !btnInscription) return;
-
-    if (tabName === 'connexion') {
-      tabInscription.style.display = 'none';
-      tabConnexion.style.display = 'block';
-
-      // Bouton Actif/Non-actif : styles basés sur le HTML d'origine
-      btnConnexion.classList.add('bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.remove('bg-white', 'text-black');
-      btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
-      btnInscription.classList.add('bg-white', 'text-black');
-
-      this.currentTab = 'connexion';
-    } else if (tabName === 'inscription') {
-      tabConnexion.style.display = 'none';
-      tabInscription.style.display = 'block';
-
-      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
-      btnInscription.classList.remove('bg-white', 'text-black');
-      btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.add('bg-white', 'text-black');
-
-      this.currentTab = 'inscription';
-    }
-  }
-
-  private setActiveTab(tab: string): void {
-    const btnConnexion = document.getElementById('tab-btn-connexion');
-    const btnInscription = document.getElementById('tab-btn-inscription');
-
-    if (!btnConnexion || !btnInscription) return;
-
-    if (tab === 'connexion') {
-      btnConnexion.classList.add('bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.remove('bg-white', 'text-black');
-      btnInscription.classList.remove('bg-[#F64F4F]', 'text-white');
-      btnInscription.classList.add('bg-white', 'text-black');
-    } else if (tab === 'inscription') {
-      btnInscription.classList.add('bg-[#F64F4F]', 'text-white');
-      btnInscription.classList.remove('bg-white', 'text-black');
-      btnConnexion.classList.remove('bg-[#F64F4F]', 'text-white');
-      btnConnexion.classList.add('bg-white', 'text-black');
-    }
-  }
-
-  // Variables pour gérer la visibilité
+  // Visibilité des mots de passe
   showMdpInscr: boolean = false;
   showMdpConnex: boolean = false;
   showConfirmMdp: boolean = false;
 
-  // Méthodes pour toggle
-  togglePassword(field: string): void {
-    if (field === 'mdp_inscr') {
-      this.showMdpInscr = !this.showMdpInscr;
-    } else if (field === 'mdp_connex') {
-      this.showMdpConnex = !this.showMdpConnex;
-    } else if (field === 'confirm_mdp') {
-      this.showConfirmMdp = !this.showConfirmMdp;
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.authService.checkSession().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/accueil']);
+      }
+    });
+  }
+
+  switchToTab(tab: string): void {
+    this.currentTab = tab;
+    this.clearMessages();
+  }
+
+  onSubmitConnexion(): void {
+    if (!this.loginData.email || !this.loginData.password) {
+      this.errorMessage = 'Veuillez remplir tous les champs.';
+      return;
     }
+
+    this.isLoading = true;
+    this.clearMessages();
+
+    this.authService.login(this.loginData).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.successMessage = 'Connexion réussie ! Redirection...';
+          setTimeout(() => this.router.navigate(['/accueil']), 1500);
+        } else {
+          this.errorMessage = res.message || res.reponse || res.error || 'Identifiants incorrects.';
+        }
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = 'Erreur lors de la connexion. Veuillez réessayer.';
+        console.error(err);
+      }
+    });
+  }
+
+  onSubmitInscription(): void {
+    if (this.registerData.password !== this.registerData.confirmPassword) {
+      this.errorMessage = 'Les mots de passe ne correspondent pas.';
+      return;
+    }
+
+    if (!this.registerData.cgu) {
+      this.errorMessage = 'Vous devez accepter les CGU.';
+      return;
+    }
+
+    this.isLoading = true;
+    this.clearMessages();
+
+    this.authService.register(this.registerData).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.successMessage = 'Compte créé avec succès ! Vous pouvez vous connecter.';
+          this.resetForm();
+          setTimeout(() => this.switchToTab('connexion'), 2000);
+        } else {
+          this.errorMessage = res.error || res.message || res.reponse || 'Erreur lors de l\'inscription.';
+        }
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = err.error?.error || 'Une erreur est survenue.';
+        console.error(err);
+      }
+    });
+  }
+
+  togglePassword(field: string): void {
+    if (field === 'mdp_inscr') this.showMdpInscr = !this.showMdpInscr;
+    if (field === 'mdp_connex') this.showMdpConnex = !this.showMdpConnex;
+    if (field === 'confirm_mdp') this.showConfirmMdp = !this.showConfirmMdp;
+  }
+
+  private clearMessages(): void {
+    this.successMessage = '';
+    this.errorMessage = '';
+  }
+
+  private resetForm(): void {
+    this.registerData = {
+      nom: '',
+      prenom: '',
+      email: '',
+      tel: '',
+      adresse: '',
+      password: '',
+      confirmPassword: '',
+      statut_etud: false,
+      cgu: false
+    };
+    this.loginData = {
+      email: '',
+      password: ''
+    };
   }
 }

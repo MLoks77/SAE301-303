@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
+
+import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
+import { Router } from '@angular/router'; // pour api ( maxime derènes )
 
 @Component({
   selector: 'app-navbar',
@@ -14,23 +16,29 @@ export class Navbar implements OnInit {
   isMenuOpen: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
+  // témi kergastel
   ngOnInit() {
-    // Vérifier l'état de connexion au chargement
-    this.authService.checkSession().subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-    });
+    // Vérifier l'état de connexion en vérifiant la présence du token en local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
 
-    this.authService.isLoggedIn$.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-    });
+  logout() { // a fix quand on aura mis le logout dans le service
+    this.authService.logout();
+    this.isLoggedIn = false;
   }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  // témi kergastel
   closeMenu() {
     this.isMenuOpen = false;
   }

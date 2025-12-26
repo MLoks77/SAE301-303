@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { CommonModule } from '@angular/common';
+
+import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
+import { Router } from '@angular/router'; // pour api ( maxime derènes )
+import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
+
 
 @Component({
   selector: 'app-pagemenu',
@@ -11,7 +15,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pagemenu.html',
   styleUrl: './pagemenu.css',
 })
-export class Pagemenu implements OnInit {
+export class Pagemenu {
 
   carrousel = [
     {
@@ -82,7 +86,7 @@ export class Pagemenu implements OnInit {
         this.apiData = res;
         this.boxData = res;
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('API Error:', err);
       }
     });

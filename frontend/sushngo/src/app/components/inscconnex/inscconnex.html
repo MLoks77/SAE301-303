@@ -1,127 +1,104 @@
 <app-navbar></app-navbar>
 
-<!-- front réalisé par Joachim Tocqueville et par maxime derènes -->
+<!-- front réalisé par Joachim Tocqueville, Maxime Derènes et Témi Kergastel -->
+<!-- Nettoyé et optimisé par Antigravity -->
+
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
-    <span class="text-white italic mb-1"> &gt; Connexion / inscription</span>
+    <span class="text-white italic mb-1"> &gt; {{ currentTab === 'connexion' ? 'Connexion' : 'Inscription' }}</span>
 </div>
 
-<section id="connexionbg" class="pt-10">
+<section id="connexionbg" class="pt-10 min-h-screen">
     <div id="fondform">
 
-        <!-- Formulaires -->
         <!-- Onglets -->
         <div class="flex justify-center my-8">
-            <div id="tab-section-btn" class="Caladea flex rounded-[40px] p-3 gap-2 bg-white">
-                <button id="tab-btn-inscription" (click)="switchToTab('inscription')" type="button"
-                    class="transition-all duration-200 cursor-pointer rounded-[40px] w-28 py-3 px-2 mr-1 bg-[#F64F4F] text-white font-semibold">Inscription</button>
-                <button id="tab-btn-connexion" (click)="switchToTab('connexion')" type="button"
-                    class="transition-all duration-200 cursor-pointer rounded-[40px] w-28 py-3 px-2 bg-white text-black font-semibold">Connexion</button>
+            <div class="Caladea flex rounded-[40px] p-2 gap-2 bg-white shadow-md">
+                <button (click)="switchToTab('inscription')" type="button"
+                    [class.bg-red-500]="currentTab === 'inscription'" [class.text-white]="currentTab === 'inscription'"
+                    [class.bg-white]="currentTab !== 'inscription'" [class.text-black]="currentTab !== 'inscription'"
+                    class="transition-all duration-300 cursor-pointer rounded-[40px] w-32 py-3 px-2 font-semibold">
+                    Inscription
+                </button>
+                <button (click)="switchToTab('connexion')" type="button" [class.bg-red-500]="currentTab === 'connexion'"
+                    [class.text-white]="currentTab === 'connexion'" [class.bg-white]="currentTab !== 'connexion'"
+                    [class.text-black]="currentTab !== 'connexion'"
+                    class="transition-all duration-300 cursor-pointer rounded-[40px] w-32 py-3 px-2 font-semibold">
+                    Connexion
+                </button>
             </div>
         </div>
 
-        <div id="forms-container" class="flex flex-col items-stretch gap-8 justify-center">
+        <div class="flex flex-col items-center gap-8 justify-center px-4">
+
+            <!-- Messages d'info -->
+            <div *ngIf="successMessage"
+                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative max-w-[650px] w-full text-center mb-4">
+                {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage"
+                class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative max-w-[650px] w-full text-center mb-4">
+                {{ errorMessage }}
+            </div>
+
             <!-- FORMULAIRE INSCRIPTION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmitInscription()" id="tab-formulaire-inscription"
-                autocomplete="on" novalidate
-                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[650px] w-full mx-auto">
-                <!-- pas d'autoroute svp -->
-                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
-                    style="max-width: 400px; margin-left: auto; margin-right: auto;">
+            <form *ngIf="currentTab === 'inscription'" #registerForm="ngForm" (ngSubmit)="onSubmitInscription()"
+                class="bg-white py-8 px-6 rounded-3xl shadow-2xl max-w-[650px] w-full transition-all duration-500">
+
+                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-gray-100 pb-4">
                     Créer un compte
                 </h2>
-                <div class="grid grid-cols-2 gap-4 max-w-full">
-                    <div class="form-group">
-                        <label for="nom-inscription">Nom <span class="text-[#F64F4F]">*</span></label>
-                        <input id="nom-inscription" name="nom" type="text" autocomplete="family-name" placeholder="Nom"
-                            [(ngModel)]="nom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Nom <span class="text-red-500">*</span></label>
+                        <input name="nom" type="text" placeholder="Nom" [(ngModel)]="registerData.nom" required
+                            class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="form-group">
-                        <label for="prenom-inscription">Prénom <span class="text-[#F64F4F]">*</span></label>
-                        <input id="prenom-inscription" name="prenom" type="text" autocomplete="given-name"
-                            placeholder="Prénom" [(ngModel)]="prenom" required minlength="2" maxlength="50"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                    <!-- prénom -->
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Prénom <span class="text-red-500">*</span></label>
+                        <input name="prenom" type="text" placeholder="Prénom" [(ngModel)]="registerData.prenom" required
+                            class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="form-group">
-                        <label for="email-inscription">Email <span class="text-[#F64F4F]">*</span></label>
-                        <input id="email-inscription" name="email" type="email" autocomplete="email"
-                            placeholder="exemple@email.com" [(ngModel)]="email_inscr" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                    <!-- email -->
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Email <span class="text-red-500">*</span></label>
+                        <input name="email" type="email" placeholder="exemple@email.com"
+                            [(ngModel)]="registerData.email" required email
+                            class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="form-group">
-                        <label for="telephone-inscription">Téléphone <span class="text-[#F64F4F]">*</span></label>
-                        <!-- L'attribut pattern permet de spécifier une expression régulière que la valeur saisie doit respecter, ici pour forcer un format de numéro de téléphone -->
-                        <input id="telephone-inscription" name="telephone" type="tel" placeholder="..."
-                            [(ngModel)]="telephone" required autocomplete="tel" pattern="^(\+?\d{1,3}[-.\s]?)?\d{10}$"
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full  text-gray-500" />
-                        <small class="text-gray-500 text-xs pl-1">Format: 01 02 03 04 05</small>
+                    <!-- telephone -->
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Téléphone <span class="text-red-500">*</span></label>
+                        <input name="tel" type="tel" placeholder="..." [(ngModel)]="registerData.tel" required
+                            class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="col-span-2 form-group">
-                        <label for="adresse-inscription">Adresse <span class="text-[#F64F4F]">*</span></label>
-                        <input id="adresse-inscription" name="adresse" type="text" autocomplete="street-address"
-                            placeholder="Adresse" [(ngModel)]="adresse" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+                    <!-- adresse -->
+                    <div class="flex flex-col md:col-span-2">
+                        <label class="mb-1 font-medium">Adresse <span class="text-red-500">*</span></label>
+                        <input name="adresse" type="text" placeholder="1 rue du pont" [(ngModel)]="registerData.adresse"
+                            required
+                            class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="col-span-2 flex items-center gap-2 form-group cursor-pointe">
-                        <input id="etudiant-inscription" name="etudiant" type="checkbox" [(ngModel)]="etudiant"
-                            class="accent-[#F64F4F] rounded-lg p-1" />
-                        <label for="etudiant-inscription" class="cursor-pointer">Êtes-vous étudiant&nbsp;?</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="motdepasse-inscription">Mot de passe <span class="text-[#F64F4F]">*</span></label>
-                        <div class="password-wrapper">
-                            <input [type]="showMdpInscr ? 'text' : 'password'" id="motdepasse-inscription"
-                                name="motdepasse" autocomplete="new-password" placeholder="Créez un mot de passe"
-                                [(ngModel)]="mdp_inscr" required minlength="8"
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[-1.75rem] ml-[15.5rem]"
-                                (click)="togglePassword('mdp_inscr')">
-                                <!-- Icône œil barré -->
-                                <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <input [type]="showMdpInscr ? 'text' : 'password'" name="password" placeholder="..."
+                                [(ngModel)]="registerData.password" required minlength="8"
+                                class="border border-gray-300 rounded-xl py-3 px-4 w-full focus:ring-2 focus:ring-red-500 outline-none transition-all" />
+                            <button type="button" (click)="togglePassword('mdp_inscr')"
+                                class="absolute right-3 top-3 text-gray-400 hover:text-red-500 transition-colors">
+                                <svg *ngIf="!showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
                                     <path
                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                                 </svg>
-
-                                <!-- Icône œil ouvert -->
-                                <svg *ngIf="showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
-                                    <path
-                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
-                                    <path
-                                        d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
-                                </svg>
-                            </button>
-                            <small class="text-gray-500 text-xs pl-1">8 caractères minimum</small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmMotDePasse-inscription">Confirmer le mot de passe <span
-                                class="text-[#F64F4F]">*</span></label>
-                        <div class="password-wrapper">
-                            <input [type]="showConfirmMdp ? 'text' : 'password'" id="confirmMotDePasse-inscription"
-                                name="confirmMotDePasse" autocomplete="new-password" placeholder="..."
-                                [(ngModel)]="confirm_mdp" required
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full relative text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
-                                (click)="togglePassword('confirm_mdp')">
-                                <!-- Icône œil barré -->
-                                <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" viewBox="0 0 16 16">
-                                    <path
-                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                                    <path
-                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
-                                </svg>
-
-                                <!-- Icône œil ouvert -->
-                                <svg *ngIf="showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <svg *ngIf="showMdpInscr" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
@@ -132,74 +109,94 @@
                                 </svg>
                             </button>
                         </div>
-                        <div id="mdp-confirm-error" class="text-[#F64F4F] text-[0.85rem] pt-1 mdp-confirm-invisible">
-                            Les mots de passe ne correspondent pas.
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Confirmation <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <input [type]="showConfirmMdp ? 'text' : 'password'" name="confirmPassword"
+                                placeholder="..." [(ngModel)]="registerData.confirmPassword" required
+                                class="border border-gray-300 rounded-xl py-3 px-4 w-full focus:ring-2 focus:ring-red-500 outline-none transition-all" />
+                            <button type="button" (click)="togglePassword('confirm_mdp')"
+                                class="absolute right-3 top-3 text-gray-400 hover:text-red-500 transition-colors">
+                                <svg *ngIf="!showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                </svg>
+                                <svg *ngIf="showConfirmMdp" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
+                                    <path
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
+                                    <path
+                                        d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-span-2 flex items-center gap-2 mt-1">
-                        <!-- rajouter une condition qui fait que si c'est pas coché, on peut pas s'inscrire -->
-                        <input id="cgu-inscription" name="cgu" type="checkbox" required
-                            class="accent-[#F64F4F] rounded-lg p-1 cursor-pointer" />
-                        <label for="cgu-inscription" class="cursor-pointer">
-                            <span class="ml-1">J'ai lu et j'accepte les&nbsp;</span>
-                            <a href="/mentions-legales" target="_blank" class="text-[#2a6ef7] underline">conditions
-                                générales
-                                d'utilisation</a>
-                            <span class="text-[#F64F4F] ml-1">*</span>
-                        </label>
+
+                    <div class="md:col-span-2 flex flex-col gap-3">
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <input id="etudiant" name="statut_etud" type="checkbox"
+                                [(ngModel)]="registerData.statut_etud" class="w-5 h-5 accent-red-500 cursor-pointer" />
+                            <label for="etudiant" class="cursor-pointer">Je suis étudiant</label>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <input id="cgu" name="cgu" type="checkbox" [(ngModel)]="registerData.cgu" required
+                                class="w-5 h-5 accent-red-500 cursor-pointer" />
+                            <label for="cgu" class="cursor-pointer text-sm">
+                                J'accepte les <a routerLink="/mentions-legales"
+                                    class="text-blue-600 hover:underline">Conditions Générales d'Utilisation</a> *
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-center mt-6 gap-2">
-                    <button id="submit-inscription" type="submit"
-                        class="cursor-pointer rounded-xl py-2 w-40 bg-[#F64F4F] hover:bg-[#f97474] duration-300 transform-all text-white font-semibold">
-                        S'inscrire
+
+                <div class="flex flex-col items-center mt-10 gap-4">
+                    <button type="submit" [disabled]="!registerForm.valid || isLoading"
+                        class="cursor-pointer rounded-2xl py-4 w-56 bg-red-500 hover:bg-red-600 disabled:bg-gray-400 transition-all text-white font-bold text-lg shadow-lg hover:shadow-xl">
+                        {{ isLoading ? 'Création...' : "S'inscrire" }}
                     </button>
                     <span class="text-xs text-gray-400">* Champs obligatoires</span>
-                </div>
-                <div *ngIf="successMessage" class="success">
-                    {{ successMessage }}
-                </div>
-                <div *ngIf="errorMessage" class="error">
-                    {{ errorMessage }}
                 </div>
             </form>
 
             <!-- FORMULAIRE CONNEXION -->
-            <form #contactForm="ngForm" (ngSubmit)="onSubmitConnexion()" id="tab-formulaire-connexion" autocomplete="on"
-                novalidate
-                class="bg-white py-8 px-4 rounded-3xl shadow-lg max-w-[400px] w-full mx-auto form-connexion-invisible">
-                <!-- pas d'autoroute svp -->
-                <h2 class="text-lg font-bold text-center mb-5 text-[#F64F4F] border-b border-black p-3"
-                    style="max-width: 400px; margin-left: auto; margin-right: auto;">
-                    Connectez vous
+            <form *ngIf="currentTab === 'connexion'" #loginForm="ngForm" (ngSubmit)="onSubmitConnexion()"
+                class="bg-white py-10 px-8 rounded-3xl shadow-2xl max-w-[450px] w-full transition-all duration-500">
+
+                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-gray-100 pb-4">
+                    Connexion
                 </h2>
-                <div class="flex flex-col gap-4">
-                    <div class="form-group">
-                        <label for="email-connexion">Email <span class="text-[#F64F4F]">*</span></label>
-                        <input id="email-connexion" name="email" type="email" autocomplete="email"
-                            placeholder="Votre email" [(ngModel)]="email_connex" required
-                            class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
+
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Email <span class="text-red-500">*</span></label>
+                        <input name="email" type="email" placeholder="Votre email" [(ngModel)]="loginData.email"
+                            required
+                            class="border border-gray-300 rounded-xl py-4 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <div class="form-group">
-                        <label for="motdepasse-connexion">Mot de passe <span class="text-[#F64F4F]">*</span></label>
-                        <div class="password-wrapper">
-                            <input [type]="showMdpConnex ? 'text' : 'password'" id="motdepasse-connexion"
-                                name="motdepasse" autocomplete="current-password" placeholder="Votre mot de passe"
-                                [(ngModel)]="mdp_connex" required
-                                class="border border-[#ccc] rounded-xl py-2 px-2 w-full text-gray-500" />
-                            <button type="button" class="toggle-password absolute mt-[0.85rem] ml-[-1.65rem]"
-                                (click)="togglePassword('mdp_connex')">
-                                <!-- Icône œil barré -->
-                                <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+
+                    <div class="flex flex-col">
+                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <input [type]="showMdpConnex ? 'text' : 'password'" name="password"
+                                placeholder="Votre mot de passe" [(ngModel)]="loginData.password" required
+                                class="border border-gray-300 rounded-xl py-4 px-4 w-full focus:ring-2 focus:ring-red-500 outline-none transition-all" />
+                            <button type="button" (click)="togglePassword('mdp_connex')"
+                                class="absolute right-4 top-4 text-gray-400 hover:text-red-500 transition-colors">
+                                <svg *ngIf="!showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
                                     <path
                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                                 </svg>
-
-                                <!-- Icône œil ouvert -->
-                                <svg *ngIf="showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <svg *ngIf="showMdpConnex" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" viewBox="0 0 16 16">
                                     <path
                                         d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
@@ -211,22 +208,18 @@
                             </button>
                         </div>
                     </div>
-                    <div class="flex justify-center">
-                        <a routerLink="/mot-de-passe-oublie" class="text-[#2a6ef7] text-[0.95em] underline">Mot de passe
-                            oublié&nbsp;?</a>
+
+                    <div class="text-right">
+                        <a routerLink="/mot-de-passe-oublie" class="text-sm text-blue-600 hover:underline">Mot de passe
+                            oublié ?</a>
                     </div>
                 </div>
-                <div class="flex justify-center mt-6">
-                    <button id="submit-connexion" type="submit"
-                        class="rounded-xl py-2 w-40 bg-[#F64F4F] hover:bg-[#f97474] duration-300 transform-all cursor-pointer text-white font-semibold">
-                        Connexion
+
+                <div class="flex justify-center mt-10">
+                    <button type="submit" [disabled]="!loginForm.valid || isLoading"
+                        class="rounded-2xl py-4 w-full bg-red-500 hover:bg-red-600 disabled:bg-gray-400 transition-all cursor-pointer text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0">
+                        {{ isLoading ? 'Connexion...' : 'Se connecter' }}
                     </button>
-                </div>
-                <div *ngIf="successMessage" class="success">
-                    {{ successMessage }}
-                </div>
-                <div *ngIf="errorMessage" class="error">
-                    {{ errorMessage }}
                 </div>
             </form>
 
@@ -234,4 +227,5 @@
 
     </div>
 </section>
+
 <app-footer></app-footer>
