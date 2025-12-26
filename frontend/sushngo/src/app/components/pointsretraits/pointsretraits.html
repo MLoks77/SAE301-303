@@ -1,22 +1,98 @@
 <app-navbar></app-navbar>
-<div class="flex h-screen">
-    <div class="w-full flex flex-col h-full">
-        <div class="w-full h-10 bg-black flex items-center pl-4 gap-1">
-            <a routerLink="/accueil"
-                class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
-            <span class="text-white italic mb-1"> &gt; Points de retrait</span>
-        </div>
-        <div class="w-80 mx-auto mt-6">
 
-            <div class="flex items-center border px-3 py-2 shadow-sm">
-                <input type="text" placeholder="Rechercher..." class="flex-1 outline-none" />
-                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-                </svg>
+<div class="flex flex-col md:flex-row h-[calc(100vh-80px)] bg-gray-50 overflow-hidden relative">
+
+    <!-- Partie Carte (gauche) -->
+    <div class="relative flex-1 bg-white overflow-hidden shadow-inner flex items-center justify-center p-4">
+
+        <!-- Card Coin gauche -->
+        <div *ngIf="!selectedCity"
+            class="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-gray-100 max-w-[250px] animate-fade-in-down">
+            <h3 class="font-bold text-gray-800 text-lg">Trouvez votre point de retrait</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">
+                Cliquez sur une ville pour découvrir nos restaurants les plus proches de vous.
+            </p>
+        </div>
+        <!-- Le conteneur "Carte" avec ratio fixe pour l'alignement des points -->
+        <div id="map" class="relative w-full h-full max-w-[600px] max-h-[600px] aspect-square">
+
+            <!-- Nom ville + marqueur -->
+            <div *ngFor="let city of cities"
+                class="absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer hover:z-50"
+                [ngStyle]="{'left.%': city.x, 'top.%': city.y}" (click)="selectCity(city)">
+
+                <div class="flex flex-col items-center transition-transform duration-300 group-hover:scale-110">
+                    <!-- Point Rouge -->
+                    <div class="w-3 h-3 rounded-full bg-red-500 shadow-md mb-1 ring-4 ring-red-500/20 group-hover:ring-red-500/40 transition-all"
+                        [class.bg-gray-800]="selectedCity?.id === city.id"
+                        [class.scale-125]="selectedCity?.id === city.id">
+                    </div>
+
+                    <!-- Nom de la ville  -->
+                    <span
+                        class="text-sm font-bold bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm text-gray-700 border border-gray-200 group-hover:border-red-200 group-hover:text-red-600 transition-colors whitespace-nowrap"
+                        [class.bg-gray-800]="selectedCity?.id === city.id"
+                        [class.text-white]="selectedCity?.id === city.id"
+                        [class.border-transparent]="selectedCity?.id === city.id">
+                        {{ city.name }}
+                    </span>
+                </div>
             </div>
-            <div class="mt-3 bg-gray-100 rounded-md divide-y"></div>
+        </div>
+    </div>
+
+    <!-- Liste des restaurants à droite -->
+    <div class="w-full md:w-96 bg-white shadow-2xl z-20 flex flex-col border-l border-gray-200 transition-all duration-500 relative transform"
+        [ngClass]="{'translate-x-0': selectedCity, 'translate-x-full absolute right-0 h-full md:relative md:translate-x-0': !selectedCity}">
+
+        <!-- Entête de la liste a droite -->
+        <div class="p-6 border-b border-gray-100 bg-gray-50/50 backdrop-blur">
+            <div *ngIf="selectedCity">
+                <button (click)="selectedCity = null"
+                    class="md:hidden text-sm text-gray-500 hover:text-gray-800 mb-2 flex items-center gap-1">
+                    <span>←</span> Retour à la carte
+                </button>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-black text-gray-900 tracking-tight">{{ selectedCity.name }}</h2>
+                    <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">
+                        {{ filteredRestaurants.length }} lieux
+                    </span>
+                </div>
+                <p class="text-xs text-red-500 mt-2" *ngIf="errorMsg">{{ errorMsg }}</p>
+            </div>
+            <div *ngIf="!selectedCity"
+                class="h-full flex flex-col items-center justify-center text-center opacity-50 py-10">
+                <p class="font-semibold text-gray-400">Sélectionnez une ville pour voir les détails</p>
+            </div>
+        </div>
+
+        <!-- Liste des restaurants -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/30" *ngIf="selectedCity">
+            <div *ngFor="let rest of filteredRestaurants"
+                class="group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-red-100 transition-all">
+
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h3 class="font-bold text-gray-800 text-base group-hover:text-red-600 transition-colors">{{
+                            rest.name }}</h3>
+                        <p class="text-sm text-gray-500 leading-snug">{{ rest.adresse }}</p>
+                    </div>
+                    <div *ngIf="rest.distance !== undefined" class="flex flex-col items-end">
+                        <span class="text-lg font-bold text-gray-900">{{ rest.distance }}</span>
+                        <span class="text-[10px] text-gray-500 uppercase font-semibold">KM</span>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-gray-50 flex gap-2">
+                    <button
+                        class="flex-1 py-2 text-xs font-bold text-center rounded-lg bg-gray-900 text-white hover:bg-gray-800 transition-colors cursor-pointer"
+                        routerLink="/menus">
+                        Commander ici
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <app-footer></app-footer>

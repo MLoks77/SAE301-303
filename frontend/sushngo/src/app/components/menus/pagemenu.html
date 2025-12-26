@@ -1,13 +1,9 @@
 <app-navbar></app-navbar>
+<!-- Sebastian Chisiu -->
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
   <a routerLink="/accueil"
     class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
   <span class="text-white italic mb-1"> &gt; Notre carte</span>
-</div>
-<!-- Sebastian Chisiu -->
-<div class="w-full h-10 bg-black flex items-center pl-4 gap-1">
-  <a routerLink="/accueil" class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
-  <span class="text-white italic"> &gt; Menus</span>
 </div>
 <div class="w-[90%] h-[360px] border-3 border-black mx-auto mt-5 overflow-hidden relative">
   <div id="carousel-slider" class="h-full w-full flex transition-transform duration-700 ease-in-out"
@@ -31,19 +27,104 @@
   <div class="flex items-center justify-between px-2">
     <span class="font-semibold uppercase text-[13px] tracking-wider relative z-10">BOXES</span>
     <!--tracking wider = espacement entre les lettres -->
-    <button class="flex items-center gap-1 text-[13px] font-normal text-black">Filtres
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-[24px] h-[24px]" fill="none" viewBox="0 0 24 24"
-        stroke="currentcolor">
-        <circle cx="12" cy="12" r="10" stroke-width="2" />
-        <path stroke-width="2" d="M6 9h12M7 12h10M8 15h8" stroke-linecap="round" />
-        <!-- M = Move to 6(x) 9(y) h12(ligne horizontale de 12px) etc-->
-      </svg>
-    </button>
+    <div class="relative">
+      <button (click)="toggleMenuFiltres()" class="flex items-center gap-2">
+        Filtres
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px] h-[20px]" fill="none" viewBox="0 0 24 24"
+          stroke="currentcolor">
+          <circle cx="12" cy="12" r="10" stroke-width="2" />
+          <path stroke-width="2" d="M6 9h12M7 12h10M8 15h8" stroke-linecap="round" />
+          <!-- M = Move to 6(x) 9(y) h12(ligne horizontale de 12px) etc-->
+        </svg>
+      </button>
+
+      <!-- Menu déroulant des filtres -->
+      <div *ngIf="afficherFiltres"
+        class="absolute right-0 top-10 w-64 bg-white shadow-xl rounded-xl border border-gray-100 z-50 p-4">
+        <h4 class="font-bold text-sm mb-3">Ingrédients</h4>
+        <div class="max-h-60 overflow-y-auto space-y-2">
+          <div *ngFor="let filtre of filtresDisponibles" class="flex items-center gap-2">
+            <input type="checkbox" [id]="filtre" (change)="gererFiltre(filtre)"
+              [checked]="filtresSelectionnes.includes(filtre)"
+              class="rounded border-gray-300 text-black focus:ring-black">
+            <label [for]="filtre" class="text-sm cursor-pointer select-none">{{filtre}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="relative mt-px">
     <!-- si la div parent a un position autre que static (par défaut) (donc relative , absolute, sticky etc) l'élément enfant avec absolute prendra comme bord gauche-top-droit-bottom les bords de la div parent et pas de la page entiere-->
     <div class="border-b border-black w-full absolute left-0 top-1/2 transform -translate-y-1/2"></div>
     <div class="absolute right-2 top-0 h-full bg-white" style="width:65px"></div>
+  </div>
+</div>
+
+<div class="w-[90%] mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mb-10">
+  <div *ngFor="let box of listeFiltree" (click)="ouvrirModal(box)"
+    class="bg-[#F8F8F8] p-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 relative group border border-transparent hover:border-gray-200 cursor-pointer">
+    <div class="absolute top-3 right-3 text-black hover:bg-gray-200 rounded-full p-1 transition-colors z-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1"></circle>
+        <circle cx="19" cy="12" r="1"></circle>
+        <circle cx="5" cy="12" r="1"></circle>
+      </svg>
+    </div>
+
+    <!-- Image -->
+    <div
+      class="w-full aspect-square flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105">
+      <img [src]="box.image" [alt]="box.nom" class="w-full h-full object-contain drop-shadow-lg" />
+    </div>
+
+    <!-- Données de la box -->
+    <div class="flex flex-col">
+      <h3 class="font-bold text-lg text-black mb-1 line-clamp-1">{{box.nom}}</h3>
+      <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{box.description}}</p>
+      <div class="text-right">
+        <span class="font-bold text-xl text-black">{{box.prix}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL / OVERLAY PRODUIT -->
+<div *ngIf="boxSelectionnee" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative p-6">
+
+    <!-- Bouton Fermer -->
+    <button (click)="fermerModal()"
+      class="absolute top-4 right-4 text-black hover:bg-gray-100 p-2 rounded-full cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Image -->
+      <div class="w-full md:w-1/2">
+        <img [src]="boxSelectionnee.image" [alt]="boxSelectionnee.nom"
+          class="w-full h-auto object-contain rounded-xl bg-gray-50">
+      </div>
+
+      <!-- Détails -->
+      <div class="w-full md:w-1/2 flex flex-col">
+        <h2 class="text-2xl font-bold mb-2">{{boxSelectionnee.nom}}</h2>
+        <span class="text-xl font-bold text-red-600 mb-4">{{boxSelectionnee.prix}}</span>
+
+        <p class="text-gray-600 mb-6">{{boxSelectionnee.description}}</p>
+
+        <!-- Exemples de boutons (pas encore fonctionnels) -->
+        <button class="w-full bg-black text-white font-bold py-3 rounded-full hover:bg-gray-800 transition mb-3">
+          Ajouter au panier
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>
 

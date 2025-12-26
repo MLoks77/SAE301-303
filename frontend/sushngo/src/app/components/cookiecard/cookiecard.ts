@@ -13,8 +13,16 @@ export class Cookiecard {
 
   public isClosed: boolean = false; //variable pour savoir si cookiecard est fermée (ici non)
 
+  ngOnInit() {
+    // Vérifie si l'utilisateur a déjà fait un choix
+    if (localStorage.getItem('cookieDecision')) {
+      this.isClosed = true;
+    }
+  }
+
   accepterCookies() {
     this.message = "Les cookies ont été acceptés. Miam !";
+    localStorage.setItem('cookieDecision', 'accepted'); // Sauvegarde le choix
 
     setTimeout(() => { //setTimeout = chronomètre et 2000 = 2000ms (2secondes)
       this.isClosed = true; //isClosed = true -> Cookiecard disparait
@@ -23,6 +31,7 @@ export class Cookiecard {
 
   refuserCookies() {
     this.message = "Les cookies ont été refusés. Oh non !";
+    localStorage.setItem('cookieDecision', 'refused'); // Sauvegarde le choix
 
     setTimeout(() => {
       this.isClosed = true;

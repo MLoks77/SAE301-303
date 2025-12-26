@@ -31,8 +31,25 @@ export class Pagemenu implements OnInit {
     }
   ];
 
-  boxData: any;
+  listeBoxes: any[] = [];
+  listeFiltree: any[] = []; // La liste qu'on affiche vraiment
+
+  filtresDisponibles: string[] = []; // Liste de tous les ingrédients possibles
+  filtresSelectionnes: string[] = []; // Les ingrédients cochés par l'utilisateur
+  afficherFiltres: boolean = false;   // Pour ouvrir/fermer le menu
+
   apiData: any;
+  boxData: any;
+
+  boxSelectionnee: any = null; // La box sur laquelle on a cliqué
+
+  ouvrirModal(box: any) {
+    this.boxSelectionnee = box;
+  }
+
+  fermerModal() {
+    this.boxSelectionnee = null;
+  }
 
   constructor(private connexionApi: ConnexionApi) { }
 
@@ -42,11 +59,77 @@ export class Pagemenu implements OnInit {
   }
 
   getData() {
-    this.connexionApi.getUserDataFromApi().subscribe((res => {
-      this.apiData = res;
-      this.boxData = res;
-      console.log('Boxes loaded:', res);
-    }));
+    this.connexionApi.getUserDataFromApi().subscribe({ //sert a appeler l'api
+      next: (res: any) => {
+        console.log('API Response:', res);
+        if (Array.isArray(res)) {
+          this.listeBoxes = res.map((item: any) => ({ //ajoute a ListeBoxes les données de l'API en transformant leurs noms
+            id: item.id_produit,
+            nom: item.nom,
+            description: item.saveurs,
+            prix: Number(item.prix).toFixed(2) + '€',// transforme un str en nombre avec 2 chiffres apres la virgule + le signe €
+            image: '/images/box/' + item.image + '.jpg'
+          }));
+
+          // 1. On initialise la liste filtrée avec TOUT au début
+          this.listeFiltree = [...this.listeBoxes];
+
+          // 2. On récupère tous les ingrédients pour créer les filtres
+          this.extraireFiltres();
+        } else {
+          console.error('API response is not an array', res);
+        }
+        this.apiData = res;
+        this.boxData = res;
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      }
+    });
+  }
+
+  extraireFiltres() {
+    const tousLesMots = new Set<string>(); //une sorte de tableau qui ne peut pas avoir de doublons
+
+    this.listeBoxes.forEach(box => {
+      if (box.description) {
+        // On sépare par les virgules (ex: "saumon, avocat" -> ["saumon", "avocat"])
+        const mots = box.description.split(',').map((mot: string) => mot.trim()); //split =une virgule = un element du tableau et trim = supprime les espaces
+        mots.forEach((mot: string) => tousLesMots.add(mot)); //ajoute chaque mot au set
+      }
+    });
+
+    this.filtresDisponibles = Array.from(tousLesMots).sort(); //transforme le set en tableau et le trie 
+  }
+
+  // Affiche ou cache le menu filtres
+  toggleMenuFiltres() {
+    this.afficherFiltres = !this.afficherFiltres;
+  }
+
+  // sélectionner un ingrédient
+  gererFiltre(filtre: string) {
+    if (this.filtresSelectionnes.includes(filtre)) { //parcourt le tableau et vérifie si le filtre est déjà dedans
+      this.filtresSelectionnes = this.filtresSelectionnes.filter(f => f !== filtre); //si déjà coché, on le supprime
+    } else {
+      this.filtresSelectionnes.push(filtre); // Sinon on l'ajoute
+    }
+    // Après avoir changé la sélection, on met à jour la liste affichée
+    this.appliquerFiltres();
+  }
+
+  appliquerFiltres() {
+    // Si aucun filtre coché, on montre tout
+    if (this.filtresSelectionnes.length === 0) {
+      this.listeFiltree = [...this.listeBoxes]; // [...this.listeBoxes] = copie telle quelle de la listeBoxes
+      return;
+    }
+
+    this.listeFiltree = this.listeBoxes.filter(box => { //parcourt la listeBoxes
+      return this.filtresSelectionnes.every(filtre => //parcourt le tableau des filtres cochés, et affiche seulement les boxes dont tous les filtres cochés sont présents dans la liste des ingrédients de la description
+        box.description && box.description.includes(filtre)
+      );
+    });
   }
 
   activeCarrouselIndex = 0;
@@ -62,6 +145,7 @@ export class Pagemenu implements OnInit {
   setCarrouselIndex(i: number) {
     this.activeCarrouselIndex = i;
   }
+
 
   ngOnDestroy(): void {
     if (this.carrouselInterval) {
