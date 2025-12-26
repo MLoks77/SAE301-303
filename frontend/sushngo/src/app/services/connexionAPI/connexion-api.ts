@@ -55,5 +55,7 @@ export class ConnexionApi {
   }
 
 
-
+  logout() {
+    localStorage.removeItem('token');
+  }
 }

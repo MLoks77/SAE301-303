@@ -114,9 +114,21 @@
       <!-- Détails -->
       <div class="w-full md:w-1/2 flex flex-col">
         <h2 class="text-2xl font-bold mb-2">{{boxSelectionnee.nom}}</h2>
-        <span class="text-xl font-bold text-red-600 mb-4">{{boxSelectionnee.prix}}</span>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-xl font-bold text-red-600">{{boxSelectionnee.prix}}</span>
+          <span class="text-gray-500 text-sm bg-gray-100 px-2 py-1 rounded-full">{{boxSelectionnee.pieces}}
+            pièces</span>
+        </div>
 
-        <p class="text-gray-600 mb-6">{{boxSelectionnee.description}}</p>
+        <div class="mb-6">
+          <h4 class="font-bold text-sm mb-2">Composition :</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">{{boxSelectionnee.aliments}}</p>
+        </div>
+
+        <div class="mb-4">
+          <span class="text-xs text-gray-400 uppercase tracking-widest">Saveurs</span>
+          <p class="text-sm font-medium">{{boxSelectionnee.saveurs}}</p>
+        </div>
 
         <!-- Exemples de boutons (pas encore fonctionnels) -->
         <button class="w-full bg-black text-white font-bold py-3 rounded-full hover:bg-gray-800 transition mb-3">

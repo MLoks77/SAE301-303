@@ -65,13 +65,15 @@ export class Pagemenu {
   getData() {
     this.connexionApi.getUserDataFromApi().subscribe({ //sert a appeler l'api
       next: (res: any) => {
-        console.log('API Response:', res);
         if (Array.isArray(res)) {
           this.listeBoxes = res.map((item: any) => ({ //ajoute a ListeBoxes les données de l'API en transformant leurs noms
             id: item.id_produit,
             nom: item.nom,
-            description: item.saveurs,
-            prix: Number(item.prix).toFixed(2) + '€',// transforme un str en nombre avec 2 chiffres apres la virgule + le signe €
+            description: item.saveurs, // On garde saveurs en description pour la card
+            saveurs: item.saveurs,
+            aliments: item.aliments,
+            pieces: item.pieces,
+            prix: Number(item.prix).toFixed(2) + '€',
             image: '/images/box/' + item.image + '.jpg'
           }));
 
@@ -81,13 +83,11 @@ export class Pagemenu {
           // 2. On récupère tous les ingrédients pour créer les filtres
           this.extraireFiltres();
         } else {
-          console.error('API response is not an array', res);
         }
         this.apiData = res;
         this.boxData = res;
       },
       error: (err: any) => {
-        console.error('API Error:', err);
       }
     });
   }

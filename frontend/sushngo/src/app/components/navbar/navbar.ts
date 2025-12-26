@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
 import { Router } from '@angular/router'; // pour api ( maxime derènes )
 
+import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
+
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, CommonModule],
@@ -16,7 +18,7 @@ export class Navbar implements OnInit {
   isMenuOpen: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public connexionApi: ConnexionApi) { }
 
   // témi kergastel
   ngOnInit() {
@@ -30,7 +32,7 @@ export class Navbar implements OnInit {
   }
 
   logout() { // a fix quand on aura mis le logout dans le service
-    this.authService.logout();
+    this.connexionApi.logout();
     this.isLoggedIn = false;
   }
 
