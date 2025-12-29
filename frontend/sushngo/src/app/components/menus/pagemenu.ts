@@ -5,11 +5,11 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pagemenu',
-  imports: [RouterLink, Footer, Navbar, CommonModule],
+  imports: [RouterLink, Footer, Navbar, CommonModule, FormsModule],
   templateUrl: './pagemenu.html',
   styleUrl: './pagemenu.css',
 })
@@ -44,9 +44,16 @@ export class Pagemenu {
   boxData: any;
 
   boxSelectionnee: any = null; // La box sur laquelle on a cliqué
+  quantiteSelectionnee: number = 1; // Quantité par défaut
 
   ouvrirModal(box: any) {
-    this.boxSelectionnee = box;
+    this.boxSelectionnee = box; // Stocke la box cliquée
+    this.quantiteSelectionnee = 1; // On remet la quantité à 1 à chaque ouverture 
+    if (this.boxSelectionnee.saveurs) { // On verifie si la box a des saveurs 
+      this.boxSelectionnee.saveursListe = this.boxSelectionnee.saveurs.split(',').map((s: any) => s.trim()); //On transforme la liste des saveurs en tableau
+    } else {
+      this.boxSelectionnee.saveursListe = []; //si on a pas de saveurs , on renvoie un tableau vide
+    }
   }
 
   fermerModal() {
@@ -71,7 +78,7 @@ export class Pagemenu {
             saveurs: item.saveurs,
             aliments: item.aliments,
             pieces: item.pieces,
-            prix: Number(item.prix).toFixed(2) + '€',
+            prix: Number(item.prix).toFixed(2),
             image: '/images/box/' + item.image + '.jpg'
           }));
 
@@ -95,8 +102,7 @@ export class Pagemenu {
 
     this.listeBoxes.forEach(box => {
       if (box.description) {
-        // On sépare par les virgules (ex: "saumon, avocat" -> ["saumon", "avocat"])
-        const mots = box.description.split(',').map((mot: string) => mot.trim()); //split =une virgule = un element du tableau et trim = supprime les espaces
+        const mots = box.description.split(',').map((mot: string) => mot.trim()); //split => une virgule = un element du tableau et trim = supprime les espaces
         mots.forEach((mot: string) => tousLesMots.add(mot)); //ajoute chaque mot au set
       }
     });
@@ -148,10 +154,14 @@ export class Pagemenu {
     this.activeCarrouselIndex = i;
   }
 
-
   ngOnDestroy(): void {
     if (this.carrouselInterval) {
       clearInterval(this.carrouselInterval);
     }
+  }
+
+  getPrixTotal() {
+    if (!this.boxSelectionnee) return 0; // tant que rien n'est sélectionné , retourner 0
+    return (this.boxSelectionnee.prix * this.quantiteSelectionnee).toFixed(2);
   }
 }
