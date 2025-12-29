@@ -28,6 +28,10 @@ export class ConnexionApi {
     return this.http.get(`${this.API_URL}/api.php`);
   }
 
+  getStats() {
+    return this.http.get(`${this.API_URL}/api.php?action=stats`); // action stats sert à récupérer les stats
+  }
+
   inscription(inscriptionData: {
     nom: string,
     prenom: string,

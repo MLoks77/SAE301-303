@@ -17,36 +17,36 @@ export class Accueil {
   plats = [
     {
       id: 1,
-      name: 'Toro Sashimi',
+      name: 'Master Mix',
       description: 'Thon premium, finement tranché.',
-      price: '€24',
+      price: '15.90€',
       image:
         '/images/assets/sushi1.webp',
       link: '/menus', // mettre un id
     },
     {
       id: 2,
-      name: 'Uni Nigiri',
+      name: 'Sunrise',
       description: 'Oursin frais d’Hokkaido, croustillant et savoureux.',
-      price: '€18',
+      price: '15.90€',
       image:
         '/images/assets/sushi2.webp',
       link: '/menus', // mettre un id
     },
     {
       id: 3,
-      name: 'Wagyu Roll',
-      description: 'Bœuf Wagyu poêlé, huile de truffe, asperges.',
-      price: '€32',
+      name: 'Sando Box Chicken Katsu',
+      description: 'Poulet Katsu, sauce teriyaki, riz',
+      price: '15.90€',
       image:
         '/images/assets/sushi3.webp',
       link: '/menus', // mettre un id
     },
     {
       id: 4,
-      name: 'Omakase Set',
-      description: "Sélection du chef : 12 pièces de saison.",
-      price: '€85',
+      name: 'California Dream',
+      description: 'Spicy saumon, thon, crevette, viande et avocat.',
+      price: '19.90€',
       image:
         '/images/assets/sushi4.webp',
       link: '/menus', // mettre un id

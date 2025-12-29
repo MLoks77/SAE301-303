@@ -1,0 +1,78 @@
+<?php
+
+// maxime derènes
+class StatsManager
+{
+    private $pdo;
+
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    public function getGlobalMetrics()
+    {
+        // Commandes aujourd'hui
+        $stmt = $this->pdo->query("SELECT COUNT(*) as count FROM commande WHERE DATE(date_commande) = CURDATE()");
+        $ordersToday = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+
+        // Revenu total
+        $stmt = $this->pdo->query("SELECT SUM(prix_total) as total FROM commande");
+        $totalRevenue = $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+
+        // Note clients (simulation)
+        $rating = 3.8;
+
+        return [
+            'orders_today' => $ordersToday,
+            'total_revenue' => $totalRevenue,
+            'rating' => $rating,
+        ];
+    }
+
+    // on prend les plats les plus commandés en se basant sur la quantité et on les met dans l'ordre du prix
+    public function getPopularDishes()
+    {
+        $sql = "SELECT p.nom, SUM(d.quantite) as orders, p.prix 
+                FROM detail_commande d 
+                JOIN produit p ON d.id_produit = p.id_produit 
+                GROUP BY d.id_produit 
+                ORDER BY orders DESC 
+                LIMIT 5";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getWeeklyStats()
+    {
+        // on vient récupérer les commandes des7 derniers jours
+        $sql = "SELECT DATE_FORMAT(date_commande, '%a') as day, 
+                       SUM(prix_total) as revenue, 
+                       COUNT(*) as orders 
+                FROM commande 
+                WHERE date_commande >= DATE_SUB(NOW(), INTERVAL 7 DAY) 
+                GROUP BY DATE(date_commande) 
+                ORDER BY date_commande";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getHourlyStats()
+    {
+        $sql = "SELECT HOUR(date_commande) as hour, COUNT(*) as orders 
+                FROM commande 
+                GROUP BY HOUR(date_commande) 
+                ORDER BY hour";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllStats()
+    {
+        return [
+            'metrics' => $this->getGlobalMetrics(),
+            'popular_dishes' => $this->getPopularDishes(),
+            'weekly_data' => $this->getWeeklyStats(),
+            'hourly_data' => $this->getHourlyStats()
+        ];
+    }
+}
+?>
