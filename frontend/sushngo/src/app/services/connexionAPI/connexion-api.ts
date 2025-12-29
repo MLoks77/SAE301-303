@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "http://localhost/SAE301-303/backend/api";
+  protected API_URL = "http://localhost/SAE301-303/backend/api/api.php";
 
   constructor(private http: HttpClient) { }
 
@@ -42,8 +42,8 @@ export class ConnexionApi {
     const dataForApi = {
       nom: inscriptionData.nom,
       prenom: inscriptionData.prenom,
-      email: inscriptionData.email_inscr,       // ← Mapping
-      password: inscriptionData.mdp_inscr,      // ← Mapping
+      email: inscriptionData.email_inscr,
+      password: inscriptionData.mdp_inscr,
       telephone: inscriptionData.telephone,
       adresse: inscriptionData.adresse,
       statut_etud: inscriptionData.etudiant ? 1 : 0
