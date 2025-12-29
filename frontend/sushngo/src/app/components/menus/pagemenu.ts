@@ -15,21 +15,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class Pagemenu {
 
-  carrousel = [
+  carrousel: any[] = [
     {
       id: 1,
-      image: '/images/assets/sushi1.webp',
-      link: '/compte',
+      image: '/images/assets/image_sushi_1.jpg',
+      link: '/accueil',
+      position: 'center 60%',
     },
     {
       id: 2,
-      image: '/images/assets/sushi1.webp',
-      link: '/statistiques',
+      image: '/images/assets/image_sushi_2.jpg',
+      link: '/accueil',
+      position: 'center 55%'
     },
     {
       id: 3,
-      image: '/images/assets/sushi1.webp',
-      link: '/menus/#',
+      image: '/images/assets/image_sushi_3.jpg',
+      link: '/accueil',
+      position: 'center',
     }
   ];
 
@@ -104,8 +107,8 @@ export class Pagemenu {
     const tousLesMots = new Set<string>(); //une sorte de tableau qui ne peut pas avoir de doublons
 
     this.listeBoxes.forEach(box => {
-      if (box.description) {
-        const mots = box.description.split(',').map((mot: string) => mot.trim()); //split => une virgule = un element du tableau et trim = supprime les espaces
+      if (box.saveurs) {
+        const mots = box.saveurs.split(',').map((mot: string) => mot.trim()); //split => une virgule = un element du tableau et trim = supprime les espaces
         mots.forEach((mot: string) => tousLesMots.add(mot)); //ajoute chaque mot au set
       }
     });

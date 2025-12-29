@@ -5,19 +5,20 @@
     class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
   <span class="text-white italic mb-1"> &gt; Notre carte</span>
 </div>
-<div class="w-[90%] h-[360px] border-3 border-black mx-auto mt-5 overflow-hidden relative">
+<div class="w-[90%] h-[300px] border-3 border-black mx-auto mt-5 overflow-hidden relative">
   <div id="carousel-slider" class="h-full w-full flex transition-transform duration-700 ease-in-out"
     [style.transform]="'translateX(-' + (activeCarrouselIndex * 100) + '%)'">
     <div *ngFor="let slide of carrousel" class="min-w-full h-full bg-white">
       <a [routerLink]="slide.link" class="block w-full h-full">
-        <img [src]="slide.image" alt="carousel image" class="w-full h-full object-cover" />
+        <img [src]="slide.image" alt="carousel image" class="w-full h-full object-cover"
+          [style.object-position]="slide.position || 'center'" />
       </a>
     </div>
   </div>
   <!-- Dots navigation -->
   <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
     <button *ngFor="let slide of carrousel; let i = index" class="w-2.5 h-2.5 rounded-full"
-      [ngClass]="{'bg-black': i === activeCarrouselIndex, 'bg-gray-300': i !== activeCarrouselIndex}"
+      [ngClass]="{'bg-white': i === activeCarrouselIndex, 'bg-gray-300': i !== activeCarrouselIndex}"
       (click)="setCarrouselIndex(i)">
     </button>
   </div>
