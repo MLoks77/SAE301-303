@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require_once __DIR__ . '/../config/configdb.php';
 require_once __DIR__ . '/PHP/users/manager/UserManager.php';
 require_once __DIR__ . '/PHP/boxes/boxmanager.php';
+require_once __DIR__ . '/PHP/stats/StatsManager.php';
 
 $content = file_get_contents('php://input');
 $data = json_decode($content, true);
@@ -20,9 +21,16 @@ $userManager = new UserManager($pdo);
 
 // utilisateurss
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'check-session') {
-    echo json_encode($userManager->checkSession());
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
+    if ($_GET['action'] === 'check-session') {
+        echo json_encode($userManager->checkSession());
+        exit;
+    }
+    if ($_GET['action'] === 'stats') {
+        $statsManager = new StatsManager($pdo);
+        echo json_encode($statsManager->getAllStats());
+        exit;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

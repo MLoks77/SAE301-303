@@ -1,3 +1,5 @@
+// maxime derènes
+
 import { Component, AfterViewInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
@@ -5,7 +7,8 @@ import { RouterLink } from '@angular/router';
 import Chart from 'chart.js/auto'; // sans ça sa affiche pas
 import { CommonModule } from '@angular/common';
 
-// en attendant que je connecte l'api et le fasse correctement je met ça
+import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
+
 
 
 @Component({
@@ -16,60 +19,73 @@ import { CommonModule } from '@angular/common';
 })
 export class Stats implements AfterViewInit {
 
-  METRICS = [
-    { label: "Commandes aujourd'hui", value: '142' },
-    { label: 'Revenu total', value: '€2 450,00' },
-    { label: 'Note clients', value: '4.9' },
-    { label: 'Réservations actives', value: '28' }
-  ];
+  constructor(private connexionApi: ConnexionApi) { }
 
-  POPULAR_DISHES = [
-    { name: 'Saumon Nigiri', orders: 84, price: '€6,00' },
-    { name: 'Dragon Roll', orders: 72, price: '€14,00' },
-    { name: 'Thon Épicé', orders: 65, price: '€8,50' },
-    { name: 'Soupe Miso', orders: 58, price: '€3,00' },
-    { name: 'Sashimi Thon', orders: 45, price: '€12,00' }
-  ];
+  weeklyChart: Chart | undefined;
+  hourlyChart: Chart | undefined;
 
-  WEEKLY_DATA = [
-    { day: 'Lun', orders: 95, revenue: 1450 },
-    { day: 'Mar', orders: 110, revenue: 1680 },
-    { day: 'Mer', orders: 125, revenue: 1920 },
-    { day: 'Jeu', orders: 115, revenue: 1780 },
-    { day: 'Ven', orders: 180, revenue: 2850 },
-    { day: 'Sam', orders: 210, revenue: 3400 },
-    { day: 'Dim', orders: 160, revenue: 2550 }
-  ];
-
-  HOURLY_DATA = [
-    { hour: '11:00', orders: 12 },
-    { hour: '12:00', orders: 45 },
-    { hour: '13:00', orders: 38 },
-    { hour: '14:00', orders: 20 },
-    { hour: '15:00', orders: 15 },
-    { hour: '16:00', orders: 18 },
-    { hour: '17:00', orders: 35 },
-    { hour: '18:00', orders: 65 },
-    { hour: '19:00', orders: 82 },
-    { hour: '20:00', orders: 55 },
-    { hour: '21:00', orders: 30 }
-  ];
+  METRIQUES: any[] = [];
+  plats_populaires: any[] = [];
+  donnees_hebdomadaires: any[] = [];
+  donnees_horaires: any[] = [];
 
   ngAfterViewInit(): void {
-    this.renderWeeklyChart();
-    this.renderHourlyChart();
+    this.loadData();
+  }
+
+  loadData() {
+    this.connexionApi.getStats().subscribe({
+      next: (res: any) => {
+        // récupère le résultat de SELECT COUNT(*) FROM commande WHERE DATE(date_commande) = CURDATE()
+        // récupère le résultat de SELECT SUM(prix_total) FROM commande
+        this.METRIQUES = [
+          { label: "Commandes aujourd'hui", value: res.metrics.orders_today },
+          { label: 'Revenu total', value: '€' + Number(res.metrics.total_revenue).toFixed(2) },
+          { label: 'Note clients', value: res.metrics.rating },
+        ];
+
+        // récupère les résultats de SELECT p.nom, SUM(d.quantite), p.prix FROM detail_commande d JOIN produit p ...
+        this.plats_populaires = res.popular_dishes.map((pd: any) => ({
+          name: pd.nom,
+          orders: Number(pd.orders),
+          price: '€' + Number(pd.prix).toFixed(2)
+        }));
+
+        // récupère les résultats de SELECT DATE_FORMAT(date_commande, '%a'), SUM(prix_total), COUNT(*) FROM commande ...
+        this.donnees_hebdomadaires = res.weekly_data.map((w: any) => ({
+          day: w.day,
+          orders: Number(w.orders),
+          revenue: Number(w.revenue)
+        }));
+
+        // récupère les résultats de SELECT HOUR(date_commande), COUNT(*) FROM commande ...
+        this.donnees_horaires = res.hourly_data.map((h: any) => ({
+          hour: h.hour + ':00',
+          orders: Number(h.orders)
+        }));
+
+        this.renderWeeklyChart();
+        this.renderHourlyChart();
+      },
+      error: (err) => {
+        console.error('Erreur chargement stats:', err);
+      }
+    });
   }
 
   renderWeeklyChart() {
     const ctx = document.getElementById('weeklyChart') as HTMLCanvasElement;
+    if (!ctx) return;
 
-    new Chart(ctx, {
+    if (this.weeklyChart) this.weeklyChart.destroy();
+
+    this.weeklyChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.WEEKLY_DATA.map(d => d.day),
+        labels: this.donnees_hebdomadaires.map(d => d.day),
         datasets: [{
           label: 'Revenue',
-          data: this.WEEKLY_DATA.map(d => d.revenue),
+          data: this.donnees_hebdomadaires.map(d => d.revenue),
           borderColor: '#8B0000',
           backgroundColor: 'rgba(139,0,0,0.2)',
           fill: true,
@@ -83,10 +99,11 @@ export class Stats implements AfterViewInit {
         plugins: { legend: { display: false } },
         scales: {
           y: {
+            beginAtZero: true,
             ticks: {
               callback: (value: number | string) => {
                 const n = typeof value === 'number' ? value : Number(value);
-                return '€' + (n / 1000) + 'k';
+                return '€' + n;
               }
             }
           }
@@ -97,26 +114,34 @@ export class Stats implements AfterViewInit {
 
   renderHourlyChart() {
     const ctx = document.getElementById('hourlyChart') as HTMLCanvasElement;
+    if (!ctx) return;
 
-    new Chart(ctx, {
+    if (this.hourlyChart) this.hourlyChart.destroy();
+
+    this.hourlyChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: this.HOURLY_DATA.map(d => d.hour),
+        labels: this.donnees_horaires.map(d => d.hour),
         datasets: [{
-          data: this.HOURLY_DATA.map(d => d.orders),
+          data: this.donnees_horaires.map(d => d.orders),
           borderRadius: 4,
-          backgroundColor: this.HOURLY_DATA.map(entry => {
+          backgroundColor: this.donnees_horaires.map(entry => {
             const hour = parseInt(entry.hour);
-            if (hour >= 12 && hour <= 14) return '#1a1a1a'; // Lunch
-            if (hour >= 18 && hour <= 20) return '#8B0000'; // Dinner
-            return '#e5e5e5'; // Default
+            if (hour >= 12 && hour <= 14) return '#1a1a1a'; // matin
+            if (hour >= 18 && hour <= 20) return '#8B0000'; // soir
+            return '#e5e5e5';
           })
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } }
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
     });
   }
