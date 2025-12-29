@@ -3,8 +3,7 @@ import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
-import { Router } from '@angular/router'; // pour api ( maxime derènes )
+
 import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { FormsModule } from '@angular/forms';
 

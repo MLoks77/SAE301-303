@@ -24,18 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categorie`
---
-
-CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL,
-  `categorie` varchar(100) DEFAULT NULL,
-  `img_logo` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `commande`
 --
 
@@ -85,7 +73,6 @@ CREATE TABLE `produit` (
   `aliments` text DEFAULT NULL,
   `prix` float DEFAULT NULL,
   `pieces` int(11) DEFAULT NULL,
-  `id_souscat` int(11) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -93,32 +80,20 @@ CREATE TABLE `produit` (
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id_produit`, `nom`, `description`, `saveurs`, `aliments`, `prix`, `pieces`, `id_souscat`, `image`) VALUES
-(14, 'Tasty Blend', NULL, 'saumon, avocat, cheese', 'California Saumon Avocat (3); Sushi Saumon (3); Spring Avocat Cheese (3); California pacific (3); Edamame/Salade de chou (1)', 12.5, 12, NULL, 'tasty-blend'),
-(15, 'Amateur Mix', NULL, 'coriandre, saumon, avocat, cheese', 'Maki Salmon Roll (3); Spring Saumon Avocat (3); Maki Cheese Avocat (6); California Saumon Avocat (3); Edamame/Salade de chou (1)', 15.9, 18, NULL, 'amateur-mix'),
-(16, 'Saumon Original', NULL, 'saumon, avocat', 'California Saumon Avocat (6); Sushi Saumon (5); Edamame/Salade de chou (1)', 12.5, 11, NULL, 'saumon-original'),
-(17, 'Salmon Lovers', NULL, 'coriandre, saumon, avocat', 'California Saumon Avocat (6); Spring Saumon Avocat (6); Sushi Saumon (6); Edamame/Salade de chou (1)', 15.9, 18, NULL, 'salmon-lovers'),
-(18, 'Salmon Classic', NULL, 'saumon', 'Sushi Saumon (10); Edamame/Salade de chou (1)', 15.9, 10, NULL, 'salmon-classic'),
-(19, 'Master Mix', NULL, 'saumon, thon, avocat', 'Sushi Saumon (4); Sushi Thon (2); California Thon Avocat (3); California Saumon Avocat (3); Edamame / Salade de chou (1)', 15.9, 12, NULL, 'master-mix'),
-(20, 'Sunrise', NULL, 'saumon, thon, avocat, cheese', 'Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 18, NULL, 'sunrise'),
-(21, 'Sando Box Chicken Katsu', NULL, 'saumon, viande, avocat, cheese', 'Sando Chicken Katsu (0.5); Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, NULL, 'sando-box-chicken-katsu'),
-(22, 'Sando Box Salmon Aburi', NULL, 'saumon, thon, avocat', 'Sando Salmon Aburi (0.5); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, NULL, 'sando-box-salmon-aburi'),
-(23, 'Super Salmon', NULL, 'coriandre, saumon, avocat, cheese', 'California Saumon Avocat (6); Maki Salmon Roll (6); Maki Salmon (6); Spring Saumon Avocat (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'super-salmon'),
-(24, 'California Dream', NULL, 'spicy, saumon, thon, crevette, viande, avocat', 'California Saumon Avocat (6); California Crevette (6); California Thon Cuit Avocat (6); California Chicken Katsu (6); Edamame / Salade de chou (1)', 19.9, 24, NULL, 'california-dream'),
-(25, 'Gourmet Mix', NULL, 'coriande, spicy, saumon, viande, avocat, seriole lalandi', 'Spring tataki Saumon (6); Signature Dragon Roll (4); California French Touch (3); California French salmon (6); California Yellowtail Ponzu (3); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'gourmet-mix'),
-(26, 'Fresh Mix', NULL, 'spicy, saumon, thon, avocat, cheese', 'Signature Rock\'n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame / Salade de chou (1)', 24.5, 22, NULL, 'fresh-mix');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `souscategorie`
---
-
-CREATE TABLE `souscategorie` (
-  `id_souscat` int(11) NOT NULL,
-  `souscategorie` varchar(100) DEFAULT NULL,
-  `id_categorie` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `produit` (`id_produit`, `nom`, `description`, `saveurs`, `aliments`, `prix`, `pieces`, `image`) VALUES
+(14, 'Tasty Blend', NULL, 'saumon, avocat, cheese', 'California Saumon Avocat (3); Sushi Saumon (3); Spring Avocat Cheese (3); California pacific (3); Edamame/Salade de chou (1)', 12.5, 12, 'tasty-blend'),
+(15, 'Amateur Mix', NULL, 'coriandre, saumon, avocat, cheese', 'Maki Salmon Roll (3); Spring Saumon Avocat (3); Maki Cheese Avocat (6); California Saumon Avocat (3); Edamame/Salade de chou (1)', 15.9, 18, 'amateur-mix'),
+(16, 'Saumon Original', NULL, 'saumon, avocat', 'California Saumon Avocat (6); Sushi Saumon (5); Edamame/Salade de chou (1)', 12.5, 11, 'saumon-original'),
+(17, 'Salmon Lovers', NULL, 'coriandre, saumon, avocat', 'California Saumon Avocat (6); Spring Saumon Avocat (6); Sushi Saumon (6); Edamame/Salade de chou (1)', 15.9, 18, 'salmon-lovers'),
+(18, 'Salmon Classic', NULL, 'saumon', 'Sushi Saumon (10); Edamame/Salade de chou (1)', 15.9, 10, 'salmon-classic'),
+(19, 'Master Mix', NULL, 'saumon, thon, avocat', 'Sushi Saumon (4); Sushi Thon (2); California Thon Avocat (3); California Saumon Avocat (3); Edamame / Salade de chou (1)', 15.9, 12, 'master-mix'),
+(20, 'Sunrise', NULL, 'saumon, thon, avocat, cheese', 'Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 18, 'sunrise'),
+(21, 'Sando Box Chicken Katsu', NULL, 'saumon, viande, avocat, cheese', 'Sando Chicken Katsu (0.5); Maki Salmon Roll (6); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, 'sando-box-chicken-katsu'),
+(22, 'Sando Box Salmon Aburi', NULL, 'saumon, thon, avocat', 'Sando Salmon Aburi (0.5); California Saumon Avocat (6); California Thon Cuit Avocat (6); Edamame / Salade de chou (1)', 15.9, 13, 'sando-box-salmon-aburi'),
+(23, 'Super Salmon', NULL, 'coriandre, saumon, avocat, cheese', 'California Saumon Avocat (6); Maki Salmon Roll (6); Maki Salmon (6); Spring Saumon Avocat (6); Edamame / Salade de chou (1)', 19.9, 24, 'super-salmon'),
+(24, 'California Dream', NULL, 'spicy, saumon, thon, crevette, viande, avocat', 'California Saumon Avocat (6); California Crevette (6); California Thon Cuit Avocat (6); California Chicken Katsu (6); Edamame / Salade de chou (1)', 19.9, 24, 'california-dream'),
+(25, 'Gourmet Mix', NULL, 'coriande, spicy, saumon, viande, avocat, seriole lalandi', 'Spring tataki Saumon (6); Signature Dragon Roll (4); California French Touch (3); California French salmon (6); California Yellowtail Ponzu (3); Edamame / Salade de chou (1)', 24.5, 22, 'gourmet-mix'),
+(26, 'Fresh Mix', NULL, 'spicy, saumon, thon, avocat, cheese', 'Signature Rock\'n Roll (4); Maki Salmon Roll (6); California Pacific (6); Sushi Salmon (4); Sushi Saumon Tsukudani (2); Edamame / Salade de chou (1)', 24.5, 22, 'fresh-mix');
 
 -- --------------------------------------------------------
 
@@ -142,12 +117,6 @@ CREATE TABLE `utilisateur` (
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `categorie`
---
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id_categorie`);
 
 --
 -- Index pour la table `commande`
@@ -174,15 +143,7 @@ ALTER TABLE `images`
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD PRIMARY KEY (`id_produit`),
-  ADD KEY `id_souscat` (`id_souscat`);
-
---
--- Index pour la table `souscategorie`
---
-ALTER TABLE `souscategorie`
-  ADD PRIMARY KEY (`id_souscat`),
-  ADD KEY `id_categorie` (`id_categorie`);
+  ADD PRIMARY KEY (`id_produit`);
 
 --
 -- Index pour la table `utilisateur`
@@ -194,12 +155,6 @@ ALTER TABLE `utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `categorie`
---
-ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
@@ -226,12 +181,6 @@ ALTER TABLE `produit`
   MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT pour la table `souscategorie`
---
-ALTER TABLE `souscategorie`
-  MODIFY `id_souscat` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -254,17 +203,6 @@ ALTER TABLE `detail_commande`
   ADD CONSTRAINT `detail_commande_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`) ON DELETE CASCADE,
   ADD CONSTRAINT `detail_commande_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`id_souscat`) REFERENCES `souscategorie` (`id_souscat`) ON DELETE SET NULL;
-
---
--- Contraintes pour la table `souscategorie`
---
-ALTER TABLE `souscategorie`
-  ADD CONSTRAINT `souscategorie_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

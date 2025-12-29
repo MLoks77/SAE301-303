@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators'; // map sert a transformer les données , tap sert a faire des actions sur les données
-import { of } from 'rxjs'; // of sert a creer un observable
+import { of } from 'rxjs'; // of sert a creer un observable et rxjs est une librairie d'observables
 
 export interface User {
   id_user: number;
@@ -32,7 +32,7 @@ export interface SessionStatus {
 export class AuthService {
   private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-  public isLoggedIn$ = this.isLoggedInSubject.asObservable(); // as observable = permet de recevoir les données
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.checkSession().subscribe();
