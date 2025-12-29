@@ -32,7 +32,7 @@ export interface SessionStatus {
 export class AuthService {
   private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable(); // as observable = permet de recevoir les données
 
   constructor(private http: HttpClient) {
     this.checkSession().subscribe();
