@@ -92,7 +92,7 @@
 
 <!-- MODAL / OVERLAY PRODUIT -->
 <div *ngIf="boxSelectionnee" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-2xl w-full h-full overflow-y-auto relative p-6">
+  <div class="bg-white rounded-xl max-w-2xl max-h-[88vh] overflow-y-auto relative p-4 w-full text-sm">
     <!-- Bouton Fermer overlay-->
     <button (click)="fermerModal()"
       class="absolute top-4 right-4 text-black hover:bg-gray-100 p-2 rounded-full cursor-pointer">
@@ -103,108 +103,138 @@
       </svg>
     </button>
 
-    <!-- Grid Overlay pour la fiche produit -->
-    <div class="grid grid-cols-2 grid-rows-2 gap-4">
-      <!-- Image du produit overlay -->
-      <div>
-        <div class="w-full border-2 border-black">
-          <img [src]="boxSelectionnee.image" [alt]="boxSelectionnee.nom" class="w-full h-full object-cover rounded-xl">
+    <div class="flex flex-col gap-4">
+      <!-- Image du produit -->
+      <div class="w-full flex justify-center">
+        <div class="border-2 border-black rounded-lg overflow-hidden inline-block">
+          <img [src]="boxSelectionnee.image" [alt]="boxSelectionnee.nom" class="h-[200px] w-auto object-cover">
         </div>
       </div>
 
-      <!-- Description du produit overlay-->
-      <div class="flex flex-col gap-4 mt-7">
-        <div class="flex items-start justify-between w-full">
-          <div class="flex items-center gap-3">
-            <h2 class="text-2xl font-bold">{{boxSelectionnee.nom}}</h2>
-            <span class="text-md px-2 text-green-600 mt-1">En stock</span>
-            <!--Pour afficher en stock ou hors stock , mais on a pas l'info dans la BDD donc par défaut je met en Stock :
-            <span class="text-md px-2 rounded-xl"  [ngClass]="boxSelectionnee.enStock ? 'text-green-600' : 'text-red-600'">
-              {{boxSelectionnee.enStock ? 'En Stock' : 'Hors Stock'}}</span> 
-            -->
-          </div>
-          <div class="flex items-center gap-3 mt-1">
-            <label for="quantité">Quantité</label>
-            <input type="number" id="quantité" name="quantité" min="1" max="10" [(ngModel)]="quantiteSelectionnee"
-              class="w-[50px] bg-gray-200 border border-gray-800 pl-2">
-          </div>
-          <span class="text-xl font-bold text-black py-1">{{boxSelectionnee.prix}}€</span>
+      <!-- Informations du produit -->
+      <div class="flex flex-col gap-3">
+        <!-- Titre + En stock -->
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold">{{boxSelectionnee.nom}}</h3>
+          <span class="text-xs py-1 font-medium text-green-700">
+            En stock
+          </span>
         </div>
+
+        <!-- Prix + Quantité -->
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold">{{ boxSelectionnee.prix }} €</span>
+          <div class="flex items-center gap-2">
+            <label for="quantité" class="text-xs font-semibold">Quantité :</label>
+            <input type="number" id="quantité" name="quantité" min="1" max="100" [(ngModel)]="quantiteSelectionnee"
+              class="w-12 text-center bg-gray-100 border border-gray-300 rounded text-sm py-1">
+          </div>
+        </div>
+
+        <!-- Liste des saveurs -->
         <div>
-          <h4 class="font-bold mb-2">Saveurs :</h4>
-          <ul class="list-disc pl-5">
-            <li *ngFor="let saveur of boxSelectionnee.saveursListe">
-              {{ saveur }}
-            </li>
+          <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">Saveurs</span>
+          <ul class="list-disc pl-4 mt-1 text-sm text-gray-700">
+            <li *ngFor="let saveur of boxSelectionnee.saveursListe">{{ saveur }}</li>
           </ul>
         </div>
-        <div class="flex items-center justify-between w-full mt-4">
-          <h4 class="font-semibold py-2 text-xl">Prix Total : <span class="font-bold"> {{ getPrixTotal()}}€</span></h4>
 
-          <div class="flex gap-4 text-center">
-            <div class="flex flex-col items-center gap-1 w-20">
-              <div class="w-12 h-12 rounded flex items-center justify-center text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="1.5">
+        <!-- Prix Total + les services -->
+        <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg mt-1">
+          <div>
+            <span class="text-xs text-gray-500">Total</span>
+            <div class="text-xl font-bold text-black">{{ getPrixTotal() }}€</div>
+          </div>
+
+          <div class="flex gap-3">
+            <!-- Paiement Sécurisé -->
+            <div class="flex flex-col items-center w-14">
+              <div
+                class="w-8 h-8 flex items-center justify-center bg-white rounded-full border border-gray-200 shadow-sm text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <span class="text-[10px] leading-tight">Paiement Sécurisé</span>
+              <span class="text-[9px] mt-1 text-gray-600 text-center leading-tight">Paiement Sécurisé</span>
             </div>
-            <div class="flex flex-col items-center gap-1 w-20">
-              <div class="w-12 h-12 rounded flex items-center justify-center text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="1.5">
+            <!-- Livraison rapide -->
+            <div class="flex flex-col items-center w-14">
+              <div
+                class="w-8 h-8 flex items-center justify-center bg-white rounded-full border border-gray-200 shadow-sm text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                 </svg>
               </div>
-              <span class="text-[10px] leading-tight">Livraison rapide</span>
+              <span class="text-[9px] mt-1 text-gray-600 text-center leading-tight">Livraison Rapides</span>
             </div>
-            <div class="flex flex-col items-center gap-1 w-20">
-              <div class="w-12 h-12 rounded flex items-center justify-center text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor" stroke-width="1.5">
+            <!-- Réductions Étudiants -->
+            <div class="flex flex-col items-center w-14">
+              <div
+                class="w-8 h-8 flex items-center justify-center bg-white rounded-full border border-gray-200 shadow-sm text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
                 </svg>
               </div>
-              <span class="text-[10px] leading-tight">Tarifs étudiants</span>
+              <span class="text-[9px] mt-1 text-gray-600 text-center leading-tight">Réduction Étudiant</span>
             </div>
           </div>
         </div>
+
+        <!-- Bouton Panier -->
         <button
-          class="w-full bg-[#F64F4F] text-white font-bold py-2 rounded-md hover:bg-gray-500 transition mb-3">Ajouter au
-          panier</button>
-        <div class="grid grid-cols-7 grid-rows-1 bg-red-300">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div>7</div>
+          class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition shadow-lg mt-2 flex justify-between px-6 items-center group">
+          <span>Ajouter au panier</span>
+          <span class="bg-white/20 px-2 py-1 rounded text-sm group-hover:bg-white/30 transition">{{ getPrixTotal()
+            }}€</span>
+        </button>
+
+        <!-- Logos Paiement -->
+        <div class="flex items-center justify-center gap-4 mt-3">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"
+            class="h-4 w-auto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+            class="h-5 w-auto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-4 w-auto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="ApplePay"
+            class="h-4 w-auto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GooglePay"
+            class="h-4 w-auto">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex"
+            class="h-4 w-auto">
         </div>
+
       </div>
 
+      <!-- Section Description & Allergènes -->
+      <div class="flex flex-col gap-3 mt-2 pt-3 border-t border-gray-100">
 
-      <div class=" col-span-2 bg-red-500">Description ici
+        <!-- Description -->
+        <div>
+          <h4 class="font-bold text-sm mb-1">Description</h4>
+          <p class="text-xs text-justify text-gray-500 leading-relaxed">
+            {{ boxSelectionnee.description }}
+          </p>
+        </div>
+
+        <!-- Allergènes -->
+        <div>
+          <h4 class="font-bold text-sm mb-1">Allergènes</h4>
+          <div class="flex flex-wrap gap-2">
+            <span *ngFor="let allergene of boxSelectionnee.allergenesListe"
+              class="text-[10px] bg-gray-100 text-gray-600 px-2 py-1 rounded border border-gray-200 uppercase font-semibold tracking-wide">
+              {{ allergene }}
+            </span>
+          </div>
+        </div>
+
       </div>
     </div>
-    <!--
-      <div class="mb-4">
-        <span class="text-xs text-gray-400 uppercase tracking-widest">Saveurs</span>
-        <p class="text-sm font-medium">{{boxSelectionnee.saveurs}}</p>
-      </div>
-
-      Exemples de boutons (pas encore fonctionnels)
-    <button class="w-full bg-black text-white font-bold py-3 rounded-full hover:bg-gray-800 transition mb-3">
-      Ajouter au panier
-    </button>
-  </div> 
-  </div>-->
-
   </div>
 </div>
 

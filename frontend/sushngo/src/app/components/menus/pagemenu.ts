@@ -54,6 +54,9 @@ export class Pagemenu {
     } else {
       this.boxSelectionnee.saveursListe = []; //si on a pas de saveurs , on renvoie un tableau vide
     }
+
+    // Ajout factice d'allergènes
+    this.boxSelectionnee.allergenesListe = ['Poisson', 'Soja', 'Sésame', 'Gluten'];
   }
 
   fermerModal() {
@@ -74,7 +77,7 @@ export class Pagemenu {
           this.listeBoxes = res.map((item: any) => ({ //ajoute a ListeBoxes les données de l'API en transformant leurs noms
             id: item.id_produit,
             nom: item.nom,
-            description: item.saveurs, // On garde saveurs en description pour la card
+            description: item.description, // Mappe la vraie description de la BDD
             saveurs: item.saveurs,
             aliments: item.aliments,
             pieces: item.pieces,
