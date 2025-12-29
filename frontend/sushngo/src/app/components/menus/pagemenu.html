@@ -64,14 +64,6 @@
 <div class="w-[90%] mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mb-10">
   <div *ngFor="let box of listeFiltree" (click)="ouvrirModal(box)"
     class="bg-[#F8F8F8] p-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 relative group border border-transparent hover:border-gray-200 cursor-pointer">
-    <div class="absolute top-3 right-3 text-black hover:bg-gray-200 rounded-full p-1 transition-colors z-10">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="1"></circle>
-        <circle cx="19" cy="12" r="1"></circle>
-        <circle cx="5" cy="12" r="1"></circle>
-      </svg>
-    </div>
 
     <!-- Image -->
     <div
@@ -84,7 +76,7 @@
       <h3 class="font-bold text-lg text-black mb-1 line-clamp-1">{{box.nom}}</h3>
       <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{box.description}}</p>
       <div class="text-right">
-        <span class="font-bold text-xl text-black">{{box.prix}}</span>
+        <span class="font-bold text-xl text-black">{{box.prix}}€</span>
       </div>
     </div>
   </div>
