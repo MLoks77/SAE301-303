@@ -1,6 +1,7 @@
-<!-- maxime derènes -->
+
 
 <?php
+// maxime derènes
 require_once __DIR__ . '/../../../../config/configdb.php'; // connexion
 
 // id_user api_token nom prenom mail password statut_etud tel adresse fidelite

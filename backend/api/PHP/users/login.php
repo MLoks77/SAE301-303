@@ -1,7 +1,8 @@
-<!-- par maxime derènes -->
-<!-- normalement c'est prêt et adapté pour être utilisé -->
+
 
 <?php
+// par maxime derènes
+// normalement c'est prêt et adapté pour être utilisé
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Access-Control-Allow-Credentials: true');

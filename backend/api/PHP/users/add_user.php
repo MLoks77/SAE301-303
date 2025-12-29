@@ -1,6 +1,7 @@
-<!-- par maxime derènes -->
+
 
 <?php
+// par maxime derènes
 
 // pour autoriser les requêtes provenant du frontend
 header('Content-Type: application/json');
