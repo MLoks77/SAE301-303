@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ConnexionApi {
-  protected API_URL = "http://localhost/SAE301-303/backend/api/api.php";
+  protected API_URL = "http://localhost/SAE301-303/backend/api";
 
   constructor(private http: HttpClient) { }
 
