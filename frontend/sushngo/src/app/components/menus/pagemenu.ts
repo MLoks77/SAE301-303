@@ -153,7 +153,7 @@ export class Pagemenu {
   startCarrouselAutoSlide() {
     this.carrouselInterval = setInterval(() => {
       this.activeCarrouselIndex = (this.activeCarrouselIndex + 1) % this.carrouselLength;
-    }, 2500);
+    }, 4500);
   }
 
   setCarrouselIndex(i: number) {
