@@ -28,7 +28,7 @@
                 <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">
                     <a routerLink="/compte">Mon Compte</a>
                 </li>
-                <li *ngIf="isLoggedIn" OnClick="logout()" class="cursor-pointer text-xl hover:text-black/70">
+                <li *ngIf="isLoggedIn" (click)="logout()" class="cursor-pointer text-xl hover:text-black/70">
                     <a>Se déconnecter</a>
                 </li>
                 <li *ngIf="!isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">

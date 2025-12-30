@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators'; // map sert a transformer les données , tap sert a faire des actions sur les données
+import { map, catchError, tap } from 'rxjs/operators'; // map sert a transformer les données  tap sert a faire des actions sur les données
 import { of } from 'rxjs'; // of sert a creer un observable et rxjs est une librairie d'observables
 
 export interface User {
@@ -39,8 +39,7 @@ export class AuthService {
   }
 
 
-  //Connexion
-
+  // Connexion
   login(credentials: { email: string; password: string }): Observable<AuthResponse> { // credentials sont les données envoyées par le client
     return this.http.post<AuthResponse>(this.apiUrl, credentials, {
       withCredentials: true
@@ -67,14 +66,25 @@ export class AuthService {
   // Bienvenue !
   // </div>
 
-  //Inscription
+  // Inscription
   register(userData: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.apiUrl, userData, {
       withCredentials: true
     });
   }
 
-  //Déconnexion
+  // Réinitialisation du mot de passe
+  resetPassword(resetData: { email: string; newPassword: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.apiUrl, {
+      action: 'reset-password',
+      email: resetData.email,
+      password: resetData.newPassword
+    }, {
+      withCredentials: true
+    });
+  }
+
+  // Déconnexion
   logout(): void {
     this.http.post<AuthResponse>(this.apiUrl, { action: 'logout' }, {
       withCredentials: true
@@ -89,7 +99,7 @@ export class AuthService {
     });
   }
 
-  //sessions
+  // Sessions
   checkSession(): Observable<boolean> {
     return this.http.get<SessionStatus>(`${this.apiUrl}?action=check-session`, {
       withCredentials: true

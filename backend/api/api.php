@@ -19,7 +19,7 @@ $content = file_get_contents('php://input');
 $data = json_decode($content, true);
 $userManager = new UserManager($pdo);
 
-// utilisateurss
+// Utilisateurs
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
     if ($_GET['action'] === 'check-session') {
@@ -34,6 +34,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifier d'abord les actions spécifiques (réinitialisation, déconnexion)
+    if (isset($data['action'])) {
+        // Réinitialisation du mot de passe
+        if ($data['action'] === 'reset-password') {
+            if (isset($data['email']) && isset($data['password'])) {
+                $result = $userManager->resetPassword($data['email'], $data['password']);
+                if ($result['success']) {
+                    http_response_code(200);
+                    echo json_encode($result);
+                } else {
+                    http_response_code(400);
+                    echo json_encode($result);
+                }
+            } else {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Email et mot de passe requis.']);
+            }
+            exit;
+        }
+
+        // Déconnexion
+        if ($data['action'] === 'logout') {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $id_user = $_SESSION['id_user'] ?? null;
+            if ($id_user) {
+                echo json_encode($userManager->logout($id_user));
+            } else {
+                echo json_encode(['success' => true, 'message' => 'Déjà déconnecté']);
+            }
+            exit;
+        }
+    }
+
     // Inscription
     if (isset($data['nom']) && !isset($data['action'])) {
         try {
@@ -48,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Connexion
-    if (isset($data['email']) && isset($data['password'])) {
+    // Connexion (seulement si pas d'action spécifique)
+    if (isset($data['email']) && isset($data['password']) && !isset($data['action'])) {
         $result = $userManager->login($data['email'], $data['password']);
         if ($result['success']) {
             http_response_code(200);
@@ -60,23 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit;
     }
-
-    // Déconnexion
-    if (isset($data['action']) && $data['action'] === 'logout') {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $id_user = $_SESSION['id_user'] ?? null;
-        if ($id_user) {
-            echo json_encode($userManager->logout($id_user));
-        } else {
-            echo json_encode(['success' => true, 'message' => 'Déjà déconnecté']);
-        }
-        exit;
-    }
 }
 
-// boxes
+// Boxes
 $boxManager = new BoxManager($pdo);
 try {
     if (isset($_GET['id_produit'])) {

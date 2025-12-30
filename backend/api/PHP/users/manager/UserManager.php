@@ -125,12 +125,65 @@ class UserManager
             session_start();
         }
 
-        $isLoggedIn = !empty($_SESSION['api_token']);
+        // Vérifier d'abord si un token existe dans la session
+        if (empty($_SESSION['api_token']) || empty($_SESSION['id_user'])) {
+            return [
+                'logged_in' => false,
+                'user_id' => null,
+                'api_token' => null
+            ];
+        }
+
+        // Vérifier que le token existe réellement en base de données et correspond à l'utilisateur
+        $sql = "SELECT id_user, api_token FROM utilisateur WHERE id_user = :id_user AND api_token = :api_token";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'id_user' => $_SESSION['id_user'],
+            'api_token' => $_SESSION['api_token']
+        ]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Si l'utilisateur n'existe pas ou le token ne correspond pas, la session est invalide
+        if (!$user) {
+            // Nettoyer la session invalide
+            session_destroy();
+            return [
+                'logged_in' => false,
+                'user_id' => null,
+                'api_token' => null
+            ];
+        }
 
         return [
-            'logged_in' => $isLoggedIn,
-            'user_id' => $_SESSION['id_user'] ?? null,
-            'api_token' => $_SESSION['api_token'] ?? null
+            'logged_in' => true,
+            'user_id' => $_SESSION['id_user'],
+            'api_token' => $_SESSION['api_token']
+        ];
+    }
+
+    public function resetPassword(string $email, string $newPassword): array
+    {
+        $sql = "SELECT id_user FROM utilisateur WHERE email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            return ['success' => false, 'message' => 'Aucun utilisateur trouvé avec cet email.'];
+        }
+
+        $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        $updateSql = "UPDATE utilisateur SET password = :password WHERE email = :email";
+        $updateStmt = $this->pdo->prepare($updateSql);
+        $updateStmt->execute([
+            'password' => $passwordHash,
+            'email' => $email
+        ]);
+
+        return [
+            'success' => true,
+            'message' => 'Mot de passe réinitialisé avec succès !'
         ];
     }
 
