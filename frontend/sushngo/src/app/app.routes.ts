@@ -15,8 +15,8 @@ import { Stats } from './components/stats/stats';
 import { Contact } from './components/contact/contact';
 
 export const routes: Routes = [
-  { path: '', component: Accueil},
-  { path: 'accueil', component: Accueil},
+  { path: '', component: Accueil },
+  { path: 'accueil', component: Accueil },
   { path: 'utilisation-cookie', component: Utilisationcookie },
   { path: 'compte', component: Compte },
   { path: 'inscription-connexion', component: Inscconnex },
@@ -27,6 +27,6 @@ export const routes: Routes = [
   { path: 'plan-site', component: Plansite },
   { path: 'points-retraits', component: Pointsretraits },
   { path: 'stats', component: Stats },
-  { path: 'contact', component: Contact},
+  { path: 'contact', component: Contact },
   { path: '**', redirectTo: 'accueil' } // Route par défaut pour les chemins non trouvés
 ];  

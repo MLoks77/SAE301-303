@@ -64,6 +64,7 @@ export class Pagemenu {
 
   fermerModal() {
     this.boxSelectionnee = null;
+
   }
 
   constructor(private connexionApi: ConnexionApi) { }

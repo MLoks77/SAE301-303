@@ -1,50 +1,71 @@
 <app-navbar></app-navbar>
 
+<!-- front : maxime derènes -->
+
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
     <span class="text-white italic mb-1"> &gt; Compte</span>
 </div>
 
-<section class="flex flex-col items-center justify-center w-full mt-10 text-center">
-    <!-- Affichage statistiques fidélité -->
-    <section>
-        <svg class="mt-6 w-300 h-75 rounded-sm relative bg-[#879358]">
-            <svg>
-                <circle cx="155" cy="100" r="80" fill="#2E3F2D" />
-                <!-- pour le moment on fill avec cette couleur: #2E3F2D mais il faut que quand on atteint le step tu fill avec cette couleur : #FFEA47 -->
-                <text x="155" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
-                    fill="white">25</text>
-                <circle cx="455" cy="100" r="80" fill="#2E3F2D" />
-                <text x="455" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
-                    fill="white">50</text>
-                <circle cx="755" cy="100" r="80" fill="#2E3F2D" />
-                <text x="755" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
-                    fill="white">75</text>
-                <circle cx="1055" cy="100" r="80" fill="#2E3F2D" />
-                <text x="1055" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
-                    fill="white">100</text>
-            </svg>
+
+<!-- Affichage statistiques fidélité -->
+<section id="fidelite" class="flex flex-col items-center justify-center w-full py-10 text-center">
+    <svg class="mt-6 w-[1200px] h-[200px] relative bg-[#879358]">
+        <svg>
+            <circle cx="155" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <!-- pour le moment on fill avec cette couleur: #2E3F2D mais il faut que quand on atteint le step tu fill avec cette couleur : #FFEA47 -->
+            <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">25</text>
+            <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                fill="white">-5%</text>
+
+            <circle cx="455" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">50</text>
+            <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                fill="white">-10%</text>
+
+            <circle cx="755" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">75</text>
+            <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                fill="white">-15%</text>
+
+            <circle cx="1055" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+                fill="white">100</text>
+            <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                fill="white">-20%</text>
         </svg>
-        <div class="flex items-center gap-2 mt-6">
+    </svg>
+</section>
+
+
+
+<section class="flex flex-col items-center justify-center w-full">
+
+    <div class="flex flex-col items-center w-full ">
+        <div class="max-w-[1200px] w-full flex items-center gap-2 mt-6">
             <span class="font-bold text-lg">10</span> <!-- remplacer par une valeur dynamique -->
-            <progress class="w-full border-2 border-black" id="fidelite" value="10" max="100"></progress>
+            <progress class="w-full border-2 border-black" id="fideliteprogress" value="10" max="100"></progress>
         </div>
+    </div>
+    <div class=" max-w-[1200px] w-full text-left">
         <!-- temi, ici faudra remplacer value par la progression de la fidelite  -->
-        <h1 class="text-left text-[1.5rem] block">Fidélité</h1>
+        <h1 class="text-[1.5rem] font-bold mt-2">Fidélité</h1>
         <p class="text-[1.5rem]">Atteignez chaque palier pour gagner une réduction</p>
-    </section>
+    </div>
+
 
     <!-- Paramètres du compte -->
-    <section class="mt-10 mb-15">
-
+    <section class="my-10">
+        <!-- a remplir avec des inputs -->
     </section>
 
     <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-    <section class="mt-10 mb-20">
-
+    <section class="my-10">
+        <!-- a remplir avec des inputs -->
     </section>
-
 </section>
+
+
 
 <app-footer></app-footer>

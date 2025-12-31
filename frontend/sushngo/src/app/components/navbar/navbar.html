@@ -1,4 +1,4 @@
-<!-- réalisé par témi 24/11, modifier par Joachim & maxime-->
+<!-- réalisé par témi maxime joaquim-->
 
 <header class="hidden md:block sticky top-0 left-0 w-full bg-white z-50 text-lg Caladea">
     <nav class="h-15 flex justify-between px-8 py-3">
@@ -18,9 +18,9 @@
                 <a routerLink="/contact" class="transition-opacity duration-100 hover:opacity-60">Nous contacter</a>
             </div>
             <div class="col-span-1">
-                <div class="col-start-5 flex gap-6 justify-end">
+                <div class="col-start-5 flex gap-6 justify-end items-center h-full">
                     @if (isLoggedIn) {
-                    <a class="flex items-center h-full" routerLink="/panier">
+                    <a class="flex items-center gap-3" routerLink="/panier">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -44,7 +44,7 @@
                             </g>
                         </svg>
                     </a>
-                    <a class="flex items-center h-full gap-3" routerLink="/compte">
+                    <a class="flex items-center gap-3" routerLink="/compte">
                         <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                             fill="#000000" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -56,9 +56,9 @@
                                 </path>
                             </g>
                         </svg>
-                        Compte
+                        <span class="text-lg">Compte</span>
                     </a>
-                    <a (click)="logout()" class="flex items-center h-full gap-3" routerLink="/accueil">
+                    <a (click)="logout()" class="flex items-center gap-3" routerLink="/accueil">
                         <svg viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -71,10 +71,10 @@
                                 </path>
                             </g>
                         </svg>
-                        Se déconnecter
+                        <span class="text-lg">Déconnexion</span>
                     </a>
                     } @else {
-                    <a class="flex items-center h-full gap-3" routerLink="/inscription-connexion">
+                    <a class="flex items-center gap-3" routerLink="/inscription-connexion">
                         <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                             fill="#000000" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -86,7 +86,7 @@
                                 </path>
                             </g>
                         </svg>
-                        Se connecter
+                        <span class="text-lg">Se connecter</span>
                     </a>
                     }
                 </div>
@@ -124,6 +124,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
+            <!-- le code est rangé comme ça car je sais pas pourquoi quand je sauvegarde sa le range comme ci dessous -->
             <a routerLink="/accueil" (click)="closeMenu()"
                 class="py-3 px-2 text-lg font-semibold border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">Accueil</a>
             <a routerLink="/menus" (click)="closeMenu()"
@@ -188,7 +189,7 @@
                         </path>
                     </g>
                 </svg>
-                <span class="text-lg">Se déconnecter</span>
+                <span class="text-lg">Déconnexion</span>
             </a>
             } @else {
             <a routerLink="/inscription-connexion" (click)="closeMenu()"
