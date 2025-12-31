@@ -6,64 +6,56 @@
     <span class="text-white italic mb-1"> &gt; Compte</span>
 </div>
 <!-- Affichage statistiques fidélité -->
-    <section class="mt-10">
-        <span class="ml-30 font-bold text-[1.5rem] block">Fidélité</span>
-        <span class="ml-30 text-[1.5rem]">Atteignez chaque palier pour gagner un produit ou une réduction</span>
+<section class="mt-10">
+    <span class="ml-30 font-bold text-[1.5rem] block">Fidélité</span>
+    <span class="ml-30 text-[1.5rem]">Atteignez chaque palier pour gagner un produit ou une réduction</span>
 
-        <svg class="ml-27 mt-6 w-300 h-75 rounded-sm relative font-semibold">
-            <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE"/>
-            <circle cx="155" cy="100" r="80"/>
-            <circle cx="455" cy="100" r="80"/>
-            <circle cx="755" cy="100" r="80"/>
-            <circle cx="1055" cy="100" r="80"/>
-            <rect x="143" y="170" width="25" height="70" fill="black"/>
-            <rect x="445" y="170" width="25" height="70" fill="black"/>
-            <rect x="745" y="170" width="25" height="70" fill="black"/>
-            <rect x="1045" y="170" width="25" height="70" fill="black"/>
-            <rect x="50" y="230" width="1100" height="20" fill="black"/>
-        </svg>
-    </section>
+    <svg class="ml-27 mt-6 w-300 h-75 rounded-sm relative">
+        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
+        <circle cx="155" cy="100" r="80" />
+        <circle cx="455" cy="100" r="80" />
+        <circle cx="755" cy="100" r="80" />
+        <circle cx="1055" cy="100" r="80" />
+        <rect x="143" y="170" width="25" height="70" fill="black" />
+        <rect x="445" y="170" width="25" height="70" fill="black" />
+        <rect x="745" y="170" width="25" height="70" fill="black" />
+        <rect x="1045" y="170" width="25" height="70" fill="black" />
+        <rect x="50" y="230" width="1100" height="20" fill="black" />
+    </svg>
+</section>
 
 <!-- Paramètres du compte -->
-    <section class="mt-10 mb-15">
-        <span class="ml-30 font-bold text-[1.5rem]">Compte</span>
-        
-        <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative font-semibold">
-            <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE"/>
-            <text x="67" y="44" font-size="20">Modifier vos informations :</text>
-            <text x="167" y="104" font-size="15" font-weight="normal">Nom : $nom</text>
-            <text x="167" y="164" font-size="15" font-weight="normal">Prénom : $prénom</text>
-            <text x="167" y="224" font-size="15" font-weight="normal">Adresse : $adresse</text>
-            <text x="567" y="104" font-size="15" font-weight="normal">Email : $email</text>
-            <text x="567" y="164" font-size="15" font-weight="normal">Mot de passe : $mdp</text>
-        </svg>
+<section class="mt-10 mb-15">
+    <span class="ml-30 font-bold text-[1.5rem]">Compte</span>
 
-        <button class="absolute mt-[-19.7rem] ml-130 cursor-pointer">Modifier</button>
-        <button class="absolute mt-[-19.7rem] ml-230 cursor-pointer">Modifier</button>
-        <button class="absolute mt-[-15.95rem] ml-130 cursor-pointer">Modifier</button>
-        <button class="absolute mt-[-15.95rem] ml-230 cursor-pointer">Modifier</button>
-        <button class="absolute mt-[-12.16rem] ml-130 cursor-pointer">Modifier</button>
+    <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative">
+        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
+        <text x="67" y="44" font-size="20">Modifier vos informations :</text>
+        <text x="167" y="104" font-size="15" font-weight="normal">Nom : $nom</text>
+        <text x="167" y="164" font-size="15" font-weight="normal">Prénom : $prénom</text>
+        <text x="167" y="224" font-size="15" font-weight="normal">Adresse : $adresse</text>
+        <text x="567" y="104" font-size="15" font-weight="normal">Email : $email</text>
+        <text x="567" y="164" font-size="15" font-weight="normal">Mot de passe : $mdp</text>
+    </svg>
 
-        <button class="absolute -mt-20 ml-230 cursor-pointer">Annuler</button>
-        <button class="absolute -mt-22 ml-260 cursor-pointer bg-[#D9D9D9] p-2 px-10 rounded-md">Enregistrer</button>
-    </section>
+    <button class="absolute mt-[-19.7rem] ml-130 cursor-pointer">Modifier</button>
+    <button class="absolute mt-[-19.7rem] ml-230 cursor-pointer">Modifier</button>
+    <button class="absolute mt-[-15.95rem] ml-130 cursor-pointer">Modifier</button>
+    <button class="absolute mt-[-15.95rem] ml-230 cursor-pointer">Modifier</button>
+    <button class="absolute mt-[-12.16rem] ml-130 cursor-pointer">Modifier</button>
+
+    <button class="absolute -mt-20 ml-230 cursor-pointer">Annuler</button>
+    <button class="absolute -mt-22 ml-260 cursor-pointer bg-[#D9D9D9] p-2 px-10 rounded-md">Enregistrer</button>
+</section>
 
 <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-    <section class="mt-10 mb-20">
-        <span class="ml-30 font-bold text-[1.5rem]">Historique des commandes</span>
-        
-        <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative font-semibold">
-            <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE"/>
-            <text x="67" y="64" font-size="15" font-weight="normal">Commande 1 :</text>
-            <text x="67" y="164" font-size="15" font-weight="normal">Commande 2 :</text>
-            <text x="67" y="264" font-size="15" font-weight="normal">Commande 3 :</text>
-            <text x="467" y="64" font-size="15" font-weight="normal">Commande 4 :</text>
-            <text x="467" y="164" font-size="15" font-weight="normal">Commande 5 :</text>
-            <text x="467" y="264" font-size="15" font-weight="normal">Commande 6 :</text>
-            <text x="867" y="64" font-size="15" font-weight="normal">Commande 7 :</text>
-            <text x="867" y="164" font-size="15" font-weight="normal">Commande 8 :</text>
-            <text x="867" y="264" font-size="15" font-weight="normal">Commande 9 :</text>
-        </svg>
-    </section>
+<section class="mt-10 mb-20">
+    <span class="ml-30 font-bold text-[1.5rem]">Historique des commandes</span>
+
+    <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative">
+        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
+        <text x="67" y="64" font-size="15" font-weight="normal">Commande 1 :</text>
+    </svg>
+</section>
 
 <app-footer></app-footer>

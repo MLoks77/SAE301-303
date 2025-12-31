@@ -17,89 +17,79 @@
                 <a routerLink="/stats" class="transition-opacity duration-100 hover:opacity-60">Statistiques</a>
                 <a routerLink="/contact" class="transition-opacity duration-100 hover:opacity-60">Nous contacter</a>
             </div>
-
-            <div class="col-start-5 flex gap-6 justify-end">
-                <a class="flex items-center h-full" routerLink="/panier">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <g clip-path="url(#clip0_15_35)">
-                                <rect width="24" height="24" fill="white"></rect>
-                                <path
-                                    d="M5.33331 6H19.8672C20.4687 6 20.9341 6.52718 20.8595 7.12403L20.1095 13.124C20.0469 13.6245 19.6215 14 19.1172 14H16.5555H9.44442H7.99998"
-                                    stroke="#000000" stroke-linejoin="round"></path>
-                                <path
-                                    d="M2 4H4.23362C4.68578 4 5.08169 4.30341 5.19924 4.74003L8.30076 16.26C8.41831 16.6966 8.81422 17 9.26638 17H19"
-                                    stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <circle cx="10" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
-                                <circle cx="17.5" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_15_35">
+            <div class="col-span-1">
+                <div class="col-start-5 flex gap-6 justify-end">
+                    <a class="flex items-center h-full" routerLink="/panier">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g clip-path="url(#clip0_15_35)">
                                     <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                            </defs>
-                        </g>
-                    </svg>
-                </a>
-                @if (isLoggedIn) {
-                <a class="flex items-center h-full gap-3" routerLink="/compte">
-                    <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                        fill="#000000" class="w-auto h-10">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle>
-                            <path class="cls-1"
-                                d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05">
-                            </path>
-                        </g>
-                    </svg>
-                    Compte
-                </a>
-                <a (click)="logout()" class="flex items-center h-full gap-3" routerLink="/accueil">
-                    <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                        fill="#000000" class="w-auto h-10">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <g clip-path="url(#clip0_15_35)">
-                                <rect width="24" height="24" fill="white"></rect>
-                                <path
-                                    d="M5.33331 6H19.8672C20.4687 6 20.9341 6.52718 20.8595 7.12403L20.1095 13.124C20.0469 13.6245 19.6215 14 19.1172 14H16.5555H9.44442H7.99998"
-                                    stroke="#000000" stroke-linejoin="round"></path>
-                                <path
-                                    d="M2 4H4.23362C4.68578 4 5.08169 4.30341 5.19924 4.74003L8.30076 16.26C8.41831 16.6966 8.81422 17 9.26638 17H19"
-                                    stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <circle cx="10" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
-                                <circle cx="17.5" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
+                                    <path
+                                        d="M5.33331 6H19.8672C20.4687 6 20.9341 6.52718 20.8595 7.12403L20.1095 13.124C20.0469 13.6245 19.6215 14 19.1172 14H16.5555H9.44442H7.99998"
+                                        stroke="#000000" stroke-linejoin="round"></path>
+                                    <path
+                                        d="M2 4H4.23362C4.68578 4 5.08169 4.30341 5.19924 4.74003L8.30076 16.26C8.41831 16.6966 8.81422 17 9.26638 17H19"
+                                        stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <circle cx="10" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
+                                    <circle cx="17.5" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_15_35">
+                                        <rect width="24" height="24" fill="white"></rect>
+                                    </clipPath>
+                                </defs>
                             </g>
-                            <defs>
-                                <clipPath id="clip0_15_35">
-                                    <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                            </defs>
-                        </g>
-                    </svg>
-                    Se deconnecter
-                </a>
-                } @else {
-                <a class="flex items-center h-full gap-3" routerLink="/inscription-connexion">
-                    <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                        fill="#000000" class="w-auto h-10">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle>
-                            <path class="cls-1"
-                                d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05">
-                            </path>
-                        </g>
-                    </svg>
-                    Se connecter
-                </a>
-                }
+                        </svg>
+                    </a>
+                    @if (isLoggedIn) {
+                    <a class="flex items-center h-full gap-3" routerLink="/compte">
+                        <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                            fill="#000000" class="w-auto h-10">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle>
+                                <path class="cls-1"
+                                    d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05">
+                                </path>
+                            </g>
+                        </svg>
+                        Compte
+                    </a>
+                    <a (click)="logout()" class="flex items-center h-full gap-3" routerLink="/accueil">
+                        <svg viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    d="M13 2C10.2386 2 8 4.23858 8 7C8 7.55228 8.44772 8 9 8C9.55228 8 10 7.55228 10 7C10 5.34315 11.3431 4 13 4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20H13C11.3431 20 10 18.6569 10 17C10 16.4477 9.55228 16 9 16C8.44772 16 8 16.4477 8 17C8 19.7614 10.2386 22 13 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H13Z">
+                                </path>
+                                <path
+                                    d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11.2821C11.1931 13.1098 11.1078 13.2163 11.0271 13.318C10.7816 13.6277 10.5738 13.8996 10.427 14.0945C10.3536 14.1921 10.2952 14.2705 10.255 14.3251L10.2084 14.3884L10.1959 14.4055L10.1915 14.4115C10.1914 14.4116 10.191 14.4122 11 15L10.1915 14.4115C9.86687 14.8583 9.96541 15.4844 10.4122 15.809C10.859 16.1336 11.4843 16.0346 11.809 15.5879L11.8118 15.584L11.822 15.57L11.8638 15.5132C11.9007 15.4632 11.9553 15.3897 12.0247 15.2975C12.1637 15.113 12.3612 14.8546 12.5942 14.5606C13.0655 13.9663 13.6623 13.2519 14.2071 12.7071L14.9142 12L14.2071 11.2929C13.6623 10.7481 13.0655 10.0337 12.5942 9.43937C12.3612 9.14542 12.1637 8.88702 12.0247 8.7025C11.9553 8.61033 11.9007 8.53682 11.8638 8.48679L11.822 8.43002L11.8118 8.41602L11.8095 8.41281C11.4848 7.96606 10.859 7.86637 10.4122 8.19098C9.96541 8.51561 9.86636 9.14098 10.191 9.58778L11 9C10.191 9.58778 10.1909 9.58773 10.191 9.58778L10.1925 9.58985L10.1959 9.59454L10.2084 9.61162L10.255 9.67492C10.2952 9.72946 10.3536 9.80795 10.427 9.90549C10.5738 10.1004 10.7816 10.3723 11.0271 10.682C11.1078 10.7837 11.1931 10.8902 11.2821 11H3Z">
+                                </path>
+                            </g>
+                        </svg>
+                        Se déconnecter
+                    </a>
+                    } @else {
+                    <a class="flex items-center h-full gap-3" routerLink="/inscription-connexion">
+                        <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                            fill="#000000" class="w-auto h-10">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle>
+                                <path class="cls-1"
+                                    d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05">
+                                </path>
+                            </g>
+                        </svg>
+                        Se connecter
+                    </a>
+                    }
+                </div>
             </div>
         </div>
     </nav>
@@ -149,43 +139,56 @@
                 contacter</a>
             <a routerLink="/panier" (click)="closeMenu()"
                 class="py-3 px-2 flex items-center border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g clip-path="url(#clip0_15_35)">
-                            <rect width="24" height="24" fill="white"></rect>
-                            <path
-                                d="M5.33331 6H19.8672C20.4687 6 20.9341 6.52718 20.8595 7.12403L20.1095 13.124C20.0469 13.6245 19.6215 14 19.1172 14H16.5555H9.44442H7.99998"
-                                stroke="#000000" stroke-linejoin="round"></path>
-                            <path
-                                d="M2 4H4.23362C4.68578 4 5.08169 4.30341 5.19924 4.74003L8.30076 16.26C8.41831 16.6966 8.81422 17 9.26638 17H19"
-                                stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <circle cx="10" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
-                            <circle cx="17.5" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_15_35">
-                                <rect width="24" height="24" fill="white"></rect>
-                            </clipPath>
-                        </defs>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 mr-2">
+                    <g clip-path="url(#clip0_15_35)">
+                        <path
+                            d="M5.33331 6H19.8672C20.4687 6 20.9341 6.52718 20.8595 7.12403L20.1095 13.124C20.0469 13.6245 19.6215 14 19.1172 14H16.5555H9.44442H7.99998"
+                            stroke="#000000" stroke-linejoin="round"></path>
+                        <path
+                            d="M2 4H4.23362C4.68578 4 5.08169 4.30341 5.19924 4.74003L8.30076 16.26C8.41831 16.6966 8.81422 17 9.26638 17H19"
+                            stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle cx="10" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
+                        <circle cx="17.5" cy="20" r="1" stroke="#000000" stroke-linejoin="round"></circle>
                     </g>
-                </svg> Panier
+                    <defs>
+                        <clipPath id="clip0_15_35">
+                            <rect width="24" height="24" fill="white"></rect>
+                        </clipPath>
+                    </defs>
+                </svg>
+                <span class="text-lg">Panier</span>
             </a>
             @if (isLoggedIn) {
             <a routerLink="/compte" (click)="closeMenu()"
-                class="py-3 px-2 flex items-center transition-opacity duration-100 hover:opacity-60">
-                <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                class="py-3 px-2 flex items-center border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">
+                <svg viewBox="0 0 22 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                     fill="#000000" class="w-7 h-7 mr-2">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
                         <circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle>
                         <path class="cls-1"
-                            d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path>
+                            d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05">
+                        </path>
                     </g>
                 </svg>
-                Compte
+                <span class="text-lg">Compte</span>
+            </a>
+            <a (click)="logout()" routerLink="/accueil"
+                class="py-3 px-2 flex items-center border-b border-gray-100 transition-opacity duration-100 hover:opacity-60">
+                <svg viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 mr-2">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M13 2C10.2386 2 8 4.23858 8 7C8 7.55228 8.44772 8 9 8C9.55228 8 10 7.55228 10 7C10 5.34315 11.3431 4 13 4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20H13C11.3431 20 10 18.6569 10 17C10 16.4477 9.55228 16 9 16C8.44772 16 8 16.4477 8 17C8 19.7614 10.2386 22 13 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H13Z">
+                        </path>
+                        <path
+                            d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H11.2821C11.1931 13.1098 11.1078 13.2163 11.0271 13.318C10.7816 13.6277 10.5738 13.8996 10.427 14.0945C10.3536 14.1921 10.2952 14.2705 10.255 14.3251L10.2084 14.3884L10.1959 14.4055L10.1915 14.4115C10.1914 14.4116 10.191 14.4122 11 15L10.1915 14.4115C9.86687 14.8583 9.96541 15.4844 10.4122 15.809C10.859 16.1336 11.4843 16.0346 11.809 15.5879L11.8118 15.584L11.822 15.57L11.8638 15.5132C11.9007 15.4632 11.9553 15.3897 12.0247 15.2975C12.1637 15.113 12.3612 14.8546 12.5942 14.5606C13.0655 13.9663 13.6623 13.2519 14.2071 12.7071L14.9142 12L14.2071 11.2929C13.6623 10.7481 13.0655 10.0337 12.5942 9.43937C12.3612 9.14542 12.1637 8.88702 12.0247 8.7025C11.9553 8.61033 11.9007 8.53682 11.8638 8.48679L11.822 8.43002L11.8118 8.41602L11.8095 8.41281C11.4848 7.96606 10.859 7.86637 10.4122 8.19098C9.96541 8.51561 9.86636 9.14098 10.191 9.58778L11 9C10.191 9.58778 10.1909 9.58773 10.191 9.58778L10.1925 9.58985L10.1959 9.59454L10.2084 9.61162L10.255 9.67492C10.2952 9.72946 10.3536 9.80795 10.427 9.90549C10.5738 10.1004 10.7816 10.3723 11.0271 10.682C11.1078 10.7837 11.1931 10.8902 11.2821 11H3Z">
+                        </path>
+                    </g>
+                </svg>
+                <span class="text-lg">Se déconnecter</span>
             </a>
             } @else {
             <a routerLink="/inscription-connexion" (click)="closeMenu()"
