@@ -1,0 +1,27 @@
+/* maxime derènes */
+
+progress::-moz-progress-bar {
+
+    border-radius: 25px;
+    background: #FFEA47;
+}
+
+progress::-webkit-progress-value {
+
+    border-radius: 25px;
+    background: #FFEA47;
+}
+
+progress {
+
+    border-radius: 25px;
+    color: #FFEA47;
+}
+
+/*sa permet de changer la couleur de la barre de progression dans certains navigateurs, dans l'ordre :
+
+Firefox
+Chrome ou Safari
+edge
+
+*/

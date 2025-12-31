@@ -49,13 +49,13 @@ export class Pointsretraits implements OnInit {
 
   //Adresses des restaurants
   allRestaurants: Restaurant[] = [
-    { id: 101, name: 'SushNgo Meaux', adresse: '17 Rue Jablinot , 77100 Meaux', cityId: 7, lat: 48.95486, lon: 2.87795 },
-    { id: 102, name: 'SushNgo Paris', adresse: '50 Boulevard du Montparnasse, 75015 Paris', cityId: 1, lat: 48.8421, lon: 2.3219 },
-    { id: 201, name: 'SushNgo Lyon', adresse: '15 Place Bellecour, 69002 Lyon', cityId: 2, lat: 45.7578, lon: 4.8322 },
-    { id: 301, name: 'SushNgo Marseille', adresse: '22 Quai du Port, 13002 Marseille', cityId: 3, lat: 43.2954, lon: 5.3744 },
-    { id: 401, name: 'SushNgo Bordeaux', adresse: '5 Rue Sainte-Catherine, 33000 Bordeaux', cityId: 4, lat: 44.8404, lon: -0.5700 },
-    { id: 501, name: 'SushNgo Lille', adresse: '10 Place de la Gare, 59000 Lille', cityId: 5, lat: 50.6366, lon: 3.0705 },
-    { id: 601, name: 'SushNgo Toulouse', adresse: '17 Rue des Azes, 31000 Toulouse', cityId: 6, lat: 43.59484, lon: 1.44544 }
+    { id: 101, name: 'Sush\'n go Meaux', adresse: '17 Rue Jablinot , 77100 Meaux', cityId: 7, lat: 48.95486, lon: 2.87795 },
+    { id: 102, name: 'Sush\'n go Paris', adresse: '50 Boulevard du Montparnasse, 75015 Paris', cityId: 1, lat: 48.8421, lon: 2.3219 },
+    { id: 201, name: 'Sush\'n go Lyon', adresse: '15 Place Bellecour, 69002 Lyon', cityId: 2, lat: 45.7578, lon: 4.8322 },
+    { id: 301, name: 'Sush\'n go Marseille', adresse: '22 Quai du Port, 13002 Marseille', cityId: 3, lat: 43.2954, lon: 5.3744 },
+    { id: 401, name: 'Sush\'n go Bordeaux', adresse: '5 Rue Sainte-Catherine, 33000 Bordeaux', cityId: 4, lat: 44.8404, lon: -0.5700 },
+    { id: 501, name: 'Sush\'n go Lille', adresse: '10 Place de la Gare, 59000 Lille', cityId: 5, lat: 50.6366, lon: 3.0705 },
+    { id: 601, name: 'Sush\'n go Toulouse', adresse: '17 Rue des Azes, 31000 Toulouse', cityId: 6, lat: 43.59484, lon: 1.44544 }
   ];
 
   filteredRestaurants: Restaurant[] = []; //restaurants filtrés en fonction de la ville selectionnée

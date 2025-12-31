@@ -5,57 +5,46 @@
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
     <span class="text-white italic mb-1"> &gt; Compte</span>
 </div>
-<!-- Affichage statistiques fidélité -->
-<section class="mt-10">
-    <span class="ml-30 font-bold text-[1.5rem] block">Fidélité</span>
-    <span class="ml-30 text-[1.5rem]">Atteignez chaque palier pour gagner un produit ou une réduction</span>
 
-    <svg class="ml-27 mt-6 w-300 h-75 rounded-sm relative">
-        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
-        <circle cx="155" cy="100" r="80" />
-        <circle cx="455" cy="100" r="80" />
-        <circle cx="755" cy="100" r="80" />
-        <circle cx="1055" cy="100" r="80" />
-        <rect x="143" y="170" width="25" height="70" fill="black" />
-        <rect x="445" y="170" width="25" height="70" fill="black" />
-        <rect x="745" y="170" width="25" height="70" fill="black" />
-        <rect x="1045" y="170" width="25" height="70" fill="black" />
-        <rect x="50" y="230" width="1100" height="20" fill="black" />
-    </svg>
-</section>
+<section class="flex flex-col items-center justify-center w-full mt-10 text-center">
+    <!-- Affichage statistiques fidélité -->
+    <section>
+        <svg class="mt-6 w-300 h-75 rounded-sm relative bg-[#879358]">
+            <svg>
+                <circle cx="155" cy="100" r="80" fill="#2E3F2D" />
+                <!-- pour le moment on fill avec cette couleur: #2E3F2D mais il faut que quand on atteint le step tu fill avec cette couleur : #FFEA47 -->
+                <text x="155" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
+                    fill="white">25</text>
+                <circle cx="455" cy="100" r="80" fill="#2E3F2D" />
+                <text x="455" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
+                    fill="white">50</text>
+                <circle cx="755" cy="100" r="80" fill="#2E3F2D" />
+                <text x="755" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
+                    fill="white">75</text>
+                <circle cx="1055" cy="100" r="80" fill="#2E3F2D" />
+                <text x="1055" y="100" font-size="40" text-anchor="middle" dominant-baseline="central"
+                    fill="white">100</text>
+            </svg>
+        </svg>
+        <div class="flex items-center gap-2 mt-6">
+            <span class="font-bold text-lg">10</span> <!-- remplacer par une valeur dynamique -->
+            <progress class="w-full border-2 border-black" id="fidelite" value="10" max="100"></progress>
+        </div>
+        <!-- temi, ici faudra remplacer value par la progression de la fidelite  -->
+        <h1 class="text-left text-[1.5rem] block">Fidélité</h1>
+        <p class="text-[1.5rem]">Atteignez chaque palier pour gagner une réduction</p>
+    </section>
 
-<!-- Paramètres du compte -->
-<section class="mt-10 mb-15">
-    <span class="ml-30 font-bold text-[1.5rem]">Compte</span>
+    <!-- Paramètres du compte -->
+    <section class="mt-10 mb-15">
 
-    <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative">
-        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
-        <text x="67" y="44" font-size="20">Modifier vos informations :</text>
-        <text x="167" y="104" font-size="15" font-weight="normal">Nom : $nom</text>
-        <text x="167" y="164" font-size="15" font-weight="normal">Prénom : $prénom</text>
-        <text x="167" y="224" font-size="15" font-weight="normal">Adresse : $adresse</text>
-        <text x="567" y="104" font-size="15" font-weight="normal">Email : $email</text>
-        <text x="567" y="164" font-size="15" font-weight="normal">Mot de passe : $mdp</text>
-    </svg>
+    </section>
 
-    <button class="absolute mt-[-19.7rem] ml-130 cursor-pointer">Modifier</button>
-    <button class="absolute mt-[-19.7rem] ml-230 cursor-pointer">Modifier</button>
-    <button class="absolute mt-[-15.95rem] ml-130 cursor-pointer">Modifier</button>
-    <button class="absolute mt-[-15.95rem] ml-230 cursor-pointer">Modifier</button>
-    <button class="absolute mt-[-12.16rem] ml-130 cursor-pointer">Modifier</button>
+    <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
+    <section class="mt-10 mb-20">
 
-    <button class="absolute -mt-20 ml-230 cursor-pointer">Annuler</button>
-    <button class="absolute -mt-22 ml-260 cursor-pointer bg-[#D9D9D9] p-2 px-10 rounded-md">Enregistrer</button>
-</section>
+    </section>
 
-<!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-<section class="mt-10 mb-20">
-    <span class="ml-30 font-bold text-[1.5rem]">Historique des commandes</span>
-
-    <svg class="ml-27 mt-6 w-300 h-100 drop-shadow-2xl rounded-sm relative">
-        <rect x="0" y="0" width="1200" height="500" fill="#EEEEEE" />
-        <text x="67" y="64" font-size="15" font-weight="normal">Commande 1 :</text>
-    </svg>
 </section>
 
 <app-footer></app-footer>

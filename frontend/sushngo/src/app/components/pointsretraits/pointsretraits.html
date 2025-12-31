@@ -1,9 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="flex flex-col md:flex-row h-[calc(100vh-80px)] bg-gray-50 overflow-hidden relative">
+<div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
+    <a routerLink="/accueil"
+        class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
+    <span class="text-white italic mb-1"> &gt; Nos points de retraits</span>
+</div>
+
+<div class="flex flex-col bg-[#0C3A53] md:flex-row h-[calc(100vh-80px)] overflow-hidden relative">
 
     <!-- Partie Carte (gauche) -->
-    <div class="relative flex-1 bg-white overflow-hidden shadow-inner flex items-center justify-center p-4">
+    <div class="relative flex-1 overflow-hidden shadow-inner flex items-center justify-center p-4">
 
         <!-- Card Coin gauche -->
         <div *ngIf="!selectedCity"
@@ -24,15 +30,15 @@
                 <div class="flex flex-col items-center transition-transform duration-300 group-hover:scale-110">
                     <!-- Point Rouge -->
                     <div class="w-3 h-3 rounded-full bg-red-500 shadow-md mb-1 ring-4 ring-red-500/20 group-hover:ring-red-500/40 transition-all"
-                        [class.bg-gray-800]="selectedCity?.id === city.id"
+                        [class.bg-gray-500]="selectedCity?.id === city.id"
                         [class.scale-125]="selectedCity?.id === city.id">
                     </div>
 
                     <!-- Nom de la ville  -->
                     <span
-                        class="text-sm font-bold bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm text-gray-700 border border-gray-200 group-hover:border-red-200 group-hover:text-red-600 transition-colors whitespace-nowrap"
+                        class="Caladea text-sm font-bold bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm text-gray-700 border border-gray-200 group-hover:border-red-200 group-hover:text-red-600 transition-colors whitespace-nowrap"
                         [class.bg-gray-800]="selectedCity?.id === city.id"
-                        [class.text-white]="selectedCity?.id === city.id"
+                        [class.text-red-400]="selectedCity?.id === city.id"
                         [class.border-transparent]="selectedCity?.id === city.id">
                         {{ city.name }}
                     </span>
@@ -62,7 +68,9 @@
             </div>
             <div *ngIf="!selectedCity"
                 class="h-full flex flex-col items-center justify-center text-center opacity-50 py-10">
-                <p class="font-semibold text-gray-400">Sélectionnez une ville pour voir les détails</p>
+                <p class="font-semibold bg-gray-200 p-3 text-gray-900 rounded-full Caladea">Sélectionnez une ville pour
+                    voir les
+                    détails</p>
             </div>
         </div>
 
@@ -95,4 +103,5 @@
     </div>
 </div>
 
+<div class="h-1 bg-black"></div>
 <app-footer></app-footer>

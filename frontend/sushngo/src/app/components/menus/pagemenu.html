@@ -9,7 +9,8 @@
   <div id="carousel-slider" class="h-full w-full flex transition-transform duration-700 ease-in-out"
     [style.transform]="'translateX(-' + (activeCarrouselIndex * 100) + '%)'">
     <div *ngFor="let slide of carrousel" class="min-w-full h-full bg-white">
-      <a [routerLink]="slide.link" class="block w-full h-full">
+      <!-- ngFor = pour chaque slide de la liste carrousel -->
+      <a [routerLink]="slide.link" class="block w-full h-full"> <!-- Chaque slide a un lien -->
         <img [src]="slide.image" alt="carousel image" class="w-full h-full object-cover"
           [style.object-position]="slide.position || 'center'" />
       </a>
@@ -46,8 +47,7 @@
         <div class="max-h-60 overflow-y-auto space-y-2">
           <div *ngFor="let filtre of filtresDisponibles" class="flex items-center gap-2">
             <input type="checkbox" [id]="filtre" (change)="gererFiltre(filtre)"
-              [checked]="filtresSelectionnes.includes(filtre)"
-              class="rounded border-gray-300 text-black focus:ring-black">
+              [checked]="filtresSelectionnes.includes(filtre)" class="border-gray-300 text-black">
             <label [for]="filtre" class="text-sm cursor-pointer select-none">{{filtre}}</label>
           </div>
         </div>
@@ -57,7 +57,7 @@
   <div class="relative mt-px">
     <!-- si la div parent a un position autre que static (par défaut) (donc relative , absolute, sticky etc) l'élément enfant avec absolute prendra comme bord gauche-top-droit-bottom les bords de la div parent et pas de la page entiere-->
     <div class="border-b border-black w-full absolute left-0 top-1/2 transform -translate-y-1/2"></div>
-    <div class="absolute right-2 top-0 h-full bg-white" style="width:65px"></div>
+    <div class="absolute right-2 top-0 h-full bg-white w-[65px]"></div>
   </div>
 </div>
 
@@ -74,7 +74,7 @@
     <!-- Données de la box -->
     <div class="flex flex-col">
       <h3 class="font-bold text-lg text-black mb-1 line-clamp-1">{{box.nom}}</h3>
-      <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{box.description}}</p>
+      <p class="text-gray-500 text-sm mb-4 line-clamp-2 Caladea">{{box.description}}</p>
       <div class="text-right">
         <span class="font-bold text-xl text-black">{{box.prix}}€</span>
       </div>
@@ -128,7 +128,7 @@
         <div>
           <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">Saveurs</span>
           <ul class="list-disc pl-4 mt-1 text-sm text-gray-700">
-            <li *ngFor="let saveur of boxSelectionnee.saveursListe">{{ saveur }}</li>
+            <li *ngFor="let saveur of boxSelectionnee.saveursListe Caladea">{{ saveur }}</li>
           </ul>
         </div>
 
@@ -210,7 +210,7 @@
         <!-- Description -->
         <div>
           <h4 class="font-bold text-sm mb-1">Description</h4>
-          <p class="text-xs text-justify text-gray-500 leading-relaxed">
+          <p class="text-sm text-justify text-gray-500">
             {{ boxSelectionnee.description }}
           </p>
         </div>

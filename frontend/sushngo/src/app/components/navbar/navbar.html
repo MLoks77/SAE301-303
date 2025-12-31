@@ -1,6 +1,6 @@
 <!-- réalisé par témi 24/11, modifier par Joachim & maxime-->
 
-<header class="hidden md:block sticky top-0 left-0 w-full bg-white z-50 text-lg">
+<header class="hidden md:block sticky top-0 left-0 w-full bg-white z-50 text-lg Caladea">
     <nav class="h-15 flex justify-between px-8 py-3">
         <div class="grid grid-cols-5 grid-rows-1 gap-0 w-full items-center">
 
@@ -19,6 +19,7 @@
             </div>
             <div class="col-span-1">
                 <div class="col-start-5 flex gap-6 justify-end">
+                    @if (isLoggedIn) {
                     <a class="flex items-center h-full" routerLink="/panier">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -43,7 +44,6 @@
                             </g>
                         </svg>
                     </a>
-                    @if (isLoggedIn) {
                     <a class="flex items-center h-full gap-3" routerLink="/compte">
                         <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                             fill="#000000" class="w-auto h-10">
@@ -95,7 +95,7 @@
     </nav>
 </header>
 
-<header class="fixed top-0 left-0 w-full bg-white z-50 text-lg md:hidden shadow">
+<header class="fixed top-0 left-0 w-full bg-white z-50 text-lg md:hidden shadow Caladea">
     <nav class="flex items-center justify-between px-4 py-2">
         <!-- Logo -->
         <a routerLink="/accueil">
