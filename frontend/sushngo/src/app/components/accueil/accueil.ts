@@ -52,8 +52,6 @@ export class Accueil {
   ];
 
   Boxes: any[] = [];
-  apiData: any;
-  boxData: any;
 
   constructor(private connexionApi: ConnexionApi) { }
 
