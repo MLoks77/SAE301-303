@@ -109,7 +109,7 @@ export class Inscconnex implements OnInit {
         if (res.success) {
           this.successMessage = 'Compte créé avec succès ! Vous pouvez vous connecter.';
           this.resetForm();
-          setTimeout(() => this.switchToTab('connexion'), 2000);
+          setTimeout(() => this.switchToTab('connexion'), 1000);
         } else {
           this.errorMessage = res.error || res.message || res.reponse || 'Erreur lors de l\'inscription.';
         }

@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './mdpoublie.html',
   styleUrl: './mdpoublie.css',
 })
-export class Mdpoublie implements OnInit{
+export class Mdpoublie implements OnInit {
   isLoading: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
@@ -34,11 +34,6 @@ export class Mdpoublie implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.authService.checkSession().subscribe(isLoggedIn => {
-      if (isLoggedIn) {
-        this.router.navigate(['/accueil']);
-      }
-    });
   }
 
   onSubmit(): void {

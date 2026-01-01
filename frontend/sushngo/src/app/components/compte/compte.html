@@ -56,16 +56,68 @@
 
 
     <!-- Paramètres du compte -->
-    <section class="my-10">
-        <!-- a remplir avec des inputs -->
+    <section class="my-10 bg-gray-100 w-[90%] rounded-lg shadow-lg p-8">
+        <!-- il faudrait que tout les inputs ne soient pas accessibles puis quand on appuie sur modifier sa le devient, et afficher bien sûr dynamiquement les données du compte connecté -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h1 class="col-span-full text-xl font-bold underline">Informations personnelles :</h1>
+
+            <div class="flex flex-col">
+                <label for="nom" class="font-semibold">Nom</label>
+                <input type="text" id="nom" name="nom" class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="flex flex-col">
+                <label for="prenom" class="font-semibold">Prénom</label>
+                <input type="text" id="prenom" name="prenom" class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="flex flex-col">
+                <label for="email" class="font-semibold">Email</label>
+                <input type="email" id="email" name="email" class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+
+            <div class="flex flex-col md:col-span-2">
+                <label for="adresse" class="font-semibold">Adresse</label>
+                <input type="text" id="adresse" name="adresse" class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="flex flex-col">
+                <label for="telephone" class="font-semibold">Téléphone</label>
+                <input type="text" id="telephone" name="telephone" class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+
+            <h1 class="col-span-full text-xl font-bold mt-4 underline">Changer de mot de passe :</h1>
+            <div class="flex flex-col">
+                <label for="mdpactuel" class="font-semibold">Mot de passe actuel</label>
+                <input type="password" id="mdpactuel" name="mdpactuel"
+                    class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="flex flex-col">
+                <label for="mdpnouveau" class="font-semibold">Nouveau mot de passe</label>
+                <input type="password" id="mdpnouveau" name="mdpnouveau"
+                    class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="flex flex-col">
+                <label for="mdpnouveau" class="font-semibold">Confirmer le nouveau mot de passe</label>
+                <input type="password" id="mdpnouveau" name="mdpnouveau"
+                    class="p-2 rounded border border-gray-400 bg-white ">
+            </div>
+            <div class="col-span-full flex justify-between items-center mt-6">
+                <a routerLink="/mot-de-passe-oublie" class="text-sm text-blue-600 hover:underline">Mot de passe oublié
+                    ?</a>
+                <div class="flex gap-2">
+                    <button
+                        class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-blue-700 transition-colors border border-gray-400 bg-white">Modifier</button>
+                    <button
+                        class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-green-700 transition-colors border border-gray-400 bg-white">Enregistrer</button>
+                </div>
+            </div>
+            <!-- ici il faudrait faire en sorte de faire apparaître que le bouton modifier qui rendrait tout les input accessibles puis faire apparaître le bouton enregistrer -->
+        </div>
     </section>
 
     <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-    <section class="my-10">
-        <!-- a remplir avec des inputs -->
+    <section class="my-10 bg-gray-200 w-[90%] rounded-lg shadow-lg min-h-[400px]">
+        <!-- a remplir avec l'historique des commandes, il faut qu'il soit simple, c'est a dire, ID commande, total prix, le contenu de la commande sous un format liste si tu veux -->
     </section>
-</section>
 
 
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
