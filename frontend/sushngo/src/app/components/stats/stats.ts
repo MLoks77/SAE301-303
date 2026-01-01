@@ -36,29 +36,26 @@ export class Stats implements AfterViewInit {
   loadData() {
     this.connexionApi.getStats().subscribe({
       next: (res: any) => {
-        // récupère le résultat de SELECT COUNT(*) FROM commande WHERE DATE(date_commande) = CURDATE()
-        // récupère le résultat de SELECT SUM(prix_total) FROM commande
+
         this.METRIQUES = [
           { label: "Commandes aujourd'hui", value: res.metrics.orders_today },
           { label: 'Revenu total', value: '€' + Number(res.metrics.total_revenue).toFixed(2) },
           { label: 'Note clients', value: res.metrics.rating },
         ];
 
-        // récupère les résultats de SELECT p.nom, SUM(d.quantite), p.prix FROM detail_commande d JOIN produit p ...
+
         this.plats_populaires = res.popular_dishes.map((pd: any) => ({
           name: pd.nom,
           orders: Number(pd.orders),
           price: '€' + Number(pd.prix).toFixed(2)
         }));
 
-        // récupère les résultats de SELECT DATE_FORMAT(date_commande, '%a'), SUM(prix_total), COUNT(*) FROM commande ...
         this.donnees_hebdomadaires = res.weekly_data.map((w: any) => ({
           day: w.day,
           orders: Number(w.orders),
           revenue: Number(w.revenue)
         }));
 
-        // récupère les résultats de SELECT HOUR(date_commande), COUNT(*) FROM commande ...
         this.donnees_horaires = res.hourly_data.map((h: any) => ({
           hour: h.hour + ':00',
           orders: Number(h.orders)
@@ -86,7 +83,7 @@ export class Stats implements AfterViewInit {
         datasets: [{
           label: 'Revenue',
           data: this.donnees_hebdomadaires.map(d => d.revenue),
-          borderColor: '#8B0000',
+          borderColor: '#F64F4F',
           backgroundColor: 'rgba(139,0,0,0.2)',
           fill: true,
           tension: 0.4,
@@ -128,7 +125,7 @@ export class Stats implements AfterViewInit {
           backgroundColor: this.donnees_horaires.map(entry => {
             const hour = parseInt(entry.hour);
             if (hour >= 12 && hour <= 14) return '#1a1a1a'; // matin
-            if (hour >= 18 && hour <= 20) return '#8B0000'; // soir
+            if (hour >= 18 && hour <= 20) return '#F64F4F'; // soir
             return '#e5e5e5';
           })
         }]
