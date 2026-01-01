@@ -5,6 +5,8 @@ import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar'
 import { CommonModule } from '@angular/common';
 
+import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
+
 @Component({
   selector: 'app-accueil',
   imports: [RouterLink, Navbar, Footer, CommonModule],
@@ -22,7 +24,6 @@ export class Accueil {
       price: '15.90€',
       image:
         '/images/assets/sushi1.webp',
-      link: '/menus', // mettre un id
     },
     {
       id: 2,
@@ -31,7 +32,6 @@ export class Accueil {
       price: '15.90€',
       image:
         '/images/assets/sushi2.webp',
-      link: '/menus', // mettre un id
     },
     {
       id: 3,
@@ -40,7 +40,6 @@ export class Accueil {
       price: '15.90€',
       image:
         '/images/assets/sushi3.webp',
-      link: '/menus', // mettre un id
     },
     {
       id: 4,
@@ -49,10 +48,33 @@ export class Accueil {
       price: '19.90€',
       image:
         '/images/assets/sushi4.webp',
-      link: '/menus', // mettre un id
     },
   ];
 
+  Boxes: any[] = [];
+  apiData: any;
+  boxData: any;
+
+  constructor(private connexionApi: ConnexionApi) { }
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.connexionApi.getUserDataFromApi().subscribe({ //sert a appeler l'api
+      next: (res: any) => {
+        if (Array.isArray(res)) {
+          this.Boxes = res.map((item: any) => ({ //ajoute a Boxes les données de l'API
+            nom: item.nom,
+            image: '/images/box/' + item.image + '.jpg'
+          }));
+        }
+      },
+      error: (err: any) => {
+      }
+    });
+  }
 
   // ngAfterViewInit parce qu'à ce moment le DOM du composant est prêt ( à tout load )
 

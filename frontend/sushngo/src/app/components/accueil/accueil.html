@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+
+<!-- maxime derènes -->
+
 <div id="landingACCUEIL"
     class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative overflow-hidden">
 
@@ -40,7 +43,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div *ngFor="let box of plats" class="group cursor-pointer opacity-0 animate-fade-up">
                 <div class="relative mb-6 overflow-hidden aspect-4/5">
-                    <a [href]="box.link">
+                    <a routerLink="/menus">
                         <div
                             class="absolute inset-0 bg-sushi-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
                         </div>
@@ -212,7 +215,7 @@
     </div>
 
 
-    <section class="    w-full">
+    <section class="w-full">
         <div class="flex items-center bg-[#19181B] pl-5 pt-5">
             <a routerLink="/menus"
                 class="text-white md:text-5  hover:underline hover:underline-offset-5xl text-4xl Caladea hover:text-gray-200 duration-300 transform-all">
@@ -222,57 +225,14 @@
         <div class="bg-[#19181B] flex gap-6 overflow-x-auto scroll-smooth scroll-pl-6 py-8 snap-x scroll-snap-x scroll-snap-mandatory cursor-grab active:cursor-grabbing"
             style="scroll-snap-type: x mandatory; overflow-y: hidden;" id="carousel-scroll">
             <!-- overflow-y enlève le scroll en y -->
-            <!-- menus/1 -> redirige vers l'id n°1 par exemple -->
-            <!-- il faut changer les id des routerlinks pour correspondre à ceux de la page menu -->
-
-            <a id="sliderbox1" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/amateur-mix.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box amateur</h2>
-            </a>
-
-            <a id="sliderbox2" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/fresh-mix.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box fresh</h2>
-            </a>
-
-            <a id="sliderbox3" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/master-mix.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box master</h2>
-            </a>
-
-            <a id="sliderbox4" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/salmon-classic.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box saumon classique</h2>
-            </a>
-
-            <a id="sliderbox5" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/sando-box-chicken-katsu.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box poulet katsu</h2>
-            </a>
-
-            <a id="sliderbox6" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/super-salmon.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box super saumon</h2>
-            </a>
-
-            <a id="sliderbox7" routerLink="/menus"
-                class="shrink-0 w-80 scroll-snap-align-end flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
-                <img src="/images/box/gourmet-mix.jpg"
-                    class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
-                <h2 class="text-xl font-semibold Caladea mb-2">Box gourmet</h2>
-            </a>
+            <div *ngFor="let box of Boxes" class="group cursor-pointer"> <!-- génère toute les boxes de la bdd -->
+                <a id="sliderbox1" routerLink="/menus"
+                    class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
+                    <img src="{{box.image}}"
+                        class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                    <h2 class="text-xl font-semibold Caladea mb-2">{{box.nom}}</h2>
+                </a>
+            </div>
 
         </div>
     </section>
