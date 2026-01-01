@@ -43,6 +43,23 @@
       <!-- Menu déroulant des filtres -->
       <div *ngIf="afficherFiltres"
         class="absolute right-0 top-10 w-64 bg-white shadow-xl rounded-xl border border-gray-100 z-50 p-4">
+        <!-- Tri par prix -->
+        <h4 class="font-bold text-sm mb-3">Prix</h4>
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="tri-croissant" (change)="gererTri('croissant')"
+              [checked]="triSelectionne === 'croissant'" class="border-gray-300 text-black rounded-full"
+              style="border-radius: 9999px;"> <!-- check box ronde -->
+            <label for="tri-croissant" class="text-sm cursor-pointer select-none">Prix croissant</label>
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="tri-decroissant" (change)="gererTri('decroissant')"
+              [checked]="triSelectionne === 'decroissant'" class="border-gray-300 text-black rounded-full"
+              style="border-radius: 9999px;">
+            <label for="tri-decroissant" class="text-sm cursor-pointer select-none">Prix décroissant</label>
+          </div>
+        </div>
+        <hr class="mx-2 pb-3">
         <h4 class="font-bold text-sm mb-3">Ingrédients</h4>
         <div class="max-h-60 overflow-y-auto space-y-2">
           <div *ngFor="let filtre of filtresDisponibles" class="flex items-center gap-2">
@@ -124,12 +141,12 @@
           </div>
         </div>
 
-        <!-- Liste des saveurs -->
+        <!-- Description -->
         <div>
-          <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">Saveurs</span>
-          <ul class="list-disc pl-4 mt-1 text-sm text-gray-700">
-            <li *ngFor="let saveur of boxSelectionnee.saveursListe Caladea">{{ saveur }}</li>
-          </ul>
+          <h4 class="font-bold text-md mb-1">Description</h4>
+          <p class="text-md text-justify text-gray-500">
+            {{ boxSelectionnee.description }}
+          </p>
         </div>
 
         <!-- Prix Total + les services -->
@@ -207,12 +224,20 @@
       <!-- Section Description & Allergènes -->
       <div class="flex flex-col gap-3 mt-2 pt-3 border-t border-gray-100">
 
-        <!-- Description -->
-        <div>
-          <h4 class="font-bold text-sm mb-1">Description</h4>
-          <p class="text-sm text-justify text-gray-500">
-            {{ boxSelectionnee.description }}
-          </p>
+        <!-- Liste des saveurs -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">Saveurs</span>
+            <ul class="list-disc pl-4 mt-1 text-sm text-gray-700">
+              <li *ngFor="let saveur of boxSelectionnee.saveursListe">{{ saveur }}</li>
+            </ul>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">Aliments</span>
+            <ul class="list-disc pl-4 mt-1 text-sm text-gray-700">
+              <li *ngFor="let aliments of boxSelectionnee.alimentsListe">{{ aliments }}</li>
+            </ul>
+          </div>
         </div>
 
         <!-- Allergènes -->

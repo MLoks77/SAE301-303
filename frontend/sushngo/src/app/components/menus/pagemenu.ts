@@ -41,6 +41,7 @@ export class Pagemenu {
 
   filtresDisponibles: string[] = []; // Liste de tous les ingrédients possibles
   filtresSelectionnes: string[] = []; // Les ingrédients cochés par l'utilisateur
+  triSelectionne: string = ''; // 'croissant' | 'decroissant' | ''
   afficherFiltres: boolean = false;   // Pour ouvrir/fermer le menu
 
   apiData: any;
@@ -52,10 +53,19 @@ export class Pagemenu {
   ouvrirModal(box: any) {
     this.boxSelectionnee = box; // Stocke la box cliquée
     this.quantiteSelectionnee = 1; // On remet la quantité à 1 à chaque ouverture 
+
+    // saveurs
     if (this.boxSelectionnee.saveurs) { // On verifie si la box a des saveurs 
       this.boxSelectionnee.saveursListe = this.boxSelectionnee.saveurs.split(',').map((s: any) => s.trim()); //On transforme la liste des saveurs en tableau
     } else {
       this.boxSelectionnee.saveursListe = []; //si on a pas de saveurs , on renvoie un tableau vide
+    }
+
+    // aliments
+    if (this.boxSelectionnee.aliments) { // On verifie si la box a des aliments 
+      this.boxSelectionnee.alimentsListe = this.boxSelectionnee.aliments.split(';').map((s: any) => s.trim()); //On transforme la liste des aliments en tableau
+    } else {
+      this.boxSelectionnee.alimentsListe = []; //si on a pas d'aliments , on renvoie un tableau vide
     }
 
     // Ajout factice d'allergènes
@@ -81,7 +91,7 @@ export class Pagemenu {
           this.listeBoxes = res.map((item: any) => ({ //ajoute a ListeBoxes les données de l'API en transformant leurs noms
             id: item.id_produit,
             nom: item.nom,
-            description: item.description, // Mappe la vraie description de la BDD
+            description: item.description,
             saveurs: item.saveurs,
             aliments: item.aliments,
             pieces: item.pieces,
@@ -89,10 +99,10 @@ export class Pagemenu {
             image: '/images/box/' + item.image + '.jpg'
           }));
 
-          // 1. On initialise la liste filtrée avec TOUT au début
+          // On initialise la liste filtrée avec TOUT au début
           this.listeFiltree = [...this.listeBoxes];
 
-          // 2. On récupère tous les ingrédients pour créer les filtres
+          // On récupère tous les ingrédients pour créer les filtres
           this.extraireFiltres();
         } else {
         }
@@ -133,18 +143,35 @@ export class Pagemenu {
     this.appliquerFiltres();
   }
 
+  gererTri(tri: string) {
+    if (this.triSelectionne === tri) {
+      this.triSelectionne = ''; // Si on clique sur le même, on désactive
+    } else {
+      this.triSelectionne = tri;
+    }
+    this.appliquerFiltres();
+  }
+
   appliquerFiltres() {
-    // Si aucun filtre coché, on montre tout
-    if (this.filtresSelectionnes.length === 0) {
-      this.listeFiltree = [...this.listeBoxes]; // [...this.listeBoxes] = copie telle quelle de la listeBoxes
-      return;
+    // Si aucun filtre coché, on montre tout (mais on garde le tri !)
+    let resultat = [...this.listeBoxes];
+
+    if (this.filtresSelectionnes.length > 0) {
+      resultat = this.listeBoxes.filter(box => {
+        return this.filtresSelectionnes.every(filtre =>
+          box.description && box.description.includes(filtre)
+        );
+      });
     }
 
-    this.listeFiltree = this.listeBoxes.filter(box => { //parcourt la listeBoxes
-      return this.filtresSelectionnes.every(filtre => //parcourt le tableau des filtres cochés, et affiche seulement les boxes dont tous les filtres cochés sont présents dans la liste des ingrédients de la description
-        box.description && box.description.includes(filtre)
-      );
-    });
+    // Application du tri
+    if (this.triSelectionne === 'croissant') {
+      resultat.sort((a, b) => parseFloat(a.prix) - parseFloat(b.prix));
+    } else if (this.triSelectionne === 'decroissant') {
+      resultat.sort((a, b) => parseFloat(b.prix) - parseFloat(a.prix));
+    }
+
+    this.listeFiltree = resultat;
   }
 
   activeCarrouselIndex = 0;

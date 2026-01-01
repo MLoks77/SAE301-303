@@ -1,0 +1,40 @@
+/* 
+maxime dereens : source
+
+https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements/input/checkbox
+https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Selectors/:checked
+
+*/
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid #d1d5db;
+    border-radius: 100px;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    /* animation, vous pouvez réduire la durée si vous voulez mais je trouve c'est bien */
+    box-shadow: inset 1em 1em black;
+    /* c'est ça qui crée le rond au milieu */
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    /* fait grossir et rétrécir le rond qui vient de boxshadow*/
+}
+
+input[type="checkbox"]:checked {
+    border-color: black;
+}
