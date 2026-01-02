@@ -1,4 +1,7 @@
+//Sebastian
+
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; // Ajout de HttpClient
 
 @Injectable({
   providedIn: 'root',
@@ -6,8 +9,9 @@ import { Injectable } from '@angular/core';
 export class PanierService {
 
   produitsPanier: any[] = []; // Tableau des produits dans le panier
+  private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
 
-  constructor() {
+  constructor(private http: HttpClient) { // Injected HttpClient
     this.chargerPanier();
   }
 
@@ -61,4 +65,5 @@ export class PanierService {
     this.produitsPanier.splice(index, 1);
     this.sauvegarderPanier();
   }
+
 }

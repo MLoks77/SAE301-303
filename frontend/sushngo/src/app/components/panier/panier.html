@@ -86,18 +86,18 @@
                     <label for="nomcarte" class="text-white text-md">Nom sur la carte:</label>
                     <input type="text" id="nomcarte" name="nomcarte" [(ngModel)]="nomCarte" required
                         class="h-[30px] w-full bg-white rounded-md placeholder-gray-400 px-2" placeholder="Dupont">
-                    
+
                     <label for="numcarte" class="text-white text-md">Numéro de la carte:</label>
-                    <input type="text" id="numcarte" name="numcarte" [(ngModel)]="numCarte" required minlength="16"
-                        maxlength="16" class="h-[30px] w-full bg-white rounded-md placeholder-gray-400 px-2"
-                        placeholder="1111222233334444">
-                    
+                    <input type="text" id="numcarte" name="numcarte" [(ngModel)]="numCarte" required minlength="19"
+                        maxlength="19" class="h-[30px] w-full bg-white rounded-md placeholder-gray-400 px-2"
+                        placeholder="1111 2222 3333 4444" (input)="formatNumCarte($event)">
+
                     <div class="grid grid-cols-2 gap-2 h-[30px]">
                         <div>
                             <label for="dateexpiration" class="text-white text-md">Date d'expiration:</label>
                             <input type="text" id="dateexpiration" name="dateexpiration" [(ngModel)]="dateExpiration"
                                 required class="h-[30px] w-full bg-white rounded-md placeholder-gray-400 px-2"
-                                placeholder="MM/AA">
+                                placeholder="MM/AA" (input)="formatDateExpiration($event)">
                         </div>
                         <div>
                             <label for="cvv" class="text-white text-md">CVV:</label>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="flex justify-between text-white text-md font-medium">
                         <span>Réduction: </span>
-                        <span>0 €</span>
+                        <span>{{ getReduction() }}€</span>
                     </div>
                     <div class="flex justify-center gap-4 mt-6">
                         <button type="button" (click)="isLivraison = true" [class.bg-white]="isLivraison"
@@ -144,7 +144,7 @@
                         (click)="ValidationForm()">
                         <span>Passer au paiement</span>
                         <span class="bg-white/20 px-2 py-1 rounded text-sm group-hover:bg-white/30 transition">{{
-                            getTotalPanier() + getPrixLivraison() }}€</span>
+                            getTotalApresReduction().toFixed(2) }}€</span>
                     </button>
                 </div>
             </form>

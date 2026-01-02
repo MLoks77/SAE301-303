@@ -6,6 +6,7 @@ import { PanierService } from '../../services/panierService/panierService';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // Ajout par Joachim
 import { Router } from '@angular/router'; // Ajout par Joachim
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-panier',
@@ -28,7 +29,7 @@ export class Panier {
   dateExpiration: string = '';
   cvv: string = '';
 
-  constructor(private router: Router, private panierService: PanierService) { }
+  constructor(private router: Router, private panierService: PanierService, private authService: AuthService) { }
 
   getItemsPanier() {
     return this.panierService.getPanier();
@@ -44,6 +45,20 @@ export class Panier {
     return this.panierService.getPanier().reduce((total, commande) => {
       return total + (parseFloat(commande.prixTotal) || 0);
     }, 0);
+  }
+
+  getTotalApresReduction(): number {
+    const total = this.getTotalPanier() + this.getPrixLivraison();
+    if (this.authService.isStudent()) {
+      return total * 0.95;
+    } else {
+      return total;
+    }
+  }
+
+  getReduction(): number {
+    const totalSansReduc = this.getTotalPanier() + this.getPrixLivraison();
+    return parseFloat((totalSansReduc - this.getTotalApresReduction()).toFixed(2));
   }
 
   // false = à emporter, true = livraison
@@ -62,23 +77,23 @@ export class Panier {
   }
 
   // Fonction de validation du formulaire par Joachim
-  ValidationForm(): void{
+  ValidationForm(): void {
     if (this.getItemsPanier().length === 0) {
       this.errorMessage = "Votre panier est vide. Ajoutez des produits avant de passer commande.";
       this.successMessage = '';
       return;
     }
-    
+
     if (!this.commandeForm || !this.commandeForm.valid) {
       this.errorMessage = "Veuillez compléter tous les champs pour valider le paiement.";
       this.successMessage = '';
       return;
     }
-    
+
     this.successMessage = "Votre commande a été validée avec succès !";
     this.errorMessage = '';
-    this.resetPanier();
-    
+    this.panierService.viderPanier();
+
     setTimeout(() => {
       this.successMessage = '';
       this.router.navigate(['/accueil']);
@@ -95,4 +110,37 @@ export class Panier {
   resetPanier(): void {
     this.panierService.viderPanier();
   }
+
+  // Formatage automatique du numéro de carte (XXXX XXXX XXXX XXXX)
+  formatNumCarte(event: any) {
+    let input = event.target; // on récup le input 
+    let value = input.value.replace(/\D/g, '').substring(0, 16); //input.value = ce qui a été tapé , .replace(/\D/g, '') = supprime les caractères qui ne sont pas des chiffres et on les remplace par du vide , .substring(0,16) on garde que les 16premiers chiffres
+    let formattedValue = ''; //variable qui va contenir le numéro de la carte formaté vide par défaut 
+
+    for (let i = 0; i < value.length; i++) { //On parcourt chaque chiffre nettoyé un par un
+      if (i > 0 && i % 4 === 0) { // si la position est un multiple de 4, on ajoute un espace
+        formattedValue += ' ';
+      }
+      formattedValue += value[i];// on ajoute le chiffre à la variable formatée
+    }
+
+    this.numCarte = formattedValue; //met à jour le numéro de la carte
+    input.value = formattedValue; //met à jour l'input
+  }
+
+  // Formatage automatique de la date d'expiration (MM/AA)
+  formatDateExpiration(event: any) {
+    let input = event.target; //récup le input en question
+    let value = input.value.replace(/\D/g, '').substring(0, 4); //on garde que les 4 premiers chiffres
+
+    if (value.length >= 2) {
+      this.dateExpiration = value.substring(0, 2) + '/' + value.substring(2); //on ajoute un / entre les 2 premiers et les 2 suivants
+    } else {
+      this.dateExpiration = value;
+    }
+
+    input.value = this.dateExpiration; //met à jour l'input
+  }
 }
+
+

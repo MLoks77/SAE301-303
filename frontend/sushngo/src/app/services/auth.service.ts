@@ -9,6 +9,7 @@ export interface User {
   nom: string;
   prenom: string;
   email: string;
+  statut_etud: boolean;
 }
 
 export interface AuthResponse {
@@ -24,6 +25,7 @@ export interface SessionStatus {
   logged_in: boolean;
   user_id: number | null;
   api_token: string | null;
+  user?: User; // Ajout pour récupérer l'utilisateur à la vérification de session
 }
 
 @Injectable({
@@ -33,6 +35,8 @@ export class AuthService {
   private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  private currentUserSubject = new BehaviorSubject<User | null>(null); // valeur = soit User complet soit null , behaviorSubject sert a sauvegarder les données de l'user , pour etre accessibles depuis les autres composants sans avoir besoin de les recharger
+  public currentUser$ = this.currentUserSubject.asObservable();  //$ à la fin de currentUser signifie que c'est un observable et transforme le behaviorSubject en observable
 
   constructor(private http: HttpClient) {
     this.checkSession().subscribe();
@@ -43,10 +47,14 @@ export class AuthService {
   login(credentials: { email: string; password: string }): Observable<AuthResponse> { // credentials sont les données envoyées par le client
     return this.http.post<AuthResponse>(this.apiUrl, credentials, {
       withCredentials: true
-    }).pipe( // pipe sert a faire des actions sur les données
-      tap(response => {
+    }).pipe( // pipe permet de faire des opérations sur les données qui arrivent
+      tap(response => { // effectue des actions sur les données qui passent
         if (response.success) {
           this.isLoggedInSubject.next(true);
+          // SI la connexion est réussie et qu'on a un utilisateur, on le sauvegarde
+          if (response.user) {
+            this.currentUserSubject.next(response.user);
+          }
         }
       })
     );
@@ -91,10 +99,12 @@ export class AuthService {
     }).subscribe({ // subscribe sert a recevoir les données
       next: () => {
         this.isLoggedInSubject.next(false);
+        this.currentUserSubject.next(null); // On vide l'utilisateur à la déconnexion
       },
       error: (err) => {
         console.error('Erreur lors de la déconnexion:', err);
         this.isLoggedInSubject.next(false);
+        this.currentUserSubject.next(null); // On vide aussi en cas d'erreur si on force la déco locale
       }
     });
   }
@@ -107,6 +117,12 @@ export class AuthService {
       map((response) => {
         const isLoggedIn = response.logged_in === true;
         this.isLoggedInSubject.next(isLoggedIn);
+
+        // Si on est connecté et que le serveur renvoie l'utilisateur, on le stocke
+        if (isLoggedIn && response.user) {
+          this.currentUserSubject.next(response.user);
+        }
+
         return isLoggedIn;
       }),
       catchError((error) => {
@@ -123,6 +139,14 @@ export class AuthService {
 
   getIsLoggedIn(): boolean {
     return this.isLoggedInSubject.value;
+  }
+
+  getUser(): User | null {
+    return this.currentUserSubject.value; // retourne l'utilisateur actuellement connecté pour pas attendre comme avec un subscribe
+  }
+
+  isStudent(): boolean {
+    return this.getUser()?.statut_etud || false;
   }
 }
 

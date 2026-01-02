@@ -1,3 +1,5 @@
+//fichier réalisé par Sebastian
+
 import { Component } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
