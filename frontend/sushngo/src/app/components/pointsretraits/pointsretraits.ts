@@ -101,6 +101,14 @@ export class Pointsretraits implements OnInit {
     this.updateDistances();
   }
 
+  onCityChange(event: any) {
+    const cityId = parseInt(event.target.value, 10);
+    const selectedCity = this.cities.find(c => c.id === cityId);
+    if (selectedCity) {
+      this.selectCity(selectedCity);
+    }
+  }
+
   updateDistances() { // met à jour les distances 
     if (this.userLat !== null && this.userLon !== null) {
       this.filteredRestaurants.forEach(r => {

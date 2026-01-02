@@ -86,7 +86,8 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span></label>
+                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span><span
+                                class="text-gray-300 text-sm"> (8 caractères minimum)</span></label>
                         <div class="relative">
                             <input [type]="showMdpInscr ? 'text' : 'password'" name="password" placeholder="..."
                                 [(ngModel)]="registerData.password" required minlength="8"

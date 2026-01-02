@@ -39,3 +39,9 @@
     background-repeat: no-repeat;
     scale: 1.1;
 }
+
+@media (max-width: 768px) {
+    #map {
+        scale: 1;
+    }
+}
