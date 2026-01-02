@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { FormsModule } from '@angular/forms';
+import { PanierService } from '../../services/panierService/panierService';
 
 @Component({
   selector: 'app-pagemenu',
@@ -44,9 +45,6 @@ export class Pagemenu {
   triSelectionne: string = ''; // 'croissant' | 'decroissant' | ''
   afficherFiltres: boolean = false;   // Pour ouvrir/fermer le menu
 
-  apiData: any;
-  boxData: any;
-
   boxSelectionnee: any = null; // La box sur laquelle on a cliqué
   quantiteSelectionnee: number = 1; // Quantité par défaut
 
@@ -77,7 +75,7 @@ export class Pagemenu {
 
   }
 
-  constructor(private connexionApi: ConnexionApi) { }
+  constructor(private connexionApi: ConnexionApi, private panierService: PanierService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -106,8 +104,6 @@ export class Pagemenu {
           this.extraireFiltres();
         } else {
         }
-        this.apiData = res;
-        this.boxData = res;
       },
       error: (err: any) => {
       }
@@ -197,5 +193,17 @@ export class Pagemenu {
   getPrixTotal() {
     if (!this.boxSelectionnee) return 0; // tant que rien n'est sélectionné , retourner 0
     return (this.boxSelectionnee.prix * this.quantiteSelectionnee).toFixed(2);
+  }
+
+  ajouterAuPanier() {
+    if (this.boxSelectionnee) {
+      const commande = {
+        produit: this.boxSelectionnee,
+        quantite: this.quantiteSelectionnee,
+        prixTotal: this.getPrixTotal()
+      };
+      this.panierService.ajouterPanier(commande);
+      this.fermerModal();
+    }
   }
 }

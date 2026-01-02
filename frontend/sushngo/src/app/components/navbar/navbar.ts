@@ -8,6 +8,7 @@ import { Router } from '@angular/router'; // pour api ( maxime derènes )
 
 // import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { AuthService } from '../../services/auth.service'; // joachim tocqueville
+import { PanierService } from '../../services/panierService/panierService';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,11 @@ export class Navbar implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   private authSubscription?: Subscription;
 
-  constructor(private http: HttpClient, private router: Router, /*public connexionApi: ConnexionApi,*/ private authService: AuthService) { }
+  constructor(private http: HttpClient, private router: Router, /*public connexionApi: ConnexionApi,*/ private authService: AuthService, private panierService: PanierService) { }
+
+  getCartCount(): number {
+    return this.panierService.getNombreArticlesTotal();
+  }
 
   // témi kergastel, modif par joachim tocqueville
   ngOnInit() {
