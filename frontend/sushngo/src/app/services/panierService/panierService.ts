@@ -44,6 +44,11 @@ export class PanierService {
     return true;
   }
 
+  viderPanier(): void {
+    this.produitsPanier = [];
+    this.sauvegarderPanier();
+  }
+
   getPanier() { //recuperer le panier
     return this.produitsPanier;
   }
