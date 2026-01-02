@@ -69,7 +69,7 @@ export class Mdpoublie implements OnInit {
         if (res.success) {
           this.successMessage = 'Mot de passe modifié avec succès ! Vous pouvez vous connecter.';
           this.resetForm();
-          setTimeout(() => { this.router.navigate(['/inscription-connexion']); }, 2000);
+          setTimeout(() => { this.router.navigate(['/inscription-connexion']); }, 1000);
         } else {
           this.errorMessage = res.error || res.message || res.reponse || 'Une erreur a été détectée lors de la modification de votre mot de passe.';
         }

@@ -9,7 +9,7 @@
     <span class="text-white italic mb-1"> &gt; Panier</span>
 </div>
 
-<div class="flex items-center mb-2 mx-4 md:mx-10 mt-20">
+<div class="flex items-center mb-2 mx-4 md:mx-10 mt-10">
     <h1 class="text-3xl Caladea ml-4"> Vous avez commandé {{ getNombreTotalProduits() }} produits. <span
             class="text-red-500 text-sm">10 produits maximum</span>
     </h1>
@@ -38,8 +38,8 @@
                     <span class="text-lg font-bold text-gray-900">{{ item.prixTotal }}€</span>
 
                     <!-- Bouton supprimer -->
-                    <button (click)="supprimerArticle(i)" class="text-gray-400 hover:text-red-500 transition-colors p-1"
-                        title="Supprimer">
+                    <button (click)="supprimerArticle(i)"
+                        class="cursor-pointer hover:text-red-500 transition-colors p-1" title="Supprimer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +59,7 @@
 
 
 
-    <div class="bg-gray-600 h-auto md:h-[700px] rounded-xl pb-4">
+    <div class="bg-[#0C3A53] h-auto md:h-[700px] rounded-xl pb-4">
         <h1 class="text-center text-2xl font-bold text-white mt-2">Paiement</h1>
         <div class="flex flex-col items-start mx-4 md:mx-16 my-4">
             <form class="w-full">
@@ -80,7 +80,7 @@
                         placeholder="Dupont" required>
                     <label for="numcarte" class="text-white text-md">Numéro de la carte:</label>
                     <input type="text" id="numcarte" class="h-[30px] w-full bg-white rounded-md placeholder-gray-400"
-                        placeholder="1111 2222 3333 4444" required minlength="16" maxlength="16">
+                        placeholder="1111222233334444" required minlength="16" maxlength="16">
                     <div class="grid grid-cols-2 gap-2 h-[30px]">
                         <div>
                             <label for="dateexpiration" class="text-white text-md">Date d'expiration:</label>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="flex justify-center gap-4 mt-6">
                         <!-- (click)='isLivraison = true' passe la valeur a True ce qui va activer la méthode getPrixLivraison()-->
-                        <!-- CSS dynamique ici (internet) -> on applique les classes bg-white text-black si isLivraison est true, sinon les autres classes-->
+                        <!-- CSS dynamique ici -> on applique les classes bg-white text-black si isLivraison est true-->
                         <button (click)="isLivraison = true" [class.bg-white]="isLivraison"
                             [class.text-black]="isLivraison" [class.bg-gray-700]="!isLivraison"
                             [class.text-white]="!isLivraison"
