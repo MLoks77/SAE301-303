@@ -2,5 +2,16 @@
     background-image: url('/images/assets/inscconnex.jpg');
     background-attachment: fixed;
     background-size: cover;
-    height: 800px;
+    height: 830px;
+}
+
+@media (max-width: 768px) {
+    #mdpoubliebg {
+        height: 775px;
+    }
+
+    #tab-formulaire-mdpoublie {
+        width: 380px;
+        display: inline-block;
+    }
 }

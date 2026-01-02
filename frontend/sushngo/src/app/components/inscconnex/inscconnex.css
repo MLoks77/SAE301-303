@@ -35,9 +35,11 @@
     border: 0;
     border-top: 1px solid #ccc;
   }
-  .mdp-confirm-invisible {
+
+.mdp-confirm-invisible {
     visibility: hidden;
-  }
-  .form-connexion-invisible {
+}
+
+.form-connexion-invisible {
     display: none;
-  }
+}

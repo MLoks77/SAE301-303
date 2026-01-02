@@ -28,10 +28,7 @@ export class Mdpoublie implements OnInit {
   showNewMdp: boolean = false;
   showConfirmNewMdp: boolean = false;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -87,12 +84,12 @@ export class Mdpoublie implements OnInit {
     if (field === 'confirm_new_mdp') this.showConfirmNewMdp = !this.showConfirmNewMdp;
   }
 
-  private clearMessages(): void {
+  clearMessages(): void {
     this.successMessage = '';
     this.errorMessage = '';
   }
 
-  private resetForm(): void {
+  resetForm(): void {
     this.loginData = {
       email: '',
       newPassword: '',

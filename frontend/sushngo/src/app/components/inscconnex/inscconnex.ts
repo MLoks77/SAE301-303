@@ -55,11 +55,31 @@ export class Inscconnex implements OnInit {
         this.router.navigate(['/accueil']);
       }
     });
+
+    this.changeHeight(this.currentTab);
   }
 
   switchToTab(tab: string): void {
     this.currentTab = tab;
     this.clearMessages();
+    this.changeHeight(tab);
+  }
+
+  changeHeight(tab: string): void {
+    const connexionbg = document.getElementById('connexionbg');
+    if (tab === 'inscription' && window.innerWidth <= 768) {
+      connexionbg?.style.setProperty('height', '1300px', 'important');
+      connexionbg?.style.setProperty('min-height', '1300px', 'important');
+    } else if (tab === 'connexion' && window.innerWidth <= 768) {
+      connexionbg?.style.setProperty('height', '780px', 'important');
+      connexionbg?.style.setProperty('min-height', '780px', 'important');
+    } else if (tab === 'inscription' && window.innerWidth > 768) {
+      connexionbg?.style.setProperty('height', '1050px', 'important');
+      connexionbg?.style.setProperty('min-height', '1050px', 'important');
+    } else if (tab === 'connexion' && window.innerWidth > 768) {
+      connexionbg?.style.setProperty('height', '835px', 'important');
+      connexionbg?.style.setProperty('min-height', '835px', 'important');
+    }
   }
 
   onSubmitConnexion(): void {
@@ -128,12 +148,12 @@ export class Inscconnex implements OnInit {
     if (field === 'confirm_mdp') this.showConfirmMdp = !this.showConfirmMdp;
   }
 
-  private clearMessages(): void {
+  clearMessages(): void {
     this.successMessage = '';
     this.errorMessage = '';
   }
 
-  private resetForm(): void {
+  resetForm(): void {
     this.registerData = {
       nom: '',
       prenom: '',

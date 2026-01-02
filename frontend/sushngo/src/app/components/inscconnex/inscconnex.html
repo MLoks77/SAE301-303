@@ -12,7 +12,6 @@
 <section id="connexionbg" class="pt-10 min-h-screen">
     <div id="fondform">
 
-        <!-- Onglets -->
         <div class="flex justify-center my-8">
             <div class="Caladea flex rounded-[40px] p-2 gap-2 bg-white shadow-md">
                 <button (click)="switchToTab('inscription')" type="button"
@@ -31,18 +30,13 @@
         </div>
 
         <div class="flex flex-col items-center gap-8 justify-center px-4">
-
-
-
-            <!-- FORMULAIRE INSCRIPTION -->
             <form *ngIf="currentTab === 'inscription'" #registerForm="ngForm" (ngSubmit)="onSubmitInscription()"
                 class="bg-white py-8 px-6 rounded-3xl shadow-2xl max-w-[650px] w-full transition-all duration-500">
 
-                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-gray-100 pb-4">
+                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-black pb-4">
                     Créer un compte
                 </h2>
 
-                <!-- Messages d'info -->
                 <div *ngIf="successMessage"
                     class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative max-w-[650px] w-full text-center mb-4">
                     {{ successMessage }}
@@ -58,26 +52,22 @@
                         <input name="nom" type="text" placeholder="Nom" [(ngModel)]="registerData.nom" required
                             class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <!-- prénom -->
                     <div class="flex flex-col">
                         <label class="mb-1 font-medium">Prénom <span class="text-red-500">*</span></label>
                         <input name="prenom" type="text" placeholder="Prénom" [(ngModel)]="registerData.prenom" required
                             class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <!-- email -->
                     <div class="flex flex-col">
                         <label class="mb-1 font-medium">Email <span class="text-red-500">*</span></label>
                         <input name="email" type="email" placeholder="exemple@email.com"
                             [(ngModel)]="registerData.email" required email
                             class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <!-- telephone -->
                     <div class="flex flex-col">
                         <label class="mb-1 font-medium">Téléphone <span class="text-red-500">*</span></label>
                         <input name="tel" type="tel" placeholder="..." [(ngModel)]="registerData.tel" required
                             class="border border-gray-300 rounded-xl py-3 px-4 focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                     </div>
-                    <!-- adresse -->
                     <div class="flex flex-col md:col-span-2">
                         <label class="mb-1 font-medium">Adresse <span class="text-red-500">*</span></label>
                         <input name="adresse" type="text" placeholder="1 rue du pont" [(ngModel)]="registerData.adresse"
@@ -86,8 +76,8 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span><span
-                                class="text-gray-300 text-sm"> (8 caractères minimum)</span></label>
+                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span><span class="text-gray-300 text-sm">
+                            (8 caractères minimum)</span></label>
                         <div class="relative">
                             <input [type]="showMdpInscr ? 'text' : 'password'" name="password" placeholder="..."
                                 [(ngModel)]="registerData.password" required minlength="8"
@@ -115,10 +105,10 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium">Confirmation <span class="text-red-500">*</span></label>
+                        <label class="mb-1 font-medium">Confirmation du mot de passe <span class="text-red-500">*</span></label>
                         <div class="relative">
                             <input [type]="showConfirmMdp ? 'text' : 'password'" name="confirmPassword"
-                                placeholder="..." [(ngModel)]="registerData.confirmPassword" required
+                                placeholder="..." [(ngModel)]="registerData.confirmPassword" required minlength="8"
                                 class="border border-gray-300 rounded-xl py-3 px-4 w-full focus:ring-2 focus:ring-red-500 outline-none transition-all" />
                             <button type="button" (click)="togglePassword('confirm_mdp')"
                                 class="absolute right-3 top-4 text-gray-400 hover:text-red-500 transition-colors">
@@ -146,14 +136,14 @@
                         <div class="flex items-center gap-2 cursor-pointer">
                             <input id="etudiant" name="statut_etud" type="checkbox"
                                 [(ngModel)]="registerData.statut_etud" class="w-5 h-5 accent-red-500 cursor-pointer" />
-                            <label for="etudiant" class="cursor-pointer">Je suis étudiant</label>
+                            <label for="etudiant" class="cursor-pointer text-sm">Je suis étudiant</label>
                         </div>
                         <div class="flex items-center gap-2 cursor-pointer">
                             <input id="cgu" name="cgu" type="checkbox" [(ngModel)]="registerData.cgu" required
-                                class="w-5 h-5 accent-red-500 cursor-pointer" />
+                                class="w-5 h-5 accent-red-500 cursor-pointer"/>
                             <label for="cgu" class="cursor-pointer text-sm">
                                 J'accepte les <a routerLink="/mentions-legales"
-                                    class="text-blue-600 hover:underline">Conditions Générales d'Utilisation</a> *
+                                    class="text-blue-600 hover:underline">Conditions Générales d'Utilisation</a><span class="text-red-500"> *</span>
                             </label>
                         </div>
                     </div>
@@ -164,19 +154,17 @@
                         class="cursor-pointer rounded-2xl py-4 w-56 bg-red-500 hover:bg-red-600 disabled:bg-gray-400 transition-all text-white font-bold text-lg shadow-lg hover:shadow-xl">
                         {{ isLoading ? 'Création...' : "S'inscrire" }}
                     </button>
-                    <span class="text-xs text-gray-400">* Champs obligatoires</span>
+                    <span class="text-xs text-red-500">* Champs obligatoires</span>
                 </div>
             </form>
 
-            <!-- FORMULAIRE CONNEXION -->
             <form *ngIf="currentTab === 'connexion'" #loginForm="ngForm" (ngSubmit)="onSubmitConnexion()"
-                class="bg-white py-10 px-8 rounded-3xl shadow-2xl max-w-[450px] w-full transition-all duration-500">
+                class="bg-white py-8 px-6 rounded-3xl shadow-2xl max-w-[450px] w-full transition-all duration-500">
 
-                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-gray-100 pb-4">
+                <h2 class="text-2xl font-bold text-center mb-8 text-red-500 border-b border-black pb-4">
                     Connexion
                 </h2>
 
-                <!-- Messages d'info -->
                 <div *ngIf="successMessage"
                     class="bg-green-100 text-green-700 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4">
                     {{ successMessage }}
@@ -227,12 +215,13 @@
                             oublié ?</a>
                     </div>
                 </div>
-
-                <div class="flex justify-center mt-10">
+                
+                <div class="flex  flex-col items-center mt-10 gap-4">
                     <button type="submit" [disabled]="!loginForm.valid || isLoading"
                         class="rounded-2xl py-4 w-full bg-red-500 hover:bg-red-600 disabled:bg-gray-400 transition-all cursor-pointer text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0">
                         {{ isLoading ? 'Connexion...' : 'Se connecter' }}
                     </button>
+                    <span class="text-xs text-red-500">* Champs obligatoires</span>
                 </div>
             </form>
 
