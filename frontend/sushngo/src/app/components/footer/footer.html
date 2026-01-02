@@ -1,4 +1,4 @@
-<!-- réalisé par Maxime Derènes -->
+<!-- réalisé par Chisiu Sebastien -->
 <!-- partie hr ligne -->
 
 
@@ -28,11 +28,11 @@
                 </li>
                 <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70 Caladea">Nous
                         contacter</a></li>
-                <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70 Caladea">
-                    <a routerLink="/compte">Mon Compte</a>
+                <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">
+                    <a routerLink="/compte" class="Caladea">Mon Compte</a>
                 </li>
-                <li *ngIf="isLoggedIn" (click)="logout()" class="cursor-pointer text-xl hover:text-black/70 Caladea">
-                    <a>Se déconnecter</a>
+                <li *ngIf="isLoggedIn" (click)="logout()" class="cursor-pointer text-xl hover:text-black/70">
+                    <a class="Caladea">Se déconnecter</a>
                 </li>
                 <li *ngIf="!isLoggedIn" class="cursor-pointer text-xl hover:text-black/70 Caladea">
                     <a routerLink="/inscription-connexion">Se connecter</a>
@@ -97,13 +97,13 @@
     <div class="block md:hidden px-4 pb-3 pt-5">
         <div class="flex flex-col items-center gap-4">
             <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
-                <a routerLink="/points-retraits" class="text-base hover:text-black/70">Points de retraits</a>
-                <a routerLink="/menus" class="text-base hover:text-black/70">Carte</a>
-                <a routerLink="/compte" class="text-base hover:text-black/70">Mon Compte</a>
+                <a routerLink="/points-retraits" class="text-base hover:text-black/70 Caladea">Points de retraits</a>
+                <a routerLink="/menus" class="text-base hover:text-black/70 Caladea">Carte</a>
+                <a routerLink="/compte" class="text-base hover:text-black/70 Caladea">Mon Compte</a>
             </div>
             <div class="flex flex-wrap justify-center w-full gap-5 mb-2">
-                <a routerLink="/contact" class="text-base hover:text-black/70">Contact</a>
-                <a routerLink="/stats" class="text-base hover:text-black/70">Stats</a>
+                <a routerLink="/contact" class="text-base hover:text-black/70 Caladea">Contact</a>
+                <a routerLink="/stats" class="text-base hover:text-black/70 Caladea">Stats</a>
             </div>
             <div class="flex justify-center gap-4 w-full mb-2">
                 <a><img src="images/icons/facebook.webp" class="w-8 h-8" alt="Facebook"></a>
@@ -128,12 +128,13 @@
             </div>
             <div class="w-full mt-2">
                 <div class="flex flex-row gap-2 justify-center text-xs mb-1">
-                    <a routerLink="/mentions-legales" class="hover:text-black/70">Mentions légales</a>
-                    <a routerLink="/plan-site" class="border-l pl-2 border-black hover:text-black/70">Plan du site</a>
+                    <a routerLink="/mentions-legales" class="hover:text-black/70 Caladea">Mentions légales</a>
+                    <a routerLink="/plan-site" class="border-l pl-2 border-black hover:text-black/70 Caladea">Plan du
+                        site</a>
                     <a routerLink="/utilisation-cookie"
-                        class="border-l pl-2 border-black hover:text-black/70">Cookies</a>
+                        class="border-l pl-2 border-black hover:text-black/70 Caladea">Cookies</a>
                 </div>
-                <h2 class="text-black/60 text-xs text-center">© 2025 Sush’n Go</h2>
+                <h2 class="text-black/60 text-xs text-center Caladea">© 2025 Sush’n Go</h2>
             </div>
         </div>
     </div>

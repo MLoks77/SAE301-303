@@ -20,7 +20,7 @@
             <div class="col-span-1">
                 <div class="col-start-5 flex gap-6 justify-end items-center h-full">
                     @if (isLoggedIn) {
-                    <a class="flex items-center gap-3" routerLink="/panier">
+                    <a class="flex items-center gap-3 relative" routerLink="/panier">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-auto h-10">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -43,6 +43,10 @@
                                 </defs>
                             </g>
                         </svg>
+                        <span *ngIf="getCartCount() > 0"
+                            class="absolute -top-2 -right-4 bg-red-400 text-black text-[8px] font-bold px-2 py-0.5 rounded-full flex items-center justify-center border-2 border-white shadow-sm whitespace-nowrap">
+                            {{ getCartCount() }} / 10
+                        </span>
                     </a>
                     <a class="flex items-center gap-3" routerLink="/compte">
                         <svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
