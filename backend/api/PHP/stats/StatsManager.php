@@ -16,16 +16,16 @@ class StatsManager
         $stmt = $this->pdo->query("SELECT COUNT(*) as count FROM commande WHERE DATE(date_commande) = CURDATE()");
         $ordersToday = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
 
-        // Revenu total
-        $stmt = $this->pdo->query("SELECT SUM(prix_total) as total FROM commande");
-        $totalRevenue = $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+        // Commande all time
+        $stmt = $this->pdo->query("SELECT COUNT(*) as count FROM commande");
+        $totalcommandes = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
 
         // Note clients (simulation)
         $rating = 3.8;
 
         return [
             'orders_today' => $ordersToday,
-            'total_revenue' => $totalRevenue,
+            'total_commandes' => $totalcommandes,
             'rating' => $rating,
         ];
     }
