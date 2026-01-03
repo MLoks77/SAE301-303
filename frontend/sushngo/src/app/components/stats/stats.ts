@@ -84,7 +84,7 @@ export class Stats implements AfterViewInit {
     this.weeklyChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.donnees_hebdomadaires.map(d => d.day),
+        labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
         datasets: [{
           label: 'Revenue hebdomadaire',
           data: this.donnees_hebdomadaires.map(d => d.revenue),

@@ -32,7 +32,6 @@ export class Panier {
   dateExpiration: string = '';
   cvv: string = '';
 
-
   // false = à emporter, true = livraison
   isLivraison: boolean = true;
 
@@ -98,7 +97,6 @@ export class Panier {
       this.successMessage = '';
       return;
     }
-
 
     if (!this.commandeForm || !this.commandeForm.valid) {
       this.errorMessage = "Veuillez compléter tous les champs pour valider le paiement.";
