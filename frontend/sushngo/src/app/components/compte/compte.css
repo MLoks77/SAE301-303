@@ -22,6 +22,32 @@ progress {
     background-image: url("/images/assets/mer.webp");
 }
 
+.circle {
+    transition: fill 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .fid {
+        margin-left: 3.1rem;
+    }
+
+    .fid p {
+        font-size: 1.3rem;
+    }
+
+    .valuefid {
+        margin-left: 3.1rem;
+    }
+
+    #fideliteprogress {
+        width: 21rem;
+    }
+
+    .fidrec {
+        width: 22.5rem;
+    }
+}
+
 /*sa permet de changer la couleur de la barre de progression dans certains navigateurs, dans l'ordre :
 
 Firefox
