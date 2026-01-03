@@ -1,3 +1,5 @@
+//fichier réalisé par Sebastian
+
 import { Component, inject, ViewChild } from '@angular/core'; // Ajout de ViewChild par Joachim
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';

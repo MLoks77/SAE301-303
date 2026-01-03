@@ -93,7 +93,8 @@ class UserManager
                     'id_user' => $user['id_user'],
                     'nom' => $user['nom'],
                     'prenom' => $user['prenom'],
-                    'email' => $user['email']
+                    'email' => $user['email'],
+                    'statut_etud' => (bool)$user['statut_etud']
                 ]
             ];
         }
@@ -135,7 +136,7 @@ class UserManager
         }
 
         // Vérifier que le token existe réellement en base de données et correspond à l'utilisateur
-        $sql = "SELECT id_user, api_token FROM utilisateur WHERE id_user = :id_user AND api_token = :api_token";
+        $sql = "SELECT * FROM utilisateur WHERE id_user = :id_user AND api_token = :api_token";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'id_user' => $_SESSION['id_user'],
@@ -156,8 +157,13 @@ class UserManager
 
         return [
             'logged_in' => true,
-            'user_id' => $_SESSION['id_user'],
-            'api_token' => $_SESSION['api_token']
+            'user' => [
+                'id_user' => $user['id_user'],
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'email' => $user['email'],
+                'statut_etud' => (bool)$user['statut_etud']
+            ]
         ];
     }
 
