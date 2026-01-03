@@ -8,6 +8,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+
 // sebastien et joachim 
 
 @Component({
@@ -18,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class Panier {
   // Joachim
-  
+
   // Référence au formulaire pour la validation
   @ViewChild('commandeForm') commandeForm!: NgForm;
 
@@ -125,9 +126,7 @@ export class Panier {
           this.successMessage = 'Votre commande a été validée avec succès !';
           this.errorMessage = '';
 
-
           this.panierService.viderPanier();
-
 
           setTimeout(() => {
             this.successMessage = '';
