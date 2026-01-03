@@ -17,7 +17,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './panier.css',
 })
 export class Panier implements OnInit {
-export class Panier implements OnInit {
   // Joachim
 
   // Référence au formulaire pour la validation
