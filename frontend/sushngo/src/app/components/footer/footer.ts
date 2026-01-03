@@ -37,7 +37,7 @@ export class Footer implements OnInit, OnDestroy {
       }
     });
 
-    // S'abonner aux changements d'état de connexion pour mise à jour automatique
+    // S'abonner aux changements connexion pour mise à jour automatique
     this.authSubscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       if (!isLoggedIn) {
@@ -47,7 +47,7 @@ export class Footer implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Nettoyer l'abonnement pour éviter les fuites mémoire
+    // Nettoyer l'abo / comme logout
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }

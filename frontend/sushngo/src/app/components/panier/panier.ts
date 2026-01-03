@@ -1,15 +1,15 @@
-//fichier réalisé par Sebastian
-
-import { Component, inject, ViewChild } from '@angular/core'; // Ajout de ViewChild par Joachim
+import { Component, inject, numberAttribute, OnInit, ViewChild } from '@angular/core';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
 import { RouterLink } from '@angular/router';
 import { PanierService } from '../../services/panierService/panierService';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms'; // Ajout par Joachim
-import { Router } from '@angular/router'; // Ajout par Joachim
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { OnInit } from '@angular/core';
+
+// sebastien et joachim 
 
 @Component({
   selector: 'app-panier',
@@ -18,8 +18,6 @@ import { OnInit } from '@angular/core';
   styleUrl: './panier.css',
 })
 export class Panier implements OnInit {
-  // Joachim
-
   // Référence au formulaire pour la validation
   @ViewChild('commandeForm') commandeForm!: NgForm;
 
@@ -32,10 +30,11 @@ export class Panier implements OnInit {
   dateExpiration: string = '';
   cvv: string = '';
 
+
   // false = à emporter, true = livraison
   isLivraison: boolean = true;
 
-  constructor(private router: Router, private panierService: PanierService, private authService: AuthService) { }
+  constructor(private router: Router, private panierService: PanierService, public authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -101,6 +100,7 @@ export class Panier implements OnInit {
       return;
     }
 
+
     if (!this.commandeForm || !this.commandeForm.valid) {
       this.errorMessage = "Veuillez compléter tous les champs pour valider le paiement.";
       this.successMessage = '';
@@ -127,7 +127,9 @@ export class Panier implements OnInit {
           this.successMessage = 'Votre commande a été validée avec succès !';
           this.errorMessage = '';
 
+
           this.panierService.viderPanier();
+
 
           setTimeout(() => {
             this.successMessage = '';

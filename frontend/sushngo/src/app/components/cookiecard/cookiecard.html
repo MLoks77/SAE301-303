@@ -1,6 +1,9 @@
-<div *ngIf="!isClosed" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"> <!-- *ngIf="!isClosed" = fermeture du composant après 2s (défini dans cookiecard.ts)-->
+<!-- sebastien chisiu -->
+
+<div *ngIf="!isClosed" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <!-- *ngIf="!isClosed" = fermeture du composant après 2s (défini dans cookiecard.ts)-->
     <div class="rounded-xl p-6 w-80 text-center shadow-lg bg-[#FFC9C9]">
-        
+
         <div class="flex justify-center mb-4">
             <img src="/images/Cookie.png" alt="Cookie" class="w-12 h-12">
         </div>
@@ -9,13 +12,16 @@
             Pour une meilleure expérience sur notre site, veuillez accepter les cookies.
         </p>
 
-        <a routerLink="/utilisation-cookie" class="text-sm text-gray-600 italic block mt-1 hover:text-gray-800 cursor-pointer">
+        <a routerLink="/utilisation-cookie"
+            class="text-sm text-gray-600 italic block mt-1 hover:text-gray-800 cursor-pointer">
             Utilisation des Cookies
         </a>
 
         <div class="mt-5 space-y-2">
-            <div *ngIf="!message"> <!-- si c'est pas message qui est affiché (donc message vide), les boutons Accepter et refuser seront affichés-->
-                <button (click)="accepterCookies()" class="w-full bg-white text-gray-800 font-medium py-2 rounded-full shadow-md hover:bg-gray-100 transition cursor-pointer">
+            <div *ngIf="!message">
+                <!-- si c'est pas message qui est affiché (donc message vide), les boutons Accepter et refuser seront affichés-->
+                <button (click)="accepterCookies()"
+                    class="w-full bg-white text-gray-800 font-medium py-2 rounded-full shadow-md hover:bg-gray-100 transition cursor-pointer">
                     Accepter
                 </button>
                 <button (click)="refuserCookies()" class="w-full text-gray-700 text-sm hover:underline cursor-pointer">
@@ -23,7 +29,8 @@
                 </button>
             </div>
 
-            <div *ngIf="message"> <!--Block qui va changer le contenu en enlevant les boutons et remplaçant par le contenu de message -->
+            <div *ngIf="message">
+                <!--Block qui va changer le contenu en enlevant les boutons et remplaçant par le contenu de message -->
                 <p class="text-gray-800 font-semibold">{{ message }}</p>
             </div>
         </div>
