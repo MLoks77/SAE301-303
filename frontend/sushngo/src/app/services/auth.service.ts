@@ -11,6 +11,9 @@ export interface User {
   prenom: string;
   email: string;
   statut_etud: boolean;
+  tel?: string;
+  adresse?: string;
+  fidelite?: number;
 }
 
 export interface AuthResponse {

@@ -55,5 +55,27 @@ class OrderManager
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
+
+    public function getOrdersByUser($id_user)
+    {
+        try {
+            $sql = "SELECT c.id_commande, c.date_commande, c.prix_total, c.mode,
+                           GROUP_CONCAT(CONCAT(p.nom, ' (x', dc.quantite, ')') SEPARATOR ', ') as produits
+                    FROM commande c
+                    LEFT JOIN detail_commande dc ON c.id_commande = dc.id_commande
+                    LEFT JOIN produit p ON dc.id_produit = p.id_produit
+                    WHERE c.id_user = :id_user
+                    GROUP BY c.id_commande
+                    ORDER BY c.date_commande DESC";
+            
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id_user' => $id_user]);
+            $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $orders;
+        } catch (Exception $e) {
+            return [];
+        }
+    }
 }
 ?>

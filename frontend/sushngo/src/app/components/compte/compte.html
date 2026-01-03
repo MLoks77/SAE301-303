@@ -13,23 +13,22 @@
 <section id="fidelite" class="flex flex-col items-center justify-center w-full py-10 text-center">
     <svg class="mt-6 w-[1200px] h-[200px] relative bg-[#879358]">
         <svg>
-            <circle cx="155" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
-            <!-- pour le moment on fill avec cette couleur: #2E3F2D mais il faut que quand on atteint le step tu fill avec cette couleur : #FFEA47 -->
+            <circle cx="155" cy="100" r="80" [attr.fill]="getStepColor(25)" stroke="white" stroke-width="4" />
             <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">25</text>
             <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-5%</text>
 
-            <circle cx="455" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <circle cx="455" cy="100" r="80" [attr.fill]="getStepColor(50)" stroke="white" stroke-width="4" />
             <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">50</text>
             <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-10%</text>
 
-            <circle cx="755" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <circle cx="755" cy="100" r="80" [attr.fill]="getStepColor(75)" stroke="white" stroke-width="4" />
             <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">75</text>
             <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-15%</text>
 
-            <circle cx="1055" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <circle cx="1055" cy="100" r="80" [attr.fill]="getStepColor(100)" stroke="white" stroke-width="4" />
             <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
                 fill="white">100</text>
             <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
@@ -44,12 +43,11 @@
 
     <div class="flex flex-col items-center w-full ">
         <div class="max-w-[1200px] w-full flex items-center gap-2 mt-6">
-            <span class="font-bold text-lg">10</span> <!-- remplacer par une valeur dynamique -->
-            <progress class="w-full border-2 border-black" id="fideliteprogress" value="10" max="100"></progress>
+            <span class="font-bold text-lg">{{ fidelite }}</span>
+            <progress class="w-full border-2 border-black" id="fideliteprogress" [value]="fideliteProgress" max="100"></progress>
         </div>
     </div>
     <div class=" max-w-[1200px] w-full text-left">
-        <!-- temi, ici faudra remplacer value par la progression de la fidelite  -->
         <h1 class="text-[1.5rem] font-bold mt-2">Fidélité</h1>
         <p class="text-[1.5rem]">Atteignez chaque palier pour gagner une réduction</p>
     </div>
@@ -57,65 +55,106 @@
 
     <!-- Paramètres du compte -->
     <section class="my-10 bg-gray-100 w-[90%] rounded-lg shadow-lg p-8">
-        <!-- il faudrait que tout les inputs ne soient pas accessibles puis quand on appuie sur modifier sa le devient, et afficher bien sûr dynamiquement les données du compte connecté -->
+        <div *ngIf="message" class="mb-4 p-4 rounded-lg" 
+             [class.bg-green-100]="messageType === 'success'" 
+             [class.bg-red-100]="messageType === 'error'"
+             [class.text-green-800]="messageType === 'success'"
+             [class.text-red-800]="messageType === 'error'">
+            <div class="flex justify-between items-center">
+                <p class="font-semibold">{{ message }}</p>
+                <button (click)="clearMessage()" class="text-lg font-bold hover:opacity-70">&times;</button>
+            </div>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <h1 class="col-span-full text-xl font-bold underline">Informations personnelles :</h1>
 
             <div class="flex flex-col">
                 <label for="nom" class="font-semibold">Nom</label>
-                <input type="text" id="nom" name="nom" class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="text" id="nom" name="nom" [(ngModel)]="formData.nom" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="flex flex-col">
                 <label for="prenom" class="font-semibold">Prénom</label>
-                <input type="text" id="prenom" name="prenom" class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="text" id="prenom" name="prenom" [(ngModel)]="formData.prenom" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="flex flex-col">
                 <label for="email" class="font-semibold">Email</label>
-                <input type="email" id="email" name="email" class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="email" id="email" name="email" [(ngModel)]="formData.email" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
 
             <div class="flex flex-col md:col-span-2">
                 <label for="adresse" class="font-semibold">Adresse</label>
-                <input type="text" id="adresse" name="adresse" class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="text" id="adresse" name="adresse" [(ngModel)]="formData.adresse" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="flex flex-col">
                 <label for="telephone" class="font-semibold">Téléphone</label>
-                <input type="text" id="telephone" name="telephone" class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="text" id="telephone" name="telephone" [(ngModel)]="formData.telephone" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
 
             <h1 class="col-span-full text-xl font-bold mt-4 underline">Changer de mot de passe :</h1>
             <div class="flex flex-col">
                 <label for="mdpactuel" class="font-semibold">Mot de passe actuel</label>
-                <input type="password" id="mdpactuel" name="mdpactuel"
-                    class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="password" id="mdpactuel" name="mdpactuel" [(ngModel)]="formData.mdpactuel" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="flex flex-col">
                 <label for="mdpnouveau" class="font-semibold">Nouveau mot de passe</label>
-                <input type="password" id="mdpnouveau" name="mdpnouveau"
-                    class="p-2 rounded border border-gray-400 bg-white ">
+                <input type="password" id="mdpnouveau" name="mdpnouveau" [(ngModel)]="formData.mdpnouveau" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="flex flex-col">
-                <label for="mdpnouveau" class="font-semibold">Confirmer le nouveau mot de passe</label>
-                <input type="password" id="mdpnouveau" name="mdpnouveau"
-                    class="p-2 rounded border border-gray-400 bg-white ">
+                <label for="mdpnouveauconfirm" class="font-semibold">Confirmer le nouveau mot de passe</label>
+                <input type="password" id="mdpnouveauconfirm" name="mdpnouveauconfirm" [(ngModel)]="formData.mdpnouveauconfirm" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
             </div>
             <div class="col-span-full flex justify-between items-center mt-6">
                 <a routerLink="/mot-de-passe-oublie" class="text-sm text-blue-600 hover:underline">Mot de passe oublié
                     ?</a>
                 <div class="flex gap-2">
-                    <button
+                    <button *ngIf="!isEditing"
+                        (click)="toggleEdit()"
                         class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-blue-700 transition-colors border border-gray-400 bg-white">Modifier</button>
-                    <button
+                    <button *ngIf="isEditing"
+                        (click)="saveChanges()"
                         class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-green-700 transition-colors border border-gray-400 bg-white">Enregistrer</button>
+                    <button *ngIf="isEditing"
+                        (click)="toggleEdit()"
+                        class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-red-700 transition-colors border border-gray-400 bg-white">Annuler</button>
                 </div>
             </div>
-            <!-- ici il faudrait faire en sorte de faire apparaître que le bouton modifier qui rendrait tout les input accessibles puis faire apparaître le bouton enregistrer -->
         </div>
     </section>
 
     <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-    <section class="my-10 bg-gray-200 w-[90%] rounded-lg shadow-lg min-h-[400px]">
-        <!-- a remplir avec l'historique des commandes, il faut qu'il soit simple, c'est a dire, ID commande, total prix, le contenu de la commande sous un format liste si tu veux -->
+    <section class="my-10 bg-gray-200 w-[90%] rounded-lg shadow-lg min-h-[400px] p-8">
+        <h1 class="text-xl font-bold mb-4">Historique des commandes</h1>
+        <div *ngIf="orders.length === 0" class="text-center text-gray-500 mt-10">
+            <p>Aucune commande pour le moment.</p>
+        </div>
+        <div *ngIf="orders.length > 0" class="space-y-4">
+            <div *ngFor="let order of orders" class="bg-white rounded-lg p-4 shadow-md">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h2 class="font-bold text-lg">Commande #{{ order.id_commande }}</h2>
+                        <p class="text-sm text-gray-600">{{ order.date_commande | date:'dd/MM/yyyy à HH:mm' }}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-lg">{{ order.prix_total }}€</p>
+                        <p class="text-sm text-gray-600">{{ order.mode }}</p>
+                    </div>
+                </div>
+                <div class="mt-2 pt-2 border-t border-gray-200">
+                    <p class="font-semibold mb-1">Contenu :</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700">
+                        <li *ngFor="let produit of getOrderProducts(order)">{{ produit }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 </section>
 
