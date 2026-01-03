@@ -162,7 +162,10 @@ class UserManager
                 'nom' => $user['nom'],
                 'prenom' => $user['prenom'],
                 'email' => $user['email'],
-                'statut_etud' => (bool)$user['statut_etud']
+                'statut_etud' => (bool)$user['statut_etud'],
+                'tel' => $user['tel'],
+                'adresse' => $user['adresse'],
+                'fidelite' => (int)$user['fidelite']
             ]
         ];
     }
@@ -195,12 +198,129 @@ class UserManager
 
     public function setFidelite($id_user, $fidelite)
     {
-        // noramelemnt sa devrait ressembler à ça mais il faudrait le changer pour que sa fonctionne suivant le paiement dans le panier
-        /*
         $sql = "UPDATE utilisateur SET fidelite = :fidelite WHERE id_user = :id_user";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute(['fidelite' => $fidelite, 'id_user' => $id_user]);
-        */
+    }
+
+    public function addFidelite($id_user, $montant)
+    {
+        // Récupérer la fidélité actuelle
+        $sql = "SELECT fidelite FROM utilisateur WHERE id_user = :id_user";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id_user' => $id_user]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($user) {
+            $nouvelleFidelite = ($user['fidelite'] ?? 0) + $montant;
+            $this->setFidelite($id_user, $nouvelleFidelite);
+            
+            // Mettre à jour la session si elle existe
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (isset($_SESSION['id_user']) && $_SESSION['id_user'] == $id_user) {
+                $_SESSION['fidelite'] = $nouvelleFidelite;
+            }
+            
+            return $nouvelleFidelite;
+        }
+        return false;
+    }
+
+
+    public function updateUser($id_user, array $data): array
+    {
+        try {
+            // Vérifier que l'utilisateur existe
+            $sqlCheck = "SELECT * FROM utilisateur WHERE id_user = :id_user";
+            $stmtCheck = $this->pdo->prepare($sqlCheck);
+            $stmtCheck->execute(['id_user' => $id_user]);
+            $user = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+            if (!$user) {
+                return ['success' => false, 'message' => 'Utilisateur non trouvé'];
+            }
+
+            // Vérifier si l'email est modifié et s'il n'existe pas déjà
+            if (isset($data['email']) && $data['email'] !== $user['email']) {
+                $sqlEmailCheck = "SELECT id_user FROM utilisateur WHERE email = :email AND id_user != :id_user";
+                $stmtEmailCheck = $this->pdo->prepare($sqlEmailCheck);
+                $stmtEmailCheck->execute(['email' => $data['email'], 'id_user' => $id_user]);
+                if ($stmtEmailCheck->fetch()) {
+                    return ['success' => false, 'message' => "Cet email est déjà utilisé par un autre compte"];
+                }
+            }
+
+            // Vérifier le mot de passe actuel si un nouveau mot de passe est fourni
+            if (isset($data['new_password']) && !empty($data['new_password'])) {
+                if (!isset($data['current_password']) || empty($data['current_password'])) {
+                    return ['success' => false, 'message' => 'Le mot de passe actuel est requis pour changer le mot de passe'];
+                }
+                
+                if (!password_verify($data['current_password'], $user['password'])) {
+                    return ['success' => false, 'message' => 'Le mot de passe actuel est incorrect'];
+                }
+
+                // Hasher le nouveau mot de passe
+                $data['password'] = password_hash($data['new_password'], PASSWORD_DEFAULT);
+            }
+
+            // Construire la requête UPDATE dynamiquement
+            $updateFields = [];
+            $params = ['id_user' => $id_user];
+
+            if (isset($data['nom'])) {
+                $updateFields[] = "nom = :nom";
+                $params['nom'] = $data['nom'];
+            }
+            if (isset($data['prenom'])) {
+                $updateFields[] = "prenom = :prenom";
+                $params['prenom'] = $data['prenom'];
+            }
+            if (isset($data['email'])) {
+                $updateFields[] = "email = :email";
+                $params['email'] = $data['email'];
+            }
+            if (isset($data['tel']) || isset($data['telephone'])) {
+                $updateFields[] = "tel = :tel";
+                $params['tel'] = $data['tel'] ?? $data['telephone'];
+            }
+            if (isset($data['adresse'])) {
+                $updateFields[] = "adresse = :adresse";
+                $params['adresse'] = $data['adresse'];
+            }
+            if (isset($data['password'])) {
+                $updateFields[] = "password = :password";
+                $params['password'] = $data['password'];
+            }
+
+            if (empty($updateFields)) {
+                return ['success' => false, 'message' => 'Aucune donnée à mettre à jour'];
+            }
+
+            $sql = "UPDATE utilisateur SET " . implode(', ', $updateFields) . " WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+
+            // Mettre à jour la session si elle existe
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (isset($_SESSION['id_user']) && $_SESSION['id_user'] == $id_user) {
+                if (isset($data['nom'])) $_SESSION['nom'] = $data['nom'];
+                if (isset($data['prenom'])) $_SESSION['prenom'] = $data['prenom'];
+                if (isset($data['email'])) $_SESSION['email'] = $data['email'];
+                if (isset($data['tel']) || isset($data['telephone'])) {
+                    $_SESSION['tel'] = $data['tel'] ?? $data['telephone'];
+                }
+                if (isset($data['adresse'])) $_SESSION['adresse'] = $data['adresse'];
+            }
+
+            return ['success' => true, 'message' => 'Informations mises à jour avec succès'];
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => 'Erreur lors de la mise à jour: ' . $e->getMessage()];
+        }
     }
 }
 ?>

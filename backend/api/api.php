@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require_once __DIR__ . '/../config/configdb.php';
 require_once __DIR__ . '/PHP/users/manager/UserManager.php';
 require_once __DIR__ . '/PHP/boxes/boxmanager.php';
-
 require_once __DIR__ . '/PHP/stats/StatsManager.php';
+require_once __DIR__ . '/PHP/orders/OrderManager.php';
 
 
 $content = file_get_contents('php://input');
@@ -31,6 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
     if ($_GET['action'] === 'stats') {
         $statsManager = new StatsManager($pdo);
         echo json_encode($statsManager->getAllStats());
+        exit;
+    }
+    if ($_GET['action'] === 'get-orders') {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $id_user = $_SESSION['id_user'] ?? null;
+        if (!$id_user) {
+            http_response_code(401);
+            echo json_encode(['success' => false, 'error' => 'Utilisateur non connecté']);
+            exit;
+        }
+        $orderManager = new OrderManager($pdo);
+        echo json_encode($orderManager->getOrdersByUser($id_user));
         exit;
     }
 }
@@ -66,6 +80,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode($userManager->logout($id_user));
             } else {
                 echo json_encode(['success' => true, 'message' => 'Déjà déconnecté']);
+            }
+            exit;
+        }
+
+        // Mise à jour des informations utilisateur
+        if ($data['action'] === 'update-user') {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $id_user = $_SESSION['id_user'] ?? null;
+            if (!$id_user) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'message' => 'Utilisateur non connecté']);
+                exit;
+            }
+            $result = $userManager->updateUser($id_user, $data);
+            if ($result['success']) {
+                http_response_code(200);
+                echo json_encode($result);
+            } else {
+                http_response_code(400);
+                echo json_encode($result);
             }
             exit;
         }
@@ -156,6 +192,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $produit['quantite']
                         ]);
                     }
+                    
+                    // Mettre à jour la fidélité de l'utilisateur avec le montant de la commande
+                    $userManager->addFidelite($id_user, floatval($data['prix_total']));
                     
                     $pdo->commit();
                     
