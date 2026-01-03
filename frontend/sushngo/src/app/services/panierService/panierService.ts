@@ -30,7 +30,7 @@ export class PanierService {
   produitsPanier: any[] = []; // Tableau des produits dans le panier
   private apiUrl = 'http://localhost/SAE301-303/backend/api/api.php';
 
-  constructor(private http: HttpClient) { // Injected HttpClient
+  constructor(private http: HttpClient) {
     this.chargerPanier();
   }
 
@@ -45,7 +45,7 @@ export class PanierService {
     localStorage.setItem('panier', JSON.stringify(this.produitsPanier));
   }
 
-  ajouterPanier(produit: any): boolean { //ajouter au panier un produit
+  ajouterPanier(produit: any): boolean { // Ajouter au panier un produit par Sebastien et modifié par Joachim
     let totalActuel = this.getNombreArticlesTotal();
 
     if (totalActuel + produit.quantite > 10) {
@@ -53,12 +53,8 @@ export class PanierService {
       return false;
     }
 
-    // Debug pour voir TOUTES les clés disponibles dans l'objet produit
-    console.log("Contenu réel du produit :", produit.produit);
-
-    // On cherche l'ID partout où il pourrait se cacher
-    const id = produit.produit?.id || 
-               produit.id;
+    // On cherche l'ID partout où il pourrait être
+    const id = produit.produit?.id || produit.id;
 
     if (!id) {
       console.error("ERREUR CRITIQUE : Aucune clé 'id' ou 'id_produit' trouvée dans :", produit);

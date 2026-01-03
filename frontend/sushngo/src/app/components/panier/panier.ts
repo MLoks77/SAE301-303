@@ -116,15 +116,12 @@ export class Panier implements OnInit{
       prix_total: this.getPrixTotal(),
       mode: this.isLivraison ? 'livraison' : 'emporter',
       produits: this.getItemsPanier().map(item => {
-        console.log("Debug item individuel :", item); // Pour voir ce qu'il y a dedans
         return {
           id_produit: Number(item.id_produit || item.produit?.id_produit),
           quantite: item.quantite
         };
       })
     };
-
-    console.log("Données envoyées au PHP :", JSON.stringify(commandeData)); // AJOUTE CECI
 
     this.panierService.envoiBdd(commandeData).subscribe({
       next: (res) => {
