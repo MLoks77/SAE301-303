@@ -33,18 +33,19 @@ class StatsManager
     // on prend les plats les plus commandés en se basant sur la quantité et on les met dans l'ordre du prix
     public function getPopularDishes()
     {
-        $sql = "SELECT p.nom, SUM(d.quantite) as orders, p.prix 
+        $sql = "SELECT p.nom, SUM(d.quantite) as orders, p.prix, p.image, p.id_produit
                 FROM detail_commande d 
                 JOIN produit p ON d.id_produit = p.id_produit 
                 GROUP BY d.id_produit 
                 ORDER BY orders DESC 
-                LIMIT 5";
+                LIMIT 3";
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getWeeklyStats()
     {
-        // on vient récupérer les commandes des7 derniers jours
+        // '%a'
+        // on vient récupérer les commandes des7 derniers jours 
         $sql = "SELECT DATE_FORMAT(date_commande, '%a') as day, 
                        SUM(prix_total) as revenue, 
                        COUNT(*) as orders 

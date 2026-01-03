@@ -3,7 +3,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import Chart from 'chart.js/auto'; // sans ça sa affiche pas
 import { CommonModule } from '@angular/common';
 
@@ -19,7 +19,7 @@ import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 })
 export class Stats implements AfterViewInit {
 
-  constructor(private connexionApi: ConnexionApi) { }
+  constructor(private connexionApi: ConnexionApi, private router: Router) { }
 
   weeklyChart: Chart | undefined;
   hourlyChart: Chart | undefined;
@@ -33,21 +33,26 @@ export class Stats implements AfterViewInit {
     this.loadData();
   }
 
+  OuvrirBonModal(idProduit: number) {
+    this.router.navigate(['/menus'], { queryParams: { ouvrirModal: idProduit } });
+  }
+
   loadData() {
     this.connexionApi.getStats().subscribe({
       next: (res: any) => {
 
         this.METRIQUES = [
-          { label: 'Nombre de commandes aujourd\'hui', value: res.metrics.orders_today },
-          { label: 'Nombre de commandes au total', value: Number(res.metrics.total_commandes) },
+          { label: 'Commandes aujourd\'hui', value: res.metrics.orders_today },
+          { label: 'Commandes au total', value: Number(res.metrics.total_commandes) },
           { label: 'Note clients', value: res.metrics.rating },
         ];
 
 
-        this.plats_populaires = res.popular_dishes.map((pd: any) => ({
-          name: pd.nom,
-          orders: Number(pd.orders),
-          price: '€' + Number(pd.prix).toFixed(2) // toFixed(2) pour avoir 2 chiffres après la virgule = .00
+        this.plats_populaires = res.popular_dishes.map((pp: any) => ({
+          name: pp.nom,
+          image: '/images/box/' + pp.image + '.jpg',
+          orders: Number(pp.orders),
+          price: '€' + Number(pp.prix).toFixed(2) // toFixed(2) pour avoir 2 chiffres après la virgule = .00
         }));
 
         this.donnees_hebdomadaires = res.weekly_data.map((w: any) => ({
@@ -61,8 +66,8 @@ export class Stats implements AfterViewInit {
           orders: Number(h.orders)
         }));
 
-        this.renderWeeklyChart();
-        this.renderHourlyChart();
+        this.renderWeekly();
+        this.renderHourly();
       },
       error: (err) => {
         console.error('Erreur chargement stats:', err);
@@ -70,7 +75,7 @@ export class Stats implements AfterViewInit {
     });
   }
 
-  renderWeeklyChart() {
+  renderWeekly() {
     const ctx = document.getElementById('weeklyChart') as HTMLCanvasElement;
     if (!ctx) return;
 
@@ -81,13 +86,13 @@ export class Stats implements AfterViewInit {
       data: {
         labels: this.donnees_hebdomadaires.map(d => d.day),
         datasets: [{
-          label: 'Revenue',
+          label: 'Revenue hebdomadaire',
           data: this.donnees_hebdomadaires.map(d => d.revenue),
           borderColor: '#F64F4F',
           backgroundColor: 'rgba(139,0,0,0.2)',
           fill: true,
-          tension: 0.4,
-          borderWidth: 2
+          tension: 0.5, // pour avoir un graphique avec des courbes
+          borderWidth: 1 // width des courbes
         }]
       },
       options: {
@@ -109,7 +114,7 @@ export class Stats implements AfterViewInit {
     });
   }
 
-  renderHourlyChart() {
+  renderHourly() {
     const ctx = document.getElementById('hourlyChart') as HTMLCanvasElement;
     if (!ctx) return;
 
@@ -120,12 +125,14 @@ export class Stats implements AfterViewInit {
       data: {
         labels: this.donnees_horaires.map(d => d.hour),
         datasets: [{
+          label: 'Commandes par heure',
           data: this.donnees_horaires.map(d => d.orders),
           borderRadius: 4,
           backgroundColor: this.donnees_horaires.map(entry => {
             const hour = parseInt(entry.hour);
-            if (hour >= 12 && hour <= 14) return '#1a1a1a'; // matin
-            if (hour >= 18 && hour <= 20) return '#F64F4F'; // soir
+            if (hour >= 8 && hour <= 12) return '#1a1a1a'; // matin
+            if (hour >= 12 && hour <= 18) return '#F64F4F'; // après midi
+            if (hour >= 18 && hour <= 24) return '#2a136eff'; // soir
             return '#e5e5e5';
           })
         }]
