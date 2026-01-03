@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // Ajout par Joachim
 import { Router } from '@angular/router'; // Ajout par Joachim
 import { AuthService } from '../../services/auth.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-panier',
