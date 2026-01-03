@@ -6,7 +6,8 @@
     class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative overflow-hidden">
 
     <!-- Vidéo en background -->
-    <video autoplay loop [muted]="true" playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover z-0">
+    <video autoplay loop [muted]="true" playsinline preload="auto"
+        class="absolute inset-0 w-full h-full object-cover z-0">
         <source src="/videos/Sushi.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 opacity-40 z-0"></div>
@@ -43,7 +44,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div *ngFor="let box of plats" class="group cursor-pointer opacity-0 animate-fade-up">
                 <div class="relative mb-6 overflow-hidden aspect-4/5">
-                    <a routerLink="/menus">
+                    <a (click)="OuvrirBonModal(box.id)">
                         <div
                             class="absolute inset-0 bg-sushi-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
                         </div>
@@ -226,10 +227,11 @@
             style="scroll-snap-type: x mandatory; overflow-y: hidden;" id="carousel-scroll">
             <!-- overflow-y enlève le scroll en y -->
             <div *ngFor="let box of Boxes" class="group cursor-pointer"> <!-- génère toute les boxes de la bdd -->
-                <a id="sliderbox1" routerLink="/menus"
+                <a id="sliderbox1"
                     class="shrink-0 w-80 scroll-snap-align-start flex flex-col items-center bg-white rounded-lg  p-4 group transition cursor-pointer  hover:scale-105 duration-200">
                     <img src="{{box.image}}"
-                        class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition" />
+                        class="rounded-md w-full h-56 object-cover mb-4 group-hover:opacity-90 transition"
+                        (click)="OuvrirBonModal(box.id)" />
                     <h2 class="text-xl font-semibold Caladea mb-2">{{box.nom}}</h2>
                 </a>
             </div>

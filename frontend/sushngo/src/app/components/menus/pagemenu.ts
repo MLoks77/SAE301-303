@@ -10,6 +10,7 @@ import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { FormsModule } from '@angular/forms';
 import { PanierService } from '../../services/panierService/panierService';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pagemenu',
@@ -51,7 +52,7 @@ export class Pagemenu {
   boxSelectionnee: any = null; // La box sur laquelle on a cliqué
   quantiteSelectionnee: number = 1; // Quantité par défaut
 
-  constructor(private router: Router, private connexionApi: ConnexionApi, private panierService: PanierService, protected authService: AuthService) { }
+  constructor(private router: Router, private connexionApi: ConnexionApi, private panierService: PanierService, protected authService: AuthService, private route: ActivatedRoute) { }
 
   ouvrirModal(box: any) {
     this.boxSelectionnee = box; // Stocke la box cliquée
@@ -105,6 +106,14 @@ export class Pagemenu {
 
           // On récupère tous les ingrédients pour créer les filtres
           this.extraireFiltres();
+
+          const idModal = this.route.snapshot.queryParams['ouvrirModal']; //Snapshot = on récupère l'URL à l'arrivée sur la page
+          if (idModal) { //si on a un idModal
+            const produitTrouve = this.listeBoxes.find(b => b.id === Number(idModal)); //on cherche le produit dans la liste
+            if (produitTrouve) { //si on trouve le produit
+              this.ouvrirModal(produitTrouve); //on ouvre le modal
+            }
+          }
         } else {
         }
       },

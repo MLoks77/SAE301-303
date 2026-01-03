@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar'
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,7 @@ export class Accueil {
 
   plats = [
     {
-      id: 1,
+      id: 19,
       name: 'Master Mix',
       description: 'Thon premium, finement tranché.',
       price: '15.90€',
@@ -28,7 +28,7 @@ export class Accueil {
         '/images/assets/sushi1.webp',
     },
     {
-      id: 2,
+      id: 20,
       name: 'Sunrise',
       description: 'Oursin frais d’Hokkaido, croustillant et savoureux.',
       price: '15.90€',
@@ -36,7 +36,7 @@ export class Accueil {
         '/images/assets/sushi2.webp',
     },
     {
-      id: 3,
+      id: 21,
       name: 'Sando Box Chicken Katsu',
       description: 'Poulet Katsu, sauce teriyaki, riz',
       price: '15.90€',
@@ -44,7 +44,7 @@ export class Accueil {
         '/images/assets/sushi3.webp',
     },
     {
-      id: 4,
+      id: 24,
       name: 'California Dream',
       description: 'Spicy saumon, thon, crevette, viande et avocat.',
       price: '19.90€',
@@ -55,7 +55,7 @@ export class Accueil {
 
   Boxes: any[] = [];
 
-  constructor(private connexionApi: ConnexionApi) { }
+  constructor(private connexionApi: ConnexionApi, private router: Router) { }
 
   ngOnInit(): void {
     this.getData();
@@ -66,6 +66,7 @@ export class Accueil {
       next: (res: any) => {
         if (Array.isArray(res)) {
           this.Boxes = res.map((item: any) => ({ //ajoute a Boxes les données de l'API
+            id: item.id_produit,
             nom: item.nom,
             image: '/images/box/' + item.image + '.jpg'
           }));
@@ -74,6 +75,10 @@ export class Accueil {
       error: (err: any) => {
       }
     });
+  }
+
+  OuvrirBonModal(idProduit: number) {
+    this.router.navigate(['/menus'], { queryParams: { ouvrirModal: idProduit } });
   }
 
   // ngAfterViewInit parce qu'à ce moment le DOM du composant est prêt ( à tout load )
