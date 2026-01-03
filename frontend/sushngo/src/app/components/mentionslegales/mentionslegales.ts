@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
+
+// maxime derènes
+
 @Component({
   selector: 'app-mentionslegales',
   imports: [Footer, Navbar, CommonModule, RouterLink],

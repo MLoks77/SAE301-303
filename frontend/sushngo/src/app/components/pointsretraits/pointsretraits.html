@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
-
+<!-- sebastien-->
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
         class="relative text-gray-200 font-semibold hover:text-white border-b-2 border-transparent hover:border-white transition-colors duration-300">Accueil</a>
     <span class="text-white italic mb-1"> &gt; Nos points de retraits</span>
 </div>
 
-<!-- VERSION MOBILE (Dropdown) -->
+<!-- mobile -->
 <div class="md:hidden min-h-screen bg-gray-50 py-8 px-4">
     <div class="max-w-4xl mx-auto space-y-6">
 
@@ -71,13 +71,13 @@
     </div>
 </div>
 
-<!-- VERSION DESKTOP (Carte) -->
+<!-- desktop -->
 <div class="hidden md:flex flex-col bg-[#0C3A53] md:flex-row h-[calc(100vh-80px)] overflow-hidden relative">
 
-    <!-- Partie Carte (gauche) -->
+    <!-- Partie Carte-->
     <div class="relative flex-1 overflow-hidden shadow-inner flex items-center justify-center p-4">
 
-        <!-- Card Coin gauche -->
+        <!-- Card gauche -->
         <div *ngIf="!selectedCity"
             class="absolute top-4 left-4 right-4 md:right-auto md:w-80 z-10 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-gray-100 animate-fade-in-down">
             <h3 class="font-bold text-gray-800 text-base md:text-lg">Trouvez votre point de retrait</h3>
@@ -94,13 +94,13 @@
                 [ngStyle]="{'left.%': city.x, 'top.%': city.y}" (click)="selectCity(city)">
 
                 <div class="flex flex-col items-center transition-transform duration-300 group-hover:scale-110">
-                    <!-- Point Rouge -->
+                    <!-- point Rouge -->
                     <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-red-500 shadow-md mb-1 ring-4 ring-red-500/20 group-hover:ring-red-500/40 transition-all"
                         [class.bg-gray-500]="selectedCity?.id === city.id"
                         [class.scale-125]="selectedCity?.id === city.id">
                     </div>
 
-                    <!-- Nom de la ville  -->
+                    <!-- nom de la ville  -->
                     <span
                         class="Caladea text-xs md:text-sm font-bold bg-white/80 backdrop-blur-sm px-2 md:px-3 py-1 rounded-full shadow-sm text-gray-700 border border-gray-200 group-hover:border-red-200 group-hover:text-red-600 transition-colors whitespace-nowrap"
                         [class.bg-gray-800]="selectedCity?.id === city.id"
@@ -113,7 +113,7 @@
         </div>
     </div>
 
-    <!-- Liste des restaurants à droite -->
+    <!-- liste des restaurants à droite -->
     <div class="w-full md:w-96 bg-white shadow-2xl z-20 flex flex-col border-l border-gray-200 transition-all duration-500 relative transform"
         [ngClass]="{'translate-x-0': selectedCity, 'translate-x-full absolute right-0 h-full md:relative md:translate-x-0': !selectedCity}">
 
