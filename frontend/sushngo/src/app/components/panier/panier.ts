@@ -133,7 +133,7 @@ export class Panier implements OnInit {
           setTimeout(() => {
             this.successMessage = '';
             this.router.navigate(['/accueil']);
-          }, 2000);
+          }, 1000);
         } else {
           this.errorMessage = res.error || res.message || res.reponse || 'Une erreur est survenue lors de l\'envoi de la commande.';
           console.log('Réponse API :', res);
