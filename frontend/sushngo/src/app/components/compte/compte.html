@@ -13,22 +13,23 @@
 <section id="fidelite" class="flex flex-col items-center justify-center w-full py-10 text-center">
     <svg class="mt-6 w-[1200px] h-[200px] relative bg-[#879358]">
         <svg>
-            <circle cx="155" cy="100" r="80" [attr.fill]="getStepColor(25)" stroke="white" stroke-width="4" />
+            <circle cx="155" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
+            <!-- pour le moment on fill avec cette couleur: #2E3F2D mais il faut que quand on atteint le step tu fill avec cette couleur : #FFEA47 -->
             <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">25</text>
             <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-5%</text>
 
-            <circle cx="455" cy="100" r="80" [attr.fill]="getStepColor(50)" stroke="white" stroke-width="4" />
+            <circle cx="455" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
             <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">50</text>
             <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-10%</text>
 
-            <circle cx="755" cy="100" r="80" [attr.fill]="getStepColor(75)" stroke="white" stroke-width="4" />
+            <circle cx="755" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
             <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" fill="white">75</text>
             <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
                 fill="white">-15%</text>
 
-            <circle cx="1055" cy="100" r="80" [attr.fill]="getStepColor(100)" stroke="white" stroke-width="4" />
+            <circle cx="1055" cy="100" r="80" fill="#2E3F2D" stroke="white" stroke-width="4" />
             <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
                 fill="white">100</text>
             <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
@@ -43,11 +44,12 @@
 
     <div class="flex flex-col items-center w-full ">
         <div class="max-w-[1200px] w-full flex items-center gap-2 mt-6">
-            <span class="font-bold text-lg">{{ fidelite }}</span>
-            <progress class="w-full border-2 border-black" id="fideliteprogress" [value]="fideliteProgress" max="100"></progress>
+            <span class="font-bold text-lg">10</span> <!-- remplacer par une valeur dynamique -->
+            <progress class="w-full border-2 border-black" id="fideliteprogress" value="10" max="100"></progress>
         </div>
     </div>
     <div class=" max-w-[1200px] w-full text-left">
+        <!-- temi, ici faudra remplacer value par la progression de la fidelite  -->
         <h1 class="text-[1.5rem] font-bold mt-2">Fidélité</h1>
         <p class="text-[1.5rem]">Atteignez chaque palier pour gagner une réduction</p>
     </div>
