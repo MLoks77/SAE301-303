@@ -114,15 +114,15 @@
                 </div>
                 <div class="w-full mt-6 border-t border-white">
                     <div class="flex justify-between text-white text-md font-medium">
-                        <span>Total de la commande:</span>
+                        <span>Total de la commande :</span>
                         <span>{{ getTotalPanier() }} €</span>
                     </div>
                     <div class="flex justify-between text-white text-md font-medium">
-                        <span>Livraison:</span>
+                        <span>Livraison :</span>
                         <span> {{ getPrixLivraison() }} €</span>
                     </div>
-                    <div class="flex justify-between text-white text-md font-medium">
-                        <span>Réduction: </span>
+                    <div *ngIf="authService.isStudent()" class="flex justify-between text-white text-md font-medium">
+                        <span>Réduction étudiante : </span>
                         <span>{{ getReduction() }}€</span>
                     </div>
                     <div class="flex justify-center gap-4 mt-6">

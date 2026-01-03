@@ -17,8 +17,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './panier.css',
 })
 export class Panier implements OnInit {
-  // Joachim
-
   // Référence au formulaire pour la validation
   @ViewChild('commandeForm') commandeForm!: NgForm;
 
@@ -35,7 +33,7 @@ export class Panier implements OnInit {
   // false = à emporter, true = livraison
   isLivraison: boolean = true;
 
-  constructor(private router: Router, private panierService: PanierService, private authService: AuthService) { }
+  constructor(private router: Router, private panierService: PanierService, public authService: AuthService) { }
 
   ngOnInit(): void {
   }
