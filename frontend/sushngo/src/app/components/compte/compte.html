@@ -9,31 +9,38 @@
 </div>
 
 
-<!-- Affichage statistiques fidélité -->
-<section id="fidelite" class="flex flex-col items-center justify-center w-full py-10 text-center">
-    <svg class="mt-6 w-full max-w-[1200px] h-[200px] relative bg-[#879358]">
-        <svg>
-            <circle cx="155" cy="100" r="80" [attr.fill]="getStepColor(25)" [attr.stroke]="getStepStrokeColor(25)" stroke-width="4" />
-            <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(25)">25</text>
-            <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                [attr.fill]="getStepTextColor(25)">-5%</text>
+<section id="fidelite"
+    class="flex flex-col items-center justify-center w-full py-10 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[#879358]/20"></div>
 
-            <circle cx="455" cy="100" r="80" [attr.fill]="getStepColor(50)" [attr.stroke]="getStepStrokeColor(50)" stroke-width="4" />
-            <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(50)">50</text>
-            <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                [attr.fill]="getStepTextColor(50)">-10%</text>
+    <svg class="mt-6 w-full max-w-[1200px] h-[200px] relative z-10">
+        <circle cx="155" cy="100" r="80" [attr.fill]="getStepColor(25)" [attr.stroke]="getStepStrokeColor(25)"
+            stroke-width="4" class="circle" />
+        <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(25)">25pts</text>
+        <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(25)">-5%</text>
 
-            <circle cx="755" cy="100" r="80" [attr.fill]="getStepColor(75)" [attr.stroke]="getStepStrokeColor(75)" stroke-width="4" />
-            <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(75)">75</text>
-            <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                [attr.fill]="getStepTextColor(75)">-15%</text>
+        <circle cx="455" cy="100" r="80" [attr.fill]="getStepColor(50)" [attr.stroke]="getStepStrokeColor(50)"
+            stroke-width="4" class="circle" />
+        <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(50)">50pts</text>
+        <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(50)">-10%</text>
 
-            <circle cx="1055" cy="100" r="80" [attr.fill]="getStepColor(100)" [attr.stroke]="getStepStrokeColor(100)" stroke-width="4" />
-            <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-                [attr.fill]="getStepTextColor(100)">100</text>
-            <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                [attr.fill]="getStepTextColor(100)">-20%</text>
-        </svg>
+        <circle cx="755" cy="100" r="80" [attr.fill]="getStepColor(75)" [attr.stroke]="getStepStrokeColor(75)"
+            stroke-width="4" class="circle" />
+        <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(75)">75pts</text>
+        <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(75)">-15%</text>
+
+        <circle cx="1055" cy="100" r="80" [attr.fill]="getStepColor(100)" [attr.stroke]="getStepStrokeColor(100)"
+            stroke-width="4" class="circle" />
+        <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(100)">100pts</text>
+        <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+            [attr.fill]="getStepTextColor(100)">-20%</text>
     </svg>
 </section>
 
@@ -43,12 +50,9 @@
 
     <div class="flex flex-col items-center w-full ">
         <div class="max-w-[1200px] w-full flex items-center gap-2 mt-6">
-            <span class="font-bold text-lg">{{ fidelite }}€</span>
-            <progress class="w-full border-2 border-black" 
-                      id="fideliteprogress" 
-                      [value]="fideliteProgress" 
-                      max="100"
-                      [class.progress-yellow]="hasReachedAnyStep()"></progress>
+            <span class="font-bold text-lg">{{ fidelite }}pts</span>
+            <progress class="w-full border-2 border-black" id="fideliteprogress" [value]="fideliteProgress" max="100"
+                [class.progress-yellow]="hasReachedAnyStep()"></progress>
         </div>
     </div>
     <div class=" max-w-[1200px] w-full text-left">
@@ -66,11 +70,9 @@
 
     <!-- Paramètres du compte -->
     <section class="my-10 bg-gray-100 w-[90%] rounded-lg shadow-lg p-8">
-        <div *ngIf="message" class="mb-4 p-4 rounded-lg" 
-             [class.bg-green-100]="messageType === 'success'" 
-             [class.bg-red-100]="messageType === 'error'"
-             [class.text-green-800]="messageType === 'success'"
-             [class.text-red-800]="messageType === 'error'">
+        <div *ngIf="message" class="mb-4 p-4 rounded-lg" [class.bg-green-100]="messageType === 'success'"
+            [class.bg-red-100]="messageType === 'error'" [class.text-green-800]="messageType === 'success'"
+            [class.text-red-800]="messageType === 'error'">
             <div class="flex justify-between items-center">
                 <p class="font-semibold">{{ message }}</p>
                 <button (click)="clearMessage()" class="text-lg font-bold hover:opacity-70">&times;</button>
@@ -102,38 +104,39 @@
             </div>
             <div class="flex flex-col">
                 <label for="telephone" class="font-semibold">Téléphone</label>
-                <input type="text" id="telephone" name="telephone" [(ngModel)]="formData.telephone" [disabled]="!isEditing"
-                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
+                <input type="text" id="telephone" name="telephone" [(ngModel)]="formData.telephone"
+                    [disabled]="!isEditing" class="p-2 rounded border border-gray-400 bg-white"
+                    [class.bg-gray-200]="!isEditing">
             </div>
 
             <h1 class="col-span-full text-xl font-bold mt-4 underline">Changer de mot de passe :</h1>
             <div class="flex flex-col">
                 <label for="mdpactuel" class="font-semibold">Mot de passe actuel</label>
-                <input type="password" id="mdpactuel" name="mdpactuel" [(ngModel)]="formData.mdpactuel" [disabled]="!isEditing"
-                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
+                <input type="password" id="mdpactuel" name="mdpactuel" [(ngModel)]="formData.mdpactuel"
+                    [disabled]="!isEditing" class="p-2 rounded border border-gray-400"
+                    [ngClass]="isEditing ? 'bg-white' : 'bg-gray-300'">
             </div>
             <div class="flex flex-col">
                 <label for="mdpnouveau" class="font-semibold">Nouveau mot de passe</label>
-                <input type="password" id="mdpnouveau" name="mdpnouveau" [(ngModel)]="formData.mdpnouveau" [disabled]="!isEditing"
-                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
+                <input type="password" id="mdpnouveau" name="mdpnouveau" [(ngModel)]="formData.mdpnouveau"
+                    [disabled]="!isEditing" class="p-2 rounded border border-gray-400"
+                    [ngClass]="isEditing ? 'bg-white' : 'bg-gray-300'">
             </div>
             <div class="flex flex-col">
                 <label for="mdpnouveauconfirm" class="font-semibold">Confirmer le nouveau mot de passe</label>
-                <input type="password" id="mdpnouveauconfirm" name="mdpnouveauconfirm" [(ngModel)]="formData.mdpnouveauconfirm" [disabled]="!isEditing"
-                    class="p-2 rounded border border-gray-400 bg-white" [class.bg-gray-200]="!isEditing">
+                <input type="password" id="mdpnouveauconfirm" name="mdpnouveauconfirm"
+                    [(ngModel)]="formData.mdpnouveauconfirm" [disabled]="!isEditing"
+                    class="p-2 rounded border border-gray-400" [ngClass]="isEditing ? 'bg-white' : 'bg-gray-300'">
             </div>
             <div class="col-span-full flex justify-between items-center mt-6">
                 <a routerLink="/mot-de-passe-oublie" class="text-sm text-blue-600 hover:underline">Mot de passe oublié
                     ?</a>
                 <div class="flex gap-2">
-                    <button *ngIf="!isEditing"
-                        (click)="toggleEdit()"
+                    <button *ngIf="!isEditing" (click)="toggleEdit()"
                         class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-blue-700 transition-colors border border-gray-400 bg-white">Modifier</button>
-                    <button *ngIf="isEditing"
-                        (click)="saveChanges()"
+                    <button *ngIf="isEditing" (click)="saveChanges()"
                         class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-green-700 transition-colors border border-gray-400 bg-white">Enregistrer</button>
-                    <button *ngIf="isEditing"
-                        (click)="toggleEdit()"
+                    <button *ngIf="isEditing" (click)="toggleEdit()"
                         class="bg-black-600 text-black hover:text-white cursor-pointer px-4 py-2 rounded hover:bg-red-700 transition-colors border border-gray-400 bg-white">Annuler</button>
                 </div>
             </div>
@@ -154,21 +157,20 @@
                         <p class="text-sm text-gray-600">{{ order.date_commande | date:'dd/MM/yyyy à HH:mm' }}</p>
                     </div>
                     <div class="text-right">
-                        <p class="font-bold text-lg">{{ order.prix_total }}€</p>
+                        <p class="font-bold text-lg">{{ order.prix_total.toFixed(2) }}€</p>
                         <p class="text-sm text-gray-600">{{ order.mode }}</p>
                     </div>
                 </div>
                 <div class="mt-2 pt-2 border-t border-gray-200">
                     <p class="font-semibold mb-1">Contenu :</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700">
-                        <li *ngFor="let produit of getOrderProducts(order)">{{ produit }}</li>
+                    <ul *ngFor="let produit of getOrderProducts(order)"
+                        class="list-disc list-inside text-sm text-gray-700">
+                        <li>{{ produit }}</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-</section>
 
 
-
-<app-footer></app-footer>
+    <app-footer></app-footer>

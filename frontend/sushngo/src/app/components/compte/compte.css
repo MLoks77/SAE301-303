@@ -45,10 +45,32 @@ progress.progress-yellow {
 
 #fidelite {
     background-image: url("/images/assets/mer.webp");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Animation de pulsation subtile (sans glow) */
+@keyframes pulse-subtle {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.circle-active {
+    animation: pulse-subtle 2s infinite ease-in-out;
+    transform-origin: center;
 }
 
 .circle {
-    transition: fill 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (max-width: 768px) {

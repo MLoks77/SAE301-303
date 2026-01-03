@@ -23,11 +23,11 @@ interface Order {
 })
 export class Compte implements OnInit {
   user: User | null = null;
-  isEditing = false;
+  isEditing: boolean = false;
   orders: Order[] = [];
   message: string = '';
   messageType: 'success' | 'error' = 'success';
-  
+
   // Données du formulaire
   formData = {
     nom: '',
@@ -54,7 +54,7 @@ export class Compte implements OnInit {
   constructor(
     private authService: AuthService,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadUserData();
@@ -71,7 +71,7 @@ export class Compte implements OnInit {
           this.formData.email = this.user.email || '';
           this.formData.adresse = this.user.adresse || '';
           this.formData.telephone = this.user.tel || '';
-          
+
           // Sauvegarder les données originales
           this.originalData = {
             nom: this.formData.nom,
@@ -235,7 +235,7 @@ export class Compte implements OnInit {
           this.message = response.message || 'Informations mises à jour avec succès';
           this.messageType = 'success';
           this.isEditing = false;
-          
+
           // Recharger les données utilisateur
           this.authService.refreshSession();
           setTimeout(() => {
@@ -264,4 +264,6 @@ export class Compte implements OnInit {
     }
     return order.produits.split(', ').filter(p => p.trim() !== '');
   }
+
+
 }
