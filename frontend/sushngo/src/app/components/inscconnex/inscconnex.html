@@ -1,7 +1,6 @@
 <app-navbar></app-navbar>
 
-<!-- front réalisé par Joachim Tocqueville, Maxime Derènes et Témi Kergastel -->
-<!-- Nettoyé et optimisé par Antigravity -->
+<!-- front réalisé par Joachim Tocqueville, optimisé par Maxime Derènes et Témi Kergastel -->
 
 <div class="w-full h-10 mt-14 sm:mt-0 bg-black flex items-center pl-4 gap-1">
     <a routerLink="/accueil"
@@ -76,8 +75,9 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span><span class="text-gray-300 text-sm">
-                            (8 caractères minimum)</span></label>
+                        <label class="mb-1 font-medium">Mot de passe <span class="text-red-500">*</span><span
+                                class="text-gray-300 text-sm">
+                                (8 caractères minimum)</span></label>
                         <div class="relative">
                             <input [type]="showMdpInscr ? 'text' : 'password'" name="password" placeholder="..."
                                 [(ngModel)]="registerData.password" required minlength="8"
@@ -105,7 +105,8 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="mb-1 font-medium">Confirmation du mot de passe <span class="text-red-500">*</span></label>
+                        <label class="mb-1 font-medium">Confirmation du mot de passe <span
+                                class="text-red-500">*</span></label>
                         <div class="relative">
                             <input [type]="showConfirmMdp ? 'text' : 'password'" name="confirmPassword"
                                 placeholder="..." [(ngModel)]="registerData.confirmPassword" required minlength="8"
@@ -140,10 +141,11 @@
                         </div>
                         <div class="flex items-center gap-2 cursor-pointer">
                             <input id="cgu" name="cgu" type="checkbox" [(ngModel)]="registerData.cgu" required
-                                class="w-5 h-5 accent-red-500 cursor-pointer"/>
+                                class="w-5 h-5 accent-red-500 cursor-pointer" />
                             <label for="cgu" class="cursor-pointer text-sm">
                                 J'accepte les <a routerLink="/mentions-legales"
-                                    class="text-blue-600 hover:underline">Conditions Générales d'Utilisation</a><span class="text-red-500"> *</span>
+                                    class="text-blue-600 hover:underline">Conditions Générales d'Utilisation</a><span
+                                    class="text-red-500"> *</span>
                             </label>
                         </div>
                     </div>

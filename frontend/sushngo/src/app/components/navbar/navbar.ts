@@ -3,8 +3,8 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http'; // pour api ( maxime derènes )
-import { Router } from '@angular/router'; // pour api ( maxime derènes )
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { AuthService } from '../../services/auth.service'; // joachim tocqueville

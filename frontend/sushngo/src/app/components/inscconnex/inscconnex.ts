@@ -7,7 +7,6 @@ import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
 import { AuthService } from '../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PanierService } from '../../services/panierService/panierService'; //Ajouté par Sebatien pour la réduc etudiant
 
 @Component({
   selector: 'app-inscconnex',
