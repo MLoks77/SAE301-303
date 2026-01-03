@@ -149,4 +149,3 @@ export class AuthService {
     return this.getUser()?.statut_etud || false;
   }
 }
-
