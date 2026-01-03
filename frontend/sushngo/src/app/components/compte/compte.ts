@@ -99,10 +99,13 @@ export class Compte implements OnInit {
   }
 
   get fidelite(): number {
-    return this.user?.fidelite || 0;
+    const fideliteValue = this.user?.fidelite ?? 0;
+    return typeof fideliteValue === 'number' ? fideliteValue : 0;
   }
 
   get fideliteProgress(): number {
+    // La barre de progression reste limitée à 100 pour l'affichage visuel
+    // mais le montant réel s'affiche sans limite
     return Math.min(this.fidelite, 100);
   }
 
@@ -112,6 +115,27 @@ export class Compte implements OnInit {
 
   getStepColor(step: number): string {
     return this.isStepReached(step) ? '#FFEA47' : '#2E3F2D';
+  }
+
+  getStepStrokeColor(step: number): string {
+    return this.isStepReached(step) ? 'black' : 'white';
+  }
+
+  getStepTextColor(step: number): string {
+    return this.isStepReached(step) ? 'black' : 'white';
+  }
+
+  getCurrentReduction(): number {
+    const fid = this.fidelite;
+    if (fid >= 100) return 20;
+    if (fid >= 75) return 15;
+    if (fid >= 50) return 10;
+    if (fid >= 25) return 5;
+    return 0;
+  }
+
+  hasReachedAnyStep(): boolean {
+    return this.fidelite >= 25;
   }
 
   toggleEdit() {

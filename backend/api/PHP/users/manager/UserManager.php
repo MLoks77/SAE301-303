@@ -198,13 +198,36 @@ class UserManager
 
     public function setFidelite($id_user, $fidelite)
     {
-        // noramelemnt sa devrait ressembler à ça mais il faudrait le changer pour que sa fonctionne suivant le paiement dans le panier
-        /*
         $sql = "UPDATE utilisateur SET fidelite = :fidelite WHERE id_user = :id_user";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute(['fidelite' => $fidelite, 'id_user' => $id_user]);
-        */
     }
+
+    public function addFidelite($id_user, $montant)
+    {
+        // Récupérer la fidélité actuelle
+        $sql = "SELECT fidelite FROM utilisateur WHERE id_user = :id_user";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id_user' => $id_user]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($user) {
+            $nouvelleFidelite = ($user['fidelite'] ?? 0) + $montant;
+            $this->setFidelite($id_user, $nouvelleFidelite);
+            
+            // Mettre à jour la session si elle existe
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (isset($_SESSION['id_user']) && $_SESSION['id_user'] == $id_user) {
+                $_SESSION['fidelite'] = $nouvelleFidelite;
+            }
+            
+            return $nouvelleFidelite;
+        }
+        return false;
+    }
+
 
     public function updateUser($id_user, array $data): array
     {

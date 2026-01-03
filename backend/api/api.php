@@ -193,6 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ]);
                     }
                     
+                    // Mettre à jour la fidélité de l'utilisateur avec le montant de la commande
+                    $userManager->addFidelite($id_user, floatval($data['prix_total']));
+                    
                     $pdo->commit();
                     
                     http_response_code(201);
