@@ -51,17 +51,6 @@ CREATE TABLE `detail_commande` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `images`
---
-
-CREATE TABLE `images` (
-  `id_img` int(11) NOT NULL,
-  `chemin` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `produit`
 --
 
@@ -134,12 +123,6 @@ ALTER TABLE `detail_commande`
   ADD KEY `id_produit` (`id_produit`);
 
 --
--- Index pour la table `images`
---
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id_img`);
-
---
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
@@ -167,12 +150,6 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `detail_commande`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `images`
---
-ALTER TABLE `images`
-  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
