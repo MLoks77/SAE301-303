@@ -97,6 +97,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Commandes
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($data['action'])) {
+        if ($data['action'] === 'create-commande') {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            
+            $id_user = $_SESSION['id_user'] ?? null;
+            
+            if (!$id_user) {
+                http_response_code(401);
+                echo json_encode(['success' => false, 'error' => 'Utilisateur non connecté']);
+                exit;
+            }
+            
+            if (isset($data['date_commande']) && isset($data['prix_total']) && isset($data['mode']) && isset($data['produits'])) {
+                try {
+                    error_log("Données reçues: " . json_encode($data));
+                    
+                    $pdo->beginTransaction();
+                    
+                    $query = $pdo->prepare("INSERT INTO commande (id_user, date_commande, prix_total, mode) VALUES (?, ?, ?, ?)");
+                    $query->execute([
+                        $id_user,
+                        $data['date_commande'],
+                        $data['prix_total'],
+                        $data['mode']
+                    ]);
+                    
+                    $id_commande = $pdo->lastInsertId();
+                    
+                    $queryDetail = $pdo->prepare("INSERT INTO detail_commande (id_commande, id_produit, quantite) VALUES (?, ?, ?)");
+                    
+                    foreach ($data['produits'] as $produit) {
+                        if (!isset($produit['id_produit']) || !isset($produit['quantite'])) {
+                            throw new Exception('Produit invalide: id_produit ou quantite manquant. Données reçues: ' . json_encode($produit));
+                        }
+                        
+                        if (!is_numeric($produit['id_produit']) || !is_numeric($produit['quantite'])) {
+                            throw new Exception('Produit invalide: id_produit ou quantite n\'est pas numérique');
+                        }
+                        
+                        if ($produit['quantite'] <= 0) {
+                            throw new Exception('Produit invalide: quantite doit être supérieure à 0');
+                        }
+                        
+                        error_log("Insertion produit: id_produit=" . $produit['id_produit'] . ", quantite=" . $produit['quantite']);
+                        
+                        $queryDetail->execute([
+                            $id_commande,
+                            $produit['id_produit'],
+                            $produit['quantite']
+                        ]);
+                    }
+                    
+                    $pdo->commit();
+                    
+                    http_response_code(201);
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'Commande envoyer avec succès',
+                        'id_commande' => $id_commande
+                    ]);
+                } catch (Exception $e) {
+                    $pdo->rollBack();
+                    
+                    error_log("Erreur envoi commande: " . $e->getMessage());
+                    
+                    http_response_code(500);
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'Erreur lors de l\'envoi de la commande: ' . $e->getMessage()
+                    ]);
+                }
+            } else {
+                http_response_code(400);
+                $missing = [];
+                if (!isset($data['date_commande'])) $missing[] = 'date_commande';
+                if (!isset($data['prix_total'])) $missing[] = 'prix_total';
+                if (!isset($data['mode'])) $missing[] = 'mode';
+                if (!isset($data['produits'])) $missing[] = 'produits';
+                
+                echo json_encode([
+                    'success' => false, 
+                    'error' => 'Données manquantes: ' . implode(', ', $missing)
+                ]);
+            }
+            exit;
+        }
+    }
+}
+
 // Boxes
 $boxManager = new BoxManager($pdo);
 try {

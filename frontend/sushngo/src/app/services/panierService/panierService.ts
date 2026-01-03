@@ -1,7 +1,26 @@
 //Sebastian
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Ajout de HttpClient
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators'; // map sert a transformer les données  tap sert a faire des actions sur les données
+import { of } from 'rxjs'; // of sert a creer un observable et rxjs est une librairie d'observables
+
+export interface User {
+  id_user: number;
+  nom: string;
+  prenom: string;
+  email: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  reponse?: string;
+  message?: string;
+  error?: string;
+  api_token?: string;
+  user?: User;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -27,19 +46,32 @@ export class PanierService {
   }
 
   ajouterPanier(produit: any): boolean { //ajouter au panier un produit
-    let totalActuel = this.produitsPanier.reduce((acc, item) => acc + item.quantite, 0);
+    let totalActuel = this.getNombreArticlesTotal();
 
     if (totalActuel + produit.quantite > 10) {
       alert("Vous ne pouvez pas avoir plus de 10 produits dans votre panier.");
       return false;
     }
 
-    // On décompose la commande en articles unitaires
+    // Debug pour voir TOUTES les clés disponibles dans l'objet produit
+    console.log("Contenu réel du produit :", produit.produit);
+
+    // On cherche l'ID partout où il pourrait se cacher
+    const id = produit.produit?.id || 
+               produit.id;
+
+    if (!id) {
+      console.error("ERREUR CRITIQUE : Aucune clé 'id' ou 'id_produit' trouvée dans :", produit);
+      alert("Erreur technique : Le produit n'a pas d'identifiant valide.");
+      return false;
+    }
+
     for (let i = 0; i < produit.quantite; i++) {
       const article = {
         produit: produit.produit,
+        id_produit: id, // On stocke l'ID trouvé
         quantite: 1,
-        prixTotal: produit.produit.prix // Prix unitaire
+        prixTotal: produit.produit.prix
       };
       this.produitsPanier.push(article);
     }
@@ -53,7 +85,7 @@ export class PanierService {
     this.sauvegarderPanier();
   }
 
-  getPanier() { //recuperer le panier
+  getPanier() {
     return this.produitsPanier;
   }
 
@@ -66,4 +98,16 @@ export class PanierService {
     this.sauvegarderPanier();
   }
 
+  // Joachim
+  envoiBdd(envoiData: {date_commande: string; prix_total: number; mode: string; produits: {id_produit: number; quantite: number; }[]}): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.apiUrl, {
+      action: 'create-commande',
+      date_commande: envoiData.date_commande,
+      prix_total: envoiData.prix_total,
+      mode: envoiData.mode,
+      produits: envoiData.produits
+    }, {
+      withCredentials: true
+    });
+  }
 }

@@ -10,6 +10,10 @@
     <h1 class="text-3xl Caladea ml-4"> Vous avez commandé {{ getNombreTotalProduits() }} produits. <span
             class="text-red-500 text-sm">10 produits maximum</span>
     </h1>
+    <!-- Bouton temporaire pour debug -->
+    <button (click)="resetPanier()" class="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+        Vider le panier (DEBUG)
+    </button>
 </div>
 
 <!-- Messages de succès/erreur -->
@@ -70,7 +74,7 @@
     <div class="bg-[#0C3A53] h-auto md:h-[700px] rounded-xl pb-4">
         <h1 class="text-center text-2xl font-bold text-white mt-2">Paiement</h1>
         <div class="flex flex-col items-start mx-4 md:mx-16 my-4">
-            <form class="w-full" #commandeForm="ngForm">
+            <form class="w-full" #commandeForm="ngForm" (ngSubmit)="onSubmit()">
                 <label for="typecarte" class="text-white text-xl">Type de Carte</label>
                 <select name="typecarte" id="typecarte" [(ngModel)]="typeCarte" required
                     class="h-[30px] w-full bg-white rounded-md">
@@ -139,9 +143,8 @@
                             À emporter
                         </button>
                     </div>
-                    <button type="button"
-                        class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-6 flex justify-between px-6 items-center group"
-                        (click)="ValidationForm()">
+                    <button type="submit"
+                        class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-6 flex justify-between px-6 items-center group">
                         <span>Passer au paiement</span>
                         <span class="bg-white/20 px-2 py-1 rounded text-sm group-hover:bg-white/30 transition">{{
                             getTotalApresReduction().toFixed(2) }}€</span>
