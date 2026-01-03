@@ -22,7 +22,7 @@ export class Navbar implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   private authSubscription?: Subscription;
 
-  constructor(private http: HttpClient, private router: Router, /*public connexionApi: ConnexionApi,*/ private authService: AuthService, private panierService: PanierService) { }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private panierService: PanierService) { }
 
   getCartCount(): number {
     return this.panierService.getNombreArticlesTotal();

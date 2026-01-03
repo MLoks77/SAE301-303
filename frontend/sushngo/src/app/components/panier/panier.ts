@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './panier.html',
   styleUrl: './panier.css',
 })
-export class Panier {
+export class Panier implements OnInit {
   // Joachim
 
   // Référence au formulaire pour la validation
@@ -31,7 +31,13 @@ export class Panier {
   dateExpiration: string = '';
   cvv: string = '';
 
+  // false = à emporter, true = livraison
+  isLivraison: boolean = true;
+
   constructor(private router: Router, private panierService: PanierService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+  }
 
   getItemsPanier() {
     return this.panierService.getPanier();
@@ -63,9 +69,6 @@ export class Panier {
     return parseFloat((totalSansReduc - this.getTotalApresReduction()).toFixed(2));
   }
 
-  // false = à emporter, true = livraison
-  isLivraison: boolean = true;
-
   getPrixLivraison(): number {
     return this.isLivraison ? 5 : 0;  //this.isLivraison ? checke si c'est true ou false, et si la réponse est true, prix livraison = 5 sinon = 0
   }
@@ -78,8 +81,19 @@ export class Panier {
     this.panierService.supprimerArticle(index);
   }
 
-  // Fonction de validation du formulaire par Joachim
-  ValidationForm(): void {
+  // Fonction permmettant de vider les messages par Joachim
+  clearMessages(): void {
+    this.successMessage = '';
+    this.errorMessage = '';
+  }
+
+  // Fonction de calcul du prix total par Joachim
+  getPrixTotal(): number {
+    return this.getTotalPanier() + this.getPrixLivraison();
+  }
+
+  // Fonction de validation et de soumission du formulaire par Joachim
+  onSubmit(): void {
     if (this.getItemsPanier().length === 0) {
       this.errorMessage = "Votre panier est vide. Ajoutez des produits avant de passer commande.";
       this.successMessage = '';
@@ -92,25 +106,42 @@ export class Panier {
       return;
     }
 
-    this.successMessage = "Votre commande a été validée avec succès !";
-    this.errorMessage = '';
-    this.panierService.viderPanier();
+    this.clearMessages();
 
-    setTimeout(() => {
-      this.successMessage = '';
-      this.router.navigate(['/accueil']);
-    }, 2000);
-  }
+    const commandeData = {
+      date_commande: new Date().toISOString(),
+      prix_total: this.getPrixTotal(),
+      mode: this.isLivraison ? 'livraison' : 'emporter',
+      produits: this.getItemsPanier().map(item => {
+        return {
+          id_produit: Number(item.id_produit || item.produit?.id_produit),
+          quantite: item.quantite
+        };
+      })
+    };
 
-  // Fonction permmettant de vider les messages par Joachim
-  clearMessages(): void {
-    this.successMessage = '';
-    this.errorMessage = '';
-  }
+    this.panierService.envoiBdd(commandeData).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.successMessage = 'Votre commande a été validée avec succès !';
+          this.errorMessage = '';
 
-  // Fonction qui permet de vider le panier par Joachim
-  resetPanier(): void {
-    this.panierService.viderPanier();
+          this.panierService.viderPanier();
+
+          setTimeout(() => {
+            this.successMessage = '';
+            this.router.navigate(['/accueil']);
+          }, 2000);
+        } else {
+          this.errorMessage = res.error || res.message || res.reponse || 'Une erreur est survenue lors de l\'envoi de la commande.';
+          console.log('Réponse API :', res);
+        }
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.error || err.error?.message || 'Une erreur est survenue lors de l\'envoi de la commande.';
+        console.error('Erreur lors de l\'envoi de la commande:', err);
+      }
+    });
   }
 
   // Formatage automatique du numéro de carte (XXXX XXXX XXXX XXXX)
@@ -144,5 +175,3 @@ export class Panier {
     input.value = this.dateExpiration; //met à jour l'input
   }
 }
-
-
