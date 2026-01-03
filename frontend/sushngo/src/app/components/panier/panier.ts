@@ -17,6 +17,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './panier.css',
 })
 export class Panier implements OnInit {
+export class Panier implements OnInit {
   // Joachim
 
   // Référence au formulaire pour la validation
@@ -30,6 +31,7 @@ export class Panier implements OnInit {
   numCarte: string = '';
   dateExpiration: string = '';
   cvv: string = '';
+
 
   // false = à emporter, true = livraison
   isLivraison: boolean = true;
@@ -100,6 +102,7 @@ export class Panier implements OnInit {
       return;
     }
 
+
     if (!this.commandeForm || !this.commandeForm.valid) {
       this.errorMessage = "Veuillez compléter tous les champs pour valider le paiement.";
       this.successMessage = '';
@@ -126,7 +129,9 @@ export class Panier implements OnInit {
           this.successMessage = 'Votre commande a été validée avec succès !';
           this.errorMessage = '';
 
+
           this.panierService.viderPanier();
+
 
           setTimeout(() => {
             this.successMessage = '';

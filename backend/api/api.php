@@ -13,7 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require_once __DIR__ . '/../config/configdb.php';
 require_once __DIR__ . '/PHP/users/manager/UserManager.php';
 require_once __DIR__ . '/PHP/boxes/boxmanager.php';
+
 require_once __DIR__ . '/PHP/stats/StatsManager.php';
+
 
 $content = file_get_contents('php://input');
 $data = json_decode($content, true);
@@ -95,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         exit;
     }
+
+
 }
 
 // Commandes
