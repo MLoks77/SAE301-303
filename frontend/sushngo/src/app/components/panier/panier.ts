@@ -85,11 +85,6 @@ export class Panier implements OnInit{
     this.errorMessage = '';
   }
 
-  // Fonction qui permet de vider le panier par Joachim
-  resetPanier(): void {
-    this.panierService.viderPanier();
-  }
-
   // Fonction de calcul du prix total par Joachim
   getPrixTotal(): number {
     return this.getTotalPanier() + this.getPrixLivraison();
@@ -129,7 +124,7 @@ export class Panier implements OnInit{
           this.successMessage = 'Votre commande a été validée avec succès !';
           this.errorMessage = '';
           
-          this.resetPanier();
+          this.panierService.viderPanier();
           
           setTimeout(() => {
             this.successMessage = '';
