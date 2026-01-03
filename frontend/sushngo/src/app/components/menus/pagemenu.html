@@ -197,12 +197,20 @@
 
         <!-- Bouton Panier -->
         <button
+          *ngIf="authService.isLoggedIn$ | async; else loginMessage"
           class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-2 flex justify-between px-6 items-center group"
           (click)="ajouterAuPanier()">
           <span>Ajouter au panier</span>
           <span class="bg-white/20 px-2 py-1 rounded text-sm group-hover:bg-white/30 transition">{{ getPrixTotal()
             }}€</span>
         </button>
+
+        <ng-template #loginMessage>
+          <div class="bg-red-100 text-red-500 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4 font-medium">Veuillez vous connecter pour commander.</div>
+          <button
+            class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-2 flex justify-center justify-between px-6 items-center group"
+            (click)="ajouterAuPanier()">Se connecter / S'inscrire</button>
+        </ng-template>
 
         <!-- Logos Paiement -->
         <div class="flex items-center justify-center gap-4 mt-3">

@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './panier.html',
   styleUrl: './panier.css',
 })
-export class Panier implements OnInit {
+export class Panier {
   // Joachim
 
   // Référence au formulaire pour la validation
@@ -35,9 +35,6 @@ export class Panier implements OnInit {
   isLivraison: boolean = true;
 
   constructor(private router: Router, private panierService: PanierService, private authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
 
   getItemsPanier() {
     return this.panierService.getPanier();

@@ -28,6 +28,16 @@
                         Réinitialiser votre mot de passe
                     </h2>
 
+                    <!-- Messages d'erreur et de succès -->
+                    <div *ngIf="successMessage"
+                        class="bg-green-100 text-green-700 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4">
+                        {{ successMessage }}
+                    </div>
+                    <div *ngIf="errorMessage"
+                        class="bg-red-100 text-red-700 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4">
+                        {{ errorMessage }}
+                    </div>
+
                     <div class="grid grid-cols-1 gap-6">
                         <div class="flex flex-col">
                             <label class="mb-1 font-medium">Email <span class="text-red-500">*</span></label>
@@ -92,14 +102,6 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Messages d'erreur et de succès -->
-                    <div *ngIf="errorMessage" class="text-red-500 text-sm text-center mb-2">
-                        {{ errorMessage }}
-                    </div>
-                    <div *ngIf="successMessage" class="text-green-500 text-sm text-center mb-2">
-                        {{ successMessage }}
                     </div>
 
                     <div class="flex flex-col items-center mt-10 gap-4">

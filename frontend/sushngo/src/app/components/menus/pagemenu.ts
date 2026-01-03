@@ -3,12 +3,13 @@
 import { Component } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
 import { FormsModule } from '@angular/forms';
 import { PanierService } from '../../services/panierService/panierService';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-pagemenu',
@@ -50,6 +51,8 @@ export class Pagemenu {
   boxSelectionnee: any = null; // La box sur laquelle on a cliqué
   quantiteSelectionnee: number = 1; // Quantité par défaut
 
+  constructor(private router: Router, private connexionApi: ConnexionApi, private panierService: PanierService, protected authService: AuthService) { }
+
   ouvrirModal(box: any) {
     this.boxSelectionnee = box; // Stocke la box cliquée
     this.quantiteSelectionnee = 1; // On remet la quantité à 1 à chaque ouverture 
@@ -76,8 +79,6 @@ export class Pagemenu {
     this.boxSelectionnee = null;
 
   }
-
-  constructor(private connexionApi: ConnexionApi, private panierService: PanierService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -198,14 +199,18 @@ export class Pagemenu {
   }
 
   ajouterAuPanier() {
-    if (this.boxSelectionnee) {
-      const commande = {
-        produit: this.boxSelectionnee,
-        quantite: this.quantiteSelectionnee,
-        prixTotal: this.getPrixTotal()
-      };
-      this.panierService.ajouterPanier(commande);
-      this.fermerModal();
+    if (this.authService.getIsLoggedIn()) {
+      if (this.boxSelectionnee) {
+        const commande = {
+          produit: this.boxSelectionnee,
+          quantite: this.quantiteSelectionnee,
+          prixTotal: this.getPrixTotal()
+        };
+        this.panierService.ajouterPanier(commande);
+        this.fermerModal();
+      }
+    } else {
+      this.router.navigate(['/inscription-connexion']);
     }
   }
 }

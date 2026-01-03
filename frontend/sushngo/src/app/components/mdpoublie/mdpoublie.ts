@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './mdpoublie.html',
   styleUrl: './mdpoublie.css',
 })
-export class Mdpoublie implements OnInit {
+export class Mdpoublie {
   isLoading: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
@@ -29,9 +29,6 @@ export class Mdpoublie implements OnInit {
   showConfirmNewMdp: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   onSubmit(): void {
     if (!this.loginData.email) {

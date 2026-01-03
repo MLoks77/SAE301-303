@@ -97,7 +97,7 @@ export class Inscconnex implements OnInit {
         this.isLoading = false;
         if (res.success) {
           this.successMessage = 'Connexion réussie ! Redirection...';
-          setTimeout(() => this.router.navigate(['/accueil']), 1500);
+          setTimeout(() => this.router.navigate(['/accueil']), 500);
         } else {
           this.errorMessage = res.message || res.reponse || res.error || 'Identifiants incorrects.';
         }
@@ -130,7 +130,7 @@ export class Inscconnex implements OnInit {
         if (res.success) {
           this.successMessage = 'Compte créé avec succès ! Vous pouvez vous connecter.';
           this.resetForm();
-          setTimeout(() => this.switchToTab('connexion'), 1000);
+          setTimeout(() => this.switchToTab('connexion'), 500);
         } else {
           this.errorMessage = res.error || res.message || res.reponse || 'Erreur lors de l\'inscription.';
         }
