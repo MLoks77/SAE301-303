@@ -38,8 +38,8 @@ export class Stats implements AfterViewInit {
       next: (res: any) => {
 
         this.METRIQUES = [
-          { label: "Commandes aujourd'hui", value: res.metrics.orders_today },
-          { label: 'Revenu total', value: '€' + Number(res.metrics.total_revenue).toFixed(2) },
+          { label: 'Nombre de commandes aujourd\'hui', value: res.metrics.orders_today },
+          { label: 'Nombre de commandes au total', value: Number(res.metrics.total_commandes) },
           { label: 'Note clients', value: res.metrics.rating },
         ];
 
@@ -47,7 +47,7 @@ export class Stats implements AfterViewInit {
         this.plats_populaires = res.popular_dishes.map((pd: any) => ({
           name: pd.nom,
           orders: Number(pd.orders),
-          price: '€' + Number(pd.prix).toFixed(2)
+          price: '€' + Number(pd.prix).toFixed(2) // toFixed(2) pour avoir 2 chiffres après la virgule = .00
         }));
 
         this.donnees_hebdomadaires = res.weekly_data.map((w: any) => ({
