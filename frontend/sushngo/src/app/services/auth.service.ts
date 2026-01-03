@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators'; // map sert a transformer les données  tap sert a faire des actions sur les données
 import { of } from 'rxjs'; // of sert a creer un observable et rxjs est une librairie d'observables
+import { PanierService } from './panierService/panierService';
 
 export interface User {
   id_user: number;
@@ -38,7 +39,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null); // valeur = soit User complet soit null , behaviorSubject sert a sauvegarder les données de l'user , pour etre accessibles depuis les autres composants sans avoir besoin de les recharger
   public currentUser$ = this.currentUserSubject.asObservable();  //$ à la fin de currentUser signifie que c'est un observable et transforme le behaviorSubject en observable
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private panierService: PanierService) {
     this.checkSession().subscribe();
   }
 
@@ -100,11 +101,13 @@ export class AuthService {
       next: () => {
         this.isLoggedInSubject.next(false);
         this.currentUserSubject.next(null); // On vide l'utilisateur à la déconnexion
+        this.panierService.viderPanier();
       },
       error: (err) => {
         console.error('Erreur lors de la déconnexion:', err);
         this.isLoggedInSubject.next(false);
         this.currentUserSubject.next(null); // On vide aussi en cas d'erreur si on force la déco locale
+        this.panierService.viderPanier();
       }
     });
   }

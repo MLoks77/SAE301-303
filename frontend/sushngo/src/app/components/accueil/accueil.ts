@@ -14,6 +14,8 @@ import { ConnexionApi } from '../../services/connexionAPI/connexion-api';
   styleUrl: './accueil.css',
 })
 
+// maxime derènes
+
 export class Accueil {
 
   plats = [

@@ -6,7 +6,7 @@
     class="flex flex-col justify-center items-center min-h-[60vh] bg-black/70 backdrop-blur-sm text-white relative overflow-hidden">
 
     <!-- Vidéo en background -->
-    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <video autoplay loop [muted]="true" playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover z-0">
         <source src="/videos/Sushi.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 opacity-40 z-0"></div>

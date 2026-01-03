@@ -2,8 +2,7 @@
 
 @font-face {
     font-family: 'Jost';
-    src:
-        url('/fonts/Jost-Regular.woff2') format('woff2');
+    src: url('/fonts/Jost-Regular.woff2') format('woff2');
 
     font-weight: normal;
     font-style: normal;
@@ -19,8 +18,7 @@
 
 @font-face {
     font-family: 'Caladea';
-    src:
-        url('/fonts/Caladea-Regular.woff') format('woff');
+    src: url('/fonts/Caladea-Regular.woff') format('woff');
 
     font-weight: normal;
     font-style: normal;
@@ -37,7 +35,7 @@
 @font-face {
     font-family: 'Julee';
     src:
-        url('/font/Julee-Regular.woff') format('woff');
+        url('/fonts/Julee-Regular.woff') format('woff');
 
     font-weight: normal;
     font-style: normal;
@@ -48,5 +46,23 @@
 .Julee {
     font-family: 'Julee', sans-serif;
     font-weight: 200;
+    font-style: normal;
+}
+
+p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+form {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
     font-style: normal;
 }

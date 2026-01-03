@@ -4,6 +4,8 @@ import { Footer } from '../footer/footer';
 import { Navbar } from '../navbar/navbar';
 import { RouterLink } from '@angular/router';
 
+// sebastien
+
 interface City {
   id: number;
   name: string;
