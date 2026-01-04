@@ -106,4 +106,14 @@ export class PanierService {
       withCredentials: true
     });
   }
+
+  // Témi
+  updateFidelite(nouveauSolde: number): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.apiUrl, {
+      action: 'update-fidelite', 
+      fidelite: nouveauSolde
+    }, {
+      withCredentials: true
+    });
+  }
 }

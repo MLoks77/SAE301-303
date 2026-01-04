@@ -134,7 +134,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-
+    // Met à jour la fidélité
+    if (isset($data['action']) && $data['action'] === 'update-fidelite') {
+        $session = $userManager->checkSession();
+        
+        if ($session['logged_in'] && isset($data['fidelite'])) {
+            try {
+                $userManager->setFidelite($_SESSION['id_user'], (int)$data['fidelite']);
+                echo json_encode(['success' => true, 'message' => 'Points mis à jour']);
+            } catch (Exception $e) {
+                echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Non connecté ou données manquantes']);
+        }
+        exit;
+    }
 }
 
 // Commandes
