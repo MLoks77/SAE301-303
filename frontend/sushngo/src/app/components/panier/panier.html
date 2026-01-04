@@ -107,9 +107,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-center justify-center mx-4 md:mx-10 my-8">
+                <div class="flex flex-col items-center justify-center mx-4 md:mx-10 mt-10 mb-4">
                     <h3 class="text-white text-sm">Cette commande vous fera gagner :</h3>
-                    <span class="text-white text-center text-2xl font-bold mt-2">{{ getPointsFidelite() }} points de
+                    <span class="text-white text-center text-2xl font-bold">{{ getPointsFidelite() }} points de
                         fidélité</span>
                 </div>
                 <div *ngIf="getPalierDisponible() > 0" class="w-full mb-6 bg-white/10 p-3 rounded-lg border border-white/20">
@@ -136,8 +136,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="w-full mt-6 border-t border-white">
-                    <div class="flex justify-between text-white text-md font-medium">
+                <div class="w-full mt-6 border-t border-white/20">
+                    <div class="flex justify-between text-white text-md font-medium pt-2">
                         <span>Total de la commande :</span>
                         <span>{{ getTotalPanier().toFixed(2) }} €</span>
                     </div>
