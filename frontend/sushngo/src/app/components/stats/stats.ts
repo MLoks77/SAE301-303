@@ -49,6 +49,7 @@ export class Stats implements AfterViewInit {
 
 
         this.plats_populaires = res.popular_dishes.map((pp: any) => ({
+          id: pp.id_produit,
           name: pp.nom,
           image: '/images/box/' + pp.image + '.jpg',
           orders: Number(pp.orders),
