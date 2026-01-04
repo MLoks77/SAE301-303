@@ -13,51 +13,68 @@
     class="flex flex-col items-center justify-center w-full py-10 text-center relative overflow-hidden">
     <div class="absolute inset-0 bg-[#879358]/20"></div>
 
-    <svg class="mt-6 w-full max-w-[1200px] h-[200px] relative z-10">
-        <circle cx="155" cy="100" r="80" [attr.fill]="getStepColor(25)" [attr.stroke]="getStepStrokeColor(25)"
-            stroke-width="4" class="circle" />
-        <text x="155" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(25)">25pts</text>
-        <text x="155" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(25)">-5%</text>
-
-        <circle cx="455" cy="100" r="80" [attr.fill]="getStepColor(50)" [attr.stroke]="getStepStrokeColor(50)"
-            stroke-width="4" class="circle" />
-        <text x="455" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(50)">50pts</text>
-        <text x="455" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(50)">-10%</text>
-
-        <circle cx="755" cy="100" r="80" [attr.fill]="getStepColor(75)" [attr.stroke]="getStepStrokeColor(75)"
-            stroke-width="4" class="circle" />
-        <text x="755" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(75)">75pts</text>
-        <text x="755" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(75)">-15%</text>
-
-        <circle cx="1055" cy="100" r="80" [attr.fill]="getStepColor(100)" [attr.stroke]="getStepStrokeColor(100)"
-            stroke-width="4" class="circle" />
-        <text x="1055" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(100)">100pts</text>
-        <text x="1055" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-            [attr.fill]="getStepTextColor(100)">-20%</text>
-    </svg>
+    <div class="w-full flex flex-col items-center justify-center">
+        <div class="flex flex-col xl:flex-row w-full max-w-[1200px] gap-8 items-center xl:justify-between overflow-x-auto xl:overflow-visible px-4 sm:px-8 xl:px-0">
+            <!-- Etape 25pts -->
+            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
+                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(25)" [attr.stroke]="getStepStrokeColor(25)"
+                        stroke-width="4" class="circle" />
+                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(25)">25pts</text>
+                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(25)">-5%</text>
+                </svg>
+            </div>
+            <!-- Etape 50pts -->
+            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
+                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(50)" [attr.stroke]="getStepStrokeColor(50)"
+                        stroke-width="4" class="circle" />
+                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(50)">50pts</text>
+                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(50)">-10%</text>
+                </svg>
+            </div>
+            <!-- Etape 75pts -->
+            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
+                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(75)" [attr.stroke]="getStepStrokeColor(75)"
+                        stroke-width="4" class="circle" />
+                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(75)">75pts</text>
+                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(75)">-15%</text>
+                </svg>
+            </div>
+            <!-- Etape 100pts -->
+            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
+                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
+                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(100)" [attr.stroke]="getStepStrokeColor(100)"
+                        stroke-width="4" class="circle" />
+                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(100)">100pts</text>
+                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
+                        [attr.fill]="getStepTextColor(100)">-20%</text>
+                </svg>
+            </div>
+        </div>
+    </div>
 </section>
-
-
 
 <section class="flex flex-col items-center justify-center w-full">
 
     <div class="flex flex-col items-center w-full ">
-        <div class="max-w-[1200px] w-full flex items-center gap-2 mt-6">
+        <div class="max-w-[1200px] w-full flex flex-col sm:flex-row items-center gap-2 mt-6 px-4 sm:px-8">
             <span class="font-bold text-lg">{{ fidelite }}pts</span>
             <progress class="w-full border-2 border-black" id="fideliteprogress" [value]="fideliteProgress" max="100"
                 [class.progress-yellow]="hasReachedAnyStep()"></progress>
         </div>
     </div>
-    <div class=" max-w-[1200px] w-full text-left fid">
-        <h1 class="text-[1.5rem] font-bold mt-2">Fidélité</h1>
-        <p class="text-[1.5rem]">
+    <div class="max-w-[1200px] w-full text-left fid px-4 sm:px-8">
+        <h1 class="text-[1.25rem] sm:text-[1.5rem] font-bold mt-2">Fidélité</h1>
+        <p class="text-[1rem] sm:text-[1.5rem]">
             <span *ngIf="hasReachedAnyStep(); else noReduction">
                 Réduction active : <span class="font-bold text-yellow-600">-{{ getCurrentReduction() }}%</span>
             </span>
@@ -172,5 +189,6 @@
         </div>
     </section>
 
+</section>
 
-    <app-footer></app-footer>
+<app-footer></app-footer>
