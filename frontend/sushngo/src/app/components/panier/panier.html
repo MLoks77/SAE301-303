@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 h-auto md:h-[800px] ml-4 mr-4 md:mr-8">
+<div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 h-auto ml-4 mr-4 md:mr-8">
     <div class="bg-gray-100 rounded-xl overflow-hidden shadow-inner">
         <div class="flex-col overflow-y-auto h-full p-4 space-y-4 bg-gray-50/50">
             <!-- Liste des produits -->
@@ -139,20 +139,31 @@
                 <div class="w-full mt-6 border-t border-white">
                     <div class="flex justify-between text-white text-md font-medium">
                         <span>Total de la commande :</span>
-                        <span>{{ getTotalPanier() }} €</span>
+                        <span>{{ getTotalPanier().toFixed(2) }} €</span>
                     </div>
+
                     <div class="flex justify-between text-white text-md font-medium">
                         <span>Livraison :</span>
-                        <span> {{ getPrixLivraison() }} €</span>
+                        <span>{{ getPrixLivraison() }} €</span>
                     </div>
-                    <div *ngIf="authService.isStudent()" class="flex justify-between text-white text-md font-medium">
-                        <span>Réduction étudiante : </span>
-                        <span>{{ getReduction() }}€</span>
+
+                    <div *ngIf="user?.statut_etud" class="flex justify-between text-green-400 text-md font-medium">
+                        <span>Réduction étudiante (10%) :</span>
+                        <span>- {{ getReductionEtudiant().toFixed(2) }} €</span>
                     </div>
+
                     <div *ngIf="pointsUtilises" class="flex justify-between text-yellow-400 text-md font-medium">
-                        <span>Réduction fidélité : </span>
-                        <span>- {{ (getTotalPanier() + getPrixLivraison() - getTotalApresReduction()).toFixed(2) }} €</span>
+                        <span>Réduction fidélité ({{ getPourcentageFidelite() }}%) :</span>
+                        <span>- {{ getReductionFidelite().toFixed(2) }} €</span>
                     </div>
+
+                    <div class="border-t border-white/20 my-2"></div>
+
+                    <div class="flex justify-between text-white text-xl font-bold">
+                        <span>Total à payer :</span>
+                        <span>{{ getTotalApresReduction().toFixed(2) }} €</span>
+                    </div>
+
                     <div class="flex justify-center gap-4 mt-6">
                         <button type="button" (click)="isLivraison = true" [class.bg-white]="isLivraison"
                             [class.text-black]="isLivraison" [class.bg-gray-700]="!isLivraison"

@@ -57,25 +57,29 @@ export class Panier implements OnInit {
     }, 0);
   }
 
-  getTotalApresReduction(): number {
-    let total = this.getTotalPanier() + this.getPrixLivraison();
-    
-    // 1. Réduction Étudiant
-    if (this.authService.isStudent()) {
-      total *= 0.95; 
-    }
-
-    // 2. Réduction Fidélité (s'applique sur le montant déjà réduit ou total)
-    if (this.pointsUtilises) {
-      total *= (1 - this.getPourcentageFidelite());
-    }
-
-    return total;
+  getReductionEtudiant(): number {
+  if (this.user?.statut_etud) {
+    return this.getTotalPanier() * 0.10;
+  }
+  return 0;
   }
 
-  getReduction(): number {
-    const totalSansReduc = this.getTotalPanier() + this.getPrixLivraison();
-    return parseFloat((totalSansReduc - this.getTotalApresReduction()).toFixed(2));
+  getReductionFidelite(): number {
+    if (this.pointsUtilises) {
+      const pourcentage = this.getPourcentageFidelite();
+      return this.getTotalPanier() * (pourcentage / 100);
+    }
+    return 0;
+  }
+
+  getTotalApresReduction(): number {
+    const totalProduits = this.getTotalPanier();
+    const livraison = this.getPrixLivraison();
+    
+    // On soustrait les deux réductions
+    const totalFinal = totalProduits - this.getReductionEtudiant() - this.getReductionFidelite() + livraison;
+    
+    return totalFinal > 0 ? totalFinal : 0;
   }
 
   getPrixLivraison(): number {
@@ -123,10 +127,10 @@ export class Panier implements OnInit {
     
     const palier = this.getPalierDisponible();
     switch (palier) {
-      case 100: return 0.20; // 20%
-      case 75: return 0.15;  // 15%
-      case 50: return 0.10;  // 10%
-      case 25: return 0.05;  // 5%
+      case 100: return 20; // 20%
+      case 75: return 15;  // 15%
+      case 50: return 10;  // 10%
+      case 25: return 5;  // 5%
       default: return 0;
     }
   }
