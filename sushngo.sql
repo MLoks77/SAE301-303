@@ -180,6 +180,47 @@ ALTER TABLE `detail_commande`
   ADD CONSTRAINT `detail_commande_ibfk_1` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`) ON DELETE CASCADE,
   ADD CONSTRAINT `detail_commande_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`) ON DELETE CASCADE;
 
+-- 1. Création de utilisateur de test (ID 99)
+INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `email`, `password`, `statut_etud`, `tel`, `adresse`, `fidelite`) 
+VALUES (99, 'Testeur', 'Jean', 'test@sushngo.fr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, '0601020304', '123 Rue du Sushi, 75000 Paris', 75);
+
+-- email test : test@sushngo.fr
+-- mdp : password
+
+INSERT INTO `commande` (`id_commande`, `id_user`, `date_commande`, `prix_total`, `mode`) VALUES
+(1, 99, '2025-10-10 12:30:00', 25.00, 'Livraison'),
+(2, 99, '2025-10-15 19:45:00', 15.90, 'À emporter'),
+(3, 99, '2025-10-22 20:15:00', 31.80, 'Livraison'),
+(4, 99, '2025-11-02 12:00:00', 12.50, 'À emporter'),
+(5, 99, '2025-11-08 19:30:00', 15.90, 'Livraison'),
+(6, 99, '2025-11-15 21:00:00', 49.00, 'Livraison'),
+(7, 99, '2025-11-20 12:45:00', 15.90, 'À emporter'),
+(8, 99, '2025-12-01 20:00:00', 12.50, 'Livraison'),
+(9, 99, '2025-12-05 19:00:00', 28.40, 'À emporter'),
+(10, 99, '2025-12-10 20:30:00', 19.90, 'Livraison'),
+(11, 99, '2025-12-12 12:15:00', 15.90, 'À emporter'),
+(12, 99, '2025-12-14 19:45:00', 35.80, 'Livraison'),
+(13, 99, '2025-12-16 20:15:00', 24.50, 'À emporter'),
+(14, 99, '2025-12-17 19:30:00', 12.50, 'Livraison'),
+(15, 99, '2025-12-18 21:00:00', 44.40, 'Livraison');
+
+INSERT INTO `detail_commande` (`id_commande`, `id_produit`, `quantite`) VALUES
+(1, 14, 2),
+(2, 15, 1),
+(3, 20, 2),
+(4, 16, 1),
+(5, 18, 1),
+(6, 25, 2),
+(7, 19, 1),
+(8, 14, 1),
+(9, 21, 1), (9, 14, 1),
+(10, 23, 1),
+(11, 17, 1),
+(12, 24, 1), (12, 18, 1),
+(13, 25, 1),
+(14, 16, 1),
+(15, 26, 1), (15, 23, 1);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

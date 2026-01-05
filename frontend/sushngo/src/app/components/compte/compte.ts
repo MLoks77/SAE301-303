@@ -28,6 +28,10 @@ export class Compte implements OnInit {
   message: string = '';
   messageType: 'success' | 'error' = 'success';
 
+  showMdpActuel: boolean = false;
+  showMdpNouveau: boolean = false;
+  showMdpConfirm: boolean = false;
+
   // Données du formulaire
   formData = {
     nom: '',
