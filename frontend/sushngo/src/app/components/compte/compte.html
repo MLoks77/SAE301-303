@@ -8,58 +8,66 @@
     <span class="text-white italic mb-1"> &gt; Compte</span>
 </div>
 
+<!-- ordinateur -->
+<section id="fidelite" class="relative w-full overflow-hidden bg-[#879358]/10 py-10">
+    <div class="absolute inset-0 bg-[#879358]/10 pointer-events-none"></div>
 
-<section id="fidelite"
-    class="flex flex-col items-center justify-center w-full py-10 text-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-[#879358]/20"></div>
+    <div class="relative z-10 mx-auto max-w-[1200px] px-4">
+        <div class="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
 
-    <div class="w-full flex flex-col items-center justify-center">
-        <div
-            class="flex flex-col xl:flex-row w-full max-w-[1200px] gap-8 items-center xl:justify-between overflow-x-auto xl:overflow-visible px-4 sm:px-8 xl:px-0">
-            <!-- Etape 25pts -->
-            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
-                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
-                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(25)"
-                        [attr.stroke]="getStepStrokeColor(25)" stroke-width="4" class="circle" />
-                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(25)">25pts</text>
-                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(25)">-5%</text>
-                </svg>
+            <div class="flex flex-col items-center w-full">
+                <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(25)"
+                            [attr.stroke]="getStepStrokeColor(25)" stroke-width="6"
+                            class="transition-all duration-300" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(25)">25pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(25)">-5%</text>
+                    </svg>
+                </div>
             </div>
-            <!-- Etape 50pts -->
-            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
-                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
-                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(50)"
-                        [attr.stroke]="getStepStrokeColor(50)" stroke-width="4" class="circle" />
-                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(50)">50pts</text>
-                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(50)">-10%</text>
-                </svg>
+
+            <div class="flex flex-col items-center w-full">
+                <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(50)"
+                            [attr.stroke]="getStepStrokeColor(50)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(50)">50pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(50)">-10%</text>
+                    </svg>
+                </div>
             </div>
-            <!-- Etape 75pts -->
-            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
-                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
-                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(75)"
-                        [attr.stroke]="getStepStrokeColor(75)" stroke-width="4" class="circle" />
-                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(75)">75pts</text>
-                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(75)">-15%</text>
-                </svg>
+
+            <div class="flex flex-col items-center w-full">
+                <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(75)"
+                            [attr.stroke]="getStepStrokeColor(75)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(75)">75pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(75)">-15%</text>
+                    </svg>
+                </div>
             </div>
-            <!-- Etape 100pts -->
-            <div class="flex-none snap-center flex flex-col items-center relative z-10 w-full max-w-[260px]">
-                <svg viewBox="0 0 200 200" class="w-48 h-48 xl:w-52 xl:h-52">
-                    <circle cx="100" cy="100" r="80" [attr.fill]="getStepColor(100)"
-                        [attr.stroke]="getStepStrokeColor(100)" stroke-width="4" class="circle" />
-                    <text x="100" y="85" font-size="40" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(100)">100pts</text>
-                    <text x="100" y="125" font-size="25" text-anchor="middle" dominant-baseline="central"
-                        [attr.fill]="getStepTextColor(100)">-20%</text>
-                </svg>
+
+            <div class="flex flex-col items-center w-full">
+                <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(100)"
+                            [attr.stroke]="getStepStrokeColor(100)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(100)">100pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
+                            dominant-baseline="central" [attr.fill]="getStepTextColor(100)">-20%</text>
+                    </svg>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
