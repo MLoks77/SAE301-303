@@ -57,13 +57,14 @@ class StatsManager
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // on récupère le nombre de commandes passées pour chaque heure de la journée, pour faire les heures de pointes
+    // on récupère le nombre de commandes passées pour chaque heure de la journée actuelle, pour faire les heures de pointes
     public function getHourlyStats()
     {
         $sql = "SELECT HOUR(date_commande) as hour, COUNT(*) as orders 
-                FROM commande 
-                GROUP BY HOUR(date_commande) 
-                ORDER BY hour";
+            FROM commande 
+            WHERE DATE(date_commande) = CURDATE() 
+            GROUP BY HOUR(date_commande) 
+            ORDER BY hour";
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
