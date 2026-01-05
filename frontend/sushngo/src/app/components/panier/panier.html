@@ -67,6 +67,7 @@
         </div>
     </div>
 
+    @if (getItemsPanier().length > 0) {
     <div class="bg-[#0C3A53] h-auto rounded-xl">
         <h1 class="text-center text-2xl font-bold text-white mt-2">Paiement</h1>
         <div class="flex flex-col items-start mx-4 md:mx-16 my-4">
@@ -190,5 +191,17 @@
             </form>
         </div>
     </div>
+    } @else { <!-- maxime derènes-->
+    <div class="bg-[#0C3A53] h-[60vh] flex flex-col items-center justify-center rounded-xl px-4 text-center">
+        <span class="text-xl text-white">Votre panier est vide, veuillez ajouter des produits.</span>
+
+        <a routerLink="/menus" class="mt-12">
+            <button
+                class="bg-white border border-white px-10 py-4 text-sm hover:bg-gray-300 text-[#0C3A53] font-bold cursor-pointer uppercase tracking-widest transition-colors duration-300 rounded-md shadow-lg">
+                Découvrir nos menus
+            </button>
+        </a>
+    </div> <!-- fin maxime derènes-->
+    }
 </div>
 <app-footer></app-footer>
