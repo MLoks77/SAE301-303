@@ -117,9 +117,9 @@
                     <p class="text-white text-sm mb-2">
                         Utiliser mes <span class="font-bold text-yellow-400">{{ getPalierDisponible() }} pts</span> de
                         fidélité ?
-                        <span class="text-xs text-gray-300 block">(-{{ getPourcentageFidelite() > 0 ?
-                            getPourcentageFidelite() * 100 : (getPalierDisponible() === 25 ? 5 : getPalierDisponible()
-                            === 50 ? 10 : getPalierDisponible() === 75 ? 15 : 20) }}% sur la commande)</span>
+                        <span class="text-xs text-gray-300 block">( -{{ getPourcentageFidelite() > 0 ?
+                            getPourcentageFidelite() : (getPalierDisponible() === 25 ? 5 : getPalierDisponible()
+                            === 50 ? 10 : getPalierDisponible() === 75 ? 15 : 20) }}% sur la commande )</span>
                     </p>
 
                     <div class="flex gap-2">
