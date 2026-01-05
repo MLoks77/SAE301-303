@@ -112,26 +112,28 @@
                     <span class="text-white text-center text-2xl font-bold">{{ getPointsFidelite() }} points de
                         fidélité</span>
                 </div>
-                <div *ngIf="getPalierDisponible() > 0" class="w-full mb-6 bg-white/10 p-3 rounded-lg border border-white/20">
+                <div *ngIf="getPalierDisponible() > 0"
+                    class="w-full mb-6 bg-white/10 p-3 rounded-lg border border-white/20">
                     <p class="text-white text-sm mb-2">
-                        Utiliser mes <span class="font-bold text-yellow-400">{{ getPalierDisponible() }} pts</span> de fidélité ?
-                        <span class="text-xs text-gray-300 block">(-{{ getPourcentageFidelite() > 0 ? getPourcentageFidelite() * 100 : (getPalierDisponible() === 25 ? 5 : getPalierDisponible() === 50 ? 10 : getPalierDisponible() === 75 ? 15 : 20) }}% sur la commande)</span>
+                        Utiliser mes <span class="font-bold text-yellow-400">{{ getPalierDisponible() }} pts</span> de
+                        fidélité ?
+                        <span class="text-xs text-gray-300 block">(-{{ getPourcentageFidelite() > 0 ?
+                            getPourcentageFidelite() * 100 : (getPalierDisponible() === 25 ? 5 : getPalierDisponible()
+                            === 50 ? 10 : getPalierDisponible() === 75 ? 15 : 20) }}% sur la commande)</span>
                     </p>
-                    
+
                     <div class="flex gap-2">
-                        <button type="button" 
-                            (click)="pointsUtilises = true"
-                            [class.bg-green-500]="pointsUtilises" [class.text-white]="pointsUtilises"
-                            [class.bg-gray-200]="!pointsUtilises" [class.text-gray-800]="!pointsUtilises"
-                            class="flex-1 py-1 px-3 rounded text-sm font-semibold transition-colors cursor-pointer">
+                        <button type="button" (click)="pointsUtilises = true" [class.bg-green-500]="pointsUtilises"
+                            [class.text-white]="pointsUtilises" [class.bg-gray-200]="!pointsUtilises"
+                            [class.text-gray-800]="!pointsUtilises"
+                            class="flex-1 py-1 px-3 rounded hover:text-white hover:bg-green-600 text-sm font-semibold transition-colors cursor-pointer">
                             Oui
                         </button>
-                        
-                        <button type="button" 
-                            (click)="pointsUtilises = false"
-                            [class.bg-red-500]="!pointsUtilises" [class.text-white]="!pointsUtilises"
-                            [class.bg-gray-200]="pointsUtilises" [class.text-gray-800]="pointsUtilises"
-                            class="flex-1 py-1 px-3 rounded text-sm font-semibold transition-colors cursor-pointer">
+
+                        <button type="button" (click)="pointsUtilises = false" [class.bg-red-500]="!pointsUtilises"
+                            [class.text-white]="!pointsUtilises" [class.bg-gray-200]="pointsUtilises"
+                            [class.text-gray-800]="pointsUtilises"
+                            class="flex-1 py-1 px-3 rounded hover:text-white hover:bg-red-600 text-sm font-semibold transition-colors cursor-pointer">
                             Non
                         </button>
                     </div>
@@ -179,8 +181,7 @@
                         </button>
                     </div>
                     <button type="submit"
-                        class="w-full text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-6 flex justify-between px-6 items-center group"
-                        [ngClass]="getItemsPanier().length > 0 ? 'bg-black hover:bg-gray-800 cursor-pointer' : 'bg-gray-600 cursor-not-allowed'"[disabled]="getItemsPanier().length === 0">
+                        class="w-full text-white font-bold py-3 rounded-xl bg-gray-700 hover:bg-gray-800 cursor-pointer transition shadow-lg mt-6 flex justify-between px-6 items-center group">
                         <span>Passer au paiement</span>
                         <span class="bg-white/20 px-2 py-1 rounded text-sm group-hover:bg-white/30 transition">{{
                             getTotalApresReduction().toFixed(2) }}€</span>
