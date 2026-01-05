@@ -1,4 +1,6 @@
 <?php
+// TP1 Le Vessnard
+// gestion des boxes
 
 class BoxManager
 {

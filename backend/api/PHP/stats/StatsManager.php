@@ -20,7 +20,7 @@ class StatsManager
         $stmt = $this->pdo->query("SELECT COUNT(*) as count FROM commande");
         $totalcommandes = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
 
-        // Note clients (simulation)
+        // Note clients (on simule)
         $rating = 4.2;
 
         return [
@@ -44,8 +44,8 @@ class StatsManager
 
     public function getWeeklyStats()
     {
-        // '%a'
-        // on vient récupérer les commandes des7 derniers jours 
+        // '%a' -> abréviation du jour de la semaine en anglais (Mon, Tue, etc.)
+        // on vient récupérer les commandes des 7 derniers jours 
         $sql = "SELECT DATE(date_commande) as full_date, 
                    DATE_FORMAT(date_commande, '%a') as day_name, 
                    SUM(prix_total) as revenue, 
@@ -57,7 +57,7 @@ class StatsManager
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    // on récupère le nombre de commandes passées pour chaque heure de la journée, pour faire les heures de pointes
     public function getHourlyStats()
     {
         $sql = "SELECT HOUR(date_commande) as hour, COUNT(*) as orders 
@@ -67,6 +67,7 @@ class StatsManager
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Récupère toutes les statistiques
     public function getAllStats()
     {
         return [

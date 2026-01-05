@@ -1,68 +1,43 @@
 @import "tailwindcss";
 
-@font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost-Regular.woff2') format('woff2');
+// maxime derènes
 
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+$font-main: 'Jost', sans-serif;
+$font-serif: 'Caladea', sans-serif;
+$font-title: 'Julee', sans-serif;
+
+@include declare-font('Jost', '/fonts/Jost-Regular.woff2', 'woff2');
+@include declare-font('Caladea', '/fonts/Caladea-Regular.woff', 'woff');
+@include declare-font('Julee', '/fonts/Julee-Regular.woff', 'woff');
+
+// Mixin -> évite de répéter fontface a chaque fois
+@mixin declare-font($name, $path, $format) {
+    @font-face {
+        font-family: $name;
+        src: url($path) format($format);
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 }
 
 .Jost {
-    font-family: 'Jost', sans-serif;
+    font-family: $font-main;
     font-weight: 200;
-    font-style: normal;
 }
 
-
-@font-face {
-    font-family: 'Caladea';
-    src: url('/fonts/Caladea-Regular.woff') format('woff');
-
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* texte */
 .Caladea {
-    font-family: 'Caladea', sans-serif;
+    font-family: $font-serif;
     font-weight: 200;
-    font-style: normal;
 }
 
-@font-face {
-    font-family: 'Julee';
-    src:
-        url('/fonts/Julee-Regular.woff') format('woff');
-
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* titre landing */
 .Julee {
-    font-family: 'Julee', sans-serif;
+    font-family: $font-title;
     font-weight: 200;
-    font-style: normal;
 }
 
-p {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-a {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-form {
-    font-family: 'Jost', sans-serif;
+p, a, form {
+    font-family: $font-main;
     font-weight: 400;
     font-style: normal;
 }

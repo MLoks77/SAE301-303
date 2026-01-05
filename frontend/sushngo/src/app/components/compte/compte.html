@@ -18,13 +18,9 @@
             <div class="flex flex-col items-center w-full">
                 <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
                     <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
-                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(25)"
-                            [attr.stroke]="getStepStrokeColor(25)" stroke-width="6"
-                            class="transition-all duration-300" />
-                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(25)">25pts</text>
-                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(25)">-5%</text>
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(25)" [attr.stroke]="getStepStrokeColor(25)" stroke-width="6" class="transition-all duration-300" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(25)">25pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(25)">-5%</text>
                     </svg>
                 </div>
             </div>
@@ -32,12 +28,9 @@
             <div class="flex flex-col items-center w-full">
                 <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
                     <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
-                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(50)"
-                            [attr.stroke]="getStepStrokeColor(50)" stroke-width="6" />
-                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(50)">50pts</text>
-                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(50)">-10%</text>
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(50)" [attr.stroke]="getStepStrokeColor(50)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(50)">50pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(50)">-10%</text>
                     </svg>
                 </div>
             </div>
@@ -45,12 +38,9 @@
             <div class="flex flex-col items-center w-full">
                 <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
                     <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
-                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(75)"
-                            [attr.stroke]="getStepStrokeColor(75)" stroke-width="6" />
-                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(75)">75pts</text>
-                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(75)">-15%</text>
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(75)" [attr.stroke]="getStepStrokeColor(75)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(75)">75pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"dominant-baseline="central" [attr.fill]="getStepTextColor(75)">-15%</text>
                     </svg>
                 </div>
             </div>
@@ -58,12 +48,9 @@
             <div class="flex flex-col items-center w-full">
                 <div class="relative aspect-square w-full max-w-[140px] sm:max-w-[180px] lg:max-w-[220px]">
                     <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
-                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(100)"
-                            [attr.stroke]="getStepStrokeColor(100)" stroke-width="6" />
-                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(100)">100pts</text>
-                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle"
-                            dominant-baseline="central" [attr.fill]="getStepTextColor(100)">-20%</text>
+                        <circle cx="100" cy="100" r="85" [attr.fill]="getStepColor(100)" [attr.stroke]="getStepStrokeColor(100)" stroke-width="6" />
+                        <text x="100" y="85" font-size="38" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(100)">100pts</text>
+                        <text x="100" y="125" font-size="28" font-weight="bold" text-anchor="middle" dominant-baseline="central" [attr.fill]="getStepTextColor(100)">-20%</text>
                     </svg>
                 </div>
             </div>
@@ -80,9 +67,7 @@
                 {{ fidelite }} pts
             </span>
 
-            <progress class="w-full h-4 border-2 border-black rounded-full overflow-hidden block" id="fideliteprogress"
-                [value]="fideliteProgress" max="100" [class.progress-yellow]="hasReachedAnyStep()">
-            </progress>
+            <progress class="w-full h-4 border-2 border-black rounded-full overflow-hidden block" id="fideliteprogress" [value]="fideliteProgress" max="100" [class.progress-yellow]="hasReachedAnyStep()"> </progress>
         </div>
 
         <div class="w-full max-w-[600px] text-center mt-4">
@@ -93,14 +78,10 @@
             <p class="text-base mt-1 text-gray-700">
                 <span *ngIf="hasReachedAnyStep(); else noReduction">
                     Réduction active :
-                    <span class="font-bold text-yellow-600 inline-block ml-1">
-                        -{{ getCurrentReduction() }}%
-                    </span>
+                    <span class="font-bold text-yellow-600 inline-block ml-1"> -{{ getCurrentReduction() }}% </span>
                 </span>
                 <ng-template #noReduction>
-                    <span class="text-gray-500 italic">
-                        Atteignez chaque palier pour gagner une réduction
-                    </span>
+                    <span class="text-gray-500 italic"> Atteignez chaque palier pour gagner une réduction </span>
                 </ng-template>
             </p>
         </div>
@@ -109,9 +90,7 @@
 
     <!-- Paramètres du compte -->
     <section class="my-10 bg-gray-100 w-[90%] rounded-lg shadow-lg p-8">
-        <div *ngIf="message" class=" mb-4 p-4 rounded-lg" [class.bg-green-100]="messageType === 'success'"
-            [class.bg-red-100]="messageType === 'error'" [class.text-green-800]="messageType === 'success'"
-            [class.text-red-800]="messageType === 'error'">
+        <div *ngIf="message" class=" mb-4 p-4 rounded-lg" [class.bg-green-100]="messageType === 'success'" [class.bg-red-100]="messageType === 'error'" [class.text-green-800]="messageType === 'success'" [class.text-red-800]="messageType === 'error'">
             <div class="flex justify-between items-center">
                 <p class="font-semibold">{{ message }}</p>
                 <button (click)="clearMessage()"

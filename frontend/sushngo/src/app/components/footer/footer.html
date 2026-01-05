@@ -22,21 +22,12 @@
                 </li>
                 <li><a routerLink="/points-retraits" class="cursor-pointer text-xl hover:text-black/70 Caladea">Nos
                         points de retraits</a></li>
-                <li><a routerLink="/menus" class="cursor-pointer text-xl hover:text-black/70 Caladea">Notre carte</a>
-                </li>
-                <li><a routerLink="/stats" class="cursor-pointer text-xl hover:text-black/70 Caladea">Statistiques</a>
-                </li>
-                <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70 Caladea">Nous
-                        contacter</a></li>
-                <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70">
-                    <a routerLink="/compte" class="Caladea">Mon Compte</a>
-                </li>
-                <li *ngIf="isLoggedIn" (click)="logout()" class="cursor-pointer text-xl hover:text-black/70">
-                    <a class="Caladea">Se déconnecter</a>
-                </li>
-                <li *ngIf="!isLoggedIn" class="cursor-pointer text-xl hover:text-black/70 Caladea">
-                    <a routerLink="/inscription-connexion" class="Caladea">Se connecter</a>
-                </li>
+                <li><a routerLink="/menus" class="cursor-pointer text-xl hover:text-black/70 Caladea">Notre carte</a></li>
+                <li><a routerLink="/stats" class="cursor-pointer text-xl hover:text-black/70 Caladea">Statistiques</a></li>
+                <li><a routerLink="/contact" class="cursor-pointer text-xl hover:text-black/70 Caladea">Nous contacter</a></li>
+                <li *ngIf="isLoggedIn" class="cursor-pointer text-xl hover:text-black/70"><a routerLink="/compte" class="Caladea">Mon Compte</a></li>
+                <li *ngIf="isLoggedIn" (click)="logout()" class="cursor-pointer text-xl hover:text-black/70"><a class="Caladea">Se déconnecter</a></li>
+                <li *ngIf="!isLoggedIn" class="cursor-pointer text-xl hover:text-black/70 Caladea"><a routerLink="/inscription-connexion" class="Caladea">Se connecter</a></li>
             </ul>
         </div>
         <div class="row-span-3">
@@ -48,8 +39,7 @@
                     <div class="flex flex-row flex-wrap gap-5 mt-2">
                         <a><img src="images/icons/facebook.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
                         <a><img src="images/icons/instagram.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
-                        <a><img src="images/icons/X.webp" class="cursor-pointer w-11 h-11 rounded-sm"
-                                alt="X app icon"></a>
+                        <a><img src="images/icons/X.webp" class="cursor-pointer w-11 h-11 rounded-sm" alt="X"></a>
                         <a><img src="images/icons/tiktok.webp" class="cursor-pointer w-11 h-11" alt="Tiktok"></a>
                     </div>
                 </li>
@@ -58,10 +48,9 @@
                 </li>
                 <li>
                     <div class="flex flex-row flex-wrap gap-5 mt-2">
-                        <a><img src="images/assets/grab.webp" class="cursor-pointer w-11 h-11" alt="Facebook"></a>
-                        <a><img src="images/assets/deliveroo.webp" class="cursor-pointer w-11 h-11" alt="Instagram"></a>
-                        <a><img src="images/assets/ubereat.webp" class="cursor-pointer w-11 h-11 rounded-sm"
-                                alt="X app icon"></a>
+                        <a><img src="images/assets/grab.webp" class="cursor-pointer w-11 h-11" alt="Grab"></a>
+                        <a><img src="images/assets/deliveroo.webp" class="cursor-pointer w-11 h-11" alt="Deliveroo"></a>
+                        <a><img src="images/assets/ubereat.webp" class="cursor-pointer w-11 h-11 rounded-sm" alt="UberEats"></a>
                     </div>
                 </li>
             </ul>
@@ -81,15 +70,9 @@
     <div class="hidden md:block pb-5">
         <h2 class="text-black/60 text-center">Copyright © 2025 Sush’n Go, Tous droits réservés.</h2>
         <div class="flex flex-row gap-5 justify-center text-center">
-            <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70 Caladea">
-                <h2>Mentions légales</h2>
-            </a>
-            <a routerLink="/plan-site">
-                <h2 class="cursor-pointer border-x border-black px-3 hover:text-black/70 Caladea">Plan du site</h2>
-            </a>
-            <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70 Caladea">
-                <h2>Utilisation de cookies</h2>
-            </a>
+            <a routerLink="/mentions-legales" class="cursor-pointer hover:text-black/70 Caladea"> <h2>Mentions légales</h2> </a>
+            <a routerLink="/plan-site"> <h2 class="cursor-pointer border-x border-black px-3 hover:text-black/70 Caladea">Plan du site</h2> </a> 
+            <a routerLink="/utilisation-cookie" class="cursor-pointer hover:text-black/70 Caladea"> <h2>Utilisation de cookies</h2> </a>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 
 
 <?php
-// par maxime derènes
+// par maxime derènes et joaquim
 
 // pour autoriser les requêtes provenant du frontend
 header('Content-Type: application/json');
