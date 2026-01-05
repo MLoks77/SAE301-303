@@ -34,4 +34,20 @@ ng serve
 
 Rendez-vous ensuite sur http://localhost:4200/
 
+<h2>Tester des fonctionnalités</h2>
+
+Afin de faire vos propres tests, nous avons mis en place un faux compte dans la base de donnée, pour vous connecter, utilisez ces identifiants sur la page connexion :
+
+email test : 
+```bash
+test@sushngo.fr
+```
+mdp : 
+```bash
+password
+```
+
 <img width="2474" height="1389" alt="image" src="https://github.com/user-attachments/assets/2469d602-195b-4f21-bd62-b1fe91f8e337" />
+
+
+
