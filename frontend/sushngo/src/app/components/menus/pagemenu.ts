@@ -76,9 +76,18 @@ export class Pagemenu {
     this.boxSelectionnee.allergenesListe = ['Poisson', 'Soja', 'Sésame', 'Gluten'];
   }
 
+  // pour nettoyer l'URL
+  nettoyerUrl() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ouvrirModal: null },
+      queryParamsHandling: 'merge'
+    });
+  }
+
   fermerModal() {
     this.boxSelectionnee = null;
-
+    this.nettoyerUrl();
   }
 
   ngOnInit(): void {

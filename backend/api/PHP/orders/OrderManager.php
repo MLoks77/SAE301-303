@@ -1,4 +1,5 @@
 <?php
+// témi kergastel
 require_once __DIR__ . '/../../../config/configdb.php';
 
 class OrderManager
@@ -37,7 +38,7 @@ class OrderManager
                 $stmtDetail->execute([
                     'id_commande' => $id_commande,
                     // Attention: le front envoie 'produit' qui contient 'id_produit'
-                    'id_produit' => $item['produit']['id_produit'], 
+                    'id_produit' => $item['produit']['id_produit'],
                     'quantite' => $item['quantite']
                 ]);
             }
@@ -67,11 +68,11 @@ class OrderManager
                     WHERE c.id_user = :id_user
                     GROUP BY c.id_commande
                     ORDER BY c.date_commande DESC";
-            
+
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['id_user' => $id_user]);
             $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+
             return $orders;
         } catch (Exception $e) {
             return [];
