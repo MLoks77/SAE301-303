@@ -140,9 +140,10 @@ export class Stats implements AfterViewInit {
           borderRadius: 4,
           backgroundColor: this.donnees_horaires.map(entry => {
             const hour = parseInt(entry.hour);
-            if (hour >= 8 && hour <= 12) return '#1a1a1a'; // matin
-            if (hour >= 12 && hour <= 18) return '#F64F4F'; // après midi
-            if (hour >= 18 && hour <= 24) return '#2a136eff'; // soir
+            if (hour >= 9 && hour <= 12) return '#323E2E'; // matin
+            if (hour >= 13 && hour <= 18) return '#F64F4F'; // après midi
+            if (hour >= 19 && hour <= 24) return '#E44240'; // soir
+            if (hour >= 1 && hour < 8) return '#555555'; // nuit
             return '#e5e5e5';
           })
         }]
