@@ -196,8 +196,7 @@
         </div>
 
         <!-- Bouton Panier -->
-        <button
-          *ngIf="authService.isLoggedIn$ | async; else loginMessage"
+        <button *ngIf="authService.isLoggedIn$ | async; else loginMessage"
           class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-2 flex justify-between px-6 items-center group"
           (click)="ajouterAuPanier()">
           <span>Ajouter au panier</span>
@@ -206,7 +205,9 @@
         </button>
 
         <ng-template #loginMessage>
-          <div class="bg-red-100 text-red-500 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4 font-medium">Veuillez vous connecter pour commander.</div>
+          <div
+            class="bg-red-100 text-red-500 px-4 py-5 rounded relative max-w-[650px] w-full text-center mb-4 font-medium">
+            Veuillez vous connecter pour commander.</div>
           <button
             class="w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-gray-800 cursor-pointer transition shadow-lg mt-2 flex justify-center justify-between px-6 items-center group"
             (click)="ajouterAuPanier()">Se connecter / S'inscrire</button>
@@ -255,6 +256,16 @@
             <span *ngFor="let allergene of boxSelectionnee.allergenesListe"
               class="text-[10px] bg-gray-100 text-gray-600 px-2 py-1 rounded border border-gray-200 uppercase font-semibold tracking-wide">
               {{ allergene }}
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sm mb-1">Pièces</h4>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] bg-gray-100 text-gray-600 px-2 py-1 rounded border border-gray-200 uppercase font-semibold tracking-wide">
+              {{ boxSelectionnee.pieces }}
             </span>
           </div>
         </div>
