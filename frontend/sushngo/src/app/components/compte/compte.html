@@ -10,7 +10,7 @@
 
 <!-- ordinateur -->
 <section id="fidelite" class="relative w-full overflow-hidden bg-[#879358]/10 py-10">
-    <div class="absolute inset-0 bg-[#879358]/10 pointer-events-none"></div>
+    <div class="absolute inset-0 pointer-events-none"></div>
 
     <div class="relative z-10 mx-auto max-w-[1200px] px-4">
         <div class="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
@@ -73,24 +73,37 @@
 </section>
 
 <section class="flex flex-col items-center justify-center w-full">
+    <div class="flex flex-col items-center w-full px-4 overflow-hidden">
+        <div class="w-full max-w-[600px] flex flex-col items-center gap-2 mt-6">
 
-    <div class="flex flex-col items-center w-full ">
-        <div class="max-w-[1200px] w-full flex flex-col sm:flex-row items-center gap-2 mt-6 px-4 sm:px-8">
-            <span class="font-bold text-lg">{{ fidelite }}pts</span>
-            <progress class="w-full border-2 border-black" id="fideliteprogress" [value]="fideliteProgress" max="100"
-                [class.progress-yellow]="hasReachedAnyStep()"></progress>
-        </div>
-    </div>
-    <div class="max-w-[1200px] w-full text-left fid px-4 sm:px-8">
-        <h1 class="text-[1.25rem] sm:text-[1.5rem] font-bold mt-2">Fidélité</h1>
-        <p class="text-[1rem] sm:text-[1.5rem]">
-            <span *ngIf="hasReachedAnyStep(); else noReduction">
-                Réduction active : <span class="font-bold text-yellow-600">-{{ getCurrentReduction() }}%</span>
+            <span class="font-bold text-lg whitespace-nowrap text-center">
+                {{ fidelite }} pts
             </span>
-            <ng-template #noReduction>
-                Atteignez chaque palier pour gagner une réduction
-            </ng-template>
-        </p>
+
+            <progress class="w-full h-4 border-2 border-black rounded-full overflow-hidden block" id="fideliteprogress"
+                [value]="fideliteProgress" max="100" [class.progress-yellow]="hasReachedAnyStep()">
+            </progress>
+        </div>
+
+        <div class="w-full max-w-[600px] text-center mt-4">
+            <h1 class="text-xl font-bold">
+                Fidélité
+            </h1>
+
+            <p class="text-base mt-1 text-gray-700">
+                <span *ngIf="hasReachedAnyStep(); else noReduction">
+                    Réduction active :
+                    <span class="font-bold text-yellow-600 inline-block ml-1">
+                        -{{ getCurrentReduction() }}%
+                    </span>
+                </span>
+                <ng-template #noReduction>
+                    <span class="text-gray-500 italic">
+                        Atteignez chaque palier pour gagner une réduction
+                    </span>
+                </ng-template>
+            </p>
+        </div>
     </div>
 
 
@@ -176,7 +189,7 @@
     </section>
 
     <!-- Historique des commandes, on fetch l'id utilisateur sur les commandes -->
-    <section class="my-10 bg-gray-200 w-[90%] rounded-lg shadow-lg min-h-[400px] p-8">
+    <section class="my-10 bg-gray-100 w-[90%] rounded-lg shadow-lg min-h-[400px] p-8">
         <h1 class="text-xl font-bold mb-4">Historique des commandes</h1>
         <div *ngIf="orders.length === 0" class="text-center text-gray-500 mt-10">
             <p>Aucune commande pour le moment.</p>
