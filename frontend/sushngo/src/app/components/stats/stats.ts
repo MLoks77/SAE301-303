@@ -57,7 +57,7 @@ export class Stats implements AfterViewInit {
         }));
 
         this.donnees_hebdomadaires = res.weekly_data.map((w: any) => ({
-          day: w.day,
+          day: w.day_name,
           orders: Number(w.orders),
           revenue: Number(w.revenue)
         }));
@@ -78,22 +78,31 @@ export class Stats implements AfterViewInit {
 
   renderWeekly() {
     const ctx = document.getElementById('weeklyChart') as HTMLCanvasElement;
-    if (!ctx) return;
+    if (!ctx || !this.donnees_hebdomadaires.length) return;
 
     if (this.weeklyChart) this.weeklyChart.destroy();
+
+    // On traduit les jours vu qu'on utilise pas l'extension pour
+    const joursTraduits: { [key: string]: string } = {
+      'Mon': 'Lun', 'Tue': 'Mar', 'Wed': 'Mer', 'Thu': 'Jeu',
+      'Fri': 'Ven', 'Sat': 'Sam', 'Sun': 'Dim'
+    };
+
+    const labels = this.donnees_hebdomadaires.map(d => joursTraduits[d.day] || d.day);
+    const dataValues = this.donnees_hebdomadaires.map(d => d.revenue);
 
     this.weeklyChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+        labels: labels, // Utilise les jours réels des 7 derniers jours
         datasets: [{
           label: 'Revenue hebdomadaire',
-          data: this.donnees_hebdomadaires.map(d => d.revenue),
+          data: dataValues,
           borderColor: '#F64F4F',
           backgroundColor: 'rgba(139,0,0,0.2)',
           fill: true,
-          tension: 0.5, // pour avoir un graphique avec des courbes
-          borderWidth: 1 // width des courbes
+          tension: 0.5,
+          borderWidth: 2
         }]
       },
       options: {

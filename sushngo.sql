@@ -187,6 +187,8 @@ VALUES (99, 'Testeur', 'Jean', 'test@sushngo.fr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye
 -- email test : test@sushngo.fr
 -- mdp : password
 
+-- attention aux ID, car au bout d un moment vu qu ils arriveront a 100 sa va casser
+
 INSERT INTO `commande` (`id_commande`, `id_user`, `date_commande`, `prix_total`, `mode`) VALUES
 (1, 99, '2025-10-10 12:30:00', 25.00, 'Livraison'),
 (2, 99, '2025-10-15 19:45:00', 15.90, 'À emporter'),
@@ -220,6 +222,28 @@ INSERT INTO `detail_commande` (`id_commande`, `id_produit`, `quantite`) VALUES
 (13, 25, 1),
 (14, 16, 1),
 (15, 26, 1), (15, 23, 1);
+
+-- commandes des 7 derniers jours sur le compte test pour faire fonctionner la page stats :
+
+-- Insertion des commandes pour les 7 derniers jours
+INSERT INTO `commande` (`id_commande`, `id_user`, `date_commande`, `prix_total`, `mode`) VALUES
+(101, 99, DATE_SUB(NOW(), INTERVAL 6 DAY), 25.00, 'Livraison'),
+(102, 99, DATE_SUB(NOW(), INTERVAL 5 DAY), 15.90, 'À emporter'),
+(103, 99, DATE_SUB(NOW(), INTERVAL 4 DAY), 31.80, 'Livraison'),
+(104, 99, DATE_SUB(NOW(), INTERVAL 3 DAY), 12.50, 'À emporter'),
+(105, 99, DATE_SUB(NOW(), INTERVAL 2 DAY), 45.00, 'Livraison'),
+(106, 99, DATE_SUB(NOW(), INTERVAL 1 DAY), 19.90, 'Livraison'),
+(107, 99, NOW(), 55.40, 'Livraison');
+
+-- Insertion des détails correspondants (id_commande)
+INSERT INTO `detail_commande` (`id_commande`, `id_produit`, `quantite`) VALUES
+(101, 14, 2),
+(102, 15, 1),
+(103, 20, 2),
+(104, 16, 1),
+(105, 18, 2),
+(106, 23, 1),
+(107, 26, 2);
 
 COMMIT;
 

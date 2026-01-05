@@ -21,7 +21,7 @@ class StatsManager
         $totalcommandes = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
 
         // Note clients (simulation)
-        $rating = 3.8;
+        $rating = 4.2;
 
         return [
             'orders_today' => $ordersToday,
@@ -46,13 +46,14 @@ class StatsManager
     {
         // '%a'
         // on vient récupérer les commandes des7 derniers jours 
-        $sql = "SELECT DATE_FORMAT(date_commande, '%a') as day, 
-                       SUM(prix_total) as revenue, 
-                       COUNT(*) as orders 
-                FROM commande 
-                WHERE date_commande >= DATE_SUB(NOW(), INTERVAL 7 DAY) 
-                GROUP BY DATE(date_commande) 
-                ORDER BY date_commande";
+        $sql = "SELECT DATE(date_commande) as full_date, 
+                   DATE_FORMAT(date_commande, '%a') as day_name, 
+                   SUM(prix_total) as revenue, 
+                   COUNT(*) as orders 
+            FROM commande 
+            WHERE date_commande >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) 
+            GROUP BY DATE(date_commande) 
+            ORDER BY DATE(date_commande) ASC";
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 

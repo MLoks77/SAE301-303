@@ -108,6 +108,12 @@
         </div>
 
         <div class="h-[250px] w-full">
+          <div *ngIf="donnees_hebdomadaires.length === 0"
+            class="flex items-center justify-center h-full border-2 border-dashed border-gray-300 rounded">
+            <!-- si aucune données -->
+            <p class="text-gray-500 italic">Aucune commande enregistrée ces 7 derniers jours.</p>
+          </div>
+
           <canvas id="weeklyChart"></canvas>
         </div>
       </div>
