@@ -90,7 +90,7 @@ export class Compte implements OnInit {
       withCredentials: true
     }).subscribe({
       next: (orders) => {
-        this.orders = orders;
+        this.orders = orders.slice(0, 5); // maxime derènes : vu que on a pas mis de pagination, on va juste afficher les 5 dernières les plus récentes
       },
       error: (err) => {
         console.error('Erreur lors du chargement des commandes:', err);
