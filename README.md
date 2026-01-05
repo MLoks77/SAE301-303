@@ -9,7 +9,10 @@ Des fonctionnalités tels que : Un système de fidélité, les stats de l'entrep
 Cette SAE fut réalisé avec :
 
 <ul>
+  <li>Angular 20</li>
+  <li>API REST</li>
   <li>HTML</li>
+  <li>CSS & SCSS</li>
   <li>TAILWIND</li>
   <li>PHP & SQL</li>
   <li>Typescript</li>
