@@ -22,6 +22,8 @@ import { Observable } from 'rxjs';
 export class ConnexionApi {
   protected API_URL = "http://localhost/SAE301-303/backend/api/api.php";
 
+  // oral sae conseil : a redirigé vers le json / d'une autre manière
+
   constructor(private http: HttpClient) { }
 
   getUserDataFromApi() {
