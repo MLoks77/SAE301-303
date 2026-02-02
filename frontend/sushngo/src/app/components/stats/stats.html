@@ -39,7 +39,7 @@
       <div class="flex items-end justify-center gap-2 sm:gap-4 h-64 mb-4">
         <ng-container *ngIf="plats_populaires.length === 0; else showPlats">
           <div class="flex items-center justify-center h-full w-full border-2 border-dashed border-gray-300 rounded">
-            <p class="text-gray-500 italic">Aucun plat populaire enregistré cette semaine.</p>
+            <p class="text-gray-500 italic">Aucune commmande enregistrée cette semaine.</p>
           </div>
         </ng-container>
 
@@ -121,7 +121,7 @@
           <div *ngIf="donnees_hebdomadaires.length === 0"
             class="flex items-center justify-center h-full border-2 border-dashed border-gray-300 rounded">
             <!-- si aucune données -->
-            <p class="text-gray-500 italic">Aucune commande enregistrée ces 7 derniers jours.</p>
+            <p class="text-gray-500 italic">Aucune commande enregistrée cette semaine.</p>
           </div>
 
           <canvas id="weeklyChart"></canvas>
